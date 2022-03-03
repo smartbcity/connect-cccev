@@ -1,6 +1,11 @@
 package ccev.dsl.core
 
-expect interface CUnitDTO {
+import kotlin.js.JsExport
+import kotlin.js.JsName
+
+@JsExport
+@JsName("CUnitDTO")
+interface CUnitDTO {
     val identifier: String
     val name: String
     val description: String

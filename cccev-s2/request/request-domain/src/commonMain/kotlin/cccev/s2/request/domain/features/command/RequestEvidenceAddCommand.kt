@@ -8,6 +8,8 @@ import ccev.dsl.core.Evidence
 import ccev.dsl.core.EvidenceDTO
 import ccev.dsl.core.EvidenceId
 import f2.dsl.fnc.F2Function
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
 /**
  * Add evidence to a request.
@@ -21,7 +23,9 @@ typealias RequestEvidenceAddCommandFunction = F2Function<RequestEvidenceAddComma
  * @D2 command
  * @parent [RequestEvidenceAddCommandFunction]
  */
-expect interface RequestEvidenceAddCommandDTO: RequestCommand {
+@JsExport
+@JsName("RequestEvidenceAddCommandDTO")
+interface RequestEvidenceAddCommandDTO: RequestCommand {
 	/**
 	 * The unique id of the request.
 	 */
@@ -38,7 +42,9 @@ expect interface RequestEvidenceAddCommandDTO: RequestCommand {
  * @D2 event
  * @parent [RequestEvidenceAddCommandFunction]
  */
-expect interface RequestEvidenceAddedEventDTO: RequestEvent {
+@JsExport
+@JsName("RequestEvidenceAddedEventDTO")
+interface RequestEvidenceAddedEventDTO: RequestEvent {
 	/**
 	 * The unique id of the request.
 	 */

@@ -7,8 +7,12 @@ import ccev.dsl.core.InformationConcept
 import ccev.dsl.core.InformationConceptId
 import ccev.dsl.core.SupportedValue
 import ccev.dsl.core.SupportedValueDTO
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
-expect interface InformationConceptDTO: InformationConcept {
+@JsExport
+@JsName("InformationConceptDTO")
+interface InformationConceptDTO: InformationConcept {
     val evidenceTypes: Array<Array<EvidenceTypeId>>
     val supportedValue: SupportedValueDTO
 }

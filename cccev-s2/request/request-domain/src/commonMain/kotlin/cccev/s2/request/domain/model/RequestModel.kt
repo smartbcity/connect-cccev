@@ -1,6 +1,5 @@
 package cccev.s2.request.domain.model
 
-import kotlin.js.JsExport
 import kotlin.js.JsName
 
 typealias RequestId = String
@@ -13,8 +12,6 @@ interface RequestModelDTO {
 	val id: RequestId
 }
 
-@JsExport
-@JsName("RequestModel")
-open class RequestModel(
+data class RequestModel(
 	override val id: RequestId,
 ) : RequestModelDTO

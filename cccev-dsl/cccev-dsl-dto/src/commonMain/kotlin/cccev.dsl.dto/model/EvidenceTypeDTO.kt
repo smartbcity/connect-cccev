@@ -7,8 +7,12 @@ import ccev.dsl.core.EvidenceDTO
 import ccev.dsl.core.EvidenceType
 import ccev.dsl.core.EvidenceTypeId
 import ccev.dsl.core.PeriodOfTime
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
-expect interface EvidenceTypeDTO: EvidenceType {
+@JsExport
+@JsName("EvidenceTypeDTO")
+interface EvidenceTypeDTO: EvidenceType {
     val evidence: EvidenceDTO?
 }
 

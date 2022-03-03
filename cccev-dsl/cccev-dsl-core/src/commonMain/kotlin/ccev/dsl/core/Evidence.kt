@@ -1,9 +1,13 @@
 package ccev.dsl.core
 
-typealias EvidenceId = String
-typealias SupportedValueId = String
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
-expect interface EvidenceDTO {
+typealias EvidenceId = String
+
+@JsExport
+@JsName("EvidenceDTO")
+interface EvidenceDTO {
     val identifier: EvidenceId
     val isConformantTo: List<EvidenceTypeId>
     val supportsValue: List<SupportedValueId>
@@ -24,7 +28,3 @@ open class Evidence(
     override val name: String = "",
     override val file: String? = null
 ): EvidenceDTO
-
-
-
-

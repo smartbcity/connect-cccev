@@ -5,6 +5,8 @@ import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import f2.dsl.fnc.F2Function
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
 /**
  * Audit to a request.
@@ -18,7 +20,9 @@ typealias RequestAuditCommandFunction = F2Function<RequestAuditCommand, RequestA
  * @D2 command
  * @parent [RequestAuditCommandFunction]
  */
-expect interface RequestAuditCommandDTO: RequestCommand {
+@JsExport
+@JsName("RequestAuditCommandDTO")
+interface RequestAuditCommandDTO: RequestCommand {
 	/**
 	 * The unique id of the request.
 	 */
@@ -30,7 +34,9 @@ expect interface RequestAuditCommandDTO: RequestCommand {
  * @D2 event
  * @parent [RequestAuditCommandFunction]
  */
-expect interface RequestAuditedEventDTO: RequestEvent {
+@JsExport
+@JsName("RequestAuditedEventDTO")
+interface RequestAuditedEventDTO: RequestEvent {
 	/**
 	 * The unique id of the request.
 	 */

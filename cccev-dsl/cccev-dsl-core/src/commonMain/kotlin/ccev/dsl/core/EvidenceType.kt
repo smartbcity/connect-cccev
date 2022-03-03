@@ -1,11 +1,14 @@
 package ccev.dsl.core
 
 import kotlin.js.JsExport
+import kotlin.js.JsName
 
 typealias EvidenceTypeListId = String
 typealias EvidenceTypeId = String
 
-expect interface EvidenceTypeList {
+@JsExport
+@JsName("EvidenceTypeList")
+interface EvidenceTypeList {
 	val description: String
 	val identifier: EvidenceTypeListId
 	val name: String
@@ -19,7 +22,9 @@ open class EvidenceTypeListBase(
 	override val specifiesEvidenceType: List<EvidenceTypeBase>
 ): EvidenceTypeList
 
-expect interface EvidenceType {
+@JsExport
+@JsName("EvidenceType")
+interface EvidenceType {
 	val identifier: EvidenceTypeId
 	val name: String
 	val evidenceTypeClassification: Code
@@ -44,4 +49,3 @@ open class PeriodOfTime(
 	endTime: Int? = null,
 	startTime: Int? = null,
 )
-

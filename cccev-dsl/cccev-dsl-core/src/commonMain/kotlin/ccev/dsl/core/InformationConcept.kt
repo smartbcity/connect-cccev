@@ -1,8 +1,13 @@
 package ccev.dsl.core
 
+import kotlin.js.JsExport
+import kotlin.js.JsName
+
 typealias InformationConceptId = String
 
-expect interface InformationConcept {
+@JsExport
+@JsName("InformationConcept")
+interface InformationConcept {
 	val identifier: InformationConceptId
 	val name: String
 	val unit: CUnitDTO

@@ -1,6 +1,13 @@
 package ccev.dsl.core
 
-expect interface SupportedValueDTO {
+import kotlin.js.JsExport
+import kotlin.js.JsName
+
+typealias SupportedValueId = String
+
+@JsExport
+@JsName("SupportedValueDTO")
+interface SupportedValueDTO {
     val identifier: SupportedValueId
     val value: String?
     val query: String?

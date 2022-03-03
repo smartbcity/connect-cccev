@@ -2,8 +2,12 @@ package cccev.dsl.dto.model
 
 import ccev.dsl.core.EvidenceTypeList
 import ccev.dsl.core.EvidenceTypeListId
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
-expect interface EvidenceTypeListDTO: EvidenceTypeList {
+@JsExport
+@JsName("EvidenceTypeListDTO")
+interface EvidenceTypeListDTO: EvidenceTypeList {
     override val specifiesEvidenceType: List<EvidenceTypeDTO>
 }
 

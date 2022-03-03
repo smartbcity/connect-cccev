@@ -5,6 +5,8 @@ import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import f2.dsl.fnc.F2Function
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
 /**
  * Send to a request.
@@ -18,7 +20,9 @@ typealias RequestSendCommandFunction = F2Function<RequestSendCommand, RequestSen
  * @D2 command
  * @parent [RequestSendCommandFunction]
  */
-expect interface RequestSendCommandDTO: RequestCommand {
+@JsExport
+@JsName("RequestSendCommandDTO")
+interface RequestSendCommandDTO: RequestCommand {
 	/**
 	 * The unique id of the request.
 	 */
@@ -30,7 +34,9 @@ expect interface RequestSendCommandDTO: RequestCommand {
  * @D2 event
  * @parent [RequestSendCommandFunction]
  */
-expect interface RequestSentEventDTO: RequestEvent {
+@JsExport
+@JsName("RequestSentEventDto")
+interface RequestSentEventDTO: RequestEvent {
 	/**
 	 * The unique id of the request.
 	 */

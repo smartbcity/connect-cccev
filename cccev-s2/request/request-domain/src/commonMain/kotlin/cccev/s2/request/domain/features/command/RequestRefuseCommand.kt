@@ -5,6 +5,8 @@ import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import f2.dsl.fnc.F2Function
+import kotlin.js.JsExport
+import kotlin.js.JsName
 
 /**
  * Refuse to a request.
@@ -18,7 +20,9 @@ typealias RequestRefuseCommandFunction = F2Function<RequestRefuseCommand, Reques
  * @D2 command
  * @parent [RequestRefuseCommandFunction]
  */
-expect interface RequestRefuseCommandDTO: RequestCommand {
+@JsExport
+@JsName("RequestRefuseCommandDTO")
+interface RequestRefuseCommandDTO: RequestCommand {
 	/**
 	 * The unique id of the request.
 	 */
@@ -30,7 +34,9 @@ expect interface RequestRefuseCommandDTO: RequestCommand {
  * @D2 event
  * @parent [RequestRefuseCommandFunction]
  */
-expect interface RequestRefusedEventDTO: RequestEvent {
+@JsExport
+@JsName("RequestRefusedEventDto")
+interface RequestRefusedEventDTO: RequestEvent {
 	/**
 	 * The unique id of the request.
 	 */
