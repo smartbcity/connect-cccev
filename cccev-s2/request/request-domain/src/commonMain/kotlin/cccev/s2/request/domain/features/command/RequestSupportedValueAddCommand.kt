@@ -7,16 +7,8 @@ import cccev.s2.request.domain.model.RequestId
 import ccev.dsl.core.InformationConceptId
 import ccev.dsl.core.SupportedValue
 import ccev.dsl.core.SupportedValueDTO
-import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
-
-/**
- * Add a Supported Value to a request.
- * @D2 function
- * @parent [cccev.s2.request.domain.RequestAggregate]
- */
-typealias RequestSupportedValueAddCommandFunction = F2Function<RequestSupportedValueAddCommand, RequestSupportedValueAddedEvent>
 
 /**
  * Command to add an supported Value to a request.

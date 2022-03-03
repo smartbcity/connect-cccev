@@ -2,15 +2,12 @@ package cccev.s2.request.app.entity
 
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.features.command.RequestAuditedEvent
-import cccev.s2.request.domain.features.command.RequestEvidenceAddedEvent
-import cccev.s2.request.domain.features.command.RequestEvidenceRemovedEvent
 import cccev.s2.request.domain.features.command.RequestRefusedEvent
 import cccev.s2.request.domain.features.command.RequestSentEvent
 import cccev.s2.request.domain.features.command.RequestSignedEvent
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddedEvent
 import cccev.s2.request.domain.model.RequestId
 import ccev.dsl.core.Evidence
-import ccev.dsl.core.EvidenceTypeId
 import ccev.dsl.core.InformationConceptId
 import ccev.dsl.core.RequirementId
 import ccev.dsl.core.SupportedValue
@@ -33,24 +30,6 @@ class RequestEntity(
 ): EntityBase(), WithS2Id<RequestId>, WithS2State<RequestState> {
 	override fun s2Id() = id
 	override fun s2State() = status
-
-	fun addEvidence(evidence: Evidence): RequestEvidenceAddedEvent {
-		evidences.add(evidence)
-
-		return RequestEvidenceAddedEvent(
-			id = id,
-			evidenceId = evidence.identifier
-		)
-	}
-
-	fun removeEvidence(evidenceTypeId: EvidenceTypeId): RequestEvidenceRemovedEvent {
-		evidences.removeIf { evidence -> evidenceTypeId in evidence.isConformantTo }
-
-		return RequestEvidenceRemovedEvent(
-			id = id,
-			evidenceTypeId = evidenceTypeId
-		)
-	}
 
 	fun addSupportedValue(value: SupportedValue): RequestSupportedValueAddedEvent {
 		supportedValues[value.providesValueFor] = value

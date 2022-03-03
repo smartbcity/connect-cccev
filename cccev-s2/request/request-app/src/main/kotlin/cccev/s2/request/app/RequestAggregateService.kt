@@ -4,93 +4,93 @@ import cccev.s2.request.app.config.RequestS2Aggregate
 import cccev.s2.request.app.entity.RequestEntity
 import cccev.s2.request.domain.RequestAggregate
 import cccev.s2.request.domain.RequestState
-import cccev.s2.request.domain.features.command.RequestAuditCommandFunction
-import cccev.s2.request.domain.features.command.RequestEvidenceAddCommandFunction
-import cccev.s2.request.domain.features.command.RequestEvidenceRemoveCommandFunction
-import cccev.s2.request.domain.features.command.RequestInitCommandFunction
+import cccev.s2.request.domain.features.command.RequestAuditCommand
+import cccev.s2.request.domain.features.command.RequestAuditedEvent
+import cccev.s2.request.domain.features.command.RequestEvidenceAddCommand
+import cccev.s2.request.domain.features.command.RequestEvidenceAddedEvent
+import cccev.s2.request.domain.features.command.RequestEvidenceRemoveCommand
+import cccev.s2.request.domain.features.command.RequestEvidenceRemovedEvent
+import cccev.s2.request.domain.features.command.RequestInitCommand
 import cccev.s2.request.domain.features.command.RequestInitializedEvent
-import cccev.s2.request.domain.features.command.RequestRefuseCommandFunction
-import cccev.s2.request.domain.features.command.RequestSendCommandFunction
-import cccev.s2.request.domain.features.command.RequestSignCommandFunction
-import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommandFunction
-import f2.dsl.fnc.f2Function
-import org.springframework.context.annotation.Bean
+import cccev.s2.request.domain.features.command.RequestRefuseCommand
+import cccev.s2.request.domain.features.command.RequestRefusedEvent
+import cccev.s2.request.domain.features.command.RequestSendCommand
+import cccev.s2.request.domain.features.command.RequestSentEvent
+import cccev.s2.request.domain.features.command.RequestSignCommand
+import cccev.s2.request.domain.features.command.RequestSignedEvent
+import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
+import cccev.s2.request.domain.features.command.RequestSupportedValueAddedEvent
+import cccev.s2.request.domain.model.RequestId
 import org.springframework.stereotype.Service
-import s2.spring.utils.logger.Logger
+import s2.dsl.automate.S2Event
 
 @Service
 class RequestAggregateService(
 	private val aggregate: RequestS2Aggregate,
 ): RequestAggregate {
-	private val logger by Logger()
 
-	@Bean
-	override fun init(): RequestInitCommandFunction = f2Function { cmd ->
-		aggregate.createWithEvent(cmd, { RequestInitializedEvent(id = id) }) {
-			logger.info("Request [${cmd.id}]: init")
-			RequestEntity(
-				id = cmd.id,
-				status = RequestState.Created,
-				frameworkId = cmd.frameworkId,
-				evidences = mutableListOf(),
-				supportedValues = mutableMapOf()
-			)
+	override suspend fun init(cmd: RequestInitCommand) = aggregate.createWithEvent(cmd, { RequestInitializedEvent(id) }) {
+		RequestEntity(
+			id = cmd.id,
+			status = RequestState.Created,
+			frameworkId = cmd.frameworkId,
+			evidences = mutableListOf(),
+			supportedValues = mutableMapOf()
+		)
+	}
+
+	override suspend fun addEvidence(cmd: RequestEvidenceAddCommand) = aggregate.doTransition(cmd) {
+		evidences.add(cmd.evidence)
+
+		this to RequestEvidenceAddedEvent(
+			id = id,
+			evidenceId = cmd.evidence.identifier
+		)
+	}
+
+	override suspend fun removeEvidence(cmd: RequestEvidenceRemoveCommand) = aggregate.doTransition(cmd) {
+		evidences.removeIf { evidence -> cmd.evidenceTypeId in evidence.isConformantTo }
+
+		this to RequestEvidenceRemovedEvent(
+			id = id,
+			evidenceTypeId = cmd.evidenceTypeId
+		)
+	}
+
+	override suspend fun addSupportedValue(cmd: RequestSupportedValueAddCommand) = aggregate.doTransition(cmd) {
+		supportedValues[cmd.supportedValue.providesValueFor] = cmd.supportedValue
+
+		this to RequestSupportedValueAddedEvent(
+			id = id,
+			providesValueFor = cmd.supportedValue.providesValueFor
+		)
+	}
+
+	override suspend fun send(cmd: RequestSendCommand) = aggregate.doTransition(cmd) {
+		this to updateStatus {
+			RequestSentEvent(id = id)
 		}
 	}
 
-	@Bean
-	override fun addEvidence(): RequestEvidenceAddCommandFunction = f2Function { cmd ->
-		logger.info("Request [${cmd.id}]: addEvidence")
-		aggregate.doTransition(cmd) {
-			this to addEvidence(cmd.evidence)
+	override suspend fun sign(cmd: RequestSignCommand) = aggregate.doTransition(cmd) {
+		this to updateStatus {
+			RequestSignedEvent(id = id)
 		}
 	}
 
-	@Bean
-	override fun removeEvidence(): RequestEvidenceRemoveCommandFunction = f2Function { cmd ->
-		logger.info("Request [${cmd.id}]: removeEvidence")
-		aggregate.doTransition(cmd) {
-			this to removeEvidence(cmd.evidenceTypeId)
+	override suspend fun audit(cmd: RequestAuditCommand) = aggregate.doTransition(cmd) {
+		this to updateStatus {
+			RequestAuditedEvent(id = id)
 		}
 	}
 
-	@Bean
-	override fun addSupportedValue(): RequestSupportedValueAddCommandFunction = f2Function { cmd ->
-		logger.info("Request [${cmd.id}]: addSupportedValue")
-		aggregate.doTransition(cmd) {
-			this to addSupportedValue(cmd.supportedValue)
+	override suspend fun refuse(cmd: RequestRefuseCommand) = aggregate.doTransition(cmd) {
+		this to updateStatus {
+			RequestRefusedEvent(id = id)
 		}
 	}
 
-	@Bean
-	override fun send(): RequestSendCommandFunction = f2Function { cmd ->
-		logger.info("Request [${cmd.id}]: send")
-		aggregate.doTransition(cmd) {
-			this to send()
-		}
-	}
-
-	@Bean
-	override fun sign(): RequestSignCommandFunction = f2Function { cmd ->
-		logger.info("Request [${cmd.id}]: sign")
-		aggregate.doTransition(cmd) {
-			this to sign()
-		}
-	}
-
-	@Bean
-	override fun audit(): RequestAuditCommandFunction = f2Function { cmd ->
-		logger.info("Request [${cmd.id}]: audit")
-		aggregate.doTransition(cmd) {
-			this to audit()
-		}
-	}
-
-	@Bean
-	override fun refuse(): RequestRefuseCommandFunction = f2Function { cmd ->
-		logger.info("Request [${cmd.id}]: refuse")
-		aggregate.doTransition(cmd) {
-			this to refuse()
-		}
+	private fun <E: S2Event<RequestState, RequestId>> RequestEntity.updateStatus(buildEvent: () -> E): E {
+		return buildEvent().also { event -> status = event.type }
 	}
 }

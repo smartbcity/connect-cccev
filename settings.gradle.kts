@@ -21,6 +21,10 @@ include(
 	"cccev-test"
 )
 include(
+	"cccev-f2:request-api:request-api-app",
+	"cccev-f2:request-api:request-api-domain",
+)
+include(
 	"cccev-s2:request:request-app",
 	"cccev-s2:request:request-domain",
 	"cccev-s2:request:request-tasks"

@@ -83,7 +83,7 @@ class ComputeExpectedValuesHandlerSteps: En {
                         id = requestId,
                         supportedValue = value
                     )
-                    requestAggregateService.addSupportedValue().invoke(command)
+                    requestAggregateService.addSupportedValue(command)
                 }
             }
         }

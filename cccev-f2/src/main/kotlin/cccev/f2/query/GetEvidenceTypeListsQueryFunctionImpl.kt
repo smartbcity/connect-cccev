@@ -39,7 +39,7 @@ class GetEvidenceTypeListsQueryFunctionImpl(
             ?: throw NotFoundException("Requirement not found")
 
         try {
-            val requestId = requestAggregateService.init().invoke(RequestInitCommand(id = query.id, frameworkId = query.requirement)).id
+            val requestId = requestAggregateService.init(RequestInitCommand(id = query.id, frameworkId = query.requirement)).id
             logger.info("Request [$requestId]")
         } catch (e: DuplicateKeyException) {
             logger.info("Request exists")

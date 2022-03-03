@@ -50,7 +50,7 @@ class ComputeExpectedValuesHandler(
                 supportedValue = value
             )
         }.forEach { command ->
-            requestAggregateService.addSupportedValue().invoke(command)
+            requestAggregateService.addSupportedValue(command)
         }
     }
 

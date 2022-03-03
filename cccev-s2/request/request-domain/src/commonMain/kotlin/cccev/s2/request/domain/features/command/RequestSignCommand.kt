@@ -4,16 +4,8 @@ import cccev.s2.request.domain.RequestCommand
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
-import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
-
-/**
- * Sign to a request.
- * @D2 function
- * @parent [cccev.s2.request.domain.RequestAggregate]
- */
-typealias RequestSignCommandFunction = F2Function<RequestSignCommand, RequestSignedEvent>
 
 /**
  * Command to add an supported Value to a request.

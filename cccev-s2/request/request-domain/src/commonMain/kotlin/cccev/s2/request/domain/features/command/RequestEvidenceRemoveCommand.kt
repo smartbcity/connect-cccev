@@ -5,16 +5,8 @@ import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import ccev.dsl.core.EvidenceTypeId
-import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
-
-/**
- * Remove evidence from a request.
- * @D2 function
- * @parent [cccev.s2.request.domain.RequestAggregate]
- */
-typealias RequestEvidenceRemoveCommandFunction = F2Function<RequestEvidenceRemoveCommand, RequestEvidenceRemovedEvent>
 
 /**
  * Command to remove an evidence from a request.

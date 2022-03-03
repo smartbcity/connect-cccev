@@ -5,7 +5,6 @@ import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.model.RequestId
 import ccev.dsl.core.InformationConceptId
 import ccev.dsl.core.SupportedValueId
-import f2.dsl.fnc.invoke
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.data.DataTest
 import features.cccev.test.exception.EntityNotInitializedException
@@ -47,7 +46,7 @@ class SupportedValueSteps: En, CucumberStepsDefinition() {
                 supportedValue = params.toSupportedValue()
             )
         }.forEach { command ->
-            requestAggregateService.addSupportedValue().invoke(command)
+            requestAggregateService.addSupportedValue(command)
         }
     }
 

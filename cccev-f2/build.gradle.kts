@@ -13,3 +13,19 @@ dependencies {
 
     testImplementation(project(":cccev-test"))
 }
+
+subprojects {
+    plugins.withType(JavaPlugin::class.java).whenPluginAdded {
+        dependencies {
+            val implementation by configurations
+            Dependencies.Jvm.f2 { implementation(it) }
+        }
+    }
+
+    plugins.withType(org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper::class.java).whenPluginAdded {
+        dependencies {
+            val commonMainApi by configurations
+            Dependencies.Mpp.f2 { commonMainApi(it) }
+        }
+    }
+}
