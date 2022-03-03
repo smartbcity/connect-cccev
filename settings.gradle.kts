@@ -25,11 +25,3 @@ include(
 	"cccev-s2:request:request-domain",
 	"cccev-s2:request:request-tasks"
 )
-include(
-	"cccev-s2:requirement:requirement-app",
-	"cccev-s2:requirement:requirement-domain"
-)
-include(
-	"cccev-s2:s2-spring-boot-starter-automate-jena",
-	"cccev-s2:s2-spring-boot-starter-automate-rdf4j"
-)
