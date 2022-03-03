@@ -8,5 +8,5 @@ dependencies {
 	api(project(":cccev-s2:request:request-domain"))
 	api(project(":cccev-dsl:cccev-dsl-core"))
 
-	Dependencies.Jvm.s2Mongo.forEach { api(it) }
+	Dependencies.Jvm.s2Mongo(::api)
 }
