@@ -13,7 +13,7 @@ plugins {
 }
 
 allprojects {
-	group = "city.smartb.fixers"
+	group = "city.smartb.cccev"
 	version = System.getenv("VERSION") ?: "latest"
 	repositories {
 		mavenLocal()
