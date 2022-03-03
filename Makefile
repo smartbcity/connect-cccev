@@ -8,18 +8,14 @@ CCCEV_APP_IMG	    	:= ${CCCEV_APP_NAME}:${VERSION}
 CCCEV_APP_LATEST		:= ${CCCEV_APP_NAME}:latest
 CCCEV_APP_PACKAGE	   	:= :api-gateway:bootBuildImage
 
+libs: package-kotlin
+docker: package-cccev-api package-cccev-front
 
-package: package-cccev-front package-cccev-api
-
-push: push-cccev-front push-cccev-api
-
-push-latest: push-latest-cccev-front push-latest-cccev-api
-
+package-kotlin:
+	@gradle clean build publish --stacktrace
 
 package-cccev-api:
 	VERSION=${VERSION} ./gradlew build ${CCCEV_APP_PACKAGE} -x test
-
-push-cccev-api:
 	@docker push ${CCCEV_APP_IMG}
 
 push-latest-cccev-api:
@@ -28,10 +24,4 @@ push-latest-cccev-api:
 
 package-cccev-front:
 	@docker build -f ${FRONT_CCCEV_DOCKERFILE} -t ${FRONT_CCCEV_IMG} .
-
-push-cccev-front:
 	@docker push ${FRONT_CCCEV_IMG}
-
-push-latest-cccev-front:
-	@docker tag ${FRONT_CCCEV_IMG} ${FRONT_CCCEV_LATEST}
-	@docker push ${FRONT_CCCEV_LATEST}

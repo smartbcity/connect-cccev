@@ -3,5 +3,3 @@ include:
     file: 'fixers/.gitlab-ci-base.yml'
   - project: 'fixers/cicd'
     file: 'fixers/.gitlab-ci-libs.yml'
-  - project: 'fixers/cicd'
-    file: 'fixers/.gitlab-ci-docs.yml'
