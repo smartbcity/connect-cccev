@@ -1,11 +1,13 @@
 pluginManagement {
 	repositories {
 		gradlePluginPortal()
+		mavenCentral()
 		maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
+		maven { url = uri("https://repo.spring.io/milestone") }
 	}
 }
 
-rootProject.name = "cccev-cee"
+rootProject.name = "cccev"
 
 include(
 	"cccev-dsl:cccev-dsl-core",
@@ -30,7 +32,4 @@ include(
 include(
 	"cccev-s2:s2-spring-boot-starter-automate-jena",
 	"cccev-s2:s2-spring-boot-starter-automate-rdf4j"
-)
-include(
-	"cccev-bubble:cccev-bubble-core",
 )

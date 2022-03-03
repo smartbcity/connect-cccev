@@ -1,29 +1,38 @@
 plugins {
-	id("city.smartb.fixers.gradle.config") version PluginVersions.fixers
-	id("city.smartb.fixers.gradle.sonar") version PluginVersions.fixers
+	kotlin("plugin.jpa") version PluginVersions.kotlin apply false
+	kotlin("plugin.spring") version PluginVersions.kotlin apply false
+	kotlin("plugin.serialization") version PluginVersions.kotlin apply false
+	kotlin("kapt") version PluginVersions.kotlin apply false
 
 	id("org.springframework.boot") version PluginVersions.springBoot apply false
-	id("io.spring.dependency-management") version "1.0.10.RELEASE" apply false
 
-	kotlin("jvm") version PluginVersions.kotlin apply false
-	kotlin("plugin.spring") version PluginVersions.kotlin apply false
+	id("city.smartb.fixers.gradle.config") version PluginVersions.fixers
+	id("city.smartb.fixers.gradle.sonar") version PluginVersions.fixers
+	id("city.smartb.fixers.gradle.d2") version PluginVersions.d2
 }
 
 allprojects {
-	group = "city.smartb.prototyping"
+	group = "city.smartb.fixers"
 	version = System.getenv("VERSION") ?: "latest"
 	repositories {
+		mavenLocal()
 		mavenCentral()
-		maven { url = uri("https://oss.sonatype.org/content/repositories/snapshots") }
+		Repo.snapshot.forEach {
+			maven { url = uri(it) }
+		}
 	}
 }
 
-fixers {
-	bundle {
-		id = "ccev-cee"
-		name = "CCEV CEE"
-		description = "Kotlin implementation of Core Criterion and Core Evidence Vocabulary for cee fiche"
-		url = "https://gitlab.smartb.city/prototyping/cccev-cee"
+subprojects {
+	plugins.withType(city.smartb.fixers.gradle.config.ConfigPlugin::class.java).whenPluginAdded {
+		fixers {
+			bundle {
+				id = "cccev"
+				name = "CCCEV"
+				description = "Kotlin implementation of Core Criterion and Core Evidence Vocabulary"
+				url = "https://gitlab.smartb.city/fixers/cccev"
+			}
+		}
 	}
 }
 

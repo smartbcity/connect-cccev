@@ -1,24 +1,32 @@
-import org.gradle.api.artifacts.Dependency
+import city.smartb.gradle.dependencies.FixersPluginVersions
 
 object PluginVersions {
-	const val kotlin = "1.5.30"
+//	const val kotlin = FixersPluginVersions.kotlin
+	const val kotlin = "1.6.20-M1"
+	const val springBoot = FixersPluginVersions.springBoot
 	const val fixers = "experimental-SNAPSHOT"
-	const val springBoot = "2.5.3"
+	const val d2 = "0.3.1"
 }
 
 object Versions {
-	const val s2 = "next-SNAPSHOT"
-	const val f2 = "next-SNAPSHOT"
+	const val s2 = "experimental-x-SNAPSHOT"
+	const val f2 = PluginVersions.fixers
 
-	const val ktor = "1.6.3"
-	const val coroutines = "1.5.2"
-	const val jackson = "2.13.0"
+	const val coroutines = "1.6.0"
 
 	const val junit = "5.7.0"
 	const val junitPlateform = "1.8.1"
 	const val assertj = "3.15.0"
-
 	const val cucumber = "7.0.0"
+}
+
+object Repo {
+	val snapshot: List<String> = listOf(
+		// For fixers
+		"https://oss.sonatype.org/content/repositories/snapshots",
+		//For pdfbox
+		"https://jitpack.io"
+	)
 }
 
 object Dependencies {
@@ -28,12 +36,6 @@ object Dependencies {
 			"city.smartb.s2:s2-spring-boot-starter-automate-data:${Versions.s2}",
 			"city.smartb.f2:f2-spring-data-mongodb:${Versions.f2}",
 			"city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}"
-		)
-
-		fun ktorClient(scope: Scope) = scope.add(
-			"io.ktor:ktor-client-core:${Versions.ktor}",
-			"io.ktor:ktor-client-cio:${Versions.ktor}",
-			"io.ktor:ktor-client-jackson:${Versions.ktor}"
 		)
 
 		val junit = arrayOf(
@@ -50,12 +52,4 @@ object Dependencies {
 			"org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:${Versions.coroutines}"
 		)
 	}
-}
-
-
-typealias Scope = (dependencyNotation: Any) -> Dependency?
-
-fun Scope.add(vararg deps: String): Scope {
-	deps.forEach { this(it) }
-	return this
 }
