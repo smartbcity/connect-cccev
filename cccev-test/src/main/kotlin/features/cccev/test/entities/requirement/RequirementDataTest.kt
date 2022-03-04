@@ -1,11 +1,11 @@
 package features.cccev.test.entities.requirement
 
-import ccev.dsl.core.Code
-import ccev.dsl.core.EvidenceTypeListBase
-import ccev.dsl.core.InformationConceptBase
-import ccev.dsl.core.InformationConceptId
-import ccev.dsl.core.InformationRequirement
-import ccev.dsl.core.Requirement
+import cccev.core.dsl.Code
+import cccev.core.dsl.EvidenceTypeListBase
+import cccev.core.dsl.InformationConceptBase
+import cccev.core.dsl.InformationConceptId
+import cccev.core.dsl.InformationRequirement
+import cccev.core.dsl.Requirement
 import features.cccev.test.data.DataTest
 import features.cccev.test.data.DummyCode
 import java.util.UUID

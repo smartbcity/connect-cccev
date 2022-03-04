@@ -1,11 +1,11 @@
 package cccev.f2.evidence.api.app.model
 
-import cccev.dsl.dto.model.EvidenceTypeDTOBase
-import cccev.dsl.dto.model.EvidenceTypeListDTOBase
-import ccev.dsl.core.Evidence
-import ccev.dsl.core.EvidenceTypeBase
-import ccev.dsl.core.EvidenceTypeId
-import ccev.dsl.core.EvidenceTypeListBase
+import cccev.core.dsl.Evidence
+import cccev.core.dsl.EvidenceTypeBase
+import cccev.core.dsl.EvidenceTypeId
+import cccev.core.dsl.EvidenceTypeListBase
+import cccev.f2.evidence.api.domain.model.EvidenceTypeDTOBase
+import cccev.f2.evidence.api.domain.model.EvidenceTypeListDTOBase
 
 fun EvidenceTypeListBase.toDTO(evidences: Map<EvidenceTypeId, Evidence?>) = EvidenceTypeListDTOBase(
     identifier = identifier,

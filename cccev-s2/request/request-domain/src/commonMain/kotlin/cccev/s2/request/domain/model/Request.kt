@@ -1,5 +1,13 @@
 package cccev.s2.request.domain.model
 
+import cccev.core.dsl.Evidence
+import cccev.core.dsl.EvidenceDTO
+import cccev.core.dsl.InformationConceptId
+import cccev.core.dsl.RequirementId
+import cccev.core.dsl.SupportedValue
+import cccev.core.dsl.SupportedValueDTO
+import cccev.s2.request.domain.RequestState
+import kotlin.js.JsExport
 import kotlin.js.JsName
 
 typealias RequestId = String

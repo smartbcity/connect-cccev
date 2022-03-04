@@ -1,8 +1,8 @@
 package features
 
-import cccev.dsl.dto.query.GetRequestScoreQuery
-import cccev.dsl.dto.query.GetRequestScoreQueryFunction
-import ccev.dsl.core.InformationConceptId
+import cccev.core.dsl.InformationConceptId
+import cccev.f2.request.api.domain.features.query.GetRequestScoreQuery
+import cccev.f2.request.api.domain.features.query.GetRequestScoreQueryFunction
 import f2.dsl.fnc.invoke
 import features.cccev.test.CucumberStepsDefinition
 import io.cucumber.datatable.DataTable

@@ -1,12 +1,12 @@
 package cccev.s2.request.domain.features.command
 
+import cccev.core.dsl.Evidence
+import cccev.core.dsl.EvidenceDTO
+import cccev.core.dsl.EvidenceId
 import cccev.s2.request.domain.RequestCommand
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
-import ccev.dsl.core.Evidence
-import ccev.dsl.core.EvidenceDTO
-import ccev.dsl.core.EvidenceId
 import kotlin.js.JsExport
 import kotlin.js.JsName
 

@@ -1,4 +1,4 @@
-package ccev.dsl.core
+package cccev.core.dsl
 
 import kotlin.js.JsExport
 import kotlin.js.JsName

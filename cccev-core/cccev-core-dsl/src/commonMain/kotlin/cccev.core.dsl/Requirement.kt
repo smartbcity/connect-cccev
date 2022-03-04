@@ -1,4 +1,4 @@
-package ccev.dsl.core
+package cccev.core.dsl
 
 typealias RequirementId = String
 

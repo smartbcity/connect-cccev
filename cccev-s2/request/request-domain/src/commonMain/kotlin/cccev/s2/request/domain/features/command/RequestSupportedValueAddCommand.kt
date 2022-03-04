@@ -1,12 +1,12 @@
 package cccev.s2.request.domain.features.command
 
+import cccev.core.dsl.InformationConceptId
+import cccev.core.dsl.SupportedValue
+import cccev.core.dsl.SupportedValueDTO
 import cccev.s2.request.domain.RequestCommand
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
-import ccev.dsl.core.InformationConceptId
-import ccev.dsl.core.SupportedValue
-import ccev.dsl.core.SupportedValueDTO
 import kotlin.js.JsExport
 import kotlin.js.JsName
 

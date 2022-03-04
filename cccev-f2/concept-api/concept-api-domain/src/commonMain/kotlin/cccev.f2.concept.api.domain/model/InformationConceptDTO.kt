@@ -1,12 +1,12 @@
 package cccev.f2.concept.api.domain.model
 
-import ccev.dsl.core.CUnitDTO
-import ccev.dsl.core.Code
-import ccev.dsl.core.EvidenceTypeId
-import ccev.dsl.core.InformationConcept
-import ccev.dsl.core.InformationConceptId
-import ccev.dsl.core.SupportedValue
-import ccev.dsl.core.SupportedValueDTO
+import cccev.core.dsl.CUnitDTO
+import cccev.core.dsl.Code
+import cccev.core.dsl.EvidenceTypeId
+import cccev.core.dsl.InformationConcept
+import cccev.core.dsl.InformationConceptId
+import cccev.core.dsl.SupportedValue
+import cccev.core.dsl.SupportedValueDTO
 import kotlin.js.JsExport
 import kotlin.js.JsName
 

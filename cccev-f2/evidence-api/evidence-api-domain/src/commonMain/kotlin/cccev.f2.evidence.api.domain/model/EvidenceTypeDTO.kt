@@ -1,12 +1,12 @@
 package cccev.f2.evidence.api.domain.model
 
-import ccev.dsl.core.Code
-import ccev.dsl.core.CoreLocationLocation
-import ccev.dsl.core.Evidence
-import ccev.dsl.core.EvidenceDTO
-import ccev.dsl.core.EvidenceType
-import ccev.dsl.core.EvidenceTypeId
-import ccev.dsl.core.PeriodOfTime
+import cccev.core.dsl.Code
+import cccev.core.dsl.CoreLocationLocation
+import cccev.core.dsl.Evidence
+import cccev.core.dsl.EvidenceDTO
+import cccev.core.dsl.EvidenceType
+import cccev.core.dsl.EvidenceTypeId
+import cccev.core.dsl.PeriodOfTime
 import kotlin.js.JsExport
 import kotlin.js.JsName
 

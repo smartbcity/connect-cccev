@@ -1,9 +1,9 @@
 package cccev.f2.concept.api.app.model
 
-import cccev.dsl.dto.model.InformationConceptDTOBase
-import ccev.dsl.core.EvidenceTypeId
-import ccev.dsl.core.InformationConceptBase
-import ccev.dsl.core.SupportedValue
+import cccev.core.dsl.EvidenceTypeId
+import cccev.core.dsl.InformationConceptBase
+import cccev.core.dsl.SupportedValue
+import cccev.f2.concept.api.domain.model.InformationConceptDTOBase
 import java.util.UUID
 
 fun InformationConceptBase.toDTO(evidenceTypes: List<List<EvidenceTypeId>>, supportedValue: SupportedValue?) = InformationConceptDTOBase(

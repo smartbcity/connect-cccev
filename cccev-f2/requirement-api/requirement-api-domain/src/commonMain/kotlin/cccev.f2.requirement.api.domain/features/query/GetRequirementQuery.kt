@@ -1,7 +1,7 @@
 package cccev.f2.requirement.api.domain.features.query
 
-import ccev.dsl.core.Requirement
-import ccev.dsl.core.RequirementId
+import cccev.core.dsl.Requirement
+import cccev.core.dsl.RequirementId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName

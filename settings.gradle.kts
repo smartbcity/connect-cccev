@@ -10,8 +10,8 @@ pluginManagement {
 rootProject.name = "cccev"
 
 include(
-	"cccev-dsl:cccev-dsl-core",
-	"cccev-dsl:cccev-dsl-dto",
+	"cccev-core:cccev-core-dsl",
+	"cccev-core:cccev-core-sdk"
 )
 include(
 	"api-gateway",

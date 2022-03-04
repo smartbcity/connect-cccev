@@ -1,4 +1,4 @@
-package ccev.dsl.core
+package cccev.core.dsl
 
 open class ReferenceFramework(
 	val identifier: String,

@@ -1,10 +1,10 @@
 package cccev.s2.request.domain.features.command
 
+import cccev.core.dsl.EvidenceTypeId
 import cccev.s2.request.domain.RequestCommand
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
-import ccev.dsl.core.EvidenceTypeId
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
