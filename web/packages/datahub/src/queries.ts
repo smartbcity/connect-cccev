@@ -1,4 +1,4 @@
-import { cccev } from "cccev-cee-cccev-dsl-dto"
+import { cccev } from "cccev-cccev-dsl-dto"
 import { certificatRequest } from "./certificatRequest"
 
 

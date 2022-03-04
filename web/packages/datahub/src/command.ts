@@ -1,4 +1,4 @@
-import { cccev } from "cccev-cee-request-domain"
+import { cccev } from "cccev-request-domain"
 import { certificatRequest } from "./certificatRequest"
 import { SupportedValueDTO } from "./types"
 
@@ -63,7 +63,7 @@ export const requestSendToBubbleCommand = async () => {
     //@ts-ignore
     const request = window._env_.request
     return (await certificatRequest<RequestSentEventDTO[]>({
-        url: "/send",
+        url: "/sendRequest",
         body: JSON.stringify({
             id: request,
         } as RequestSendCommandDTO)
