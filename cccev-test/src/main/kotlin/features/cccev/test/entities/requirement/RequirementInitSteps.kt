@@ -1,10 +1,10 @@
 package features.cccev.test.entities.requirement
 
-import cccev.f2.query.GetRequirementQueryFunctionImpl
-import ccev.dsl.core.EvidenceTypeListBase
-import ccev.dsl.core.InformationConceptBase
-import ccev.dsl.core.Requirement
-import ccev.dsl.core.RequirementId
+import cccev.core.dsl.EvidenceTypeListBase
+import cccev.core.dsl.InformationConceptBase
+import cccev.core.dsl.Requirement
+import cccev.core.dsl.RequirementId
+import cccev.s2.requirement.app.RequirementFinderService
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.data.DataTest
 import io.cucumber.datatable.DataTable
@@ -35,7 +35,7 @@ class RequirementInitSteps: En, CucumberStepsDefinition() {
     private fun initRequirements(paramsList: List<RequirementInitParams>) {
         paramsList.associate { params -> params.identifier to params.toRequirement() }
             .also(context.requirements::putAll)
-            .also(GetRequirementQueryFunctionImpl.AVAILABLE_REQUIREMENTS::putAll) // TODO remove this when requirements will be saved in db
+            .also(RequirementFinderService.AVAILABLE_REQUIREMENTS::putAll) // TODO remove this when requirements will be saved in db
     }
 
     private fun RequirementInitParams.toRequirement() = DataTest.informationRequirement(

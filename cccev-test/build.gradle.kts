@@ -3,10 +3,12 @@ plugins {
 }
 
 dependencies {
-	api(project(":cccev-dsl:cccev-dsl-core"))
-	api(project(":cccev-dsl:cccev-dsl-dto"))
+	api(project(":cccev-core:cccev-core-dsl"))
 	api(project(":cccev-f2"))
+	api(project(":cccev-s2:concept:concept-app"))
+	api(project(":cccev-s2:evidence:evidence-app"))
 	api(project(":cccev-s2:request:request-app"))
+	api(project(":cccev-s2:requirement:requirement-app"))
 
 	Dependencies.Jvm.cucumber(::api)
 	Dependencies.Jvm.junit(::api)

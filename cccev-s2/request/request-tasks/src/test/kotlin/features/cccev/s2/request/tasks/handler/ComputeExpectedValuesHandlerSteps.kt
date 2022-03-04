@@ -1,16 +1,15 @@
 package features.cccev.s2.request.tasks.handler
 
-import cccev.dsl.dto.query.GetInformationConceptsQuery
-import cccev.dsl.dto.query.GetInformationConceptsQueryFunction
-import cccev.dsl.dto.query.GetRequirementQuery
-import cccev.dsl.dto.query.GetRequirementQueryFunction
+import cccev.core.dsl.RequirementId
+import cccev.core.dsl.SupportedValue
+import cccev.f2.concept.api.domain.features.query.GetInformationConceptsQuery
+import cccev.f2.concept.api.domain.features.query.GetInformationConceptsQueryFunction
 import cccev.s2.request.app.RequestAggregateService
 import cccev.s2.request.app.entity.RequestEntity
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.model.RequestId
-import ccev.dsl.core.RequirementId
-import ccev.dsl.core.SupportedValue
+import cccev.s2.requirement.app.RequirementFinderService
 import f2.dsl.fnc.invoke
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
@@ -28,9 +27,9 @@ class ComputeExpectedValuesHandlerSteps: En {
     @Autowired
     private lateinit var getInformationConceptsFunction: GetInformationConceptsQueryFunction
     @Autowired
-    private lateinit var getRequirementFunction: GetRequirementQueryFunction
-    @Autowired
     private lateinit var requestAggregateService: RequestAggregateService
+    @Autowired
+    private lateinit var requirementFinderService: RequirementFinderService
 
     private lateinit var frameworkId: RequirementId
     private lateinit var requestId: RequestId
@@ -55,10 +54,7 @@ class ComputeExpectedValuesHandlerSteps: En {
 
         Given("The framework {string} is instantiated") { framework: RequirementId ->
             runBlocking {
-                val query = GetRequirementQuery(
-                    requirementId = framework
-                )
-                val requirement = getRequirementFunction.invoke(query).requirement
+                val requirement = requirementFinderService.get(framework)
                 Assertions.assertThat(requirement?.identifier).isNotNull
                 frameworkId = requirement!!.identifier!!
             }
