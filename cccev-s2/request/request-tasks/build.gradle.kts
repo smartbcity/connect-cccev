@@ -1,11 +1,11 @@
 plugins {
 	id("city.smartb.fixers.gradle.kotlin.jvm")
+	id("city.smartb.fixers.gradle.publish")
 	kotlin("plugin.spring")
 }
 
 dependencies {
 	implementation(project(":api-commons"))
-	implementation(project(":cccev-f2"))
 	implementation(project(":cccev-s2:request:request-app"))
 
 	runtimeOnly("org.jetbrains.kotlin:kotlin-main-kts:${PluginVersions.kotlin}")
