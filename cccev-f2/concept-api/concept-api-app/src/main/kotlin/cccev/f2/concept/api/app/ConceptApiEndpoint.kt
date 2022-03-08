@@ -17,7 +17,10 @@ class ConceptApiEndpoint(
     @Bean
     fun getInformationConcepts(): GetInformationConceptsQueryFunction = f2Function { query ->
         logger.info("Request [${query.id}]: GetInformationConcepts")
-        conceptApiFinderService.getInformationConcepts(query.id, query.requirement)
-            .let(::GetInformationConceptsQueryResult)
+        conceptApiFinderService.getInformationConcepts(
+            requestId = query.id,
+            requirementId = query.requirement,
+            evidenceTypeId = query.evidenceType
+        ).let(::GetInformationConceptsQueryResult)
     }
 }

@@ -1,5 +1,7 @@
 package cccev.f2.requirement.api.app
 
+import cccev.f2.requirement.api.domain.features.query.GetRequirementListQueryFunction
+import cccev.f2.requirement.api.domain.features.query.GetRequirementListQueryResult
 import cccev.f2.requirement.api.domain.features.query.GetRequirementQueryFunction
 import cccev.f2.requirement.api.domain.features.query.GetRequirementQueryResult
 import cccev.s2.requirement.app.RequirementFinderService
@@ -15,5 +17,14 @@ class RequirementApiEndpoint(
     @Bean
     fun getRequirement(): GetRequirementQueryFunction = f2Function { query ->
         requirementFinderService.get(query.requirementId).let(::GetRequirementQueryResult)
+    }
+
+    @Bean
+    fun getRequirements(): GetRequirementListQueryFunction = f2Function { query ->
+        requirementFinderService.list(
+            parent = query.parentId,
+            concept = query.conceptId,
+            evidenceType = query.evidenceTypeId
+        ).let(::GetRequirementListQueryResult)
     }
 }

@@ -17,8 +17,12 @@ class EvidenceApiEndpoint(
     @Bean
     fun getEvidenceTypeLists(): GetEvidenceTypeListsQueryFunction = f2Function { query ->
         logger.info("Request [${query.id}]: GetEvidenceTypeLists")
-        evidenceApiFinderService.getEvidenceTypeLists(query.id, query.requirement)
-            .let(::GetEvidenceTypeListsQueryResult)
+        evidenceApiFinderService.getEvidenceTypeLists(
+            requestId = query.id,
+            requirementId = query.requirement,
+            conceptId = query.concept,
+            evidenceTypeId = query.evidenceType
+        ).let(::GetEvidenceTypeListsQueryResult)
     }
 
 }

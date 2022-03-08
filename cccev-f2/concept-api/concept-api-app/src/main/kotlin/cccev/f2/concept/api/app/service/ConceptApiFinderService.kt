@@ -1,7 +1,7 @@
 package cccev.f2.concept.api.app.service
 
-import cccev.commons.exception.NotFoundException
 import cccev.core.dsl.EvidenceTypeBase
+import cccev.core.dsl.EvidenceTypeId
 import cccev.core.dsl.InformationConceptBase
 import cccev.core.dsl.Requirement
 import cccev.core.dsl.RequirementId
@@ -26,9 +26,13 @@ class ConceptApiFinderService(
 ) {
     private val logger by Logger()
 
-    suspend fun getInformationConcepts(requestId: RequestId, requirementId: RequirementId): List<InformationConceptDTO> {
-        val requirement = requirementFinderService.get(requirementId)
-            ?: throw NotFoundException("Requirement not found")
+    suspend fun getInformationConcepts(
+        requestId: RequestId, requirementId: RequirementId, evidenceTypeId: EvidenceTypeId? = null
+    ): List<InformationConceptDTO> {
+        val requirement = requirementFinderService.list(
+            parent = requirementId,
+            evidenceType = evidenceTypeId
+        )
 
         try {
             RequestInitCommand(id = requestId, frameworkId = requirementId)
@@ -42,10 +46,8 @@ class ConceptApiFinderService(
         return requirement.informationConcepts(request)
     }
 
-    private fun Requirement.informationConcepts(request: Request): List<InformationConceptDTO> {
-        return hasRequirement.orEmpty()
-            .flatMap { it.informationConcepts(request) }
-            .plus(hasConcept.orEmpty().toDTOs(this, request))
+    private fun List<Requirement>.informationConcepts(request: Request): List<InformationConceptDTO> {
+        return flatMap { requirement -> requirement.hasConcept.orEmpty().toDTOs(requirement, request) }
     }
 
     private fun List<InformationConceptBase>.toDTOs(parent: Requirement, request: Request): List<InformationConceptDTOBase> {

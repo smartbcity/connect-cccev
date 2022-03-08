@@ -1,9 +1,9 @@
 package cccev.f2.evidence.api.app.service
 
-import cccev.commons.exception.NotFoundException
 import cccev.core.dsl.Evidence
 import cccev.core.dsl.EvidenceTypeId
 import cccev.core.dsl.EvidenceTypeListBase
+import cccev.core.dsl.InformationConceptId
 import cccev.core.dsl.Requirement
 import cccev.core.dsl.RequirementId
 import cccev.f2.evidence.api.app.model.toDTO
@@ -26,9 +26,14 @@ class EvidenceApiFinderService(
 ) {
     private val logger by Logger()
 
-    suspend fun getEvidenceTypeLists(requestId: RequestId, requirementId: RequirementId): List<List<EvidenceTypeListDTOBase>> {
-        val requirement = requirementFinderService.get(requirementId)
-            ?: throw NotFoundException("Requirement not found")
+    suspend fun getEvidenceTypeLists(
+        requestId: RequestId, requirementId: RequirementId, conceptId: InformationConceptId? = null, evidenceTypeId: EvidenceTypeId? = null
+    ): List<List<EvidenceTypeListDTOBase>> {
+        val requirements = requirementFinderService.list(
+            parent = requirementId,
+            concept = conceptId,
+            evidenceType = evidenceTypeId
+        )
 
         try {
             RequestInitCommand(id = requestId, frameworkId = requirementId)
@@ -40,17 +45,14 @@ class EvidenceApiFinderService(
 
         val request = requestFinderService.get(requestId)!!
 
-        return requirement.evidenceTypeLists(request).distinctBy { evidenceTypeLists ->
+        return requirements.evidenceTypeLists(request).distinctBy { evidenceTypeLists ->
             evidenceTypeLists.flatMap { it.specifiesEvidenceType }.joinToString { it.identifier }
         }
     }
 
-    private fun Requirement.evidenceTypeLists(request: Request): List<List<EvidenceTypeListDTOBase>> {
+    private fun List<Requirement>.evidenceTypeLists(request: Request): List<List<EvidenceTypeListDTOBase>> {
         val evidences = request.evidences.associateBy { it.isConformantTo.first() }
-
-        return hasRequirement.orEmpty()
-            .flatMap { it.evidenceTypeLists(request) }
-            .plus(listOf(hasEvidenceTypeList.orEmpty().toDTOs(evidences)))
+        return mapNotNull { requirement -> requirement.hasEvidenceTypeList?.toDTOs(evidences) }
     }
 
     private fun List<EvidenceTypeListBase>.toDTOs(evidences: Map<EvidenceTypeId, Evidence?>) = map { it.toDTO(evidences) }

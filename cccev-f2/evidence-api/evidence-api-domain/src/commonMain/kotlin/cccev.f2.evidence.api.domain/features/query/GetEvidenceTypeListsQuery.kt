@@ -1,5 +1,7 @@
 package cccev.f2.evidence.api.domain.features.query
 
+import cccev.core.dsl.EvidenceTypeId
+import cccev.core.dsl.InformationConceptId
 import cccev.core.dsl.RequirementId
 import cccev.f2.evidence.api.domain.model.EvidenceTypeListDTO
 import cccev.f2.evidence.api.domain.model.EvidenceTypeListDTOBase
@@ -15,11 +17,15 @@ typealias GetEvidenceTypeListsQueryFunction = F2Function<GetEvidenceTypeListsQue
 interface GetEvidenceTypeListsQueryDTO {
     val id: RequestId
     val requirement: RequirementId
+    val concept: InformationConceptId?
+    val evidenceType: EvidenceTypeId?
 }
 
 class GetEvidenceTypeListsQuery(
     override val id: RequestId,
-    override val requirement: RequirementId
+    override val requirement: RequirementId,
+    override val concept: InformationConceptId?,
+    override val evidenceType: EvidenceTypeId?
 ): GetEvidenceTypeListsQueryDTO
 
 @JsExport

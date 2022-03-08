@@ -37,7 +37,7 @@ class ComputeExpectedValuesHandlerSteps: En {
     init {
         DataTableType { entry: Map<String, String> ->
             runBlocking {
-                val query = GetInformationConceptsQuery(requestId, frameworkId)
+                val query = GetInformationConceptsQuery(requestId, frameworkId, null)
                 val infoConcept = getInformationConceptsFunction.invoke(query)
                     .informationConcepts
                     .firstOrNull { concept -> concept.name == entry["name"] }
