@@ -1,6 +1,5 @@
 package cccev.f2.concept.api.app.service
 
-import cccev.core.dsl.EvidenceTypeBase
 import cccev.core.dsl.EvidenceTypeId
 import cccev.core.dsl.InformationConceptBase
 import cccev.core.dsl.Requirement
@@ -8,6 +7,7 @@ import cccev.core.dsl.RequirementId
 import cccev.f2.concept.api.app.model.toDTO
 import cccev.f2.concept.api.domain.model.InformationConceptDTO
 import cccev.f2.concept.api.domain.model.InformationConceptDTOBase
+import cccev.f2.evidence.api.app.model.toDTOs
 import cccev.s2.request.app.RequestAggregateService
 import cccev.s2.request.app.RequestFinderService
 import cccev.s2.request.domain.features.command.RequestInitCommand
@@ -51,9 +51,7 @@ class ConceptApiFinderService(
     }
 
     private fun List<InformationConceptBase>.toDTOs(parent: Requirement, request: Request): List<InformationConceptDTOBase> {
-        val evidenceTypes = parent.hasEvidenceTypeList.orEmpty().map { etl ->
-            etl.specifiesEvidenceType.map(EvidenceTypeBase::identifier)
-        }
+        val evidenceTypes = parent.hasEvidenceTypeList?.toDTOs(request.evidences).orEmpty()
         return map { ic -> ic.toDTO(evidenceTypes, request.supportedValues[ic.identifier]) }
     }
 }

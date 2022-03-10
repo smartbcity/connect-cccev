@@ -1,8 +1,11 @@
 package cccev.f2.evidence.api.domain.features.query
 
 import cccev.core.dsl.EvidenceTypeId
+import cccev.core.dsl.EvidenceTypeListId
 import cccev.core.dsl.InformationConceptId
 import cccev.core.dsl.RequirementId
+import cccev.f2.evidence.api.domain.model.EvidenceTypeListChoicesDTO
+import cccev.f2.evidence.api.domain.model.EvidenceTypeListChoicesDTOBase
 import cccev.f2.evidence.api.domain.model.EvidenceTypeListDTO
 import cccev.f2.evidence.api.domain.model.EvidenceTypeListDTOBase
 import cccev.s2.request.domain.model.RequestId
@@ -31,9 +34,13 @@ class GetEvidenceTypeListsQuery(
 @JsExport
 @JsName("GetEvidenceTypeListsQueryResultDTO")
 interface GetEvidenceTypeListsQueryResultDTO {
-    val evidenceTypeLists: List<List<EvidenceTypeListDTO>>
+    val evidenceTypeListMap: Map<EvidenceTypeListId, EvidenceTypeListDTO>
+    val evidenceTypeListsOfEvidenceTypes: Map<EvidenceTypeId, List<EvidenceTypeListId>>
+    val evidenceTypeLists: List<EvidenceTypeListChoicesDTO>
 }
 
 class GetEvidenceTypeListsQueryResult(
-    override val evidenceTypeLists: List<List<EvidenceTypeListDTOBase>>
+    override val evidenceTypeListMap: Map<EvidenceTypeListId, EvidenceTypeListDTOBase>,
+    override val evidenceTypeListsOfEvidenceTypes: Map<EvidenceTypeId, List<EvidenceTypeListId>>,
+    override val evidenceTypeLists: List<EvidenceTypeListChoicesDTOBase>
 ): GetEvidenceTypeListsQueryResultDTO

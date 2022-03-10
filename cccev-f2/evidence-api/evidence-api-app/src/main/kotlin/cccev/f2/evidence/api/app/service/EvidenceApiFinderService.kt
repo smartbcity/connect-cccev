@@ -1,12 +1,10 @@
 package cccev.f2.evidence.api.app.service
 
-import cccev.core.dsl.Evidence
 import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.EvidenceTypeListBase
 import cccev.core.dsl.InformationConceptId
 import cccev.core.dsl.Requirement
 import cccev.core.dsl.RequirementId
-import cccev.f2.evidence.api.app.model.toDTO
+import cccev.f2.evidence.api.app.model.toDTOs
 import cccev.f2.evidence.api.domain.model.EvidenceTypeListDTOBase
 import cccev.s2.request.app.RequestAggregateService
 import cccev.s2.request.app.RequestFinderService
@@ -50,10 +48,7 @@ class EvidenceApiFinderService(
         }
     }
 
-    private fun List<Requirement>.evidenceTypeLists(request: Request): List<List<EvidenceTypeListDTOBase>> {
-        val evidences = request.evidences.associateBy { it.isConformantTo.first() }
-        return mapNotNull { requirement -> requirement.hasEvidenceTypeList?.toDTOs(evidences) }
+    private fun List<Requirement>.evidenceTypeLists(request: Request) = mapNotNull { requirement ->
+        requirement.hasEvidenceTypeList?.toDTOs(request.evidences)
     }
-
-    private fun List<EvidenceTypeListBase>.toDTOs(evidences: Map<EvidenceTypeId, Evidence?>) = map { it.toDTO(evidences) }
 }

@@ -1,6 +1,6 @@
 package cccev.f2.request.api.app.service
 
-import cccev.core.dsl.EvidenceTypeId
+import cccev.core.dsl.EvidenceTypeListId
 import cccev.f2.concept.api.app.service.ConceptApiFinderService
 import cccev.f2.concept.api.domain.model.InformationConceptDTO
 import cccev.f2.evidence.api.app.service.EvidenceApiFinderService
@@ -26,7 +26,7 @@ class RequestApiFinderService(
 
     suspend fun getRequestScore(requestId: RequestId): GetRequestScoreQueryResult {
         val request = requestFinderService.get(requestId)!!
-        val evidenceTypes = request.evidenceTypes()
+        val evidenceTypeLists = request.evidenceTypes().associateBy(EvidenceTypeListDTOBase::identifier)
         val informationConcepts = request.informationConcepts()
 
         val scorePerInformationConcept = informationConcepts
@@ -34,7 +34,7 @@ class RequestApiFinderService(
             .associateBy(InformationConceptDTO::identifier)
             .mapValues { (_, informationConcept) ->
                 if (informationConcept.hasValue()) {
-                    Score.VALUE + informationConcept.computeEvidenceScore(evidenceTypes)
+                    Score.VALUE + informationConcept.computeEvidenceScore(evidenceTypeLists)
                 } else {
                     0.0
                 }
@@ -46,9 +46,8 @@ class RequestApiFinderService(
         )
     }
 
-    private suspend fun Request.evidenceTypes(): List<EvidenceTypeDTOBase> {
-        return evidenceApiFinderService.getEvidenceTypeLists(requestId = id, requirementId = frameworkId)
-            .flatMap { evidenceTypeLists -> evidenceTypeLists.flatMap(EvidenceTypeListDTOBase::specifiesEvidenceType) }
+    private suspend fun Request.evidenceTypes(): List<EvidenceTypeListDTOBase> {
+        return evidenceApiFinderService.getEvidenceTypeLists(requestId = id, requirementId = frameworkId).flatten()
     }
 
     private suspend fun Request.informationConcepts(): List<InformationConceptDTO> {
@@ -58,15 +57,15 @@ class RequestApiFinderService(
     private fun EvidenceTypeDTOBase.hasEvidence() = evidence != null
     private fun InformationConceptDTO.hasValue() = supportedValue.value != null
 
-    private fun InformationConceptDTO.computeEvidenceScore(actualEvidenceTypes: List<EvidenceTypeDTOBase>): Double {
-        val scoreRatio = evidenceTypes.map { evidenceTypeIds ->
-            val fulfilledCount = evidenceTypeIds.count { evidenceTypeId -> actualEvidenceTypes.isEvidenceTypeFulfilled(evidenceTypeId) }
-            fulfilledCount.toDouble() / evidenceTypeIds.size
+    private fun InformationConceptDTO.computeEvidenceScore(actualEvidenceTypeLists: Map<EvidenceTypeListId, EvidenceTypeListDTOBase>): Double {
+        val scoreRatio = evidenceTypeChoices.evidenceTypeLists.map { evidenceTypeListId ->
+            actualEvidenceTypeLists[evidenceTypeListId]!!.score()
         }.maxOrNull() ?: 0.0
         return Score.EVIDENCE * scoreRatio
     }
 
-    private fun List<EvidenceTypeDTOBase>.isEvidenceTypeFulfilled(evidenceTypeId: EvidenceTypeId) = any { evidenceType ->
-        evidenceType.identifier == evidenceTypeId && evidenceType.hasEvidence()
+    private fun EvidenceTypeListDTOBase.score(): Double {
+        val fulfilledCount = specifiesEvidenceType.count { it.hasEvidence() }
+        return fulfilledCount.toDouble() / specifiesEvidenceType.size
     }
 }
