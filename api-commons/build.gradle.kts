@@ -1,8 +1,9 @@
 plugins {
     id("city.smartb.fixers.gradle.kotlin.jvm")
+    id("city.smartb.fixers.gradle.publish")
 }
 
 dependencies {
-    Dependencies.Jvm.coroutines.forEach(::api)
-    Dependencies.Jvm.s2Mongo.forEach(::api)
+    Dependencies.Jvm.coroutines(::api)
+    Dependencies.Jvm.s2Mongo(::api)
 }

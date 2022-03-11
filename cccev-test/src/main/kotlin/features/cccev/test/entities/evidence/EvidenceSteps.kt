@@ -1,11 +1,10 @@
 package features.cccev.test.entities.evidence
 
+import cccev.core.dsl.EvidenceId
+import cccev.core.dsl.EvidenceTypeId
 import cccev.s2.request.app.RequestAggregateService
 import cccev.s2.request.domain.features.command.RequestEvidenceAddCommand
 import cccev.s2.request.domain.model.RequestId
-import ccev.dsl.core.EvidenceId
-import ccev.dsl.core.EvidenceTypeId
-import f2.dsl.fnc.invoke
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.data.DataTest
 import features.cccev.test.exception.EntityNotInitializedException
@@ -46,7 +45,7 @@ class EvidenceSteps: En, CucumberStepsDefinition() {
                 evidence = params.toEvidence()
             )
         }.forEach { command ->
-            requestAggregateService.addEvidence().invoke(command)
+            requestAggregateService.addEvidence(command)
         }
     }
 

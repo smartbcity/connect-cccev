@@ -1,0 +1,11 @@
+{
+  "name": "cccev-request-domain",
+  "version": "0.0.0-latest",
+  "main": "kotlin/cccev-request-domain.js",
+  "devDependencies": {
+  },
+  "dependencies": {},
+  "peerDependencies": {},
+  "optionalDependencies": {},
+  "bundledDependencies": []
+}

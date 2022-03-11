@@ -1,15 +1,15 @@
 package cccev.s2.request.tasks.handler
 
 import cccev.commons.EventHandler
-import cccev.dsl.dto.query.GetInformationConceptsQuery
-import cccev.dsl.dto.query.GetInformationConceptsQueryFunction
+import cccev.core.dsl.InformationConcept
+import cccev.core.dsl.SupportedValue
+import cccev.f2.concept.api.domain.features.query.GetInformationConceptsQuery
+import cccev.f2.concept.api.domain.features.query.GetInformationConceptsQueryFunction
 import cccev.s2.request.app.RequestAggregateService
 import cccev.s2.request.app.entity.RequestEntity
 import cccev.s2.request.app.entity.RequestRepository
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddedEvent
-import ccev.dsl.core.InformationConcept
-import ccev.dsl.core.SupportedValue
 import f2.dsl.fnc.invoke
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.context.event.EventListener
@@ -50,7 +50,7 @@ class ComputeExpectedValuesHandler(
                 supportedValue = value
             )
         }.forEach { command ->
-            requestAggregateService.addSupportedValue().invoke(command)
+            requestAggregateService.addSupportedValue(command)
         }
     }
 

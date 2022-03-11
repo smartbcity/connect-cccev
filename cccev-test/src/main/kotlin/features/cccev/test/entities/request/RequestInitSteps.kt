@@ -2,7 +2,6 @@ package features.cccev.test.entities.request
 
 import cccev.s2.request.app.RequestAggregateService
 import cccev.s2.request.domain.features.command.RequestInitCommand
-import f2.dsl.fnc.invoke
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.exception.EntityNotInitializedException
 import io.cucumber.java8.En
@@ -25,7 +24,7 @@ class RequestInitSteps: En, CucumberStepsDefinition() {
                 frameworkId = requirementId
             )
             runBlocking {
-                requestService.init().invoke(command)
+                requestService.init(command)
             }
             context.requests += command.id
         }

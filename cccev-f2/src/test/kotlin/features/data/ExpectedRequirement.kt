@@ -2,8 +2,8 @@
 //
 //import cccev.dsl.dto.model.EvidenceTypeListDTOBase
 //import cccev.dsl.dto.model.InformationConceptDTOBase
-//import ccev.dsl.core.Requirement
-//import ccev.dsl.core.RequirementId
+//import cccev.core.dsl.Requirement
+//import cccev.core.dsl.RequirementId
 //
 //interface ExpectedRequirement {
 //    val identifier: RequirementId

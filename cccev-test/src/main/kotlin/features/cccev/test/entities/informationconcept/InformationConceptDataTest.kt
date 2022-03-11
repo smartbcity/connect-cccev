@@ -1,10 +1,10 @@
 package features.cccev.test.entities.informationconcept
 
-import ccev.dsl.core.CUnit
-import ccev.dsl.core.CUnitType
-import ccev.dsl.core.Code
-import ccev.dsl.core.InformationConceptBase
-import ccev.dsl.core.InformationConceptId
+import cccev.core.dsl.CUnit
+import cccev.core.dsl.CUnitType
+import cccev.core.dsl.Code
+import cccev.core.dsl.InformationConceptBase
+import cccev.core.dsl.InformationConceptId
 import features.cccev.test.data.DataTest
 import features.cccev.test.data.DummyCode
 import java.util.UUID

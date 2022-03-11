@@ -1,7 +1,7 @@
 package features.cccev.test.entities.evidencetypelist
 
-import ccev.dsl.core.EvidenceTypeBase
-import ccev.dsl.core.EvidenceTypeListId
+import cccev.core.dsl.EvidenceTypeBase
+import cccev.core.dsl.EvidenceTypeListId
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.data.DataTest
 import io.cucumber.datatable.DataTable

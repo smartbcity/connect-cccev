@@ -4,16 +4,8 @@ import cccev.s2.request.domain.RequestCommand
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
-import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
-
-/**
- * Refuse to a request.
- * @D2 function
- * @parent [cccev.s2.request.domain.RequestAggregate]
- */
-typealias RequestRefuseCommandFunction = F2Function<RequestRefuseCommand, RequestRefusedEvent>
 
 /**
  * Command to add a supported Value to a request.

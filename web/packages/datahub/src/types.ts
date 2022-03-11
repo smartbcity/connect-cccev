@@ -1,5 +1,5 @@
-import {cccev} from "cccev-cee-cccev-dsl-dto"
-import { ccev as cccevCore} from "cccev-cee-cccev-dsl-core"
+import {cccev} from "cccev-cccev-dsl-dto"
+import { ccev as cccevCore} from "cccev-cccev-dsl-core"
 
 export interface InformationConceptDTO extends cccev.dsl.dto.model.InformationConceptDTO {}
 

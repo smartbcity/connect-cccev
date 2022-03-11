@@ -1,18 +1,10 @@
 package cccev.s2.request.domain.features.command
 
+import cccev.core.dsl.RequirementId
 import cccev.s2.request.domain.model.RequestId
-import ccev.dsl.core.RequirementId
-import f2.dsl.fnc.F2Function
 import s2.dsl.automate.S2InitCommand
 import kotlin.js.JsExport
 import kotlin.js.JsName
-
-/**
- * Init a request.
- * @D2 function
- * @parent [cccev.s2.request.domain.RequestAggregate]
- */
-typealias RequestInitCommandFunction = F2Function<RequestInitCommand, RequestInitializedEvent>
 
 /**
  * Command to init a request.

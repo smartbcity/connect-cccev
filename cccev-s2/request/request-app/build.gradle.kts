@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
 	api(project(":cccev-s2:request:request-domain"))
-	api(project(":cccev-dsl:cccev-dsl-core"))
+	api(project(":cccev-core:cccev-core-dsl"))
 
-	Dependencies.Jvm.s2Mongo.forEach { api(it) }
+	Dependencies.Jvm.s2Mongo(::api)
 }
