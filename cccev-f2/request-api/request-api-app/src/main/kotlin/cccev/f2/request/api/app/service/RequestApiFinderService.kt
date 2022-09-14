@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service
 class RequestApiFinderService(
     private val conceptApiFinderService: ConceptApiFinderService,
     private val evidenceApiFinderService: EvidenceApiFinderService,
-    private val requestFinderService: RequestFinderService
+    private val requestFinderService: RequestFinderService,
 ) {
 
     object Score {
@@ -57,7 +57,9 @@ class RequestApiFinderService(
     private fun EvidenceTypeDTOBase.hasEvidence() = evidence != null
     private fun InformationConceptDTO.hasValue() = supportedValue.value != null
 
-    private fun InformationConceptDTO.computeEvidenceScore(actualEvidenceTypeLists: Map<EvidenceTypeListId, EvidenceTypeListDTOBase>): Double {
+    private fun InformationConceptDTO.computeEvidenceScore(
+        actualEvidenceTypeLists: Map<EvidenceTypeListId, EvidenceTypeListDTOBase>
+    ): Double {
         val scoreRatio = evidenceTypeChoices.evidenceTypeLists.map { evidenceTypeListId ->
             actualEvidenceTypeLists[evidenceTypeListId]!!.score()
         }.maxOrNull() ?: 0.0

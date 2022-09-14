@@ -8,13 +8,13 @@ import cccev.s2.request.domain.model.RequestId
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
 import org.springframework.stereotype.Service
-import s2.spring.automate.data.S2SpringDataConfigurerAdapter
+import s2.spring.automate.data.S2SpringDataReactiveConfigurerAdapter
 import s2.spring.automate.executor.S2AutomateExecutorSpring
 
 @Configuration
 class RequestS2SpringDataConfigurerAdapter(
 	repository: RequestRepository,
-): S2SpringDataConfigurerAdapter<RequestState, RequestId, RequestEntity, RequestS2Aggregate>(repository) {
+): S2SpringDataReactiveConfigurerAdapter<RequestState, RequestId, RequestEntity, RequestS2Aggregate>(repository) {
 	override fun automate() = S2Request
 
 	@Autowired

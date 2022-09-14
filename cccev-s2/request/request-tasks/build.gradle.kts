@@ -7,6 +7,7 @@ plugins {
 dependencies {
 	implementation(project(":api-commons"))
 	implementation(project(":cccev-s2:request:request-app"))
+	implementation(project(":cccev-f2:concept-api:concept-api-domain"))
 
 	runtimeOnly("org.jetbrains.kotlin:kotlin-main-kts:${PluginVersions.kotlin}")
 	runtimeOnly("org.jetbrains.kotlin:kotlin-scripting-jsr223:${PluginVersions.kotlin}")

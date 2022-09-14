@@ -5,15 +5,14 @@ import city.smartb.gradle.dependencies.Scope
 import city.smartb.gradle.dependencies.add
 
 object PluginVersions {
-//	const val kotlin = FixersPluginVersions.kotlin
-	const val kotlin = "1.6.20-M1"
+	const val kotlin = FixersPluginVersions.kotlin
 	const val springBoot = FixersPluginVersions.springBoot
-	const val fixers = "experimental-SNAPSHOT"
-	const val d2 = "0.3.1"
+	const val fixers = "0.10.0"
+	const val d2 = "0.10.0"
 }
 
 object Versions {
-	const val s2 = "experimental-x-SNAPSHOT"
+	const val s2 = PluginVersions.fixers
 	const val f2 = PluginVersions.fixers
 
 	const val cucumber = FixersVersions.Test.cucumber

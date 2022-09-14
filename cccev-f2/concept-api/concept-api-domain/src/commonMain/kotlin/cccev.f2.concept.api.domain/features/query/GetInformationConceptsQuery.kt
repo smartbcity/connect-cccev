@@ -21,7 +21,7 @@ interface GetInformationConceptsQueryDTO {
 class GetInformationConceptsQuery(
     override val id: RequestId,
     override val requirement: RequirementId,
-    override val evidenceType: EvidenceTypeId?
+    override val evidenceType: EvidenceTypeId? = null
 ): GetInformationConceptsQueryDTO
 
 @JsExport
