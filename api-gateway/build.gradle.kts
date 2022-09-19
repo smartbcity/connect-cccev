@@ -6,8 +6,10 @@ plugins {
 }
 
 dependencies {
-    api ("org.springframework.boot:spring-boot-starter-security:2.1.3.RELEASE")
     api("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
+    api("city.smartb.f2:f2-spring-boot-openapi:${Versions.f2}")
+    api("city.smartb.i2:i2-spring-boot-starter-auth-keycloak:${Versions.i2}")
+
     implementation(project(":cccev-api"))
     implementation(project(":cccev-f2:concept-api:concept-api-app"))
     implementation(project(":cccev-f2:evidence-api:evidence-api-app"))

@@ -7,14 +7,14 @@ import city.smartb.gradle.dependencies.add
 object PluginVersions {
 	const val kotlin = FixersPluginVersions.kotlin
 	const val springBoot = FixersPluginVersions.springBoot
-	const val fixers = "0.10.0"
+	val fixers = FixersPluginVersions.fixers
 	const val d2 = "0.10.0"
 }
 
 object Versions {
-	const val s2 = PluginVersions.fixers
-	const val f2 = PluginVersions.fixers
-
+	val s2 = PluginVersions.fixers
+	val f2 = PluginVersions.fixers
+	val i2 = PluginVersions.fixers
 	const val cucumber = FixersVersions.Test.cucumber
 	const val awaitility = "4.1.1"
 }
