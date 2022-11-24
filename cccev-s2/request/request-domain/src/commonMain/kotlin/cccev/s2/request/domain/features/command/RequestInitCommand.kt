@@ -5,6 +5,7 @@ import cccev.s2.request.domain.model.RequestId
 import s2.dsl.automate.S2InitCommand
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import s2.dsl.automate.Evt
 
 /**
  * Command to init a request.
@@ -32,7 +33,7 @@ interface RequestInitCommandDTO: S2InitCommand {
  */
 @JsExport
 @JsName("RequestInitializedEventDTO")
-interface RequestInitializedEventDTO {
+interface RequestInitializedEventDTO: Evt {
 	/**
 	 * The unique id of the request.
 	 */

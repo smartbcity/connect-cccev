@@ -11,12 +11,10 @@ rootProject.name = "cccev"
 
 include(
 	"cccev-core:cccev-core-dsl",
-	"cccev-core:cccev-core-sdk"
 )
 include(
 	"api-gateway",
 	"api-commons",
-	"cccev-api",
 	"cccev-f2",
 	"cccev-test"
 )

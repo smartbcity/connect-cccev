@@ -8,7 +8,7 @@ object PluginVersions {
 	const val kotlin = FixersPluginVersions.kotlin
 	const val springBoot = FixersPluginVersions.springBoot
 	val fixers = FixersPluginVersions.fixers
-	const val d2 = "0.10.0"
+	const val d2 = "0.11.0"
 }
 
 object Versions {
@@ -35,8 +35,7 @@ object Dependencies {
 		)
 
 		fun s2Mongo(scope: Scope) = scope.add(
-			"city.smartb.s2:s2-spring-boot-starter-automate:${Versions.s2}",
-			"city.smartb.s2:s2-spring-boot-starter-automate-data:${Versions.s2}",
+			"city.smartb.s2:s2-spring-boot-starter-storing-data:${Versions.s2}",
 			"city.smartb.f2:f2-spring-data-mongodb:${Versions.f2}",
 			"city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}"
 		)

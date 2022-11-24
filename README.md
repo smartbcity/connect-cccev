@@ -43,3 +43,10 @@ object VolumeProduitFini: InformationConceptBase(
 
 ## Figma
 https://www.figma.com/file/kQXSWDiA0N5mLa8qt583m2/Untitled?node-id=4%3A380
+
+## Api
+* Run api
+`./gradlew :api-gateway:bootRun -x test`
+
+* Goto Swagger documentation
+`http://localhost:8083/swagger-ui.html`
