@@ -10,28 +10,20 @@ import kotlin.js.JsName
 /**
  * Command to add a supported Value to a request.
  * @D2 command
- * @parent [RequestAuditCommandFunction]
  */
 @JsExport
 @JsName("RequestAuditCommandDTO")
 interface RequestAuditCommandDTO: RequestCommand {
-	/**
-	 * The unique id of the request.
-	 */
 	override val id: RequestId
 }
 
 /**
  * Event sent when a supported Value has been added to a request.
  * @D2 event
- * @parent [RequestAuditCommandFunction]
  */
 @JsExport
 @JsName("RequestAuditedEventDTO")
 interface RequestAuditedEventDTO: RequestEvent {
-	/**
-	 * The unique id of the request.
-	 */
 	override val id: RequestId
 
 	/**
@@ -41,10 +33,16 @@ interface RequestAuditedEventDTO: RequestEvent {
 	override val type: RequestState.Audited
 }
 
+/**
+ * @d2 inherit
+ */
 class RequestAuditCommand(
 	override val id: RequestId,
 ): RequestAuditCommandDTO
 
+/**
+ * @d2 inherit
+ */
 class RequestAuditedEvent(
 	override val id: RequestId,
 	override val type: RequestState.Audited = RequestState.Audited,

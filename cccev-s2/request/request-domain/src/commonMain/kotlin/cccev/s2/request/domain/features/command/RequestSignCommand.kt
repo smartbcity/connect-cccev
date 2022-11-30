@@ -7,45 +7,38 @@ import cccev.s2.request.domain.model.RequestId
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-/**
- * Command to add an supported Value to a request.
- * @D2 command
- * @parent [RequestSignCommandFunction]
- */
+
 @JsExport
 @JsName("RequestSignCommandDTO")
 interface RequestSignCommandDTO: RequestCommand {
-	/**
-	 * The unique id of the request.
-	 */
 	override val id: RequestId
 }
 
-/**
- * Event sent when an supported Value has been add to a request.
- * @D2 event
- * @parent [RequestSignCommandFunction]
- */
+
 @JsExport
 @JsName("RequestSignedEventDto")
 interface RequestSignedEventDTO: RequestEvent {
-	/**
-	 * The unique id of the request.
-	 */
 	override val id: RequestId
-
-	/**
-	 * The current state of the request.
-	 * @example "Signed"
-	 */
 	override val type: RequestState.Signed
 }
 
+/**
+ * Event sent when a supported Value a has been added to a request.
+ * @D2 event
+ */
 class RequestSignCommand(
 	override val id: RequestId,
 ): RequestSignCommandDTO
 
+/**
+ * Command to add a supported Value to a request.
+ * @D2 command
+ */
 class RequestSignedEvent(
 	override val id: RequestId,
+	/**
+	 * The current state of the request.
+	 * @example "Signed"
+	 */
 	override val type: RequestState.Signed = RequestState.Signed,
 ): RequestSignedEventDTO

@@ -8,7 +8,7 @@ const reducers = {
     evidence: evidenceReducer
 }
 
-export const {store, history, reducer} = initRedux<typeof reducers>(reducers, [thunk])
+export const {store, reducer} = initRedux<typeof reducers>(reducers, [thunk])
 
 export type State = ReturnType<typeof reducer>;
 

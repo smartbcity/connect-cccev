@@ -10,57 +10,49 @@ import cccev.s2.request.domain.model.RequestId
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-/**
- * Command to add an supported Value to a request.
- * @D2 command
- * @parent [RequestSupportedValueAddCommandFunction]
- */
 @JsExport
 @JsName("RequestSupportedValueAddCommandDTO")
 interface RequestSupportedValueAddCommandDTO: RequestCommand {
-	/**
-	 * The unique id of the request.
-	 */
 	override val id: RequestId
-
-	/**
-	 * The supported value to add.
-	 */
 	val supportedValue: SupportedValueDTO
 }
 
-/**
- * Event sent when an supported Value has been add to a request.
- * @D2 event
- * @parent [RequestSupportedValueAddCommandFunction]
- */
+
 @JsExport
 @JsName("RequestSupportedValueAddedEventDto")
 interface RequestSupportedValueAddedEventDTO: RequestEvent {
-	/**
-	 * The unique id of the request.
-	 */
 	override val id: RequestId
+	override val type: RequestState.Created
+	val providesValueFor: InformationConceptId
+}
+
+/**
+ * Command to add a supported Value to a request.
+ * @D2 command
+ */
+class RequestSupportedValueAddCommand(
+	override val id: RequestId,
+	/**
+	 * The supported value to add.
+	 */
+	override val supportedValue: SupportedValue,
+): RequestSupportedValueAddCommandDTO
+
+/**
+ * Event sent when a supported Value has been added to a request.
+ * @D2 event
+ */
+class RequestSupportedValueAddedEvent(
+	override val id: RequestId,
 
 	/**
 	 * The current state of the request.
 	 * @example "Created"
 	 */
-	override val type: RequestState.Created
+	override val type: RequestState.Created = RequestState.Created,
 
 	/**
 	 * Identifier of the information concept for which the newly added supported value provides a value.
 	 */
-	val providesValueFor: InformationConceptId
-}
-
-class RequestSupportedValueAddCommand(
-	override val id: RequestId,
-	override val supportedValue: SupportedValue,
-): RequestSupportedValueAddCommandDTO
-
-class RequestSupportedValueAddedEvent(
-	override val id: RequestId,
-	override val type: RequestState.Created = RequestState.Created,
 	override val providesValueFor: InformationConceptId,
 ): RequestSupportedValueAddedEventDTO

@@ -1,0 +1,9 @@
+
+
+## Request Refuse Command
+
+Type: `RequestRefuseCommandFunction`
+
+Refuse to a request.
+
+

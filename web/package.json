@@ -9,5 +9,6 @@
     "kotlin/*"
   ],
   "npmClient": "yarn",
-  "useWorkspaces": true
+  "useWorkspaces": true,
+  "dependencies": {}
 }

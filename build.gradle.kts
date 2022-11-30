@@ -24,30 +24,14 @@ allprojects {
 	}
 }
 
-subprojects {
-	plugins.withType(city.smartb.fixers.gradle.config.ConfigPlugin::class.java).whenPluginAdded {
-		fixers {
-			bundle {
-				id = "cccev"
-				name = "CCCEV"
-				description = "Kotlin implementation of Core Criterion and Core Evidence Vocabulary"
-				url = "https://gitlab.smartb.city/fixers/cccev"
-			}
-		}
+fixers {
+	bundle {
+		id = "cccev"
+		name = "CCCEV"
+		description = "Kotlin implementation of Core Criterion and Core Evidence Vocabulary"
+		url = "https://gitlab.smartb.city/fixers/cccev"
 	}
-}
-
-tasks {
-	register("cleanTsGen", Delete::class) {
-		delete("web/kotlin")
-	}
-
-	register("tsGen", Copy::class) {
-		dependsOn("cleanTsGen")
-		from("${this.project.buildDir.absolutePath}/js/packages/") {
-			exclude("*-test")
-		}
-		into("web/kotlin")
-		includeEmptyDirs = false
+	d2 {
+		outputDirectory = file("storybook/d2/")
 	}
 }

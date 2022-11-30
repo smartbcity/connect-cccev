@@ -3,26 +3,38 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "reportWebVitals";
 import { AppProvider } from "@smartb/g2-providers";
 import { Languages, languages } from "i18n";
-import { history, store } from "store";
+import { store } from "store";
 import { ThemeContextProvider } from "@smartb/g2-themes";
 import { LoadingComponent } from "components";
 import { muiTheme, theme } from "Themes";
 import App from "App";
 import { InitApp } from "./InitApp";
+import {Provider} from "react-redux";
+import { QueryClient } from 'react-query'
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 86400000
+    }
+  }
+})
+
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeContextProvider theme={theme} customMuiTheme={muiTheme}>
-      <AppProvider<Languages>
-        languages={languages}
-        reduxStore={store}
-        history={history}
-        loadingComponent={<LoadingComponent />}
-      >
-        <InitApp>
-          <App />
-        </InitApp>
-      </AppProvider>
+      <Provider store={store}>
+          <AppProvider<Languages>
+            languages={languages}
+            queryClient={queryClient}
+            loadingComponent={<LoadingComponent />}
+          >
+            <InitApp>
+              <App />
+            </InitApp>
+          </AppProvider>
+      </Provider>
     </ThemeContextProvider>
   </React.StrictMode>,
   document.getElementById("root")

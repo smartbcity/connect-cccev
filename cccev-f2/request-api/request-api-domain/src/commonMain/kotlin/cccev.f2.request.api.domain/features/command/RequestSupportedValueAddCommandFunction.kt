@@ -7,6 +7,9 @@ import f2.dsl.fnc.F2Function
 /**
  * Add a Supported Value to a request.
  * @D2 function
- * @parent [cccev.s2.request.domain.RequestAggregate]
+ * @parent [cccev.f2.request.api.domain.features.D2RequestApiPage]
+ * @child [RequestSupportedValueAddCommand]
+ * @child [RequestSupportedValueAddedEvent]
  */
-typealias RequestSupportedValueAddCommandFunction = F2Function<RequestSupportedValueAddCommand, RequestSupportedValueAddedEvent>
+typealias RequestSupportedValueAddCommandFunction =
+        F2Function<RequestSupportedValueAddCommand, RequestSupportedValueAddedEvent>

@@ -7,6 +7,8 @@ import f2.dsl.fnc.F2Function
 /**
  * Init a request.
  * @D2 function
- * @parent [cccev.s2.request.domain.RequestAggregate]
+ * @parent [cccev.f2.request.api.domain.features.D2RequestApiPage]
+ * @child [RequestInitCommand]
+ * @child [RequestInitializedEvent]
  */
 typealias RequestInitCommandFunction = F2Function<RequestInitCommand, RequestInitializedEvent>

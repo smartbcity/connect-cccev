@@ -1,0 +1,9 @@
+
+
+## Request Sign Command
+
+Type: `RequestSignCommandFunction`
+
+Sign to a request.
+
+

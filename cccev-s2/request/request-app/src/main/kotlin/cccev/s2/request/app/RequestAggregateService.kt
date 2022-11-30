@@ -41,7 +41,6 @@ class RequestAggregateService(
 
 	override suspend fun addEvidence(cmd: RequestEvidenceAddCommand) = aggregate.doTransition(cmd) {
 		evidences.add(cmd.evidence)
-
 		this to RequestEvidenceAddedEvent(
 			id = id,
 			evidenceId = cmd.evidence.identifier
@@ -93,4 +92,5 @@ class RequestAggregateService(
 	private fun <E: S2Event<RequestState, RequestId>> RequestEntity.updateStatus(buildEvent: () -> E): E {
 		return buildEvent().also { event -> status = event.type }
 	}
+
 }

@@ -12,17 +12,12 @@ import kotlin.js.JsName
 
 /**
  * Command to add an evidence to a request.
- * @D2 command
- * @parent [RequestEvidenceAddCommandFunction]
+ * @d2 command
  */
 @JsExport
 @JsName("RequestEvidenceAddCommandDTO")
 interface RequestEvidenceAddCommandDTO: RequestCommand {
-	/**
-	 * The unique id of the request.
-	 */
 	override val id: RequestId
-
 	/**
 	 * The evidence to add.
 	 */
@@ -31,34 +26,31 @@ interface RequestEvidenceAddCommandDTO: RequestCommand {
 
 /**
  * Event sent when an evidence has been added to a request.
- * @D2 event
- * @parent [RequestEvidenceAddCommandFunction]
+ * @d2 event
  */
 @JsExport
 @JsName("RequestEvidenceAddedEventDTO")
 interface RequestEvidenceAddedEventDTO: RequestEvent {
-	/**
-	 * The unique id of the request.
-	 */
 	override val id: RequestId
-
 	/**
 	 * The current state of the request.
 	 * @example "Created"
 	 */
 	override val type: RequestState.Created
-
-	/**
-	 * Identifier of the newly added evidence.
-	 */
 	val evidenceId: EvidenceId
 }
 
+/**
+ * @d2 inherit
+ */
 class RequestEvidenceAddCommand(
 	override val id: RequestId,
 	override val evidence: Evidence,
 ): RequestEvidenceAddCommandDTO
 
+/**
+ * @d2 inherit
+ */
 class RequestEvidenceAddedEvent(
 	override val id: RequestId,
 	override val type: RequestState.Created = RequestState.Created,

@@ -1,0 +1,16 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/g2-documentation'
+import RequestAuditedEventDTODesc from './desc.md'
+import RequestAuditedEventDTOVisualJson from './visualJson.json'
+
+<DescriptedCode
+  leftElement={<RequestAuditedEventDTODesc />}
+  leftContainerProps={{}}
+  rightElement={
+    <CodeHighlighter
+      object={RequestAuditedEventDTOVisualJson}
+      language={"json"}
+      title={"Event"}
+    />
+  }
+  rightContainerProps={{}}
+/>

@@ -1,0 +1,9 @@
+
+
+## Request Evidence Remove Command
+
+Type: `RequestEvidenceRemoveCommandFunction`
+
+Remove evidence from a request.
+
+
