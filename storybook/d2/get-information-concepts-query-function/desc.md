@@ -1,0 +1,9 @@
+
+
+## Get Information Concepts Query
+
+Type: `GetInformationConceptsQueryFunction`
+
+Get information concepts
+
+

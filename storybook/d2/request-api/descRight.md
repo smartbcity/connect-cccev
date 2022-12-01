@@ -26,13 +26,6 @@ Audit a request
 </article>
 <article>
 
-**getRequestScore** ( cmd: [`GetRequestScoreQueryDTO`](#request-api) ) : [`GetRequestScoreQueryResultDTO`](#request-api) <br/> 
-
-Return the score of a request
-
-</article>
-<article>
-
 **initRequest** ( cmd: [`RequestInitCommand`](#request-init-command) ) : [`RequestInitializedEvent`](#request-init-command) <br/> 
 
 Init a Request

@@ -4,6 +4,7 @@ import cccev.core.dsl.EvidenceTypeId
 import cccev.core.dsl.EvidenceTypeListId
 import cccev.f2.evidence.api.app.model.toEvidenceTypeListChoices
 import cccev.f2.evidence.api.app.service.EvidenceApiFinderService
+import cccev.f2.evidence.api.domain.EvidenceApi
 import cccev.f2.evidence.api.domain.features.query.GetEvidenceTypeListsQueryFunction
 import cccev.f2.evidence.api.domain.features.query.GetEvidenceTypeListsQueryResult
 import cccev.f2.evidence.api.domain.model.EvidenceTypeListDTO
@@ -16,11 +17,11 @@ import s2.spring.utils.logger.Logger
 @Configuration
 class EvidenceApiEndpoint(
     private val evidenceApiFinderService: EvidenceApiFinderService
-) {
+): EvidenceApi {
     private val logger by Logger()
 
     @Bean
-    fun getEvidenceTypeLists(): GetEvidenceTypeListsQueryFunction = f2Function { query ->
+    override fun getEvidenceTypeLists(): GetEvidenceTypeListsQueryFunction = f2Function { query ->
         logger.info("Request [${query.id}]: GetEvidenceTypeLists")
         val evidenceTypeLists = evidenceApiFinderService.getEvidenceTypeLists(
             requestId = query.id,

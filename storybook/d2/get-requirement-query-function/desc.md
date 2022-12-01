@@ -1,0 +1,9 @@
+
+
+## Get Requirement Query
+
+Type: `GetRequirementQueryFunction`
+
+Get a requirement.
+
+

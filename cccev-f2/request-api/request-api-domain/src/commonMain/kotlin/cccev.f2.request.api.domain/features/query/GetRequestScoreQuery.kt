@@ -9,16 +9,15 @@ import kotlin.js.JsName
 /**
  * Refuse to a request.
  * @parent [cccev.f2.request.api.domain.features.D2RequestApiPage]
- * @child [GetRequestScoreQuery]
- * @child [GetRequestScoreQueryResult]
+ * @child [GetRequestScoreQueryDTO]
+ * @child [GetRequestScoreQueryResultDTO]
  * @d2 function
  */
 typealias GetRequestScoreQueryFunction = F2Function<GetRequestScoreQuery, GetRequestScoreQueryResult>
 
 /**
  * Get Request Core.
- * @parent [cccev.f2.request.api.domain.features.D2RequestApiPage]
- * @d2 command
+ * @d2 query
  */
 @JsExport
 @JsName("GetRequestScoreQueryDTO")
@@ -28,7 +27,6 @@ interface GetRequestScoreQueryDTO {
 
 /**
  * Get Request Core
- * @parent [cccev.f2.request.api.domain.features.D2RequestApiPage]
  * @d2 result
  */
 @JsExport

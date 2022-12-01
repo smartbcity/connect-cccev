@@ -1,6 +1,6 @@
 
 
-## Command
+### Query
 
 Type: `GetRequestScoreQueryDTO`
 

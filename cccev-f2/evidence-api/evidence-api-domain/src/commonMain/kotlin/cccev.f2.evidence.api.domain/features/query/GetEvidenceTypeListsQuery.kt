@@ -13,8 +13,20 @@ import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
+/**
+ * Get evidence type lists
+ *
+ * @parent [cccev.f2.evidence.api.domain.D2EvidenceApiPage]
+ * @child [GetEvidenceTypeListsQueryDTO]
+ * @child [GetEvidenceTypeListsQueryResultDTO]
+ * @d2 function
+ */
 typealias GetEvidenceTypeListsQueryFunction = F2Function<GetEvidenceTypeListsQuery, GetEvidenceTypeListsQueryResult>
 
+/**
+ * Evidence type lists Query
+ * @d2 query
+ */
 @JsExport
 @JsName("GetEvidenceTypeListsQueryDTO")
 interface GetEvidenceTypeListsQueryDTO {
@@ -24,13 +36,10 @@ interface GetEvidenceTypeListsQueryDTO {
     val evidenceType: EvidenceTypeId?
 }
 
-class GetEvidenceTypeListsQuery(
-    override val id: RequestId,
-    override val requirement: RequirementId,
-    override val concept: InformationConceptId?,
-    override val evidenceType: EvidenceTypeId?
-): GetEvidenceTypeListsQueryDTO
-
+/**
+ * Information concepts result
+ * @d2 result
+ */
 @JsExport
 @JsName("GetEvidenceTypeListsQueryResultDTO")
 interface GetEvidenceTypeListsQueryResultDTO {
@@ -39,6 +48,19 @@ interface GetEvidenceTypeListsQueryResultDTO {
     val evidenceTypeLists: List<EvidenceTypeListChoicesDTO>
 }
 
+/**
+ * @d2 inherit
+ */
+class GetEvidenceTypeListsQuery(
+    override val id: RequestId,
+    override val requirement: RequirementId,
+    override val concept: InformationConceptId?,
+    override val evidenceType: EvidenceTypeId?
+): GetEvidenceTypeListsQueryDTO
+
+/**
+ * @d2 inherit
+ */
 class GetEvidenceTypeListsQueryResult(
     override val evidenceTypeListMap: Map<EvidenceTypeListId, EvidenceTypeListDTOBase>,
     override val evidenceTypeListsOfEvidenceTypes: Map<EvidenceTypeId, List<EvidenceTypeListId>>,

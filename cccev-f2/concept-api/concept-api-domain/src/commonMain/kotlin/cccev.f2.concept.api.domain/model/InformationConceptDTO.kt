@@ -11,10 +11,22 @@ import cccev.f2.evidence.api.domain.model.EvidenceTypeListChoicesDTOBase
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
+/**
+ * Information Concepts
+ *
+ * @parent [cccev.f2.concept.api.domain.D2ConceptApiPage]
+ * @d2 model
+ */
 @JsExport
 @JsName("InformationConceptDTO")
 interface InformationConceptDTO: InformationConcept {
+    /**
+     * TODO
+     */
     val evidenceTypeChoices: EvidenceTypeListChoicesDTO
+    /**
+     * TODO
+     */
     val supportedValue: SupportedValueDTO
 }
 

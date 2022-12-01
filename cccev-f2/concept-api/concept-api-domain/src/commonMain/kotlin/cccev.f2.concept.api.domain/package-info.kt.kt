@@ -1,0 +1,7 @@
+package cccev.f2.concept.api.domain
+
+/**
+ * @d2 page
+ * @title Information Concept Api
+ */
+interface D2ConceptApiPage
