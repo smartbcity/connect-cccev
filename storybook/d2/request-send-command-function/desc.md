@@ -1,9 +1,0 @@
-
-
-## Request Send Command
-
-Type: `RequestSendCommandFunction`
-
-Send to a request.
-
-

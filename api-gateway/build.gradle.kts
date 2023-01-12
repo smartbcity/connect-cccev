@@ -24,5 +24,5 @@ dependencies {
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {
-    imageName = "smartbcity/cccev-gateway:${this.project.version}"
+    imageName.set("smartbcity/cccev-gateway:${this.project.version}")
 }

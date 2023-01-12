@@ -1,9 +1,0 @@
-
-
-## Get Requirement List Query
-
-Type: `GetRequirementListQueryFunction`
-
-Get a list of requirements.
-
-

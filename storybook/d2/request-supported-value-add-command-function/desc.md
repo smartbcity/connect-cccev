@@ -1,9 +1,0 @@
-
-
-## Request Supported Value Add Command
-
-Type: `RequestSupportedValueAddCommandFunction`
-
-Add a Supported Value to a request.
-
-
