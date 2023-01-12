@@ -6,8 +6,11 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: admin
-      MONGO_INITDB_DATABASE: admin
+      MONGO_INITDB_DATABASE: cccev
     ports:
-      - 27018:27017
+      - "27018:27017"
     volumes:
-      - ./infra/dev/mongodb/data/db/:/data/db/
+      - cccev_mongodb:/data/db/
+
+volumes:
+  cccev_mongodb:

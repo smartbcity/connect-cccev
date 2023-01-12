@@ -19,5 +19,5 @@ spring:
         path: /api
   data:
     mongodb:
-      uri: mongodb://admin:admin@localhost/cccev?authSource=admin
+      uri: mongodb://admin:admin@localhost:27018/cccev
       auto-index-creation: true
