@@ -13,14 +13,14 @@ dependencies {
 //    implementation(project(":cccev-api"))
 
     implementation(project(":cccev-f2"))
-    implementation(project(":cccev-f2:concept-api:concept-api-app"))
-    implementation(project(":cccev-f2:evidence-api:evidence-api-app"))
-    implementation(project(":cccev-f2:request-api:request-api-app"))
-    implementation(project(":cccev-f2:requirement-api:requirement-api-app"))
-    implementation(project(":cccev-s2:concept:concept-app"))
-    implementation(project(":cccev-s2:evidence:evidence-app"))
+    implementation(project(":cccev-f2:concept-f2:concept-f2-api"))
+    implementation(project(":cccev-f2:evidence-f2:evidence-f2-api"))
+    implementation(project(":cccev-f2:request-f2:request-f2-api"))
+    implementation(project(":cccev-f2:requirement-f2:requirement-f2-api"))
+    implementation(project(":cccev-s2:concept:concept-api"))
+    implementation(project(":cccev-s2:evidence:evidence-api"))
     implementation(project(":cccev-s2:request:request-tasks"))
-    implementation(project(":cccev-s2:requirement:requirement-app"))
+    implementation(project(":cccev-s2:requirement:requirement-api"))
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {

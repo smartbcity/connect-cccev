@@ -2,7 +2,7 @@ package features.cccev.test.entities.supportedvalue
 
 import cccev.core.dsl.InformationConceptId
 import cccev.core.dsl.SupportedValueId
-import cccev.s2.request.app.RequestAggregateService
+import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.model.RequestId
 import features.cccev.test.CucumberStepsDefinition

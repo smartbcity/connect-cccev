@@ -1,6 +1,6 @@
 package features.cccev.test.entities.request
 
-import cccev.s2.request.app.RequestAggregateService
+import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.domain.features.command.RequestInitCommand
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.exception.EntityNotInitializedException

@@ -4,7 +4,7 @@ import cccev.core.dsl.EvidenceTypeListBase
 import cccev.core.dsl.InformationConceptBase
 import cccev.core.dsl.Requirement
 import cccev.core.dsl.RequirementId
-import cccev.s2.requirement.app.RequirementFinderService
+import cccev.s2.requirement.api.RequirementFinderService
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.data.DataTest
 import io.cucumber.datatable.DataTable
