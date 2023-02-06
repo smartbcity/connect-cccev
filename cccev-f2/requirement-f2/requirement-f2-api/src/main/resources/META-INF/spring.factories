@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cccev.f2.requirement.api.RequirementApiEndpoint
+cccev.f2.requirement.api.RequirementEndpoint

@@ -11,7 +11,7 @@ import cccev.s2.request.api.RequestFinderService
 import cccev.s2.request.domain.features.command.RequestInitCommand
 import cccev.s2.request.domain.model.Request
 import cccev.s2.request.domain.model.RequestId
-import cccev.s2.requirement.api.RequirementFinderService
+import cccev.s2.requirement.api.DeprecatedRequirementFinderService
 import org.springframework.dao.DuplicateKeyException
 import org.springframework.stereotype.Service
 import s2.spring.utils.logger.Logger
@@ -20,14 +20,14 @@ import s2.spring.utils.logger.Logger
 class EvidenceApiFinderService(
     private val requestAggregateService: RequestAggregateService,
     private val requestFinderService: RequestFinderService,
-    private val requirementFinderService: RequirementFinderService
+    private val deprecatedRequirementFinderService: DeprecatedRequirementFinderService
 ) {
     private val logger by Logger()
 
     suspend fun getEvidenceTypeLists(
         requestId: RequestId, requirementId: RequirementId, conceptId: InformationConceptId? = null, evidenceTypeId: EvidenceTypeId? = null
     ): List<List<EvidenceTypeListDTOBase>> {
-        val requirements = requirementFinderService.list(
+        val requirements = deprecatedRequirementFinderService.list(
             parent = requirementId,
             concept = conceptId,
             evidenceType = evidenceTypeId

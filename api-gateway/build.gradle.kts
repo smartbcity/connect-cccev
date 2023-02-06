@@ -11,7 +11,6 @@ dependencies {
     api("city.smartb.i2:i2-spring-boot-starter-auth-keycloak:${Versions.i2}")
 
 //    implementation(project(":cccev-api"))
-
     implementation(project(":cccev-f2"))
     implementation(project(":cccev-f2:concept-f2:concept-f2-api"))
     implementation(project(":cccev-f2:evidence-f2:evidence-f2-api"))

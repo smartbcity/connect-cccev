@@ -5,4 +5,5 @@ plugins {
 }
 
 dependencies {
+	commonMainApi(project(":cccev-s2:unit:unit-domain"))
 }

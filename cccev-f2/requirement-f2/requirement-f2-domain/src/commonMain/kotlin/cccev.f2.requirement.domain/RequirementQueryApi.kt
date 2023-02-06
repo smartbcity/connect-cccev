@@ -1,7 +1,7 @@
 package cccev.f2.requirement.domain
 
-import cccev.f2.requirement.domain.features.query.GetRequirementListQueryFunction
-import cccev.f2.requirement.domain.features.query.GetRequirementQueryFunction
+import cccev.f2.requirement.domain.query.GetRequirementListQueryFunction
+import cccev.f2.requirement.domain.query.GetRequirementQueryFunction
 
 interface RequirementQueryApi {
     /**

@@ -16,6 +16,7 @@ include(
 	"api-gateway",
 	"api-commons",
 	"cccev-f2",
+	"cccev-infra:mongodb",
 	"cccev-test"
 )
 include(
@@ -37,5 +38,7 @@ include(
 	"cccev-s2:request:request-domain",
 	"cccev-s2:request:request-tasks",
 	"cccev-s2:requirement:requirement-api",
-	"cccev-s2:requirement:requirement-domain"
+	"cccev-s2:requirement:requirement-domain",
+	"cccev-s2:unit:unit-api",
+	"cccev-s2:unit:unit-domain"
 )

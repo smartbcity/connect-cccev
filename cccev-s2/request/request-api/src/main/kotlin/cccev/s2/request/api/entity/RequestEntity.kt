@@ -6,11 +6,11 @@ import cccev.core.dsl.RequirementId
 import cccev.core.dsl.SupportedValue
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
-import f2.spring.data.entity.EntityBase
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import s2.dsl.automate.model.WithS2Id
 import s2.dsl.automate.model.WithS2State
+import s2.spring.utils.data.EntityBase
 import java.util.UUID
 
 @Document("request")

@@ -2,6 +2,7 @@ subprojects {
 	plugins.withType(JavaPlugin::class.java).whenPluginAdded {
 		dependencies {
 			val implementation by configurations
+			implementation(project(":cccev-infra:mongodb"))
 			Dependencies.Jvm.f2 { implementation(it) }
 			Dependencies.Jvm.s2Mongo { implementation(it) }
 		}

@@ -18,7 +18,6 @@ import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddedEvent
 
 interface RequestAggregate {
-
 	suspend fun init(cmd: RequestInitCommand): RequestInitializedEvent
 	suspend fun addEvidence(cmd: RequestEvidenceAddCommand): RequestEvidenceAddedEvent
 	suspend fun removeEvidence(cmd: RequestEvidenceRemoveCommand): RequestEvidenceRemovedEvent

@@ -9,7 +9,7 @@ import cccev.s2.request.api.entity.RequestEntity
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.model.RequestId
-import cccev.s2.requirement.api.RequirementFinderService
+import cccev.s2.requirement.api.DeprecatedRequirementFinderService
 import f2.dsl.fnc.invoke
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
@@ -29,7 +29,7 @@ class ComputeExpectedValuesHandlerSteps: En {
     @Autowired
     private lateinit var requestAggregateService: RequestAggregateService
     @Autowired
-    private lateinit var requirementFinderService: RequirementFinderService
+    private lateinit var deprecatedRequirementFinderService: DeprecatedRequirementFinderService
 
     private lateinit var frameworkId: RequirementId
     private lateinit var requestId: RequestId
@@ -54,7 +54,7 @@ class ComputeExpectedValuesHandlerSteps: En {
 
         Given("The framework {string} is instantiated") { framework: RequirementId ->
             runBlocking {
-                val requirement = requirementFinderService.get(framework)
+                val requirement = deprecatedRequirementFinderService.get(framework)
                 Assertions.assertThat(requirement?.identifier).isNotNull
                 frameworkId = requirement!!.identifier!!
             }
