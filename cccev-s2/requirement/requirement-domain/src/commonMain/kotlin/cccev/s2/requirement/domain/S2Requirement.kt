@@ -11,6 +11,12 @@ import s2.dsl.automate.builder.s2
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
+/**
+ * @d2 model
+ * @parent [D2RequirementPage]
+ * @order 15
+ * @visual json "5b3cc623-52bc-409f-a048-02a9b5f433d6"
+ */
 typealias RequirementId = String
 
 val s2Requirement = s2 {

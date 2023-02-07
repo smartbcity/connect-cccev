@@ -15,7 +15,6 @@ data class InformationConceptEntity(
     val id: InformationConceptId = UUID.randomUUID().toString(),
     val name: String,
     val unit: DataUnitId,
-    val type: String,
     val description: String,
     val expressionOfExpectedValue: String?,
     val dependsOn: List<InformationConceptId>,

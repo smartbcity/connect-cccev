@@ -17,7 +17,6 @@ class InformationConceptAggregateService(
             status = InformationConceptState.CREATED,
             name = command.name,
             unit = command.unit,
-            type = command.type,
             description = command.description,
             expressionOfExpectedValue = command.expressionOfExpectedValue,
             dependsOn = command.dependsOn,

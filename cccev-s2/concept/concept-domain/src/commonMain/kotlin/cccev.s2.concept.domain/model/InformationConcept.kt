@@ -28,11 +28,6 @@ data class InformationConcept(
     val unit: DataUnitId,
 
     /**
-     * TODO
-     */
-    val type: String,
-
-    /**
      * The description of this information concept.
      * @example "Represents the height above sea level"
      */

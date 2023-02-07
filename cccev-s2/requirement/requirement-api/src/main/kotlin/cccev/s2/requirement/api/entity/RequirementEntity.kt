@@ -16,13 +16,12 @@ data class RequirementEntity(
     @Id
     val id: RequirementId = UUID.randomUUID().toString(),
     val kind: RequirementKind,
-    val description: String?,
-    val name: String?,
-    val type: String?,
-    val hasRequirement: List<RequirementId>,
-    val hasConcept: List<InformationConceptId>,
-    val hasEvidenceTypeList: List<EvidenceTypeListId>,
-    val status: RequirementState
+    var description: String?,
+    var name: String?,
+    var hasRequirement: List<RequirementId>,
+    var hasConcept: List<InformationConceptId>,
+    var hasEvidenceTypeList: List<EvidenceTypeListId>,
+    var status: RequirementState
 ): WithS2Id<RequirementId>, WithS2State<RequirementState> {
     override fun s2Id() = id
     override fun s2State() = status

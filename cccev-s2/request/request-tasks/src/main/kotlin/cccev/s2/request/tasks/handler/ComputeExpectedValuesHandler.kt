@@ -3,8 +3,8 @@ package cccev.s2.request.tasks.handler
 import cccev.commons.EventHandler
 import cccev.core.dsl.InformationConcept
 import cccev.core.dsl.SupportedValue
-import cccev.f2.concept.domain.features.query.GetInformationConceptsQuery
-import cccev.f2.concept.domain.features.query.GetInformationConceptsQueryFunction
+import cccev.f2.concept.domain.query.GetInformationConceptsQuery
+import cccev.f2.concept.domain.query.GetInformationConceptsQueryFunction
 import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.api.entity.RequestEntity
 import cccev.s2.request.api.entity.RequestRepository

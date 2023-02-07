@@ -1,7 +1,9 @@
 package cccev.f2.requirement.domain.model
 
-import cccev.core.dsl.EvidenceTypeList
-import cccev.core.dsl.InformationConcept
+import cccev.f2.concept.domain.model.InformationConceptDTO
+import cccev.f2.concept.domain.model.InformationConceptDTOBase
+import cccev.f2.evidence.type.domain.model.EvidenceTypeListDTO
+import cccev.f2.evidence.type.domain.model.EvidenceTypeListDTOBase
 import cccev.s2.requirement.domain.RequirementId
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -13,10 +15,9 @@ interface RequirementDTO {
     val kind: String
     val description: String?
     val name: String?
-    val type: String?
     val hasRequirement: List<RequirementDTO>
-    val hasConcept: List<InformationConcept>
-    val hasEvidenceTypeList: List<EvidenceTypeList>
+    val hasConcept: List<InformationConceptDTO>
+    val hasEvidenceTypeList: List<EvidenceTypeListDTO>
 }
 
 data class RequirementDTOBase(
@@ -24,8 +25,7 @@ data class RequirementDTOBase(
     override val kind: String,
     override val description: String?,
     override val name: String?,
-    override val type: String?,
     override val hasRequirement: List<RequirementDTOBase>,
-    override val hasConcept: List<InformationConcept>,
-    override val hasEvidenceTypeList: List<EvidenceTypeList>
+    override val hasConcept: List<InformationConceptDTOBase>,
+    override val hasEvidenceTypeList: List<EvidenceTypeListDTOBase>
 ): RequirementDTO

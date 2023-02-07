@@ -14,7 +14,8 @@ import kotlin.js.JsName
 /**
  * Identifier of a DataUnit
  * @visual json "aeb2c258-9eab-4e55-9e52-77db89aaabfb"
- * @order 20
+ * @parent [D2DataUnitPage]
+ * @order 15
  */
 typealias DataUnitId = String
 

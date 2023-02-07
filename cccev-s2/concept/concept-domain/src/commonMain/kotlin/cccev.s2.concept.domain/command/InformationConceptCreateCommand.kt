@@ -16,34 +16,26 @@ import kotlin.js.JsName
  */
 interface InformationConceptCreateFunction
 
-/**
- * @d2 command
- * @parent [InformationConceptCreateFunction]
- */
-data class InformationConceptCreateCommand(
+@JsExport
+@JsName("InformationConceptCreateCommandDTO")
+interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
     /**
      * The name of the information concept.
      * @example [cccev.s2.concept.domain.model.InformationConcept.name]
      */
-    val name: String,
+    val name: String
 
     /**
      * The data unit used for the information concept.
      * @example [cccev.s2.concept.domain.model.InformationConcept.unit]
      */
-    val unit: DataUnitId,
-
-    /**
-     * TODO
-     * @example [cccev.s2.concept.domain.model.InformationConcept.type]
-     */
-    val type: String,
+    val unit: DataUnitId
 
     /**
      * The description of the information concept.
      * @example [cccev.s2.concept.domain.model.InformationConcept.description]
      */
-    val description: String,
+    val description: String
 
     /**
      * Expression to evaluate in order to auto-compute the SupportedValue associated with the information concept, if applicable. <br />
@@ -51,14 +43,26 @@ data class InformationConceptCreateCommand(
      * The expression may contain other known information concepts, identified by their id. They must be declared in the `dependsOn` field.
      * @example [cccev.s2.concept.domain.model.InformationConcept.expressionOfExpectedValue]
      */
-    val expressionOfExpectedValue: String?,
+    val expressionOfExpectedValue: String?
 
     /**
      * A list of information concepts the one depends on for auto-computation, if applicable.
      * @example [cccev.s2.concept.domain.model.InformationConcept.dependsOn]
      */
-    val dependsOn: List<InformationConceptId>,
-): InformationConceptInitCommand
+    val dependsOn: List<InformationConceptId>
+}
+
+/**
+ * @d2 command
+ * @parent [InformationConceptCreateFunction]
+ */
+data class InformationConceptCreateCommand(
+    override val name: String,
+    override val unit: DataUnitId,
+    override val description: String,
+    override val expressionOfExpectedValue: String?,
+    override val dependsOn: List<InformationConceptId>
+): InformationConceptCreateCommandDTO
 
 /**
  * @d2 event

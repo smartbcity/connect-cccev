@@ -6,7 +6,7 @@ dependencies {
 	api(project(":cccev-core:cccev-core-dsl"))
 	api(project(":cccev-f2"))
 	api(project(":cccev-s2:concept:concept-api"))
-	api(project(":cccev-s2:evidence:evidence-api"))
+	api(project(":cccev-s2:evidence-type:evidence-type-api"))
 	api(project(":cccev-s2:request:request-api"))
 	api(project(":cccev-s2:requirement:requirement-api"))
 

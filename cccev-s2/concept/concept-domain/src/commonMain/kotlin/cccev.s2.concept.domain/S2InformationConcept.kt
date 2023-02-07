@@ -14,6 +14,8 @@ import kotlin.js.JsName
 /**
  * Unique identifier of an information concept.
  * @d2 model
+ * @parent [D2InformationConceptPage]
+ * @order 15
  * @visual json "cdfca416-c284-4ef9-8591-31405c8c2acf"
  */
 typealias InformationConceptId = String

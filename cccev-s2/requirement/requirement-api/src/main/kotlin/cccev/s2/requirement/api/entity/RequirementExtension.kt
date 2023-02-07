@@ -7,7 +7,6 @@ fun RequirementEntity.toRequirement() = Requirement(
     kind = kind,
     description = description,
     name = name,
-    type = type,
     hasRequirement = hasRequirement,
     hasConcept = hasConcept,
     hasEvidenceTypeList = hasEvidenceTypeList,

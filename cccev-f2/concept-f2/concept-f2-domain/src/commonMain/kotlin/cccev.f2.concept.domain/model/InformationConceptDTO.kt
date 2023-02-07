@@ -1,43 +1,66 @@
 package cccev.f2.concept.domain.model
 
-import cccev.core.dsl.CUnitDTO
-import cccev.core.dsl.Code
-import cccev.core.dsl.InformationConcept
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.SupportedValue
-import cccev.core.dsl.SupportedValueDTO
-import cccev.f2.evidence.domain.model.EvidenceTypeListChoicesDTO
-import cccev.f2.evidence.domain.model.EvidenceTypeListChoicesDTOBase
+import cccev.f2.concept.domain.D2InformationConceptF2Page
+import cccev.f2.unit.domain.model.DataUnitDTO
+import cccev.f2.unit.domain.model.DataUnitDTOBase
+import cccev.s2.concept.domain.InformationConceptId
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
 /**
- * Information Concepts
- *
- * @parent [cccev.f2.concept.domain.D2ConceptApiPage]
+ * See [cccev.s2.concept.domain.model.InformationConcept]
  * @d2 model
+ * @parent [D2InformationConceptF2Page]
+ * @order 10
  */
 @JsExport
 @JsName("InformationConceptDTO")
-interface InformationConceptDTO: InformationConcept {
+interface InformationConceptDTO {
     /**
-     * TODO
+     * Unique identifier of this information concept.
      */
-    val evidenceTypeChoices: EvidenceTypeListChoicesDTO
+    val id: InformationConceptId
+
     /**
-     * TODO
+     * The name of this information concept.
+     * @example [cccev.s2.concept.domain.model.InformationConcept.name]
      */
-    val supportedValue: SupportedValueDTO
+    val name: String
+
+    /**
+     * The data unit used for this information concept.
+     */
+    val unit: DataUnitDTO
+
+    /**
+     * The description of this information concept.
+     * @example [cccev.s2.concept.domain.model.InformationConcept.description]
+     */
+    val description: String
+
+    /**
+     * Expression to evaluate in order to auto-compute the SupportedValue associated with this information concept, if applicable. <br />
+     * For now, the expression will be evaluated using a Kotlin engine. <br />
+     * The expression may contain other known information concepts, identified by their id. They must be declared in the `dependsOn` field.
+     * @example [cccev.s2.concept.domain.model.InformationConcept.expressionOfExpectedValue]
+     */
+    val expressionOfExpectedValue: String?
+
+    /**
+     * A list of information concepts this one depends on for auto-computation, if applicable.
+     * @example [cccev.s2.concept.domain.model.InformationConcept.dependsOn]
+     */
+    val dependsOn: List<InformationConceptId>
 }
 
-class InformationConceptDTOBase(
-    override val identifier: String,
+/**
+ * @d2 inherit
+ */
+data class InformationConceptDTOBase(
+    override val id: InformationConceptId,
     override val name: String,
-    override val type: Code,
-    override val unit: CUnitDTO,
+    override val unit: DataUnitDTOBase,
     override val description: String,
     override val expressionOfExpectedValue: String?,
-    override val dependsOn: List<InformationConceptId>,
-    override val evidenceTypeChoices: EvidenceTypeListChoicesDTOBase,
-    override val supportedValue: SupportedValue
+    override val dependsOn: List<InformationConceptId>
 ): InformationConceptDTO

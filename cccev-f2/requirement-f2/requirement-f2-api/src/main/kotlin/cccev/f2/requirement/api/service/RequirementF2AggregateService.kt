@@ -6,6 +6,8 @@ import cccev.f2.requirement.domain.command.InformationRequirementCreateCommandDT
 import cccev.s2.requirement.api.RequirementAggregateService
 import cccev.s2.requirement.domain.command.RequirementCreateCommand
 import cccev.s2.requirement.domain.command.RequirementCreatedEvent
+import cccev.s2.requirement.domain.command.RequirementUpdateCommand
+import cccev.s2.requirement.domain.command.RequirementUpdatedEvent
 import cccev.s2.requirement.domain.model.RequirementKind
 import org.springframework.stereotype.Service
 
@@ -18,7 +20,9 @@ class RequirementF2AggregateService(
             kind = RequirementKind.CONSTRAINT,
             name = command.name,
             description = command.description,
-            type = command.type
+            hasRequirement = command.hasRequirement,
+            hasConcept = command.hasConcept,
+            hasEvidenceTypeList = command.hasEvidenceTypeList,
         ).let { requirementAggregateService.create(it) }
     }
 
@@ -27,7 +31,9 @@ class RequirementF2AggregateService(
             kind = RequirementKind.CRITERION,
             name = command.name,
             description = command.description,
-            type = command.type
+            hasRequirement = command.hasRequirement,
+            hasConcept = command.hasConcept,
+            hasEvidenceTypeList = command.hasEvidenceTypeList,
         ).let { requirementAggregateService.create(it) }
     }
 
@@ -36,7 +42,13 @@ class RequirementF2AggregateService(
             kind = RequirementKind.INFORMATION,
             name = command.name,
             description = command.description,
-            type = command.type
+            hasRequirement = command.hasRequirement,
+            hasConcept = command.hasConcept,
+            hasEvidenceTypeList = command.hasEvidenceTypeList,
         ).let { requirementAggregateService.create(it) }
+    }
+
+    suspend fun update(command: RequirementUpdateCommand): RequirementUpdatedEvent {
+        return requirementAggregateService.update(command)
     }
 }

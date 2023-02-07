@@ -12,6 +12,7 @@ subprojects {
 		dependencies {
 			val commonMainApi by configurations
 			commonMainApi(project(":cccev-core:cccev-core-dsl"))
+			commonMainApi(project(":api-commons"))
 			Dependencies.Mpp.f2 { commonMainApi(it) }
 			Dependencies.Mpp.s2 { commonMainApi(it) }
 		}

@@ -6,7 +6,6 @@ fun InformationConceptEntity.toInformationConcept() = InformationConcept(
     id = id,
     name = name,
     unit = unit,
-    type = type,
     description = description,
     expressionOfExpectedValue = expressionOfExpectedValue,
     dependsOn = dependsOn
