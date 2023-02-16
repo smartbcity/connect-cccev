@@ -5,7 +5,7 @@ import cccev.s2.concept.domain.model.InformationConcept
 fun InformationConceptEntity.toInformationConcept() = InformationConcept(
     id = id,
     name = name,
-    unit = unit,
+    unitId = unitId,
     description = description,
     expressionOfExpectedValue = expressionOfExpectedValue,
     dependsOn = dependsOn

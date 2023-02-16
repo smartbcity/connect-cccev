@@ -1,7 +1,6 @@
 plugins {
 	id("city.smartb.fixers.gradle.kotlin.jvm")
 	kotlin("plugin.spring")
-	kotlin("kapt")
 }
 
 dependencies {
@@ -24,4 +23,5 @@ dependencies {
 	implementation(project(":fixers-bdd"))
 
 	implementation("org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}")
+	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:${PluginVersions.springBoot}")
 }

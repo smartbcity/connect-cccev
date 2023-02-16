@@ -25,7 +25,7 @@ data class InformationConcept(
      * The data unit used for this information concept.
      * @example [cccev.s2.unit.domain.model.DataUnit.id]
      */
-    val unit: DataUnitId,
+    val unitId: DataUnitId,
 
     /**
      * The description of this information concept.

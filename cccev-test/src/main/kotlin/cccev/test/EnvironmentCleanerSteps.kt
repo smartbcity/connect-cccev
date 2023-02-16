@@ -2,11 +2,13 @@ package cccev.test
 
 import fixers.bdd.data.TestContext
 import io.cucumber.java8.En
-import org.springframework.data.mongodb.core.MongoTemplate
+import kotlinx.coroutines.reactive.awaitLast
+import kotlinx.coroutines.runBlocking
+import org.springframework.data.mongodb.core.ReactiveMongoTemplate
 
 class EnvironmentCleanerSteps(
     private val context: TestContext,
-    private val mongoTemplate: MongoTemplate,
+    private val mongoTemplate: ReactiveMongoTemplate,
 ): En {
     init {
         Before { _ ->
@@ -25,7 +27,7 @@ class EnvironmentCleanerSteps(
 //            .let { fileClient.fileDelete(it) }
 //    }
 
-    private fun cleanDb() {
-        mongoTemplate.collectionNames.forEach(mongoTemplate::dropCollection)
+    private fun cleanDb() = runBlocking {
+        mongoTemplate.collectionNames.map(mongoTemplate::dropCollection).awaitLast()
     }
 }

@@ -23,13 +23,13 @@ typealias InformationConceptId = String
 val s2InformationConcept = s2 {
 	name = "RequestS2"
 	init<InformationConceptCreateCommand> {
-		to = InformationConceptState.CREATED
+		to = InformationConceptState.EXISTS
 		role = EditorRole
 	}
 }
 
 enum class InformationConceptState(override var position: Int): S2State {
-	CREATED(0)
+	EXISTS(0)
 }
 
 object EditorRole: S2Role

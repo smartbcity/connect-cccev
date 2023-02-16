@@ -35,7 +35,7 @@ suspend fun InformationConcept.toDTO(
 ) = InformationConceptDTOBase(
     id = id,
     name = name,
-    unit = getUnit(unit),
+    unit = getUnit(unitId),
     description = description,
     expressionOfExpectedValue = expressionOfExpectedValue,
     dependsOn = dependsOn

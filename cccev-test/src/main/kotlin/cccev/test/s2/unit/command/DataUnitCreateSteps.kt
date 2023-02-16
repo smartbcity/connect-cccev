@@ -28,6 +28,7 @@ class DataUnitCreateSteps: En, CccevCucumberStepsDefinition() {
 
     init {
         DataTableType(::dataUnitCreateParams)
+        DataTableType(::dataUnitAssertParams)
 
         When("I create a data unit") {
             step {
