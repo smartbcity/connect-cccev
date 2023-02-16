@@ -17,7 +17,8 @@ include(
 	"api-commons",
 	"cccev-f2",
 	"cccev-infra:mongodb",
-	"cccev-test"
+	"cccev-test",
+	"fixers-bdd"
 )
 include(
 	"cccev-f2:concept-f2:concept-f2-api",

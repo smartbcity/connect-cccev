@@ -1,19 +1,27 @@
 plugins {
 	id("city.smartb.fixers.gradle.kotlin.jvm")
+	kotlin("plugin.spring")
+	kotlin("kapt")
 }
 
 dependencies {
-	api(project(":cccev-core:cccev-core-dsl"))
-	api(project(":cccev-f2"))
-	api(project(":cccev-s2:concept:concept-api"))
-	api(project(":cccev-s2:evidence-type:evidence-type-api"))
-	api(project(":cccev-s2:request:request-api"))
-	api(project(":cccev-s2:requirement:requirement-api"))
+	implementation(project(":cccev-core:cccev-core-dsl"))
 
-	Dependencies.Jvm.cucumber(::api)
-	Dependencies.Jvm.junit(::api)
+	implementation(project(":cccev-f2"))
+	implementation(project(":cccev-f2:concept-f2:concept-f2-api"))
+	implementation(project(":cccev-f2:evidence-f2:evidence-f2-api"))
+	implementation(project(":cccev-f2:evidence-type-f2:evidence-type-f2-api"))
+	implementation(project(":cccev-f2:request-f2:request-f2-api"))
+	implementation(project(":cccev-f2:requirement-f2:requirement-f2-api"))
+	implementation(project(":cccev-f2:unit-f2:unit-f2-api"))
 
-	api("org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}")
-	api("org.springframework.boot:spring-boot-starter-data-mongodb:${PluginVersions.springBoot}")
-	api("org.springframework.boot:spring-boot-starter-web:${PluginVersions.springBoot}")
+	implementation(project(":cccev-s2:concept:concept-api"))
+	implementation(project(":cccev-s2:evidence-type:evidence-type-api"))
+	implementation(project(":cccev-s2:request:request-api"))
+	implementation(project(":cccev-s2:requirement:requirement-api"))
+	implementation(project(":cccev-s2:unit:unit-api"))
+
+	implementation(project(":fixers-bdd"))
+
+	implementation("org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}")
 }

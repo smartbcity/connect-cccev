@@ -14,9 +14,13 @@ object PluginVersions {
 object Versions {
 	val s2 = PluginVersions.fixers
 	val f2 = PluginVersions.fixers
+	val fs = PluginVersions.fixers
 	val i2 = PluginVersions.fixers
-	const val cucumber = FixersVersions.Test.cucumber
+	val im = PluginVersions.fixers
+	val springBoot = PluginVersions.springBoot
+
 	const val awaitility = "4.1.1"
+	const val cucumber = FixersVersions.Test.cucumber
 }
 
 object Repo {
@@ -32,6 +36,10 @@ object Dependencies {
 	object Jvm {
 		fun f2(scope: Scope) = scope.add(
 			"city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}"
+		)
+
+		fun fs(scope: Scope) = scope.add(
+			"city.smartb.fs:file-client:${Versions.fs}"
 		)
 
 		fun s2Mongo(scope: Scope) = scope.add(
@@ -52,6 +60,14 @@ object Dependencies {
 		fun f2(scope: Scope) = scope.add(
 			"city.smartb.f2:f2-dsl-cqrs:${Versions.f2}",
 			"city.smartb.f2:f2-dsl-function:${Versions.f2}"
+		)
+
+		fun fs(scope: Scope) = scope.add(
+			"city.smartb.fs:file-domain:${Versions.fs}"
+		)
+
+		fun im(scope: Scope) = scope.add(
+			"city.smartb.im:im-commons-domain:${Versions.im}"
 		)
 
 		fun s2(scope: Scope) = scope.add(
