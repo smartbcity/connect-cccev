@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import s2.dsl.automate.model.WithS2Id
 import s2.dsl.automate.model.WithS2State
+import s2.spring.utils.data.EntityBase
 import java.util.UUID
 
 @Document("requirement")
@@ -22,7 +23,7 @@ data class RequirementEntity(
     var hasConcept: List<InformationConceptId>,
     var hasEvidenceTypeList: List<EvidenceTypeListId>,
     var status: RequirementState
-): WithS2Id<RequirementId>, WithS2State<RequirementState> {
+): EntityBase(), WithS2Id<RequirementId>, WithS2State<RequirementState> {
     override fun s2Id() = id
     override fun s2State() = status
 }

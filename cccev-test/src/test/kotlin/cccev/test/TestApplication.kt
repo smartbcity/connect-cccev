@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling
 
 @EnableScheduling
 @EntityScan("cccev")
-@EnableMongoAuditing
+@EnableReactiveMongoAuditing
 @EnableReactiveMongoRepositories("cccev")
 @SpringBootApplication(scanBasePackages = ["cccev, features"])
 open class TestApplication

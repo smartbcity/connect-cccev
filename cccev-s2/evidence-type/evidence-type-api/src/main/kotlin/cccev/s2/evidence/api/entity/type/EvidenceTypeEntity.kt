@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import s2.dsl.automate.model.WithS2Id
 import s2.dsl.automate.model.WithS2State
+import s2.spring.utils.data.EntityBase
 import java.util.UUID
 
 @Document("evidence_type")
@@ -16,7 +17,7 @@ data class EvidenceTypeEntity(
     val description: String,
     val validityPeriodConstraint: Long?,
     val status: EvidenceTypeState
-): WithS2Id<EvidenceTypeId>, WithS2State<EvidenceTypeState> {
+): EntityBase(), WithS2Id<EvidenceTypeId>, WithS2State<EvidenceTypeState> {
     override fun s2Id() = id
     override fun s2State() = status
 }

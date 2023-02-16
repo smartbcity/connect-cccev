@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import s2.dsl.automate.model.WithS2Id
 import s2.dsl.automate.model.WithS2State
+import s2.spring.utils.data.EntityBase
 import java.util.UUID
 
 @Document("concept")
@@ -19,7 +20,7 @@ data class InformationConceptEntity(
     val expressionOfExpectedValue: String?,
     val dependsOn: List<InformationConceptId>,
     val status: InformationConceptState
-): WithS2Id<InformationConceptId>, WithS2State<InformationConceptState> {
+): EntityBase(), WithS2Id<InformationConceptId>, WithS2State<InformationConceptState> {
     override fun s2Id() = id
     override fun s2State() = status
 }

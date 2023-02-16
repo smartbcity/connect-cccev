@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import s2.dsl.automate.model.WithS2Id
 import s2.dsl.automate.model.WithS2State
+import s2.spring.utils.data.EntityBase
 import java.util.UUID
 
 @Document("unit")
@@ -18,7 +19,7 @@ data class DataUnitEntity(
     val notation: String?,
     val type: DataUnitType,
     val status: DataUnitState
-): WithS2Id<DataUnitId>, WithS2State<DataUnitState> {
+): EntityBase(), WithS2Id<DataUnitId>, WithS2State<DataUnitState> {
     override fun s2Id() = id
     override fun s2State() = status
 }

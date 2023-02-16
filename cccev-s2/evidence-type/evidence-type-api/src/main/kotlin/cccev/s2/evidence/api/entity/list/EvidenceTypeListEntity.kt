@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import s2.dsl.automate.model.WithS2Id
 import s2.dsl.automate.model.WithS2State
+import s2.spring.utils.data.EntityBase
 import java.util.UUID
 
 @Document("evidence_type_list")
@@ -17,7 +18,7 @@ data class EvidenceTypeListEntity(
     var description: String,
     var specifiesEvidenceType: List<EvidenceTypeId>,
     var status: EvidenceTypeListState
-): WithS2Id<EvidenceTypeListId>, WithS2State<EvidenceTypeListState> {
+): EntityBase(), WithS2Id<EvidenceTypeListId>, WithS2State<EvidenceTypeListState> {
     override fun s2Id() = id
     override fun s2State() = status
 }
