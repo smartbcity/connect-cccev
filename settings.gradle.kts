@@ -16,26 +16,33 @@ include(
 	"api-gateway",
 	"api-commons",
 	"cccev-f2",
+	"cccev-infra:mongodb",
 	"cccev-test"
 )
 include(
-	"cccev-f2:concept-api:concept-api-app",
-	"cccev-f2:concept-api:concept-api-domain",
-	"cccev-f2:evidence-api:evidence-api-app",
-	"cccev-f2:evidence-api:evidence-api-domain",
-	"cccev-f2:request-api:request-api-app",
-	"cccev-f2:request-api:request-api-domain",
-	"cccev-f2:requirement-api:requirement-api-app",
-	"cccev-f2:requirement-api:requirement-api-domain",
+	"cccev-f2:concept-f2:concept-f2-api",
+	"cccev-f2:concept-f2:concept-f2-domain",
+	"cccev-f2:evidence-f2:evidence-f2-api",
+	"cccev-f2:evidence-f2:evidence-f2-domain",
+	"cccev-f2:evidence-type-f2:evidence-type-f2-api",
+	"cccev-f2:evidence-type-f2:evidence-type-f2-domain",
+	"cccev-f2:request-f2:request-f2-api",
+	"cccev-f2:request-f2:request-f2-domain",
+	"cccev-f2:requirement-f2:requirement-f2-api",
+	"cccev-f2:requirement-f2:requirement-f2-domain",
+	"cccev-f2:unit-f2:unit-f2-api",
+	"cccev-f2:unit-f2:unit-f2-domain",
 )
 include(
-	"cccev-s2:concept:concept-app",
+	"cccev-s2:concept:concept-api",
 	"cccev-s2:concept:concept-domain",
-	"cccev-s2:evidence:evidence-app",
-	"cccev-s2:evidence:evidence-domain",
-	"cccev-s2:request:request-app",
+	"cccev-s2:evidence-type:evidence-type-api",
+	"cccev-s2:evidence-type:evidence-type-domain",
+	"cccev-s2:request:request-api",
 	"cccev-s2:request:request-domain",
 	"cccev-s2:request:request-tasks",
-	"cccev-s2:requirement:requirement-app",
-	"cccev-s2:requirement:requirement-domain"
+	"cccev-s2:requirement:requirement-api",
+	"cccev-s2:requirement:requirement-domain",
+	"cccev-s2:unit:unit-api",
+	"cccev-s2:unit:unit-domain"
 )

@@ -11,16 +11,17 @@ dependencies {
     api("city.smartb.i2:i2-spring-boot-starter-auth-keycloak:${Versions.i2}")
 
 //    implementation(project(":cccev-api"))
-
     implementation(project(":cccev-f2"))
-    implementation(project(":cccev-f2:concept-api:concept-api-app"))
-    implementation(project(":cccev-f2:evidence-api:evidence-api-app"))
-    implementation(project(":cccev-f2:request-api:request-api-app"))
-    implementation(project(":cccev-f2:requirement-api:requirement-api-app"))
-    implementation(project(":cccev-s2:concept:concept-app"))
-    implementation(project(":cccev-s2:evidence:evidence-app"))
+    implementation(project(":cccev-f2:concept-f2:concept-f2-api"))
+    implementation(project(":cccev-f2:evidence-f2:evidence-f2-api"))
+    implementation(project(":cccev-f2:evidence-type-f2:evidence-type-f2-api"))
+    implementation(project(":cccev-f2:request-f2:request-f2-api"))
+    implementation(project(":cccev-f2:requirement-f2:requirement-f2-api"))
+    implementation(project(":cccev-f2:unit-f2:unit-f2-api"))
+    implementation(project(":cccev-s2:concept:concept-api"))
+    implementation(project(":cccev-s2:evidence-type:evidence-type-api"))
     implementation(project(":cccev-s2:request:request-tasks"))
-    implementation(project(":cccev-s2:requirement:requirement-app"))
+    implementation(project(":cccev-s2:requirement:requirement-api"))
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {

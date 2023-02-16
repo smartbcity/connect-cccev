@@ -5,4 +5,5 @@ plugins {
 }
 
 dependencies {
+	commonMainApi(project(":cccev-s2:concept:concept-domain"))
 }

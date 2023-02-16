@@ -2,7 +2,7 @@ package features.cccev.test.entities.evidence
 
 import cccev.core.dsl.EvidenceId
 import cccev.core.dsl.EvidenceTypeId
-import cccev.s2.request.app.RequestAggregateService
+import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.domain.features.command.RequestEvidenceAddCommand
 import cccev.s2.request.domain.model.RequestId
 import features.cccev.test.CucumberStepsDefinition
