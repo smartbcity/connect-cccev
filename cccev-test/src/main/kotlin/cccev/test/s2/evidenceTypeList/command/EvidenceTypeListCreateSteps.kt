@@ -89,7 +89,8 @@ class EvidenceTypeListCreateSteps: En, CccevCucumberStepsDefinition() {
         }
     }
 
-    private suspend fun createEvidenceTypeList(params: EvidenceTypeListCreateParams) = context.evidenceTypeListIds.register(params.identifier) {
+    private suspend fun createEvidenceTypeList(params: EvidenceTypeListCreateParams) =
+        context.evidenceTypeListIds.register(params.identifier) {
         command = EvidenceTypeListCreateCommand(
             name = params.name,
             description = params.description,

@@ -20,7 +20,7 @@ dependencies {
 	implementation(project(":cccev-s2:requirement:requirement-api"))
 	implementation(project(":cccev-s2:unit:unit-api"))
 
-	implementation(project(":fixers-bdd"))
+	api(project(":fixers-bdd"))
 
 	implementation("org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive:${PluginVersions.springBoot}")

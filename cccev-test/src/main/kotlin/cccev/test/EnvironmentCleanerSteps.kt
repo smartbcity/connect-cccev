@@ -28,6 +28,6 @@ class EnvironmentCleanerSteps(
 //    }
 
     private fun cleanDb() = runBlocking {
-        mongoTemplate.collectionNames.map(mongoTemplate::dropCollection).awaitLast()
+        mongoTemplate.collectionNames.map(mongoTemplate::dropCollection).collectList()
     }
 }
