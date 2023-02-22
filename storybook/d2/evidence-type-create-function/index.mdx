@@ -1,0 +1,24 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/g2-documentation'
+import EvidenceTypeCreateCommandIndex from '../evidence-type-create-command/index.mdx'
+import EvidenceTypeCreateFunctionDesc from './desc.md'
+import EvidenceTypeCreateFunctionVisualJson from './visualJson.json'
+import EvidenceTypeCreatedEventIndex from '../evidence-type-created-event/index.mdx'
+
+<DescriptedCode
+  leftElement={<EvidenceTypeCreateFunctionDesc />}
+  leftContainerProps={{}}
+  rightElement={
+    <CodeHighlighter
+      object={EvidenceTypeCreateFunctionVisualJson}
+      language={"json"}
+      title={"Evidence Type Create"}
+    />
+  }
+  rightContainerProps={{}}
+/>
+
+<EvidenceTypeCreateCommandIndex />
+
+<EvidenceTypeCreatedEventIndex />
+
+---

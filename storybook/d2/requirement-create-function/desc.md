@@ -1,0 +1,9 @@
+
+
+## Requirement Create
+
+Type: `RequirementCreateFunction`
+
+Create a new requirement.
+
+

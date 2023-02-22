@@ -1,0 +1,9 @@
+
+
+## Evidence Type List Update
+
+Type: `EvidenceTypeListUpdateFunction`
+
+Update an evidence type list.
+
+

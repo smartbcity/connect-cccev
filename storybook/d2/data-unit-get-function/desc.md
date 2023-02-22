@@ -1,0 +1,9 @@
+
+
+# Data Unit Get
+
+Type: `DataUnitGetFunction`
+
+Get a data unit by its id.
+
+

@@ -1,7 +1,6 @@
 package fixers.bdd
 
 import city.smartb.i2.spring.boot.auth.config.WebSecurityConfig
-import city.smartb.im.commons.exception.ImException
 import f2.dsl.cqrs.exception.F2Exception
 import fixers.bdd.data.TestContext
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -42,7 +41,6 @@ abstract class CucumberStepsDefinition {
         step({ e ->
             e !is AutomateException
                     && e !is F2Exception
-                    && e !is ImException
         }, block)
     }
 

@@ -1,0 +1,9 @@
+
+
+## Information Concept Get
+
+Type: `InformationConceptGetFunction`
+
+Get an information concept by its id.
+
+

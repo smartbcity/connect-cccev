@@ -1,0 +1,16 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/g2-documentation'
+import EvidenceTypeCreateCommandDTODesc from './desc.md'
+import EvidenceTypeCreateCommandDTOVisualJson from './visualJson.json'
+
+<DescriptedCode
+  leftElement={<EvidenceTypeCreateCommandDTODesc />}
+  leftContainerProps={{}}
+  rightElement={
+    <CodeHighlighter
+      object={EvidenceTypeCreateCommandDTOVisualJson}
+      language={"json"}
+      title={"Command"}
+    />
+  }
+  rightContainerProps={{}}
+/>

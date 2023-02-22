@@ -14,7 +14,7 @@ plugins {
 
 allprojects {
 	group = "city.smartb.cccev"
-	version = System.getenv("VERSION") ?: "latest"
+	version = System.getenv("VERSION") ?: "experimental-SNAPSHOT"
 	repositories {
 		mavenLocal()
 		mavenCentral()

@@ -1,0 +1,9 @@
+
+
+## Information Concept Create
+
+Type: `InformationConceptCreateFunction`
+
+Create a new information concept.
+
+

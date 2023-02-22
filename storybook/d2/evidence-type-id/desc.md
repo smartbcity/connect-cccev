@@ -1,0 +1,9 @@
+
+
+## EvidenceTypeId
+
+
+
+The unique id of the evidence type.
+
+

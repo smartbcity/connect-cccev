@@ -1,0 +1,8 @@
+{
+  "kind" : "CONSTRAINT",
+  "name" : "High clouds altitude",
+  "description" : "altitudeInMeters >= 6000",
+  "hasRequirement" : [ [ ] ],
+  "hasConcept" : [ "altitudeInMeters" ],
+  "hasEvidenceTypeList" : [ [ ] ]
+}

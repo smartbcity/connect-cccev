@@ -1,0 +1,9 @@
+
+
+## InformationConceptId
+
+
+
+Unique identifier of an information concept.
+
+

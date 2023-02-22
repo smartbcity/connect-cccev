@@ -1,0 +1,24 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/g2-documentation'
+import RequirementUpdateCommandIndex from '../requirement-update-command/index.mdx'
+import RequirementUpdateFunctionDesc from './desc.md'
+import RequirementUpdateFunctionVisualJson from './visualJson.json'
+import RequirementUpdatedEventIndex from '../requirement-updated-event/index.mdx'
+
+<DescriptedCode
+  leftElement={<RequirementUpdateFunctionDesc />}
+  leftContainerProps={{}}
+  rightElement={
+    <CodeHighlighter
+      object={RequirementUpdateFunctionVisualJson}
+      language={"json"}
+      title={"Requirement Update"}
+    />
+  }
+  rightContainerProps={{}}
+/>
+
+<RequirementUpdateCommandIndex />
+
+<RequirementUpdatedEventIndex />
+
+---

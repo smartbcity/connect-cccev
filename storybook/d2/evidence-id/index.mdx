@@ -1,0 +1,18 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/g2-documentation'
+import EvidenceIdDesc from './desc.md'
+import EvidenceIdVisualJson from './visualJson.json'
+
+<DescriptedCode
+  leftElement={<EvidenceIdDesc />}
+  leftContainerProps={{}}
+  rightElement={
+    <CodeHighlighter
+      object={EvidenceIdVisualJson}
+      language={"json"}
+      title={"EvidenceId"}
+    />
+  }
+  rightContainerProps={{}}
+/>
+
+---

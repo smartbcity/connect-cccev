@@ -1,0 +1,18 @@
+import { CodeHighlighter, DescriptedCode } from '@smartb/g2-documentation'
+import InformationConceptIdDesc from './desc.md'
+import InformationConceptIdVisualJson from './visualJson.json'
+
+<DescriptedCode
+  leftElement={<InformationConceptIdDesc />}
+  leftContainerProps={{}}
+  rightElement={
+    <CodeHighlighter
+      object={InformationConceptIdVisualJson}
+      language={"json"}
+      title={"InformationConceptId"}
+    />
+  }
+  rightContainerProps={{}}
+/>
+
+---

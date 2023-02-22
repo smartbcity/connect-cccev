@@ -1,0 +1,9 @@
+
+
+## Evidence Type Create
+
+Type: `EvidenceTypeCreateFunction`
+
+Create a new evidence type.
+
+

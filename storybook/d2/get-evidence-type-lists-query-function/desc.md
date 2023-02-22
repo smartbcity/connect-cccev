@@ -1,0 +1,9 @@
+
+
+## Get Evidence Type Lists Query
+
+Type: `GetEvidenceTypeListsQueryFunction`
+
+Get evidence type lists
+
+
