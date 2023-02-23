@@ -2,6 +2,7 @@ package cccev.s2.unit.domain.model
 
 import cccev.s2.unit.domain.D2DataUnitPage
 import cccev.s2.unit.domain.DataUnitId
+import kotlinx.serialization.Serializable
 
 /**
  * Represents a unit of data, such as a physical measurement, date, or number.
@@ -9,6 +10,7 @@ import cccev.s2.unit.domain.DataUnitId
  * @parent [D2DataUnitPage]
  * @order 10
  */
+@Serializable
 data class DataUnit(
     /**
      * Unique identifier of this data unit.

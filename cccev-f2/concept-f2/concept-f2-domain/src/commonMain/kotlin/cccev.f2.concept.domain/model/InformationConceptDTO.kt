@@ -6,6 +6,7 @@ import cccev.f2.unit.domain.model.DataUnitDTOBase
 import cccev.s2.concept.domain.InformationConceptId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * See [cccev.s2.concept.domain.model.InformationConcept]
@@ -56,6 +57,7 @@ interface InformationConceptDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class InformationConceptDTOBase(
     override val id: InformationConceptId,
     override val name: String,

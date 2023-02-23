@@ -1,6 +1,6 @@
 package features.cccev.test.entities.informationconcept
 
-import cccev.core.dsl.InformationConceptId
+import cccev.dsl.model.InformationConceptId
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.data.DataTest
 import io.cucumber.datatable.DataTable

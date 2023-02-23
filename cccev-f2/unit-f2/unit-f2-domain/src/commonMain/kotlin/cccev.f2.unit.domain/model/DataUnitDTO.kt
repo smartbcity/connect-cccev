@@ -4,6 +4,7 @@ import cccev.f2.unit.domain.D2DataUnitF2Page
 import cccev.s2.unit.domain.DataUnitId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * See [cccev.s2.unit.domain.model.DataUnit]
@@ -48,6 +49,7 @@ interface DataUnitDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class DataUnitDTOBase(
     override val id: DataUnitId,
     override val name: String,

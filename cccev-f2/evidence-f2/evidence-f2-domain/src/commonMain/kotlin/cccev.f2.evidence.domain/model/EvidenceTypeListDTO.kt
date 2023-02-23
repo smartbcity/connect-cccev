@@ -1,7 +1,7 @@
 package cccev.f2.evidence.domain.model
 
-import cccev.core.dsl.EvidenceTypeList
-import cccev.core.dsl.EvidenceTypeListId
+import cccev.dsl.model.EvidenceTypeList
+import cccev.dsl.model.EvidenceTypeListId
 import kotlin.js.JsExport
 import kotlin.js.JsName
 

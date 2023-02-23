@@ -22,6 +22,8 @@ class RequirementAggregateService(
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
+            isRequirementOf = command.isRequirementOf ?: emptyList(),
+            hasQualifiedRelation = command.hasQualifiedRelation ?: emptyList(),
             status = RequirementState.CREATED
         )
         entity to RequirementCreatedEvent(entity.id)

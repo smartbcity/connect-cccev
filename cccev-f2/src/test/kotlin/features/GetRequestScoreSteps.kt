@@ -1,6 +1,6 @@
 package features
 
-import cccev.core.dsl.InformationConceptId
+import cccev.dsl.model.InformationConceptId
 import cccev.f2.request.domain.features.query.GetRequestScoreQuery
 import cccev.f2.request.domain.features.query.GetRequestScoreQueryFunction
 import f2.dsl.fnc.invoke

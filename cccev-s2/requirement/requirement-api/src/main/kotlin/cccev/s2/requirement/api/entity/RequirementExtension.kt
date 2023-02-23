@@ -10,4 +10,6 @@ fun RequirementEntity.toRequirement() = Requirement(
     hasRequirement = hasRequirement,
     hasConcept = hasConcept,
     hasEvidenceTypeList = hasEvidenceTypeList,
+    isRequirementOf = isRequirementOf,
+    hasQualifiedRelation = hasQualifiedRelation
 )

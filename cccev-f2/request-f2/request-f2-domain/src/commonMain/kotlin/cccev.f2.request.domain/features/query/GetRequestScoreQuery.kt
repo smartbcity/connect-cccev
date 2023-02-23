@@ -1,6 +1,6 @@
 package cccev.f2.request.domain.features.query
 
-import cccev.core.dsl.InformationConceptId
+import cccev.dsl.model.InformationConceptId
 import cccev.s2.request.domain.model.RequestId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport

@@ -7,6 +7,7 @@ import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.evidence.domain.EvidenceTypeListInitCommand
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Create a new evidence type list.
@@ -42,6 +43,7 @@ interface EvidenceTypeListCreateCommandDTO: EvidenceTypeListInitCommand {
  * @d2 command
  * @parent [EvidenceTypeListCreateFunction]
  */
+@Serializable
 data class EvidenceTypeListCreateCommand(
     override val name: String,
     override val description: String,
@@ -61,6 +63,7 @@ interface EvidenceTypeListCreatedEventDTO: EvidenceTypeListEvent {
  * @d2 event
  * @parent [EvidenceTypeListCreateFunction]
  */
+@Serializable
 data class EvidenceTypeListCreatedEvent(
     override val id: EvidenceTypeListId
 ): EvidenceTypeListCreatedEventDTO

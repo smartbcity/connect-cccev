@@ -1,7 +1,7 @@
 package cccev.f2.evidence.api
 
-import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.EvidenceTypeListId
+import cccev.dsl.model.EvidenceTypeId
+import cccev.dsl.model.EvidenceTypeListId
 import cccev.f2.evidence.api.model.toEvidenceTypeListChoices
 import cccev.f2.evidence.api.service.EvidenceApiFinderService
 import cccev.f2.evidence.domain.EvidenceApi

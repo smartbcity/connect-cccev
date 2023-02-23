@@ -1,22 +1,21 @@
 package cccev.s2.requirement.client
 
+import f2.client.F2Client
 import f2.client.ktor.F2ClientBuilder
-import f2.client.ktor.Protocol
 import f2.client.ktor.get
-import f2.dsl.fnc.F2Supplier
-import kotlinx.coroutines.flow.flow
+import f2.dsl.fnc.F2SupplierSingle
+import f2.dsl.fnc.f2SupplierSingle
+
+actual fun F2Client.requirementClient(): F2SupplierSingle<RequirementClient> = f2SupplierSingle {
+    RequirementClient(this)
+}
+
 
 actual fun requirementClient(
-    protocol: Protocol,
-    host: String,
-    port: Int,
-    path: String?,
-): F2Supplier<RequirementClient> {
-    return F2Supplier {
-        flow {
-            F2ClientBuilder.get(protocol, host, port, path).let { s2Client ->
-                emit(RequirementClient(s2Client))
-            }
-        }
-    }
+    urlBase: String
+): F2SupplierSingle<RequirementClient> = f2SupplierSingle {
+    RequirementClient(
+        F2ClientBuilder.get(urlBase)
+    )
 }
+

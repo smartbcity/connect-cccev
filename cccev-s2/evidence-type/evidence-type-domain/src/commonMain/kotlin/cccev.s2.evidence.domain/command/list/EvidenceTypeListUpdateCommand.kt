@@ -7,6 +7,7 @@ import cccev.s2.evidence.domain.EvidenceTypeListEvent
 import cccev.s2.evidence.domain.EvidenceTypeListId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Update an evidence type list.
@@ -47,6 +48,7 @@ interface EvidenceTypeListUpdateCommandDTO: EvidenceTypeListCommand {
  * @d2 command
  * @parent [EvidenceTypeListUpdateFunction]
  */
+@Serializable
 data class EvidenceTypeListUpdateCommand(
     override val id: EvidenceTypeListId,
     override val name: String,
@@ -67,6 +69,7 @@ interface EvidenceTypeListUpdatedEventDTO: EvidenceTypeListEvent {
  * @d2 event
  * @parent [EvidenceTypeListUpdateFunction]
  */
+@Serializable
 data class EvidenceTypeListUpdatedEvent(
     override val id: EvidenceTypeListId
 ): EvidenceTypeListUpdatedEventDTO

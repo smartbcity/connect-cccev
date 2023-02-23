@@ -1,13 +1,13 @@
 package features.cccev.test.data.context
 
-import cccev.core.dsl.EvidenceTypeBase
-import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.EvidenceTypeListBase
-import cccev.core.dsl.EvidenceTypeListId
-import cccev.core.dsl.InformationConceptBase
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.Requirement
-import cccev.core.dsl.RequirementId
+import cccev.dsl.model.EvidenceTypeBase
+import cccev.dsl.model.EvidenceTypeId
+import cccev.dsl.model.EvidenceTypeListBase
+import cccev.dsl.model.EvidenceTypeListId
+import cccev.dsl.model.InformationConceptBase
+import cccev.dsl.model.InformationConceptId
+import cccev.dsl.model.Requirement
+import cccev.dsl.model.RequirementId
 import cccev.s2.request.domain.model.RequestId
 import org.springframework.stereotype.Component
 

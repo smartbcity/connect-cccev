@@ -26,7 +26,7 @@ The notation of the data unit.
 </article>
 <article>
 
-***type*** [`DataUnitType`](/docs/dataunittype--page#dataunittype) 
+***type*** [`DataUnitType`](#dataunittype) 
 
 The type of data used for this data unit.
 

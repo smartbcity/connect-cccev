@@ -2,6 +2,6 @@ package cccev.f2.evidence.domain
 
 /**
  * @d2 page
- * @title Evidence Api
+ * @title Api/Evidence
  */
 interface D2EvidenceApiPage

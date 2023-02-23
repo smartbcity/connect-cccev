@@ -1,10 +1,10 @@
 package cccev.s2.requirement.api
 
-import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.EvidenceTypeList
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.Requirement
-import cccev.core.dsl.RequirementId
+import cccev.dsl.model.EvidenceTypeId
+import cccev.dsl.model.EvidenceTypeList
+import cccev.dsl.model.InformationConceptId
+import cccev.dsl.model.Requirement
+import cccev.dsl.model.RequirementId
 import org.springframework.stereotype.Service
 
 @Service

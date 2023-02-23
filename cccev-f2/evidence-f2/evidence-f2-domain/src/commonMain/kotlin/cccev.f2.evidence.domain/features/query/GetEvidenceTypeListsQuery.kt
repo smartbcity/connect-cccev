@@ -1,9 +1,9 @@
 package cccev.f2.evidence.domain.features.query
 
-import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.EvidenceTypeListId
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.RequirementId
+import cccev.dsl.model.EvidenceTypeId
+import cccev.dsl.model.EvidenceTypeListId
+import cccev.dsl.model.InformationConceptId
+import cccev.dsl.model.RequirementId
 import cccev.f2.evidence.domain.model.EvidenceTypeListChoicesDTO
 import cccev.f2.evidence.domain.model.EvidenceTypeListChoicesDTOBase
 import cccev.f2.evidence.domain.model.EvidenceTypeListDTO

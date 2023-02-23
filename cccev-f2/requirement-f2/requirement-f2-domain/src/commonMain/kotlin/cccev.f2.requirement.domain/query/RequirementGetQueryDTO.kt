@@ -5,6 +5,7 @@ import cccev.s2.requirement.domain.RequirementId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 typealias RequirementGetFunction = F2Function<RequirementGetQueryDTOBase, RequirementGetResultDTOBase>
 
@@ -14,6 +15,7 @@ interface RequirementGetQueryDTO {
     val id: RequirementId
 }
 
+@Serializable
 data class RequirementGetQueryDTOBase(
     override val id: RequirementId
 ): RequirementGetQueryDTO
@@ -24,6 +26,7 @@ interface RequirementGetResultDTO {
     val item: RequirementDTO?
 }
 
+@Serializable
 data class RequirementGetResultDTOBase(
     override val item: RequirementDTO?
 ): RequirementGetResultDTO

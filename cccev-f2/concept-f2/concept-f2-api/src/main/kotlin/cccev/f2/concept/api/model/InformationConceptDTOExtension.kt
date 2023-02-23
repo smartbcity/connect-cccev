@@ -1,7 +1,7 @@
 package cccev.f2.concept.api.model
 
-import cccev.core.dsl.InformationConceptBase
-import cccev.core.dsl.SupportedValue
+import cccev.dsl.model.InformationConceptBase
+import cccev.dsl.model.SupportedValue
 import cccev.f2.concept.domain.model.InformationConceptDTOBase
 import cccev.f2.concept.domain.model.RequestInformationConceptDTOBase
 import cccev.f2.evidence.api.model.toEvidenceTypeListChoices

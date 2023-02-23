@@ -9,7 +9,7 @@ Command to remove an evidence from a request.
   
 <article>
 
-***evidenceTypeId*** [`EvidenceTypeId`](/docs/model--page#evidencetypeid) 
+***evidenceTypeId*** [`EvidenceTypeId`](/docs/evidencetypeid--page#evidencetypeid) 
 
 </article>
 <article>

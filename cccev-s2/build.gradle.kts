@@ -11,7 +11,7 @@ subprojects {
 	plugins.withType(org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper::class.java).whenPluginAdded {
 		dependencies {
 			val commonMainApi by configurations
-			commonMainApi(project(":cccev-core:cccev-core-dsl"))
+			commonMainApi(project(":cccev-dsl:dsl-model"))
 			commonMainApi(project(":api-commons"))
 			Dependencies.Mpp.f2 { commonMainApi(it) }
 			Dependencies.Mpp.s2 { commonMainApi(it) }

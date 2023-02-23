@@ -1,8 +1,8 @@
 
 
-## EvidenceTypeListId
+# EvidenceTypeId
 
-
+Type: `EvidenceTypeListId`
 
 The unique id of the evidence type list.
 

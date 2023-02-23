@@ -1,7 +1,7 @@
 package cccev.s2.request.domain.features.command
 
-import cccev.core.dsl.FrameworkId
-import cccev.core.dsl.RequirementId
+import cccev.dsl.model.FrameworkId
+import cccev.dsl.model.RequirementId
 import cccev.s2.request.domain.model.RequestId
 import s2.dsl.automate.S2InitCommand
 import kotlin.js.JsExport

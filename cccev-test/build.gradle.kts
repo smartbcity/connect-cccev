@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-	implementation(project(":cccev-core:cccev-core-dsl"))
+	implementation(project(":cccev-dsl:dsl-model"))
 
 	implementation(project(":cccev-f2"))
 	implementation(project(":cccev-f2:concept-f2:concept-f2-api"))

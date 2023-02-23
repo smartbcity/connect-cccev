@@ -1,8 +1,8 @@
 package features.cccev.test.entities.supportedvalue
 
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.SupportedValue
-import cccev.core.dsl.SupportedValueId
+import cccev.dsl.model.InformationConceptId
+import cccev.dsl.model.SupportedValue
+import cccev.dsl.model.SupportedValueId
 import features.cccev.test.data.DataTest
 import java.util.UUID
 

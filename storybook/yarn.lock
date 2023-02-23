@@ -1609,12 +1609,12 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
   integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
 
-"@smartb/g2-documentation@^1.0.0-alpha.128":
-  version "1.0.0-alpha.128"
-  resolved "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/@smartb/g2-documentation/-/@smartb/g2-documentation-1.0.0-alpha.128.tgz#2ffe8ca7523759795711b0b9d61b097b483b8eaf"
-  integrity sha1-L/6Mp1I3WXlXEbC51hsJe0g7jq8=
+"@smartb/g2-documentation@^1.0.0-alpha.129":
+  version "1.0.0-alpha.129"
+  resolved "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/@smartb/g2-documentation/-/@smartb/g2-documentation-1.0.0-alpha.129.tgz#5f492ac7c225d03fb9ff761e82149d5877abc75a"
+  integrity sha1-X0kqx8Il0D+5/3YeghSdWHerx1o=
   dependencies:
-    "@smartb/g2-themes" "^1.0.0-alpha.128"
+    "@smartb/g2-themes" "1.0.0-alpha.129"
     github-markdown-css "^4.0.0"
     react-markdown "^6.0.2"
     react-syntax-highlighter "^15.4.3"
@@ -1622,17 +1622,17 @@
     rehype-sanitize "^4.0.0"
     remark-gfm "^1.0.0"
 
-"@smartb/g2-storybook-documentation@^1.0.0-alpha.128":
-  version "1.0.0-alpha.128"
-  resolved "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/@smartb/g2-storybook-documentation/-/@smartb/g2-storybook-documentation-1.0.0-alpha.128.tgz#f87dc8bde35a665239d721bb098ea93c61111854"
-  integrity sha1-+H3IveNaZlI51yG7CY6pPGERGFQ=
+"@smartb/g2-storybook-documentation@^1.0.0-alpha.129":
+  version "1.0.0-alpha.129"
+  resolved "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/@smartb/g2-storybook-documentation/-/@smartb/g2-storybook-documentation-1.0.0-alpha.129.tgz#93a0523236675eb5b6d1f86eaf51ad9363cbce34"
+  integrity sha1-k6BSMjZnXrW20fhur1Gtk2PLzjQ=
   dependencies:
     "@storybook/addon-docs" "^6.3.6"
 
-"@smartb/g2-themes@^1.0.0-alpha.128":
-  version "1.0.0-alpha.128"
-  resolved "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/@smartb/g2-themes/-/@smartb/g2-themes-1.0.0-alpha.128.tgz#34e807dfff82698aad2f743a5c0daad463cad2f3"
-  integrity sha1-NOgH3/+CaYqtL3Q6XA2q1GPK0vM=
+"@smartb/g2-themes@1.0.0-alpha.129", "@smartb/g2-themes@^1.0.0-alpha.129":
+  version "1.0.0-alpha.129"
+  resolved "https://gitlab.smartb.city/api/v4/projects/127/packages/npm/@smartb/g2-themes/-/@smartb/g2-themes-1.0.0-alpha.129.tgz#ab52f579730f2253c130245d2f2afed99660397e"
+  integrity sha1-q1L1eXMPIlPBMCRdLyr+2ZZgOX4=
   dependencies:
     ramda "^0.28.0"
     tinycolor2 "^1.4.2"

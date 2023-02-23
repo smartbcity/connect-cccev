@@ -4,6 +4,7 @@ import cccev.f2.evidence.type.domain.D2EvidenceTypeF2Page
 import cccev.s2.evidence.domain.EvidenceTypeListId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * @d2 model
@@ -40,6 +41,7 @@ interface EvidenceTypeListDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class EvidenceTypeListDTOBase(
     override val id: EvidenceTypeListId,
     override val name: String,

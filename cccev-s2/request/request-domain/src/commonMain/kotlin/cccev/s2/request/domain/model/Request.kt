@@ -1,14 +1,15 @@
 package cccev.s2.request.domain.model
 
-import cccev.core.dsl.Evidence
-import cccev.core.dsl.EvidenceDTO
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.RequirementId
-import cccev.core.dsl.SupportedValue
-import cccev.core.dsl.SupportedValueDTO
+import cccev.dsl.model.Evidence
+import cccev.dsl.model.EvidenceDTO
+import cccev.dsl.model.InformationConceptId
+import cccev.dsl.model.RequirementId
+import cccev.dsl.model.SupportedValue
+import cccev.dsl.model.SupportedValueDTO
 import cccev.s2.request.domain.RequestState
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * The unique id of the request.
@@ -20,7 +21,6 @@ typealias RequestId = String
 
 /**
  * The request to gather data
- * @parent [cccev.core.dsl.D2DslPage]
  * @d2 model
  */
 @JsExport
@@ -36,10 +36,11 @@ interface RequestDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class Request(
-	override val id: RequestId,
-	override var status: RequestState,
-	override val frameworkId: RequirementId,
-	override val evidences: List<Evidence>,
-	override val supportedValues: Map<InformationConceptId, SupportedValue>,
+    override val id: RequestId,
+    override var status: RequestState,
+    override val frameworkId: RequirementId,
+    override val evidences: List<Evidence>,
+    override val supportedValues: Map<InformationConceptId, SupportedValue>,
 ): RequestDTO

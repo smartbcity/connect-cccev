@@ -5,6 +5,7 @@ import cccev.s2.unit.domain.command.DataUnitCreatedEvent
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Create a new data unit.
@@ -49,6 +50,7 @@ interface DataUnitCreateCommandDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class DataUnitCreateCommandDTOBase(
     override val name: String,
     override val description: String,

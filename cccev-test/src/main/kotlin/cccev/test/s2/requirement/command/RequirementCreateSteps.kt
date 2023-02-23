@@ -105,6 +105,8 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
             hasRequirement = params.hasRequirement.map { context.requirementIds[it] ?: it },
             hasConcept = params.hasConcept.map { context.conceptIds[it] ?: it },
             hasEvidenceTypeList = params.hasEvidenceTypeList.map { context.evidenceTypeListIds[it] ?: it },
+            isRequirementOf = params.isRequirementOf.map { context.isRequirementOf[it] ?: it },
+            hasQualifiedRelation = params.hasQualifiedRelation.map { context.hasQualifiedRelation[it] ?: it },
         )
         requirementAggregateService.create(command).id
     }
@@ -116,7 +118,9 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         description = entry?.get("description").orRandom(),
         hasRequirement = entry?.extractList("hasRequirement").orEmpty(),
         hasConcept = entry?.extractList("hasConcept").orEmpty(),
-        hasEvidenceTypeList = entry?.extractList("hasEvidenceTypeList").orEmpty()
+        hasEvidenceTypeList = entry?.extractList("hasEvidenceTypeList").orEmpty(),
+        isRequirementOf = entry?.extractList("isRequirementOf").orEmpty(),
+        hasQualifiedRelation = entry?.extractList("hasQualifiedRelation").orEmpty(),
     )
 
     private data class RequirementCreateParams(
@@ -126,7 +130,9 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         val description: String,
         val hasRequirement: List<TestContextKey>,
         val hasConcept: List<TestContextKey>,
-        val hasEvidenceTypeList: List<TestContextKey>
+        val hasEvidenceTypeList: List<TestContextKey>,
+        val isRequirementOf: List<TestContextKey>,
+        val hasQualifiedRelation: List<TestContextKey>,
     )
 
     private fun requirementAssertParams(entry: Map<String, String>) = RequirementAssertParams(

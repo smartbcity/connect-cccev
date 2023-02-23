@@ -15,6 +15,8 @@ class CccevTestContext: TestContext() {
     val evidenceTypeIds = testEntities<TestContextKey, EvidenceTypeId>("EvidenceType")
     val evidenceTypeListIds = testEntities<TestContextKey, EvidenceTypeListId>("EvidenceTypeList")
     val requirementIds = testEntities<TestContextKey, RequirementId>("Requirement")
+    val isRequirementOf = testEntities<TestContextKey, RequirementId>("IsRequirementOf")
+    val hasQualifiedRelation = testEntities<TestContextKey, RequirementId>("HasQualifiedRelation")
     val unitIds = testEntities<TestContextKey, DataUnitId>("DataUnit")
 
     final var fetched = FetchContext()

@@ -1,7 +1,7 @@
 package features.cccev.s2.request.tasks.handler
 
-import cccev.core.dsl.RequirementId
-import cccev.core.dsl.SupportedValue
+import cccev.dsl.model.RequirementId
+import cccev.dsl.model.SupportedValue
 import cccev.f2.concept.domain.query.GetInformationConceptsQuery
 import cccev.f2.concept.domain.query.GetInformationConceptsQueryFunction
 import cccev.s2.request.api.RequestAggregateService

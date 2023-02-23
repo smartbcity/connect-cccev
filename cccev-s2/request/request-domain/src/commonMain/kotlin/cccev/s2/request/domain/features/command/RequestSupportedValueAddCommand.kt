@@ -1,8 +1,8 @@
 package cccev.s2.request.domain.features.command
 
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.SupportedValue
-import cccev.core.dsl.SupportedValueDTO
+import cccev.dsl.model.InformationConceptId
+import cccev.dsl.model.SupportedValue
+import cccev.dsl.model.SupportedValueDTO
 import cccev.s2.request.domain.RequestCommand
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
@@ -31,8 +31,8 @@ interface RequestSupportedValueAddedEventDTO: RequestEvent {
  * @D2 command
  */
 class RequestSupportedValueAddCommand(
-	override val id: RequestId,
-	/**
+    override val id: RequestId,
+    /**
 	 * The supported value to add.
 	 */
 	override val supportedValue: SupportedValue,
@@ -43,15 +43,15 @@ class RequestSupportedValueAddCommand(
  * @D2 event
  */
 class RequestSupportedValueAddedEvent(
-	override val id: RequestId,
+    override val id: RequestId,
 
-	/**
+    /**
 	 * The current state of the request.
 	 * @example "Created"
 	 */
 	override val type: RequestState.Created = RequestState.Created,
 
-	/**
+    /**
 	 * Identifier of the information concept for which the newly added supported value provides a value.
 	 */
 	override val providesValueFor: InformationConceptId,

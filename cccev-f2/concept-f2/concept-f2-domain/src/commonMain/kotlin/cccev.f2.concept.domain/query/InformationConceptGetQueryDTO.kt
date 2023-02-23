@@ -7,6 +7,7 @@ import cccev.s2.concept.domain.InformationConceptId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Get an information concept by its id.
@@ -31,6 +32,7 @@ interface InformationConceptGetQueryDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class InformationConceptGetQueryDTOBase(
     override val id: InformationConceptId
 ): InformationConceptGetQueryDTO
@@ -51,6 +53,7 @@ interface InformationConceptGetResultDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class InformationConceptGetResultDTOBase(
     override val item: InformationConceptDTOBase?
 ): InformationConceptGetResultDTO

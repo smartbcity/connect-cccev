@@ -1,7 +1,7 @@
 package cccev.s2.requirement.api.entity
 
-import cccev.core.dsl.EvidenceTypeListId
-import cccev.core.dsl.InformationConceptId
+import cccev.dsl.model.EvidenceTypeListId
+import cccev.dsl.model.InformationConceptId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.RequirementState
 import cccev.s2.requirement.domain.model.RequirementKind
@@ -20,6 +20,8 @@ data class RequirementEntity(
     var description: String?,
     var name: String?,
     var hasRequirement: List<RequirementId>,
+    var isRequirementOf: List<RequirementId>,
+    var hasQualifiedRelation: List<RequirementId>,
     var hasConcept: List<InformationConceptId>,
     var hasEvidenceTypeList: List<EvidenceTypeListId>,
     var status: RequirementState

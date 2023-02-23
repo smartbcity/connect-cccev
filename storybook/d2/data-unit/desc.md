@@ -37,7 +37,7 @@ The short notation for this data unit, if applicable.
 </article>
 <article>
 
-***type*** [`DataUnitType`](/docs/dataunittype--page#dataunittype) 
+***type*** [`DataUnitType`](#dataunittype) 
 
 The type of data used for this data unit.
 

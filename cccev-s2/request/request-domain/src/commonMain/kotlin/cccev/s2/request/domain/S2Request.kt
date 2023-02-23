@@ -16,6 +16,7 @@ import s2.dsl.automate.S2State
 import s2.dsl.automate.builder.s2
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 fun s2Request() = S2Request
 
@@ -81,7 +82,7 @@ val S2Request = s2 {
 		role = EditorRole()
 	}
 }
-
+@Serializable
 open class RequestState(override var position: Int): S2State {
 	object Created: RequestState(position = 0)
 	object Sent: RequestState(position = 10)

@@ -19,9 +19,16 @@ Concepts used by the requirement
 </article>
 <article>
 
-***hasEvidenceTypeList*** [`List<EvidenceTypeListId>`](/docs/model--page#evidencetypelistid) 
+***hasEvidenceTypeList*** [`List<EvidenceTypeListId>`](/docs/evidencetypeid--page#evidencetypeid) 
 
 Evidences that must be provided for the requirement to be validated. <br/> This list represents an OR-relation, i.e. only one of the specified evidence lists has to be fully provided.
+
+</article>
+<article>
+
+***hasQualifiedRelation*** [`List<RequirementId>?`](#requirementid) 
+
+Described and/or categorised relation to another Requirement. <br/> This property leaves the possiblity to define a qualified relation from Requirement to Information Requirement or Constraint as well as a qualified relation from Requirement to Requirement. A use case would be to specialize an EU requirement in Member States' specific requirements.
 
 </article>
 <article>
@@ -29,6 +36,13 @@ Evidences that must be provided for the requirement to be validated. <br/> This 
 ***hasRequirement*** [`List<RequirementId>`](#requirementid) 
 
 Sub-requirements that must be fulfilled for the requirement to be validated.
+
+</article>
+<article>
+
+***isRequirementOf*** [`List<RequirementId>?`](#requirementid) 
+
+A reference between a sub-Requirement and its parent Requirement. The relation between a parent Requirement and a sub-Requirement can be complex. Therefore, qualified relations (see `hasQualifiedRelation`) can be used to represent this relationship on its own and qualify it with additional information such as a date, a place. This is left to implementers. In the case where the purpose is to link the two Requirements without additional information, the simple relationship as proposed here can be directly used.
 
 </article>
 <article>

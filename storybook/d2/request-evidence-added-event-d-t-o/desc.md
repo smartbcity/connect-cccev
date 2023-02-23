@@ -9,7 +9,7 @@ Event sent when an evidence has been added to a request.
   
 <article>
 
-***evidenceId*** [`EvidenceId`](/docs/model--page#evidenceid) 
+***evidenceId*** [`EvidenceId`](/docs/dsl-evidenceid--page#dsl-evidenceid) 
 
 </article>
 <article>

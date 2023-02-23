@@ -1,6 +1,6 @@
 
 
-## RequestDTO
+# RequestDTO
 
 
 
@@ -9,17 +9,17 @@ The request to gather data
   
 <article>
 
-***evidences*** [`List<EvidenceDTO>`](#evidence) 
+***evidences*** [`List<EvidenceDTO>`](/docs/dsl-evidence--page#dsl-evidence) 
 
 </article>
 <article>
 
-***frameworkId*** [`RequirementId`](#requirementid) 
+***frameworkId*** [`RequirementId`](/docs/dsl-requirementid--page#dsl-requirementid) 
 
 </article>
 <article>
 
-***id*** [`RequestId`](/docs/request-api--page#requestid) 
+***id*** [`RequestId`](/docs/api-request--page#requestid) 
 
 </article>
 <article>

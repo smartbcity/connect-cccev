@@ -9,7 +9,7 @@ Information concepts result
   
 <article>
 
-***evidenceTypeListMap*** [`Map<EvidenceTypeListId, EvidenceTypeListDTO>`](/docs/model--page#evidencetypelistid) 
+***evidenceTypeListMap*** [`Map<EvidenceTypeListId, EvidenceTypeListDTO>`](/docs/evidencetypeid--page#evidencetypeid) 
 
 </article>
 <article>
@@ -19,7 +19,7 @@ Information concepts result
 </article>
 <article>
 
-***evidenceTypeListsOfEvidenceTypes*** [`Map<EvidenceTypeId, List<EvidenceTypeListId>>`](/docs/model--page#evidencetypeid) 
+***evidenceTypeListsOfEvidenceTypes*** [`Map<EvidenceTypeId, List<EvidenceTypeListId>>`](/docs/evidencetypeid--page#evidencetypeid) 
 
 </article>
 

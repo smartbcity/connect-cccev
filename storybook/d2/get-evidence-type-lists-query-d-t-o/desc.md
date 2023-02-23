@@ -14,17 +14,17 @@ Evidence type lists Query
 </article>
 <article>
 
-***evidenceType*** [`EvidenceTypeId?`](/docs/model--page#evidencetypeid) 
+***evidenceType*** [`EvidenceTypeId?`](/docs/evidencetypeid--page#evidencetypeid) 
 
 </article>
 <article>
 
-***id*** [`RequestId`](/docs/request-api--page#requestid) 
+***id*** [`RequestId`](/docs/api-request--page#requestid) 
 
 </article>
 <article>
 
-***requirement*** [`RequirementId`](/docs/model--page#requirementid) 
+***requirement*** [`RequirementId`](/docs/dsl-requirementid--page#dsl-requirementid) 
 
 </article>
 

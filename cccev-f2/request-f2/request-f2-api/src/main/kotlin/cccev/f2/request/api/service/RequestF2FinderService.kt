@@ -1,6 +1,6 @@
 package cccev.f2.request.api.service
 
-import cccev.core.dsl.EvidenceTypeListId
+import cccev.dsl.model.EvidenceTypeListId
 import cccev.f2.concept.api.service.InformationConceptF2FinderService
 import cccev.f2.concept.domain.model.RequestInformationConceptDTO
 import cccev.f2.evidence.api.service.EvidenceApiFinderService

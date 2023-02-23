@@ -14,12 +14,12 @@ Requirement List Query
 </article>
 <article>
 
-***evidenceTypeId*** [`EvidenceTypeId?`](/docs/model--page#evidencetypeid) 
+***evidenceTypeId*** [`EvidenceTypeId?`](/docs/evidencetypeid--page#evidencetypeid) 
 
 </article>
 <article>
 
-***parentId*** [`RequirementId?`](/docs/model--page#requirementid) 
+***parentId*** [`RequirementId?`](/docs/dsl-requirementid--page#dsl-requirementid) 
 
 </article>
 

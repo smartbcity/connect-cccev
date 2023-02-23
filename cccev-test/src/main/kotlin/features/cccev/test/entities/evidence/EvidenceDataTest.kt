@@ -1,12 +1,12 @@
 package features.cccev.test.entities.evidence
 
-import cccev.core.dsl.Evidence
-import cccev.core.dsl.EvidenceId
-import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.PeriodOfTime
-import cccev.core.dsl.RequirementId
-import cccev.core.dsl.SupportedValueId
+import cccev.dsl.model.Evidence
+import cccev.dsl.model.EvidenceId
+import cccev.dsl.model.EvidenceTypeId
+import cccev.dsl.model.InformationConceptId
+import cccev.dsl.model.PeriodOfTime
+import cccev.dsl.model.RequirementId
+import cccev.dsl.model.SupportedValueId
 import features.cccev.test.data.DataTest
 import java.util.UUID
 

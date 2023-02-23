@@ -1,10 +1,10 @@
 package features.cccev.test.entities.evidencetype
 
-import cccev.core.dsl.Code
-import cccev.core.dsl.CoreLocationLocation
-import cccev.core.dsl.EvidenceTypeBase
-import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.PeriodOfTime
+import cccev.dsl.model.Code
+import cccev.dsl.model.CoreLocationLocation
+import cccev.dsl.model.EvidenceTypeBase
+import cccev.dsl.model.EvidenceTypeId
+import cccev.dsl.model.PeriodOfTime
 import features.cccev.test.data.DataTest
 import features.cccev.test.data.DummyCode
 import java.util.UUID

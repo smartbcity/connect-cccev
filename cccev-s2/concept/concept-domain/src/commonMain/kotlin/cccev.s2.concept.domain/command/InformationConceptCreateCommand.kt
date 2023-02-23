@@ -7,6 +7,7 @@ import cccev.s2.concept.domain.InformationConceptInitCommand
 import cccev.s2.unit.domain.DataUnitId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Create a new information concept.
@@ -56,6 +57,7 @@ interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
  * @d2 command
  * @parent [InformationConceptCreateFunction]
  */
+@Serializable
 data class InformationConceptCreateCommand(
     override val name: String,
     override val unitId: DataUnitId,
@@ -75,6 +77,7 @@ interface InformationConceptCreatedEventDTO: InformationConceptEvent
 /**
  * @d2 inherit
  */
+@Serializable
 data class InformationConceptCreatedEvent(
     /**
      * Identifier of the created information concept.

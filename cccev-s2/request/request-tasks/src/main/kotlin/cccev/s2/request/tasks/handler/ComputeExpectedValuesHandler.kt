@@ -1,8 +1,8 @@
 package cccev.s2.request.tasks.handler
 
 import cccev.commons.EventHandler
-import cccev.core.dsl.InformationConcept
-import cccev.core.dsl.SupportedValue
+import cccev.dsl.model.InformationConcept
+import cccev.dsl.model.SupportedValue
 import cccev.f2.concept.domain.query.GetInformationConceptsQuery
 import cccev.f2.concept.domain.query.GetInformationConceptsQueryFunction
 import cccev.s2.request.api.RequestAggregateService

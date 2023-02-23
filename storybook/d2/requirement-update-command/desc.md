@@ -19,7 +19,7 @@ Concepts used by the requirement
 </article>
 <article>
 
-***hasEvidenceTypeList*** [`List<EvidenceTypeListId>`](/docs/model--page#evidencetypelistid) 
+***hasEvidenceTypeList*** [`List<EvidenceTypeListId>`](/docs/evidencetypeid--page#evidencetypeid) 
 
 Evidences that must be provided for the requirement to be validated. <br/> This list represents an OR-relation, i.e. only one of the specified evidence lists has to be fully provided.
 

@@ -1,6 +1,7 @@
 package fixers.bdd.data
 
-import city.smartb.im.commons.auth.AuthedUser
+//import fixers.bdd.auth.AuthedUser
+import fixers.bdd.auth.AuthedUser
 import f2.dsl.cqrs.Event
 
 typealias TestContextKey = String

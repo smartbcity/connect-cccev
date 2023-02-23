@@ -23,6 +23,8 @@ class RequirementF2AggregateService(
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
+            isRequirementOf = command.isRequirementOf,
+            hasQualifiedRelation = command.hasQualifiedRelation,
         ).let { requirementAggregateService.create(it) }
     }
 
@@ -34,6 +36,8 @@ class RequirementF2AggregateService(
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
+            isRequirementOf = command.isRequirementOf,
+            hasQualifiedRelation = command.hasQualifiedRelation,
         ).let { requirementAggregateService.create(it) }
     }
 
@@ -45,6 +49,8 @@ class RequirementF2AggregateService(
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
+            isRequirementOf = command.isRequirementOf,
+            hasQualifiedRelation = command.hasQualifiedRelation,
         ).let { requirementAggregateService.create(it) }
     }
 

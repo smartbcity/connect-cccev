@@ -9,7 +9,7 @@ Requirement Query
   
 <article>
 
-***requirementId*** [`RequirementId`](/docs/model--page#requirementid) 
+***requirementId*** [`RequirementId`](/docs/dsl-requirementid--page#dsl-requirementid) 
 
 </article>
 

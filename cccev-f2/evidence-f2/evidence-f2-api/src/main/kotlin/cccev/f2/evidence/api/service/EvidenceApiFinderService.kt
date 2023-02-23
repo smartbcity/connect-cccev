@@ -1,9 +1,9 @@
 package cccev.f2.evidence.api.service
 
-import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.Requirement
-import cccev.core.dsl.RequirementId
+import cccev.dsl.model.EvidenceTypeId
+import cccev.dsl.model.InformationConceptId
+import cccev.dsl.model.Requirement
+import cccev.dsl.model.RequirementId
 import cccev.f2.evidence.api.model.toDTOs
 import cccev.f2.evidence.domain.model.EvidenceTypeListDTOBase
 import cccev.s2.request.api.RequestAggregateService

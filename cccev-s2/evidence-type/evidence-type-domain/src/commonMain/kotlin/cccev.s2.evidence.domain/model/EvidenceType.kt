@@ -2,12 +2,14 @@ package cccev.s2.evidence.domain.model
 
 import cccev.s2.evidence.domain.D2EvidenceTypePage
 import cccev.s2.evidence.domain.EvidenceTypeId
+import kotlinx.serialization.Serializable
 
 /**
  * @d2 model
  * @parent [D2EvidenceTypePage]
  * @order 10
  */
+@Serializable
 data class EvidenceType(
     /**
      * Identifier of the evidence type.

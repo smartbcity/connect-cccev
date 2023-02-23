@@ -1,6 +1,6 @@
 
 
-## Evidence
+# Evidence
 
 Type: `EvidenceDTO`
 
@@ -8,7 +8,7 @@ Proof that a Requirement is met.
 
 
 
-The class Evidence provides the means to support responses to Criteria or to a concrete Information Requirement or to an Information Concept inside an Information Requirement. The proof described by an Evidence can 1 verify a claim (i.e. is it true that John is 25, yes/no), 2 prove a condition (i.e. is John 18+, yes/no), or 3 simply provide data (i.e. the age of a person, namely 25). The proof can be given through documents or extracts of base registries, independently from its structure, format or medium used to exchange it: a pdf document, a video, a recording, etc.
+The class Evidence provides the means to support responses to Criteria or to a concrete Information Requirement or to an Information Concept inside an Information Requirement. The proof described by an Evidence can: <br/>1 verify a claim (i.e. is it true that John is 25, yes/no),<br/>2 prove a condition (i.e. is John 18+, yes/no), or <br/>3 simply provide data (i.e. the age of a person, namely 25). The proof can be given through documents or extracts of base registries, independently of its structure, format or medium used to exchange it: a pdf document, a video, a recording, etc.
 
   
 <article>
@@ -20,12 +20,12 @@ Proof of evidence
 </article>
 <article>
 
-***identifier*** [`EvidenceId`](#evidenceid) 
+***identifier*** [`EvidenceId`](/docs/dsl-evidenceid--page#dsl-evidenceid) 
 
 </article>
 <article>
 
-***isConformantTo*** [`List<EvidenceTypeId>`](#evidencetypeid) 
+***isConformantTo*** [`List<EvidenceTypeId>`](/docs/evidencetypeid--page#evidencetypeid) 
 
 Evidence Type that specifies characteristics of the Evidence.
 
@@ -46,7 +46,7 @@ Information Concept providing facts found/inferred from the Evidence.
 </article>
 <article>
 
-***supportsRequirement*** [`List<RequirementId>`](#requirementid) 
+***supportsRequirement*** [`List<RequirementId>`](/docs/dsl-requirementid--page#dsl-requirementid) 
 
 Requirement for which the Evidence provides proof.
 

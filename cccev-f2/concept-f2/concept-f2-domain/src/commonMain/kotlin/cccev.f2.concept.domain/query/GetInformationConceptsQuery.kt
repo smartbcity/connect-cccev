@@ -1,7 +1,7 @@
 package cccev.f2.concept.domain.query
 
-import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.RequirementId
+import cccev.dsl.model.EvidenceTypeId
+import cccev.dsl.model.RequirementId
 import cccev.f2.concept.domain.model.RequestInformationConceptDTO
 import cccev.s2.request.domain.model.RequestId
 import f2.dsl.fnc.F2Function

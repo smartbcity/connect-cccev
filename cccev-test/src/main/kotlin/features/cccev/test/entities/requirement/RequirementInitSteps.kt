@@ -1,9 +1,9 @@
 package features.cccev.test.entities.requirement
 
-import cccev.core.dsl.EvidenceTypeListBase
-import cccev.core.dsl.InformationConceptBase
-import cccev.core.dsl.Requirement
-import cccev.core.dsl.RequirementId
+import cccev.dsl.model.EvidenceTypeListBase
+import cccev.dsl.model.InformationConceptBase
+import cccev.dsl.model.Requirement
+import cccev.dsl.model.RequirementId
 import cccev.s2.requirement.api.DeprecatedRequirementFinderService
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.data.DataTest

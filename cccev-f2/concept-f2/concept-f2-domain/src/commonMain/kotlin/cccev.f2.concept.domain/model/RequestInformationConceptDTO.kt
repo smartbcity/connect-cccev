@@ -1,11 +1,11 @@
 package cccev.f2.concept.domain.model
 
-import cccev.core.dsl.CUnitDTO
-import cccev.core.dsl.Code
-import cccev.core.dsl.InformationConcept
-import cccev.core.dsl.InformationConceptId
-import cccev.core.dsl.SupportedValue
-import cccev.core.dsl.SupportedValueDTO
+import cccev.dsl.model.CUnitDTO
+import cccev.dsl.model.Code
+import cccev.dsl.model.InformationConcept
+import cccev.dsl.model.InformationConceptId
+import cccev.dsl.model.SupportedValue
+import cccev.dsl.model.SupportedValueDTO
 import cccev.f2.evidence.domain.model.EvidenceTypeListChoicesDTO
 import cccev.f2.evidence.domain.model.EvidenceTypeListChoicesDTOBase
 import kotlin.js.JsExport

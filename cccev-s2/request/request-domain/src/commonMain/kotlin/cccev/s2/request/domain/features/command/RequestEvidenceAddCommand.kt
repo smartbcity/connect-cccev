@@ -1,8 +1,8 @@
 package cccev.s2.request.domain.features.command
 
-import cccev.core.dsl.Evidence
-import cccev.core.dsl.EvidenceDTO
-import cccev.core.dsl.EvidenceId
+import cccev.dsl.model.Evidence
+import cccev.dsl.model.EvidenceDTO
+import cccev.dsl.model.EvidenceId
 import cccev.s2.request.domain.RequestCommand
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
@@ -44,15 +44,15 @@ interface RequestEvidenceAddedEventDTO: RequestEvent {
  * @d2 inherit
  */
 class RequestEvidenceAddCommand(
-	override val id: RequestId,
-	override val evidence: Evidence,
+    override val id: RequestId,
+    override val evidence: Evidence,
 ): RequestEvidenceAddCommandDTO
 
 /**
  * @d2 inherit
  */
 class RequestEvidenceAddedEvent(
-	override val id: RequestId,
-	override val type: RequestState.Created = RequestState.Created,
-	override val evidenceId: EvidenceId,
+    override val id: RequestId,
+    override val type: RequestState.Created = RequestState.Created,
+    override val evidenceId: EvidenceId,
 ): RequestEvidenceAddedEventDTO

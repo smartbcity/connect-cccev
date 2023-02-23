@@ -9,7 +9,7 @@ Event sent when an evidence has been added to a request.
   
 <article>
 
-***evidenceTypeId*** [`EvidenceTypeId`](/docs/model--page#evidencetypeid) 
+***evidenceTypeId*** [`EvidenceTypeId`](/docs/evidencetypeid--page#evidencetypeid) 
 
 Identifier of the removed evidence type.
 

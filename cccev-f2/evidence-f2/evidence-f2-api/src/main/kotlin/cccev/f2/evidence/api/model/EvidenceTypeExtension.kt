@@ -1,10 +1,10 @@
 package cccev.f2.evidence.api.model
 
-import cccev.core.dsl.Evidence
-import cccev.core.dsl.EvidenceTypeBase
-import cccev.core.dsl.EvidenceTypeId
-import cccev.core.dsl.EvidenceTypeList
-import cccev.core.dsl.EvidenceTypeListBase
+import cccev.dsl.model.Evidence
+import cccev.dsl.model.EvidenceTypeBase
+import cccev.dsl.model.EvidenceTypeId
+import cccev.dsl.model.EvidenceTypeList
+import cccev.dsl.model.EvidenceTypeListBase
 import cccev.f2.evidence.domain.model.EvidenceTypeDTOBase
 import cccev.f2.evidence.domain.model.EvidenceTypeListChoicesDTOBase
 import cccev.f2.evidence.domain.model.EvidenceTypeListDTO

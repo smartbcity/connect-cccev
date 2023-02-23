@@ -7,6 +7,7 @@ import cccev.s2.unit.domain.DataUnitInitCommand
 import cccev.s2.unit.domain.model.DataUnitType
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Create a new data unit.
@@ -19,6 +20,7 @@ interface DataUnitCreateFunction
  * @d2 command
  * @parent [DataUnitCreateFunction]
  */
+@Serializable
 data class DataUnitCreateCommand(
     /**
      * The name of the data unit.
@@ -56,6 +58,7 @@ interface DataUnitCreatedEventDTO: DataUnitEvent
 /**
  * @d2 inherit
  */
+@Serializable
 data class DataUnitCreatedEvent(
     /**
      * The id of the created data unit.

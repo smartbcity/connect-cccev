@@ -8,8 +8,13 @@ CCCEV_APP_IMG	    	:= ${CCCEV_APP_NAME}:${VERSION}
 CCCEV_APP_LATEST		:= ${CCCEV_APP_NAME}:latest
 CCCEV_APP_PACKAGE	   	:= :api-gateway:bootBuildImage
 
+STORYBOOK_DOCKERFILE	:= infra/docker/storybook/Dockerfile
+STORYBOOK_NAME	   	 	:= smartbcity/cccev-storybook
+STORYBOOK_IMG	    	:= ${STORYBOOK_NAME}:${VERSION}
+
 libs: package-kotlin
 docker: package-cccev-api package-cccev-front
+docs: package-storybook
 
 package-kotlin:
 	@gradle clean build publish --stacktrace
@@ -25,3 +30,7 @@ push-latest-cccev-api:
 package-cccev-front:
 	@docker build -f ${FRONT_CCCEV_DOCKERFILE} -t ${FRONT_CCCEV_IMG} .
 	@docker push ${FRONT_CCCEV_IMG}
+
+package-storybook:
+	@docker build --no-cache=true -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
+	@docker push ${STORYBOOK_IMG}

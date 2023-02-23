@@ -7,6 +7,7 @@ import cccev.s2.unit.domain.DataUnitId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Get a data unit by its id.
@@ -31,6 +32,7 @@ interface DataUnitGetQueryDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class DataUnitGetQueryDTOBase(
     override val id: DataUnitId
 ): DataUnitGetQueryDTO
@@ -51,6 +53,7 @@ interface DataUnitGetResultDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class DataUnitGetResultDTOBase(
     override val item: DataUnitDTOBase?
 ): DataUnitGetResultDTO

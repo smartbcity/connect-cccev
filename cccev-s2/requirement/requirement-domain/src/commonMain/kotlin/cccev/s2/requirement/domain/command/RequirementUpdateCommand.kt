@@ -1,6 +1,6 @@
 package cccev.s2.requirement.domain.command
 
-import cccev.core.dsl.EvidenceTypeListId
+import cccev.dsl.model.EvidenceTypeListId
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.requirement.domain.D2RequirementPage
 import cccev.s2.requirement.domain.RequirementCommand
@@ -8,6 +8,7 @@ import cccev.s2.requirement.domain.RequirementEvent
 import cccev.s2.requirement.domain.RequirementId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Update a requirement.
@@ -64,6 +65,7 @@ interface RequirementUpdateCommandDTO: RequirementCommand {
  * @d2 command
  * @parent [RequirementUpdateFunction]
  */
+@Serializable
 data class RequirementUpdateCommand(
     override val id: RequirementId,
     override val name: String?,
@@ -86,6 +88,7 @@ interface RequirementUpdatedEventDTO: RequirementEvent {
  * @d2 event
  * @parent [RequirementUpdateFunction]
  */
+@Serializable
 data class RequirementUpdatedEvent(
     override val id: RequirementId,
 ): RequirementUpdatedEventDTO

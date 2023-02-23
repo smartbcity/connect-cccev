@@ -1,8 +1,8 @@
 package features.cccev.test.entities.evidencetypelist
 
-import cccev.core.dsl.EvidenceTypeBase
-import cccev.core.dsl.EvidenceTypeListBase
-import cccev.core.dsl.EvidenceTypeListId
+import cccev.dsl.model.EvidenceTypeBase
+import cccev.dsl.model.EvidenceTypeListBase
+import cccev.dsl.model.EvidenceTypeListId
 import features.cccev.test.data.DataTest
 import features.cccev.test.entities.evidencetype.evidenceType
 import java.util.UUID

@@ -3,12 +3,14 @@ package cccev.s2.concept.domain.model
 import cccev.s2.concept.domain.D2InformationConceptPage
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.unit.domain.DataUnitId
+import kotlinx.serialization.Serializable
 
 /**
  * @d2 model
  * @parent [D2InformationConceptPage]
  * @order 10
  */
+@Serializable
 data class InformationConcept(
     /**
      * Unique identifier of this information concept.

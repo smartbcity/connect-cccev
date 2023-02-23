@@ -1,7 +1,7 @@
 package features.cccev.test.entities.evidence
 
-import cccev.core.dsl.EvidenceId
-import cccev.core.dsl.EvidenceTypeId
+import cccev.dsl.model.EvidenceId
+import cccev.dsl.model.EvidenceTypeId
 import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.domain.features.command.RequestEvidenceAddCommand
 import cccev.s2.request.domain.model.RequestId

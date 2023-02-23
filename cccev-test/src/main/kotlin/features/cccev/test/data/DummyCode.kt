@@ -1,5 +1,5 @@
 package features.cccev.test.data
 
-import cccev.core.dsl.Code
+import cccev.dsl.model.Code
 
 object DummyCode: Code

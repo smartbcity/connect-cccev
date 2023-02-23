@@ -7,6 +7,7 @@ import cccev.f2.evidence.type.domain.model.EvidenceTypeListDTOBase
 import cccev.s2.requirement.domain.RequirementId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 @JsExport
 @JsName("RequirementDTO")
@@ -19,7 +20,7 @@ interface RequirementDTO {
     val hasConcept: List<InformationConceptDTO>
     val hasEvidenceTypeList: List<EvidenceTypeListDTO>
 }
-
+@Serializable
 data class RequirementDTOBase(
     override val id: RequirementId,
     override val kind: String,

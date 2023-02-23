@@ -39,7 +39,7 @@ The short notation for this data unit, if applicable.
 
 ***type*** `String` 
 
-The type of data used for this data unit. <br/> See [cccev.s2.unit.domain.model.DataUnitType](/docs/dataunittype--page#dataunittype)
+The type of data used for this data unit. <br/> See [cccev.s2.unit.domain.model.DataUnitType](/docs/core-data-unit--page#dataunittype)
 
 </article>
 
