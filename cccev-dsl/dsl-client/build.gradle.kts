@@ -7,3 +7,7 @@ dependencies {
     commonMainApi(project(":cccev-f2:requirement-f2:requirement-f2-client"))
     commonMainApi(project(":cccev-dsl:dsl-model"))
 }
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+}

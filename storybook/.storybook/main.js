@@ -16,7 +16,6 @@ module.exports = {
     "storybook-react-i18next",
   ],
   features: {
-    emotionAlias: false,
-    buildStoriesJson: true
+    emotionAlias: false
   },
 };
