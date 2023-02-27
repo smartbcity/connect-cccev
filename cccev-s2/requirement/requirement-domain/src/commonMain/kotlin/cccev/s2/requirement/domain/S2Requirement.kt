@@ -20,7 +20,7 @@ import kotlin.js.JsName
 typealias RequirementId = String
 
 val s2Requirement = s2 {
-	name = "RequestS2"
+	name = "RequirementS2"
 	init<RequirementCreateCommand> {
 		to = RequirementState.CREATED
 		role = EditorRole

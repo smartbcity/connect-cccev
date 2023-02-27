@@ -29,7 +29,7 @@ interface RequirementBuilder<T : Requirement> {
     fun isRequirementOf(lambda: RequirementsLinkedBuilder.() -> Unit)
     fun hasRequirement(lambda: RequirementsLinkedBuilder.() -> Unit)
     fun hasQualifiedRelation(lambda: RequirementsLinkedBuilder.() -> Unit)
-
+    fun isDerivedFrom(lambda: ReferenceFrameworkListBuilder.() -> Unit)
     fun build(): Requirement
 }
 abstract class AbstractRequirementBuilder<T : Requirement> : RequirementBuilder<T> {
@@ -78,5 +78,9 @@ abstract class AbstractRequirementBuilder<T : Requirement> : RequirementBuilder<
     }
     override fun hasQualifiedRelation(lambda: RequirementsLinkedBuilder.() -> Unit) {
         isRequirementOf.addAll(RequirementsLinkedBuilder().apply(lambda).build())
+    }
+
+    override fun isDerivedFrom(lambda: ReferenceFrameworkListBuilder.() -> Unit) {
+        isDerivedFrom.addAll(ReferenceFrameworkListBuilder().apply(lambda).build())
     }
 }

@@ -5,4 +5,10 @@ plugins {
 }
 
 dependencies {
+    Dependencies.Jvm.junit(::jvmTestImplementation)
+}
+
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }

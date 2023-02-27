@@ -1,5 +1,5 @@
 package cccev.dsl.model
 
-open class ReferenceFramework(
+data class ReferenceFramework(
 	val identifier: String,
 )
