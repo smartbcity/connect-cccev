@@ -99,6 +99,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
 
     private suspend fun createRequirement(params: RequirementCreateParams) = context.conceptIds.register(params.identifier) {
         command = RequirementCreateCommand(
+            identifier = params.identifier,
             kind = params.kind,
             name = params.name,
             description = params.description,

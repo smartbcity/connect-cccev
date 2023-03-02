@@ -26,6 +26,12 @@ interface RequirementCreateFunction
 @Serializable
 data class RequirementCreateCommand(
     /**
+     * A custom identifier for the requirement
+     * @example [cccev.s2.requirement.domain.model.Requirement.identifier]
+     */
+    val identifier: String?,
+
+    /**
      * Subtype used for the requirement.
      * @example [cccev.s2.requirement.domain.model.Requirement.kind]
      */

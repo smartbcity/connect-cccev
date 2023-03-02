@@ -12,6 +12,7 @@ import kotlinx.serialization.Serializable
 @JsExport
 @JsName("RequirementDTO")
 interface RequirementDTO {
+    val identifier: String?
     val id: RequirementId
     val kind: String
     val description: String?
@@ -22,6 +23,7 @@ interface RequirementDTO {
 }
 @Serializable
 data class RequirementDTOBase(
+    override val identifier: String?,
     override val id: RequirementId,
     override val kind: String,
     override val description: String?,

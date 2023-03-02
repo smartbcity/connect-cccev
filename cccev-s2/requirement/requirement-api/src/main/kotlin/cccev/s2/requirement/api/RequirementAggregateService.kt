@@ -16,14 +16,15 @@ class RequirementAggregateService(
 ): RequirementAggregate {
     override suspend fun create(command: RequirementCreateCommand) = automate.createWithEvent(command) {
         val entity = RequirementEntity(
+            identifier = command.identifier,
             kind = command.kind,
             name = command.name,
             description = command.description,
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
-            isRequirementOf = command.isRequirementOf ?: emptyList(),
-            hasQualifiedRelation = command.hasQualifiedRelation ?: emptyList(),
+            isRequirementOf = command.isRequirementOf.orEmpty(),
+            hasQualifiedRelation = command.hasQualifiedRelation.orEmpty(),
             status = RequirementState.CREATED
         )
         entity to RequirementCreatedEvent(entity.id)

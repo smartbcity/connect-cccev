@@ -7,6 +7,7 @@ import cccev.f2.requirement.domain.command.ConstraintCreateCommandDTOBase
 import cccev.f2.requirement.domain.command.ConstraintCreateFunction
 import cccev.f2.requirement.domain.command.CriterionCreateCommandDTOBase
 import cccev.f2.requirement.domain.command.CriterionCreateFunction
+import cccev.f2.requirement.domain.command.InformationRequirementCreateCommandDTOBase
 import cccev.f2.requirement.domain.command.InformationRequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementUpdateFunction
@@ -72,8 +73,9 @@ class RequirementEndpoint(
     @Bean
     override fun requirementCreate(): RequirementCreateFunction = f2Function { cmd ->
         logger.info("requirementCreate: $cmd")
-        when(RequirementKind.valueOf(cmd.kind)) {
+        when (RequirementKind.valueOf(cmd.kind)) {
             RequirementKind.CONSTRAINT -> requirementF2AggregateService.create(ConstraintCreateCommandDTOBase(
+                identifier = cmd.identifier,
                 name = cmd.name,
                 description = cmd.description,
                 hasRequirement = cmd.hasRequirement,
@@ -83,6 +85,7 @@ class RequirementEndpoint(
                 hasQualifiedRelation = cmd.hasQualifiedRelation
             ))
             RequirementKind.CRITERION ->  requirementF2AggregateService.create(CriterionCreateCommandDTOBase(
+                identifier = cmd.identifier,
                 name = cmd.name,
                 description = cmd.description,
                 hasRequirement = cmd.hasRequirement,
@@ -91,7 +94,8 @@ class RequirementEndpoint(
                 isRequirementOf = cmd.isRequirementOf,
                 hasQualifiedRelation = cmd.hasQualifiedRelation
             ))
-            RequirementKind.INFORMATION -> requirementF2AggregateService.create(CriterionCreateCommandDTOBase(
+            RequirementKind.INFORMATION -> requirementF2AggregateService.create(InformationRequirementCreateCommandDTOBase(
+                identifier = cmd.identifier,
                 name = cmd.name,
                 description = cmd.description,
                 hasRequirement = cmd.hasRequirement,
@@ -100,7 +104,6 @@ class RequirementEndpoint(
                 isRequirementOf = cmd.isRequirementOf,
                 hasQualifiedRelation = cmd.hasQualifiedRelation
             ))
-            else -> throw IllegalArgumentException("Unknown requirement kind: " + cmd.kind)
         }
     }
 

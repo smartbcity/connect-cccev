@@ -8,6 +8,7 @@ import cccev.f2.requirement.domain.model.RequirementDTOBase
 import cccev.s2.requirement.api.RequirementFinderService
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.model.Requirement
+import cccev.s2.requirement.domain.model.RequirementIdentifier
 import org.springframework.stereotype.Service
 
 @Service
@@ -34,6 +35,8 @@ class RequirementF2FinderService(
     private inner class Cache {
         val concepts = SimpleCache(informationConceptF2FinderService::get)
         val evidenceTypeLists = SimpleCache(evidenceTypeF2FinderService::getList)
-        val requirements = SimpleCache<RequirementId, RequirementDTOBase> { id -> requirementFinderService.get(id).toDTO(this)}
+        val requirements = SimpleCache<RequirementIdentifier, RequirementDTOBase> { identifier ->
+            requirementFinderService.getByIdentifier(identifier).toDTO(this)
+        }
     }
 }

@@ -7,13 +7,15 @@ import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.model.Requirement
+import cccev.s2.requirement.domain.model.RequirementIdentifier
 
 suspend fun Requirement.toDTO(
     getConcept: suspend (InformationConceptId) -> InformationConceptDTOBase,
     getEvidenceTypeList: suspend (EvidenceTypeListId) -> EvidenceTypeListDTOBase,
-    getRequirement: suspend (RequirementId) -> RequirementDTOBase
+    getRequirement: suspend (RequirementIdentifier) -> RequirementDTOBase
 ) = RequirementDTOBase(
     id = id,
+    identifier = identifier,
     kind = kind.name,
     description = description,
     name = name,

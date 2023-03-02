@@ -4,6 +4,7 @@ import cccev.dsl.model.EvidenceTypeListId
 import cccev.dsl.model.InformationConceptId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.RequirementState
+import cccev.s2.requirement.domain.model.RequirementIdentifier
 import cccev.s2.requirement.domain.model.RequirementKind
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
@@ -16,12 +17,13 @@ import java.util.UUID
 data class RequirementEntity(
     @Id
     val id: RequirementId = UUID.randomUUID().toString(),
+    val identifier: String?,
     val kind: RequirementKind,
     var description: String?,
     var name: String?,
-    var hasRequirement: List<RequirementId>,
-    var isRequirementOf: List<RequirementId>,
-    var hasQualifiedRelation: List<RequirementId>,
+    var hasRequirement: List<RequirementIdentifier>,
+    var isRequirementOf: List<RequirementIdentifier>,
+    var hasQualifiedRelation: List<RequirementIdentifier>,
     var hasConcept: List<InformationConceptId>,
     var hasEvidenceTypeList: List<EvidenceTypeListId>,
     var status: RequirementState

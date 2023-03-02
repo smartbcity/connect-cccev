@@ -14,6 +14,7 @@ typealias RequirementCreateFunction = F2Function<RequirementCreateCommandDTOBase
 @JsExport
 @JsName("RequirementCreateCommandDTO")
 interface RequirementCreateCommandDTO {
+    val identifier: String?
     val name: String?
     val description: String?
     val kind: String
@@ -26,6 +27,7 @@ interface RequirementCreateCommandDTO {
 
 @Serializable
 data class RequirementCreateCommandDTOBase(
+    override val identifier: String?,
     override val name: String?,
     override val description: String?,
     override val kind: String,

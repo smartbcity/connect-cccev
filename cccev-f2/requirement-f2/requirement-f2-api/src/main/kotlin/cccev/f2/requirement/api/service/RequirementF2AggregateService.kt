@@ -17,6 +17,7 @@ class RequirementF2AggregateService(
 ) {
     suspend fun create(command: ConstraintCreateCommandDTOBase): RequirementCreatedEvent {
         return RequirementCreateCommand(
+            identifier = command.identifier,
             kind = RequirementKind.CONSTRAINT,
             name = command.name,
             description = command.description,
@@ -30,6 +31,7 @@ class RequirementF2AggregateService(
 
     suspend fun create(command: CriterionCreateCommandDTOBase): RequirementCreatedEvent {
         return RequirementCreateCommand(
+            identifier = command.identifier,
             kind = RequirementKind.CRITERION,
             name = command.name,
             description = command.description,
@@ -43,6 +45,7 @@ class RequirementF2AggregateService(
 
     suspend fun create(command: InformationRequirementCreateCommandDTOBase): RequirementCreatedEvent {
         return RequirementCreateCommand(
+            identifier = command.identifier,
             kind = RequirementKind.INFORMATION,
             name = command.name,
             description = command.description,
