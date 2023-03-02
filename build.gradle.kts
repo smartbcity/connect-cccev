@@ -34,4 +34,7 @@ fixers {
 	d2 {
 		outputDirectory = file("storybook/d2/")
 	}
+	kt2Ts {
+		outputDirectory = "web/kotlin"
+	}
 }
