@@ -74,10 +74,10 @@ abstract class AbstractRequirementBuilder<T : Requirement> : RequirementBuilder<
         isRequirementOf.addAll(RequirementsLinkedBuilder().apply(lambda).build())
     }
     override fun hasRequirement(lambda: RequirementsLinkedBuilder.() -> Unit) {
-        isRequirementOf.addAll(RequirementsLinkedBuilder().apply(lambda).build())
+        hasRequirement.addAll(RequirementsLinkedBuilder().apply(lambda).build())
     }
     override fun hasQualifiedRelation(lambda: RequirementsLinkedBuilder.() -> Unit) {
-        isRequirementOf.addAll(RequirementsLinkedBuilder().apply(lambda).build())
+        hasQualifiedRelation.addAll(RequirementsLinkedBuilder().apply(lambda).build())
     }
 
     override fun isDerivedFrom(lambda: ReferenceFrameworkListBuilder.() -> Unit) {

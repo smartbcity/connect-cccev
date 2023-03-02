@@ -7,6 +7,32 @@ fun localConsultationProtocolPreparation(init: InformationRequirementBuilder.() 
         isRequirementOf {
             +ProtocolPreparation
             +LocalConsultation
+            informationRequirement {
+                identifier = "P"
+                name = "Protocol"
+                hasRequirement {
+                    informationRequirement {
+                        identifier = "PoP"
+                        name = "ProtocolOfTheProtocol"
+                        hasRequirement {
+                            informationRequirement {
+                                identifier = "PoPinP"
+                                name = "ProtocolOfTheProtocolInTheProtocol"
+                                isRequirementOf {
+                                    informationRequirement { identifier = "P" }
+                                }
+                            }
+                            informationRequirement {
+                                identifier = "PoPinP2"
+                                name = "ProtocolOfTheProtocolInTheProtocol2"
+                                hasQualifiedRelation {
+                                    informationRequirement { identifier = "PoPinP" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }.apply(init).build()
 
@@ -18,6 +44,16 @@ val LocalConsultationProtocolPreparationRequirements = listOf(
     localConsultationProtocolPreparation {
         identifier = "D101"
         name = "Termes de référence (TDR)"
+        hasQualifiedRelation {
+            +localConsultationProtocolPreparation { identifier = "D100" }
+        }
+        hasRequirement {
+            +localConsultationProtocolPreparation {
+                identifier = "D101-Pierre"
+                name = "TDRRRrrrr!!!"
+                description = "Il va faire tout noir !"
+            }
+        }
     },
     localConsultationProtocolPreparation {
         identifier = "D102"
