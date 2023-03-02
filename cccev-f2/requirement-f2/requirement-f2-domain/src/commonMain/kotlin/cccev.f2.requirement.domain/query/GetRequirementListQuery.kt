@@ -4,6 +4,7 @@ import cccev.dsl.model.EvidenceTypeId
 import cccev.dsl.model.InformationConceptId
 import cccev.dsl.model.Requirement
 import cccev.dsl.model.RequirementId
+import cccev.f2.requirement.domain.model.RequirementDTO
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -36,7 +37,7 @@ interface GetRequirementListQueryDTO {
 @JsExport
 @JsName("GetRequirementListQueryResultDTO")
 interface GetRequirementListQueryResultDTO {
-    val requirements: List<Requirement>
+    val requirements: List<RequirementDTO>
 }
 
 /**
@@ -52,5 +53,5 @@ class GetRequirementListQuery(
  * @d2 inherit
  */
 class GetRequirementListQueryResult(
-    override val requirements: List<Requirement>
+    override val requirements: List<RequirementDTO>
 ): GetRequirementListQueryResultDTO

@@ -24,8 +24,9 @@ expect fun requirementClient(urlBase: String): F2SupplierSingle<RequirementClien
 @JsExport
 open class RequirementClient constructor(private val client: F2Client) : RequirementApi {
     override fun requirementGet(): RequirementGetFunction  = client.function(this::requirementGet.name)
+    @Deprecated("Use requirementGet instead", ReplaceWith("requirementGet()"))
     override fun getRequirement(): GetRequirementQueryFunction  = client.function(this::getRequirement.name)
-    override fun getRequirements(): GetRequirementListQueryFunction  = client.function(this::getRequirements.name)
+    override fun requirementsList(): GetRequirementListQueryFunction  = client.function(this::requirementsList.name)
     override fun constraintCreate(): ConstraintCreateFunction  = client.function(this::constraintCreate.name)
     override fun criterionCreate(): CriterionCreateFunction  = client.function(this::criterionCreate.name)
     override fun informationRequirementCreate(): InformationRequirementCreateFunction

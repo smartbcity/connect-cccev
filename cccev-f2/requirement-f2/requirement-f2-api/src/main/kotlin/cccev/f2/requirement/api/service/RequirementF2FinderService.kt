@@ -1,14 +1,18 @@
 package cccev.f2.requirement.api.service
 
 import cccev.commons.model.SimpleCache
+import cccev.dsl.model.EvidenceTypeId
 import cccev.f2.concept.api.service.InformationConceptF2FinderService
 import cccev.f2.evidence.type.api.service.EvidenceTypeF2FinderService
 import cccev.f2.requirement.api.model.toDTO
 import cccev.f2.requirement.domain.model.RequirementDTOBase
+import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.requirement.api.RequirementFinderService
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.model.Requirement
 import cccev.s2.requirement.domain.model.RequirementIdentifier
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import org.springframework.stereotype.Service
 
 @Service
@@ -24,8 +28,15 @@ class RequirementF2FinderService(
     suspend fun get(id: RequirementId): RequirementDTOBase {
         return requirementFinderService.get(id).toDTO()
     }
+    suspend fun list(
+        isRequirementOf: RequirementId?,
+        concept: InformationConceptId?,
+        evidenceType: EvidenceTypeId?
+    ): Flow<RequirementDTOBase> {
+        return requirementFinderService.list(isRequirementOf, concept, evidenceType).toDTOs()
+    }
 
-    private suspend fun Collection<Requirement>.toDTOs(cache: Cache = Cache()) = map { it.toDTO() }
+    private suspend fun Flow<Requirement>.toDTOs(cache: Cache = Cache()) = map { it.toDTO() }
     private suspend fun Requirement.toDTO(cache: Cache = Cache()): RequirementDTOBase = toDTO(
         getConcept = cache.concepts::get,
         getEvidenceTypeList = cache.evidenceTypeLists::get,

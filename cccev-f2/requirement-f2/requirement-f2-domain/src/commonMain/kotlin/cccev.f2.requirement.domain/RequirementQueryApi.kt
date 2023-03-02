@@ -8,9 +8,10 @@ interface RequirementQueryApi {
     /** Get requirement */
     fun requirementGet(): RequirementGetFunction
 
+    @Deprecated("Use requirementGet instead")
     /** Get Requirement (deprecated) */
     fun getRequirement(): GetRequirementQueryFunction
 
     /** Get Requirement List (deprecated) */
-    fun getRequirements(): GetRequirementListQueryFunction
+    fun requirementsList(): GetRequirementListQueryFunction
 }

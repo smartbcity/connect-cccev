@@ -20,6 +20,7 @@ import cccev.f2.requirement.domain.query.RequirementGetResultDTOBase
 import cccev.s2.requirement.api.DeprecatedRequirementFinderService
 import cccev.s2.requirement.domain.model.RequirementKind
 import f2.dsl.fnc.f2Function
+import kotlinx.coroutines.flow.toList
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import s2.spring.utils.logger.Logger
@@ -38,18 +39,19 @@ class RequirementEndpoint(
         requirementF2FinderService.getOrNull(query.id).let(::RequirementGetResultDTOBase)
     }
 
+    @Deprecated("Use requirementGet instead")
     @Bean
     override fun getRequirement(): GetRequirementQueryFunction = f2Function { query ->
         deprecatedRequirementFinderService.get(query.requirementId).let(::GetRequirementQueryResult)
     }
 
     @Bean
-    override fun getRequirements(): GetRequirementListQueryFunction = f2Function { query ->
-        deprecatedRequirementFinderService.list(
-            parent = query.parentId,
+    override fun requirementsList(): GetRequirementListQueryFunction = f2Function { query ->
+        requirementF2FinderService.list(
+            isRequirementOf = query.parentId,
             concept = query.conceptId,
             evidenceType = query.evidenceTypeId
-        ).let(::GetRequirementListQueryResult)
+        ).toList().let(::GetRequirementListQueryResult)
     }
 
     @Bean
