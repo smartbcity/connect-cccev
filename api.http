@@ -1,3 +1,10 @@
+### version
+GET https://api.registry.smartb.network/ver/about
+
+### version
+GET https://api.registry.smartb.network/cccev/about
+
+
 ###
 POST https://api.registry.smartb.network/cccev/requirementsList
 Content-Type: application/json

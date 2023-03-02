@@ -30,7 +30,7 @@ interface EvidenceTypeList {
 	val name: String
 	val specifiesEvidenceType: List<EvidenceType>
 }
-
+@Serializable
 open class EvidenceTypeListBase(
     override val description: String,
     override val identifier: EvidenceTypeListId,
@@ -47,7 +47,7 @@ interface EvidenceType {
 	val validityPeriodConstraint: PeriodOfTime?
 	val issuingPlace: CoreLocationLocation?
 }
-
+@Serializable
 open class EvidenceTypeBase(
     override val identifier: EvidenceTypeId,
     override val name: String,
@@ -55,7 +55,7 @@ open class EvidenceTypeBase(
     override val validityPeriodConstraint: PeriodOfTime? = null,
     override val issuingPlace: CoreLocationLocation? = null
 ): EvidenceType
-
+@Serializable
 @JsExport
 open class CoreLocationLocation
 

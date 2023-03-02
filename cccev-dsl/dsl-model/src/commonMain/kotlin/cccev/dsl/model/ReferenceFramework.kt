@@ -1,5 +1,8 @@
 package cccev.dsl.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 open class ReferenceFramework(
 	val identifier: String,
 ) {

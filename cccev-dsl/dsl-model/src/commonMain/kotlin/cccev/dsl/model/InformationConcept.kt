@@ -2,6 +2,7 @@ package cccev.dsl.model
 
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 typealias InformationConceptId = String
 
@@ -16,7 +17,7 @@ interface InformationConcept {
 	val expressionOfExpectedValue: String?
 	val dependsOn: List<InformationConceptId>
 }
-
+@Serializable
 open class InformationConceptBase(
     override val identifier: InformationConceptId,
     override val name: String,

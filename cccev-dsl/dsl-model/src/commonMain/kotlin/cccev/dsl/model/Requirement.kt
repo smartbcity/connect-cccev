@@ -3,6 +3,7 @@ package cccev.dsl.model
 import cccev.dsl.model.builder.ConstraintBuilder
 import cccev.dsl.model.builder.CriterionBuilder
 import cccev.dsl.model.builder.InformationRequirementBuilder
+import kotlinx.serialization.Serializable
 
 /**
  * The unique id of the requirement.
@@ -26,6 +27,7 @@ sealed interface Requirement {
     val hasEvidenceTypeList: List<EvidenceTypeListBase>?
 }
 
+@Serializable
 open class Criterion(
     override val description: String? = null,
     override val identifier: RequirementId?,
@@ -43,6 +45,7 @@ open class Criterion(
     override var hasQualifiedRelation: List<Requirement>? = emptyList(),
 ) : Requirement
 
+@Serializable
 open class InformationRequirement(
     override val description: String?,
     override val identifier: RequirementId?,
@@ -56,6 +59,7 @@ open class InformationRequirement(
     override var hasQualifiedRelation: List<Requirement>? = emptyList(),
 ) : Requirement
 
+@Serializable
 open class Constraint(
     override val description: String?,
     override val identifier: RequirementId?,

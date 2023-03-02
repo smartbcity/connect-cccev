@@ -38,6 +38,10 @@ class RequirementsLinkedBuilder {
         this@RequirementsLinkedBuilder.requirements.add(this)
     }
 
+    operator fun Iterable<Requirement>.unaryPlus() {
+        this@RequirementsLinkedBuilder.requirements.addAll(this)
+    }
+
     fun build(): List<Requirement> = requirements.toList()
 }
 

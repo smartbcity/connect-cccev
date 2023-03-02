@@ -2,6 +2,7 @@ package cccev.dsl.model
 
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 @JsExport
 @JsName("CUnitDTO")
@@ -12,7 +13,7 @@ interface CUnitDTO {
     val notation: String?
     val type: CUnitType
 }
-
+@Serializable
 open class CUnit(
     override val identifier: String,
     override val name: String,
