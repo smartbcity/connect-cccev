@@ -2,6 +2,7 @@ package cccev.s2.request.domain.model
 
 import cccev.dsl.model.Evidence
 import cccev.dsl.model.EvidenceDTO
+import cccev.dsl.model.EvidenceType
 import cccev.dsl.model.InformationConceptId
 import cccev.dsl.model.RequirementId
 import cccev.dsl.model.SupportedValue
@@ -21,6 +22,7 @@ typealias RequestId = String
 
 /**
  * The request to gather data
+ * @parent [cccev.f2.request.domain.features.D2RequestApiPage]
  * @d2 model
  */
 @JsExport

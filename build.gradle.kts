@@ -32,7 +32,7 @@ fixers {
 		url = "https://gitlab.smartb.city/fixers/cccev"
 	}
 	d2 {
-		outputDirectory = file("storybook/d2/")
+		outputDirectory = file("storybook/stories/d2/")
 	}
 	kt2Ts {
 		outputDirectory = "web/kotlin"

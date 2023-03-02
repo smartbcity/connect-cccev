@@ -1,9 +1,0 @@
-
-
-## Evidence Type List Create
-
-Type: `EvidenceTypeListCreateFunction`
-
-Create a new evidence type list.
-
-
