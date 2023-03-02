@@ -144,6 +144,13 @@
     kind: 'interface',
     interfaces: [RequestEvent]
   };
+  function RequestDTO() {
+  }
+  RequestDTO.$metadata$ = {
+    simpleName: 'RequestDTO',
+    kind: 'interface',
+    interfaces: []
+  };
   //region block: exports
   function $jsExportAll$(_) {
     var $cccev = _.cccev || (_.cccev = {});
@@ -198,6 +205,11 @@
     var $cccev$s2$request$domain = $cccev$s2$request.domain || ($cccev$s2$request.domain = {});
     var $cccev$s2$request$domain$features = $cccev$s2$request$domain.features || ($cccev$s2$request$domain.features = {});
     var $cccev$s2$request$domain$features$command = $cccev$s2$request$domain$features.command || ($cccev$s2$request$domain$features.command = {});
+    var $cccev = _.cccev || (_.cccev = {});
+    var $cccev$s2 = $cccev.s2 || ($cccev.s2 = {});
+    var $cccev$s2$request = $cccev$s2.request || ($cccev$s2.request = {});
+    var $cccev$s2$request$domain = $cccev$s2$request.domain || ($cccev$s2$request.domain = {});
+    var $cccev$s2$request$domain$model = $cccev$s2$request$domain.model || ($cccev$s2$request$domain.model = {});
   }
   $jsExportAll$(_);
   _.$jsExportAll$ = $jsExportAll$;

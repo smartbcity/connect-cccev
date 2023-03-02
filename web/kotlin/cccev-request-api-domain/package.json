@@ -2,8 +2,7 @@
   "name": "cccev-request-api-domain",
   "version": "0.0.0-latest",
   "main": "kotlin/cccev-request-api-domain.js",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "dependencies": {},
   "peerDependencies": {},
   "optionalDependencies": {},
