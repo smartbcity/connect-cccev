@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { pdfjs, Document, Page } from 'react-pdf'
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5'
 import { LoadingPdf } from './LoadingPdf'
 import { styled } from '@mui/material'
 import InfiniteScroll from 'react-infinite-scroll-component'

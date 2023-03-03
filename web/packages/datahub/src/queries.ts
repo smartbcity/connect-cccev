@@ -1,9 +1,10 @@
-import { cccev } from "cccev-cccev-dsl-dto"
+import { cccev } from "cccev-evidence-f2-domain"
+import { cccev as cccevConcept } from "cccev-concept-f2-domain"
 import { certificatRequest } from "./certificatRequest"
 
 
-interface GetEvidenceTypeListsQueryDTO extends cccev.dsl.dto.query.GetEvidenceTypeListsQueryDTO { }
-interface GetEvidenceTypeListsQueryResultDTO extends cccev.dsl.dto.query.GetEvidenceTypeListsQueryResultDTO { }
+interface GetEvidenceTypeListsQueryDTO extends cccev.f2.evidence.domain.features.query.GetEvidenceTypeListsQueryDTO { }
+interface GetEvidenceTypeListsQueryResultDTO extends cccev.f2.evidence.domain.features.query.GetEvidenceTypeListsQueryResultDTO { }
 
 export const getEvidenceTypeLists = async () => {
     //@ts-ignore
@@ -19,8 +20,8 @@ export const getEvidenceTypeLists = async () => {
     }))[0]
 }
 
-interface GetInformationConceptsQueryDTO extends cccev.dsl.dto.query.GetInformationConceptsQueryDTO { }
-interface GetInformationConceptsQueryResultDTO extends cccev.dsl.dto.query.GetInformationConceptsQueryResultDTO { }
+interface GetInformationConceptsQueryDTO extends cccevConcept.f2.concept.domain.query.GetInformationConceptsQueryDTO { }
+interface GetInformationConceptsQueryResultDTO extends cccevConcept.f2.concept.domain.query.GetInformationConceptsQueryResultDTO { }
 
 
 export const getInformationConcepts = async () => {

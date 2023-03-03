@@ -1,16 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import reportWebVitals from "reportWebVitals";
-import { AppProvider } from "@smartb/g2-providers";
 import { Languages, languages } from "i18n";
 import { store } from "store";
-import { ThemeContextProvider } from "@smartb/g2-themes";
+import { ThemeContextProvider, AppProvider, ReduxProvider } from "@smartb/g2";
 import { LoadingComponent } from "components";
 import { muiTheme, theme } from "Themes";
 import App from "App";
 import { InitApp } from "./InitApp";
-import {Provider} from "react-redux";
 import { QueryClient } from 'react-query'
+import { createRoot } from 'react-dom/client'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,11 +18,15 @@ const queryClient = new QueryClient({
   }
 })
 
+//@ts-ignore
+const container: HTMLElement = document.getElementById("root")
 
-ReactDOM.render(
+const root = createRoot(container)
+
+root.render(
   <React.StrictMode>
     <ThemeContextProvider theme={theme} customMuiTheme={muiTheme}>
-      <Provider store={store}>
+      <ReduxProvider reduxStore={store}>
           <AppProvider<Languages>
             languages={languages}
             queryClient={queryClient}
@@ -34,10 +36,9 @@ ReactDOM.render(
               <App />
             </InitApp>
           </AppProvider>
-      </Provider>
+      </ReduxProvider>
     </ThemeContextProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -18,7 +18,7 @@ export const EvidenceTypeListDisplayer = (props: EvidenceTypeListDisplayerProps)
 
     const evidencesDisplay = useMemo(() => evidenceTypeLists.map((evidenceTypeList, firstIndex) => (
         <Fragment key={evidenceTypeList.identifier}>
-            {evidenceTypeList.specifiesEvidenceType.map((evidenceType, secondIndex) => {
+            {evidenceTypeList.specifiesEvidenceType.map((evidenceType: any, secondIndex: any,) => {
                 let divider: JSX.Element = <Divider sx={{ borderBottom: "2px solid black", width: "20px" }} />
                 if (firstIndex === 0 && secondIndex === 0) {
                     divider = (

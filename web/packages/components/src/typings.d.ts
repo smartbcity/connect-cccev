@@ -1,3 +1,4 @@
+
 /**
  * Default CSS definition for typescript,
  * will be overridden with file-specific definitions by rollup
@@ -40,6 +41,30 @@ declare module '*.JPG' {
 declare module '*.pdf' {
   const value: any
   export = value
+}
+
+declare module "react-pdf/dist/esm/entry.webpack5" {
+  import {Document as _Document, Page as _Page, PageProps, DocumentProps} from "react-pdf"
+  function componentWithChildren<Props>(Component: React.ComponentType<Props>) {
+    return Component as React.ComponentType<Props>;
+  }
+  const Document = componentWithChildren<DocumentProps>(_Document);
+  const Page = componentWithChildren<PageProps>(_Page);
+
+  export const {Document, Page}
+}
+
+
+declare module "react-pdf" {
+  import {Document as _Document, Page as _Page, PageProps, DocumentProps} from "react-pdf"
+  function componentWithChildren<Props>(Component: React.ComponentType<Props>) {
+    return Component as React.ComponentType<Props>;
+  }
+  const Document = componentWithChildren<DocumentProps>(_Document);
+  const Page = componentWithChildren<PageProps>(_Page);
+
+  const pdfjs: any
+  export const {Document, Page, pdfjs}
 }
 
 

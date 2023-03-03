@@ -37,3 +37,35 @@ declare module '*.pdf' {
   export = value
 }
 
+declare type Nullable<T> = T | undefined;
+declare type Array<T> = T[];
+declare namespace kotlin.collections {
+  type List<T> = T[];
+}
+declare namespace kotlin {
+  type Long = number;
+}
+
+declare module "react-pdf/dist/esm/entry.webpack5" {
+  import {Document as _Document, Page as _Page, PageProps, DocumentProps} from "react-pdf"
+  function componentWithChildren<Props>(Component: React.ComponentType<Props>) {
+    return Component as React.ComponentType<Props>;
+  }
+  const Document = componentWithChildren<DocumentProps>(_Document);
+  const Page = componentWithChildren<PageProps>(_Page);
+
+  export const {Document, Page}
+}
+
+declare module "react-pdf" {
+  import {Document as _Document, Page as _Page, PageProps, DocumentProps} from "react-pdf"
+  function componentWithChildren<Props>(Component: React.ComponentType<Props>) {
+    return Component as React.ComponentType<Props>;
+  }
+  const Document = componentWithChildren<DocumentProps>(_Document);
+  const Page = componentWithChildren<PageProps>(_Page);
+
+  const pdfjs: any
+
+  export const {Document, Page, pdfjs}
+}

@@ -1,12 +1,6 @@
-import { Theme as AruiTheme } from "@smartb/g2-themes";
 import { ThemeOptions } from "@mui/material";
-import { StyleProps } from "@smartb/g2-layout";
+import { Theme as AruiTheme } from "@smartb/g2";
 
-export const appLayoutStyleProps: StyleProps = {
-  appBarHeight: 55,
-  detailDrawerWidth: 180,
-  menuWidth: 180,
-};
 
 type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;

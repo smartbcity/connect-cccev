@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react'
-import { PopUp, PopUpAction } from '@smartb/g2-layout'
+import { PopUp, Action } from '@smartb/g2'
 import { Select, Option } from '@smartb/g2-forms'
 import { useTheme } from '@smartb/g2-themes'
 import { Typography } from '@mui/material'
@@ -32,7 +32,7 @@ export const AddEvidencePopUp = (props: addEvidencePopUpProps) => {
     )
 
 
-    const actions = useMemo((): PopUpAction[] => errorMessage ? [{
+    const actions = useMemo((): Action[] => errorMessage ? [{
         key: "addEvidencePopUp-ok",
         label: "Ok",
         onClick: onCloseMemoized
@@ -83,6 +83,7 @@ export const AddEvidencePopUp = (props: addEvidencePopUpProps) => {
                     <Select
                         options={selectOptions}
                         value={evidenceTypeId}
+                        //@ts-ignore
                         onChangeValue={setEvidenceTypeId}
                     />
                 </>

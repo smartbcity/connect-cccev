@@ -35,9 +35,11 @@ const fetchEvidenceTypeLists = (
 ) => {
   return async (dispatch: Dispatch, getState: () => State) => {
     const state = getState()
+    //@ts-ignore
     if (state.evidence.fetchStatus !== "PENDING") {
       dispatch(setFetchStatus("PENDING"))
       const evidenceTypeLists = (await getEvidenceTypeLists()).evidenceTypeLists
+      //@ts-ignore
       dispatch(setEvidenceTypeLists(evidenceTypeLists))
     }
   };

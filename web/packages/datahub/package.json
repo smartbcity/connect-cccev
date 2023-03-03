@@ -7,22 +7,5 @@
   "repository": "SmartB/components",
   "main": "src/index.ts",
   "source": "src/index.ts",
-  "types": "src/index.ts",
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {},
-  "peerDependencies": {
-    "react": "^17.0.1",
-    "@mui/material": "^5.0.1",
-    "@mui/icons-material": "^5.0.1",
-    "@smartb/g2": "1.0.0-alpha.39"
-  },
-  "dependencies": {
-    "utils": "^1.0.0",
-    "cccev-cccev-dsl-core": "0.0.0-latest",
-    "cccev-cccev-dsl-dto": "0.0.0-latest",
-    "cccev-request-api-domain": "0.0.0-latest",
-    "cccev-request-domain": "0.0.0-latest"
-  }
+  "types": "src/index.ts"
 }

@@ -55,7 +55,7 @@ export const Main = (props: MainProps) => {
     )
 
     const globalFormState = useFormWithPartialFields({
-        partialfFields: partialFields,
+        fields: partialFields,
         onSubmit: onSubmit,
         formikConfig: {
             enableReinitialize: true
@@ -109,7 +109,7 @@ const informationConceptsToCategories = (informationConcepts: InformationConcept
 const filterInfoConcepts = (informationConcepts: InformationConceptDTO[], filters: FiltersState) => {
     return informationConcepts.filter((info) => {
         if (filters.evidence) {
-            if (!info.evidenceTypes.some((evidenceTypeIds) => !!evidenceTypeIds.find((evidenceTypeId) => filters.evidence === evidenceTypeId))) {
+            if (!info.evidenceTypeChoices.evidenceTypeLists.some((evidenceTypeIds: any) => !!evidenceTypeIds.find((evidenceTypeId: any) => filters.evidence === evidenceTypeId))) {
                 return false
             }
         }
