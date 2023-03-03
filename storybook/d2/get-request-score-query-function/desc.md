@@ -1,9 +1,0 @@
-
-
-## Get Request Score Query
-
-Type: `GetRequestScoreQueryFunction`
-
-Refuse to a request.
-
-

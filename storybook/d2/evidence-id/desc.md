@@ -1,9 +1,0 @@
-
-
-# EvidenceId
-
-Type: `EvidenceId`
-
-The unique id of the evidence.
-
-

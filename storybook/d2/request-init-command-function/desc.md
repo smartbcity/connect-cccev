@@ -1,9 +1,0 @@
-
-
-## Request Init Command
-
-Type: `RequestInitCommandFunction`
-
-Init a request.
-
-
