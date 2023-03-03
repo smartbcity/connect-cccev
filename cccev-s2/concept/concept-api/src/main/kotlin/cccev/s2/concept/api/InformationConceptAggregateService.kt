@@ -15,6 +15,7 @@ class InformationConceptAggregateService(
     override suspend fun create(command: InformationConceptCreateCommand) = automate.createWithEvent(command) {
         val entity = InformationConceptEntity(
             status = InformationConceptState.EXISTS,
+            identifier = command.identifier,
             name = command.name,
             unitId = command.unitId,
             description = command.description,

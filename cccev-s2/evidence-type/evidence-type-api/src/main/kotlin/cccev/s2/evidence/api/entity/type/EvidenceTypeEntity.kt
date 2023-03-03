@@ -13,6 +13,7 @@ import java.util.UUID
 data class EvidenceTypeEntity(
     @Id
     val id: EvidenceTypeId = UUID.randomUUID().toString(),
+    val identifier: String?,
     val name: String,
     val description: String,
     val validityPeriodConstraint: Long?,

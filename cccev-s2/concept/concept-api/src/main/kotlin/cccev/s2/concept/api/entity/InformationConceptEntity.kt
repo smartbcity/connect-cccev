@@ -14,6 +14,7 @@ import java.util.UUID
 data class InformationConceptEntity(
     @Id
     val id: InformationConceptId = UUID.randomUUID().toString(),
+    val identifier: String?,
     val name: String,
     val unitId: DataUnitId,
     val description: String,

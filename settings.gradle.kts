@@ -23,14 +23,17 @@ include(
 )
 include(
 	"cccev-f2:concept-f2:concept-f2-api",
+	"cccev-f2:concept-f2:concept-f2-client",
 	"cccev-f2:concept-f2:concept-f2-domain",
 	"cccev-f2:evidence-f2:evidence-f2-api",
 	"cccev-f2:evidence-f2:evidence-f2-domain",
 	"cccev-f2:evidence-type-f2:evidence-type-f2-api",
+	"cccev-f2:evidence-type-f2:evidence-type-f2-client",
 	"cccev-f2:evidence-type-f2:evidence-type-f2-domain",
 	"cccev-f2:request-f2:request-f2-api",
 	"cccev-f2:request-f2:request-f2-domain",
 	"cccev-f2:unit-f2:unit-f2-api",
+	"cccev-f2:unit-f2:unit-f2-client",
 	"cccev-f2:unit-f2:unit-f2-domain",
 )
 include(

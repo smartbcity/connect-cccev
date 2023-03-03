@@ -3,6 +3,7 @@ package cccev.f2.concept.api
 import cccev.f2.concept.api.service.InformationConceptF2AggregateService
 import cccev.f2.concept.api.service.InformationConceptF2FinderService
 import cccev.f2.concept.domain.D2InformationConceptF2Page
+import cccev.f2.concept.domain.InformationConceptApi
 import cccev.f2.concept.domain.command.InformationConceptCreateFunction
 import cccev.f2.concept.domain.query.GetInformationConceptsQueryFunction
 import cccev.f2.concept.domain.query.GetInformationConceptsQueryResult
@@ -21,11 +22,11 @@ import s2.spring.utils.logger.Logger
 class InformationConceptEndpoint(
     private val informationConceptF2AggregateService: InformationConceptF2AggregateService,
     private val informationConceptF2FinderService: InformationConceptF2FinderService
-) {
+): InformationConceptApi {
     private val logger by Logger()
 
     @Bean
-    fun conceptGet(): InformationConceptGetFunction = f2Function { query ->
+    override fun conceptGet(): InformationConceptGetFunction = f2Function { query ->
         logger.info("conceptGet: $query")
         informationConceptF2FinderService.getOrNull(query.id).let(::InformationConceptGetResultDTOBase)
     }
@@ -42,7 +43,7 @@ class InformationConceptEndpoint(
     }
 
     @Bean
-    fun conceptCreate(): InformationConceptCreateFunction = f2Function { command ->
+    override fun conceptCreate(): InformationConceptCreateFunction = f2Function { command ->
         logger.info("conceptCreate: $command")
         informationConceptF2AggregateService.create(command)
     }

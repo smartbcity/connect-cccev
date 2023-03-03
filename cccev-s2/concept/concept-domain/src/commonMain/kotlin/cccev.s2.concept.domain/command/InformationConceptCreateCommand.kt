@@ -5,9 +5,9 @@ import cccev.s2.concept.domain.InformationConceptEvent
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.concept.domain.InformationConceptInitCommand
 import cccev.s2.unit.domain.DataUnitId
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
-import kotlinx.serialization.Serializable
 
 /**
  * Create a new information concept.
@@ -20,6 +20,12 @@ interface InformationConceptCreateFunction
 @JsExport
 @JsName("InformationConceptCreateCommandDTO")
 interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
+    /**
+     * Custom identifier of the information concept.
+     * @example [cccev.s2.concept.domain.model.InformationConcept.name]
+     */
+    val identifier: String?
+
     /**
      * The name of the information concept.
      * @example [cccev.s2.concept.domain.model.InformationConcept.name]
@@ -60,6 +66,7 @@ interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
 @Serializable
 data class InformationConceptCreateCommand(
     override val name: String,
+    override val identifier: String?,
     override val unitId: DataUnitId,
     override val description: String,
     override val expressionOfExpectedValue: String?,

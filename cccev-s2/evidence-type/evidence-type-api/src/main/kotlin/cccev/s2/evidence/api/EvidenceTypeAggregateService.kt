@@ -24,6 +24,7 @@ class EvidenceTypeAggregateService(
 ): EvidenceTypeAggregate {
     override suspend fun create(command: EvidenceTypeCreateCommand) = typeAutomate.createWithEvent(command) {
         val entity = EvidenceTypeEntity(
+            identifier = command.identifier,
             name = command.name,
             description = command.description,
             validityPeriodConstraint = command.validityPeriodConstraint,
@@ -36,6 +37,7 @@ class EvidenceTypeAggregateService(
         checkEvidenceTypesExist(command.specifiesEvidenceType)
 
         val entity = EvidenceTypeListEntity(
+            identifier = command.identifier,
             name = command.name,
             description = command.description,
             specifiesEvidenceType = command.specifiesEvidenceType,

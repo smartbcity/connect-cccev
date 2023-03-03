@@ -14,6 +14,7 @@ import java.util.UUID
 data class EvidenceTypeListEntity(
     @Id
     val id: EvidenceTypeListId = UUID.randomUUID().toString(),
+    var identifier: String?,
     var name: String,
     var description: String,
     var specifiesEvidenceType: List<EvidenceTypeId>,
