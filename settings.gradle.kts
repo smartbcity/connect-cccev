@@ -34,6 +34,10 @@ include(
 	"cccev-f2:unit-f2:unit-f2-domain",
 )
 include(
+	"cccev-projection:projection-api",
+	"cccev-projection:projection-domain"
+)
+include(
 	"cccev-s2:concept:concept-api",
 	"cccev-s2:concept:concept-domain",
 	"cccev-s2:evidence-type:evidence-type-api",
@@ -55,6 +59,3 @@ include(
 	"cccev-s2:requirement:requirement-api",
 	"cccev-s2:requirement:requirement-domain",
 )
-
-
-
