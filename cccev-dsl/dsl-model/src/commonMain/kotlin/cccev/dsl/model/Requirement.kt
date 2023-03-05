@@ -43,7 +43,26 @@ open class Criterion(
     override val isDerivedFrom: List<ReferenceFramework>? = emptyList(),
     override var isRequirementOf: List<Requirement>? = emptyList(),
     override var hasQualifiedRelation: List<Requirement>? = emptyList(),
-) : Requirement
+) : Requirement {
+    override fun toString(): String {
+        return "Criterion(" +
+                "description=$description, " +
+                "identifier=$identifier, " +
+                "name=$name, " +
+                "type=$type, " +
+                "bias=$bias, " +
+                "weight=$weight, " +
+                "weightingConsiderationDescription=$weightingConsiderationDescription, " +
+                "weightingType=$weightingType, " +
+                "hasConcept=$hasConcept, " +
+                "hasRequirement=$hasRequirement, " +
+                "hasEvidenceTypeList=$hasEvidenceTypeList, " +
+                "isDerivedFrom=$isDerivedFrom, " +
+                "isRequirementOf=$isRequirementOf, " +
+                "hasQualifiedRelation=$hasQualifiedRelation" +
+                ")"
+    }
+}
 
 @Serializable
 open class InformationRequirement(
@@ -57,7 +76,22 @@ open class InformationRequirement(
     override val isDerivedFrom: List<ReferenceFramework>? = emptyList(),
     override var isRequirementOf: List<Requirement>? = emptyList(),
     override var hasQualifiedRelation: List<Requirement>? = emptyList(),
-) : Requirement
+) : Requirement {
+    override fun toString(): String {
+        return "InformationRequirement(" +
+                "description=$description, " +
+                "identifier=$identifier, " +
+                "name=$name, " +
+                "type=$type, " +
+                "hasConcept=$hasConcept, " +
+                "hasRequirement=$hasRequirement, " +
+                "hasEvidenceTypeList=$hasEvidenceTypeList, " +
+                "isDerivedFrom=$isDerivedFrom, " +
+                "isRequirementOf=$isRequirementOf, " +
+                "hasQualifiedRelation=$hasQualifiedRelation" +
+                ")"
+    }
+}
 
 @Serializable
 open class Constraint(
@@ -71,7 +105,22 @@ open class Constraint(
     override val isDerivedFrom: List<ReferenceFramework>? = emptyList(),
     override var isRequirementOf: List<Requirement>? = emptyList(),
     override var hasQualifiedRelation: List<Requirement>? = emptyList(),
-) : Requirement
+) : Requirement {
+    override fun toString(): String {
+        return "Constraint(" +
+                "description=$description, " +
+                "identifier=$identifier, " +
+                "name=$name, " +
+                "type=$type, " +
+                "hasConcept=$hasConcept, " +
+                "hasRequirement=$hasRequirement, " +
+                "hasEvidenceTypeList=$hasEvidenceTypeList, " +
+                "isDerivedFrom=$isDerivedFrom, " +
+                "isRequirementOf=$isRequirementOf, " +
+                "hasQualifiedRelation=$hasQualifiedRelation" +
+                ")"
+    }
+}
 
 /**
  * Custom requirement which is considered validated when at least K of its N sub-requirements are met

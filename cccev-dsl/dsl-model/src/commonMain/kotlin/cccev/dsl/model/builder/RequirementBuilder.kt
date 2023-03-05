@@ -71,16 +71,20 @@ abstract class AbstractRequirementBuilder<T : Requirement> : RequirementBuilder<
     }
 
     override fun isRequirementOf(lambda: RequirementsLinkedBuilder.() -> Unit) {
-        isRequirementOf.addAll(RequirementsLinkedBuilder().apply(lambda).build())
+        val list = RequirementsLinkedBuilder().apply(lambda).build()
+        isRequirementOf.addAll(list)
     }
     override fun hasRequirement(lambda: RequirementsLinkedBuilder.() -> Unit) {
-        hasRequirement.addAll(RequirementsLinkedBuilder().apply(lambda).build())
+        val list = RequirementsLinkedBuilder().apply(lambda).build()
+        hasRequirement.addAll(list)
     }
     override fun hasQualifiedRelation(lambda: RequirementsLinkedBuilder.() -> Unit) {
-        hasQualifiedRelation.addAll(RequirementsLinkedBuilder().apply(lambda).build())
+        val list = RequirementsLinkedBuilder().apply(lambda).build()
+        hasQualifiedRelation.addAll(list)
     }
 
     override fun isDerivedFrom(lambda: ReferenceFrameworkListBuilder.() -> Unit) {
+        val list = ReferenceFrameworkListBuilder().apply(lambda).build()
         isDerivedFrom.addAll(ReferenceFrameworkListBuilder().apply(lambda).build())
     }
 }
