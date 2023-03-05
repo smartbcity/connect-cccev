@@ -1,15 +1,16 @@
-import { useNodesState, useEdgesState, ReactFlow } from "reactflow"
-import { cccev, requirementsToNodes, requirementsToEdges } from './cccev';
+import {useNodesState, useEdgesState, ReactFlow, Background, BackgroundVariant, MiniMap, Controls} from "reactflow"
+import { requirementsToNodes, requirementsToEdges } from './cccev';
 import 'reactflow/dist/style.css';
 import { CustomNode } from "./CustomNode";
+import axess from "./axess.json";
 
 const nodeTypes = {
     custom: CustomNode,
 };
 
 export const ReactFlowTest = () => {
-    const [nodes, _, onNodesChange] = useNodesState(requirementsToNodes(cccev));
-    const [edges, , onEdgesChange] = useEdgesState(requirementsToEdges(cccev));
+    const [nodes, _, onNodesChange] = useNodesState(requirementsToNodes(axess));
+    const [edges, , onEdgesChange] = useEdgesState(requirementsToEdges(axess));
     return (
         <main
             style={{
@@ -25,7 +26,12 @@ export const ReactFlowTest = () => {
                 nodeTypes={nodeTypes}
                 fitView
                 attributionPosition="bottom-left"
-            ></ReactFlow>
+                minZoom={0.05}
+            >
+              <Background variant={BackgroundVariant.Dots} />
+              <MiniMap zoomable pannable/>
+              <Controls />
+            </ReactFlow>
         </main>
     )
 }

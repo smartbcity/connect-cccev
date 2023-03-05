@@ -28,12 +28,12 @@ export const CustomNode = (props: NodeProps<Requirement>) => {
         setExpanded(!expanded);
     };
     return (
-        <Card sx={{ maxWidth: 400, border: "1px solid #EEEEEE", boxShadow: "unset" }}>
+        <Card sx={{ maxWidth: 400, border: "2px solid #000000", boxShadow: "unset" }}>
             <CardHeader
                 sx={{
                     borderBottom: "1px solid #EEEEEE"
                 }}
-                title={data.name}
+                title={`${ data.identifier } - ${data.name}`}
                 subheader={data.type?.identifier}
                 action={
                     <ExpandMore
