@@ -4,6 +4,7 @@ import cccev.s2.concept.domain.D2InformationConceptPage
 import cccev.s2.concept.domain.InformationConceptEvent
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.concept.domain.InformationConceptInitCommand
+import cccev.s2.concept.domain.InformationConceptState
 import cccev.s2.unit.domain.DataUnitId
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
@@ -36,7 +37,7 @@ interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
      * The data unit used for the information concept.
      * @example [cccev.s2.concept.domain.model.InformationConcept.unitId]
      */
-    val unitId: DataUnitId
+    val hasUnit: DataUnitId
 
     /**
      * The description of the information concept.
@@ -67,7 +68,7 @@ interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
 data class InformationConceptCreateCommand(
     override val name: String,
     override val identifier: String?,
-    override val unitId: DataUnitId,
+    override val hasUnit: DataUnitId,
     override val description: String,
     override val expressionOfExpectedValue: String?,
     override val dependsOn: List<InformationConceptId>
@@ -79,15 +80,61 @@ data class InformationConceptCreateCommand(
  */
 @JsExport
 @JsName("InformationConceptCreatedEventDTO")
-interface InformationConceptCreatedEventDTO: InformationConceptEvent
+interface InformationConceptCreatedEventDTO: InformationConceptEvent {
+    /**
+     * Identifier of the created information concept.
+     */
+    val id: InformationConceptId
+
+    /**
+     * @ref [InformationConceptCreateCommandDTO.identifier]
+     */
+    val identifier: String?
+
+    /**
+     * @ref [InformationConceptCreateCommandDTO.name]
+     */
+    val name: String
+
+    /**
+     * @ref [InformationConceptCreateCommandDTO.hasUnit]
+     */
+    val hasUnit: DataUnitId
+
+    /**
+     * @ref [InformationConceptCreateCommandDTO.description]
+     */
+    val description: String
+
+    /**
+     * @ref [InformationConceptCreateCommandDTO.expressionOfExpectedValue]
+     */
+    val expressionOfExpectedValue: String?
+
+    /**
+     * @ref [InformationConceptCreateCommandDTO.dependsOn]
+     */
+    val dependsOn: List<InformationConceptId>
+
+    /**
+     * Status of the information concept
+     */
+    val status: InformationConceptState
+}
 
 /**
  * @d2 inherit
  */
 @Serializable
 data class InformationConceptCreatedEvent(
-    /**
-     * Identifier of the created information concept.
-     */
-    override val id: InformationConceptId
-): InformationConceptCreatedEventDTO
+    override val id: InformationConceptId,
+    override val identifier: String?,
+    override val name: String,
+    override val hasUnit: DataUnitId,
+    override val description: String,
+    override val expressionOfExpectedValue: String?,
+    override val dependsOn: List<InformationConceptId>,
+    override val status: InformationConceptState
+): InformationConceptCreatedEventDTO {
+    override fun s2Id() = id
+}

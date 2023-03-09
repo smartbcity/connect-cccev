@@ -5,6 +5,7 @@ import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeListEvent
 import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.evidence.domain.EvidenceTypeListInitCommand
+import cccev.s2.evidence.domain.EvidenceTypeListState
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -63,7 +64,33 @@ interface EvidenceTypeListCreatedEventDTO: EvidenceTypeListEvent {
     /**
      * Identifier of the created evidence type list.
      */
-    override val id: EvidenceTypeListId
+    val id: EvidenceTypeListId
+
+    /**
+     * Custom identifier of the evidence type list.
+     * @example [cccev.s2.evidence.domain.model.EvidenceTypeList.name]
+     */
+    val identifier: String?
+
+    /**
+     * Name of the evidence type list.
+     * @example [cccev.s2.evidence.domain.model.EvidenceTypeList.name]
+     */
+    val name: String
+
+    /**
+     * Description of the evidence type list.
+     * @example [cccev.s2.evidence.domain.model.EvidenceTypeList.description]
+     */
+    val description: String
+
+    /**
+     *
+     * @example [cccev.s2.evidence.domain.model.EvidenceTypeList.specifiesEvidenceType]
+     */
+    val specifiesEvidenceType: List<EvidenceTypeId>
+
+    val status: EvidenceTypeListState
 }
 
 /**
@@ -72,5 +99,12 @@ interface EvidenceTypeListCreatedEventDTO: EvidenceTypeListEvent {
  */
 @Serializable
 data class EvidenceTypeListCreatedEvent(
-    override val id: EvidenceTypeListId
-): EvidenceTypeListCreatedEventDTO
+    override val id: EvidenceTypeListId,
+    override val identifier: String?,
+    override val name: String,
+    override val description: String,
+    override val specifiesEvidenceType: List<EvidenceTypeId>,
+    override val status: EvidenceTypeListState
+): EvidenceTypeListCreatedEventDTO {
+    override fun s2Id() = id
+}
