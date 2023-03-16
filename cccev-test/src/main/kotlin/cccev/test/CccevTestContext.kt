@@ -13,8 +13,11 @@ import org.springframework.stereotype.Component
 @Component
 class CccevTestContext: TestContext() {
     val conceptIds = testEntities<TestContextKey, InformationConceptId>("InformationConcept")
+    val conceptIdentifiers = testEntities<TestContextKey, String>("InformationConcept with identifier")
     val evidenceTypeIds = testEntities<TestContextKey, EvidenceTypeId>("EvidenceType")
+    val evidenceTypeIdentifiers = testEntities<TestContextKey, String>("EvidenceType with identifier")
     val evidenceTypeListIds = testEntities<TestContextKey, EvidenceTypeListId>("EvidenceTypeList")
+    val evidenceTypeListIdentifiers = testEntities<TestContextKey, String>("EvidenceTypeList with identifier")
     val requirementIds = testEntities<TestContextKey, RequirementId>("Requirement")
     val requirementIdentifiers = testEntities<TestContextKey, RequirementIdentifier>("Requirement with identifier")
     val unitIds = testEntities<TestContextKey, DataUnitId>("DataUnit")

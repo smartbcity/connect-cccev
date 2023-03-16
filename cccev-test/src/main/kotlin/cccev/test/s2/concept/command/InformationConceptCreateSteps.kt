@@ -14,6 +14,7 @@ import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.UUID
 
 class InformationConceptCreateSteps: En, CccevCucumberStepsDefinition() {
 
@@ -94,12 +95,14 @@ class InformationConceptCreateSteps: En, CccevCucumberStepsDefinition() {
 
     private suspend fun createInformationConcept(params: InformationConceptCreateParams) = context.conceptIds.register(params.identifier) {
         command = InformationConceptCreateCommand(
+            identifier = "${params.identifier}_${UUID.randomUUID()}",
             name = params.name,
             hasUnit = context.unitIds[params.unit] ?: params.unit,
             description = params.description,
             expressionOfExpectedValue = params.expressionOfExpectedValue,
             dependsOn = params.dependsOn
         )
+        context.conceptIdentifiers[params.identifier] = command.identifier
         informationConceptAggregateService.create(command).id
     }
 

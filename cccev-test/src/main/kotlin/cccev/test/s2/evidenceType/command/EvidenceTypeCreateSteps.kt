@@ -13,6 +13,7 @@ import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.UUID
 
 class EvidenceTypeCreateSteps: En, CccevCucumberStepsDefinition() {
 
@@ -90,10 +91,12 @@ class EvidenceTypeCreateSteps: En, CccevCucumberStepsDefinition() {
 
     private suspend fun createEvidenceType(params: EvidenceTypeCreateParams) = context.evidenceTypeIds.register(params.identifier) {
         command = EvidenceTypeCreateCommand(
+            identifier = "${params.identifier}_${UUID.randomUUID()}",
             name = params.name,
             description = params.description,
             validityPeriodConstraint = params.validityPeriodConstraint,
         )
+        context.evidenceTypeIdentifiers[params.identifier] = command.identifier
         evidenceTypeAggregateService.create(command).id
     }
 
