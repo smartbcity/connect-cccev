@@ -1,20 +1,23 @@
 package cccev.s2.evidence.api
 
-import cccev.s2.evidence.api.config.EvidenceTypeAutomateExecutor
-import cccev.s2.evidence.api.config.EvidenceTypeListAutomateExecutor
-import cccev.s2.evidence.api.entity.list.EvidenceTypeListEntity
-import cccev.s2.evidence.api.entity.type.EvidenceTypeEntity
+import cccev.s2.evidence.api.entity.list.EvidenceTypeListAutomateExecutor
+import cccev.s2.evidence.api.entity.type.EvidenceTypeAutomateExecutor
 import cccev.s2.evidence.domain.EvidenceTypeAggregate
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeListState
 import cccev.s2.evidence.domain.EvidenceTypeState
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListAddEvidenceTypesCommand
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListAddedEvidenceTypesEvent
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreateCommand
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreatedEvent
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListRemoveEvidenceTypesCommand
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListRemovedEvidenceTypesEvent
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListUpdateCommand
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListUpdatedEvent
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreateCommand
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreatedEvent
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class EvidenceTypeAggregateService(
@@ -22,38 +25,52 @@ class EvidenceTypeAggregateService(
     private val listAutomate: EvidenceTypeListAutomateExecutor,
     private val evidenceTypeFinderService: EvidenceTypeFinderService
 ): EvidenceTypeAggregate {
-    override suspend fun create(command: EvidenceTypeCreateCommand) = typeAutomate.createWithEvent(command) {
-        val entity = EvidenceTypeEntity(
+    override suspend fun create(command: EvidenceTypeCreateCommand) = typeAutomate.init(command) {
+        EvidenceTypeCreatedEvent(
+            id = UUID.randomUUID().toString(),
             identifier = command.identifier,
             name = command.name,
             description = command.description,
             validityPeriodConstraint = command.validityPeriodConstraint,
             status = EvidenceTypeState.EXISTS,
         )
-        entity to EvidenceTypeCreatedEvent(entity.id)
     }
 
-    override suspend fun createList(command: EvidenceTypeListCreateCommand) = listAutomate.createWithEvent(command) {
+    override suspend fun createList(command: EvidenceTypeListCreateCommand) = listAutomate.init(command) {
         checkEvidenceTypesExist(command.specifiesEvidenceType)
 
-        val entity = EvidenceTypeListEntity(
+        EvidenceTypeListCreatedEvent(
+            id = UUID.randomUUID().toString(),
             identifier = command.identifier,
             name = command.name,
             description = command.description,
             specifiesEvidenceType = command.specifiesEvidenceType,
             status = EvidenceTypeListState.EXISTS
         )
-        entity to EvidenceTypeListCreatedEvent(entity.id)
     }
 
-    override suspend fun updateList(command: EvidenceTypeListUpdateCommand) = listAutomate.doTransition(command) {
+    override suspend fun updateList(command: EvidenceTypeListUpdateCommand) = listAutomate.transition(command) {
         checkEvidenceTypesExist(command.specifiesEvidenceType)
 
-        name = command.name
-        description = command.description
-        specifiesEvidenceType = command.specifiesEvidenceType
+//        it.name = command.name
+//        it.description = command.description
+//        it.specifiesEvidenceType = command.specifiesEvidenceType
 
-        this to EvidenceTypeListUpdatedEvent(command.id)
+        EvidenceTypeListUpdatedEvent(command.id)
+    }
+
+    override suspend fun addEvidenceTypes(command: EvidenceTypeListAddEvidenceTypesCommand) = listAutomate.transition(command) {
+        EvidenceTypeListAddedEvidenceTypesEvent(
+            id = command.id,
+            evidenceTypeIds = command.evidenceTypeIds
+        )
+    }
+
+    override suspend fun removeEvidenceTypes(command: EvidenceTypeListRemoveEvidenceTypesCommand) = listAutomate.transition(command) {
+        EvidenceTypeListRemovedEvidenceTypesEvent(
+            id = command.id,
+            evidenceTypeIds = command.evidenceTypeIds
+        )
     }
 
     private suspend fun checkEvidenceTypesExist(ids: Collection<EvidenceTypeId>) {

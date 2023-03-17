@@ -9,6 +9,7 @@ import cccev.s2.requirement.domain.command.RequirementCreatedEvent
 import cccev.s2.requirement.domain.command.RequirementUpdateCommand
 import cccev.s2.requirement.domain.command.RequirementUpdatedEvent
 import cccev.s2.requirement.domain.model.RequirementKind
+import f2.dsl.fnc.invokeWith
 import org.springframework.stereotype.Service
 
 @Service
@@ -24,7 +25,6 @@ class RequirementF2AggregateService(
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
-            isRequirementOf = command.isRequirementOf,
             hasQualifiedRelation = command.hasQualifiedRelation,
         ).let { requirementAggregateService.create(it) }
     }
@@ -38,7 +38,6 @@ class RequirementF2AggregateService(
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
-            isRequirementOf = command.isRequirementOf,
             hasQualifiedRelation = command.hasQualifiedRelation,
         ).let { requirementAggregateService.create(it) }
     }
@@ -52,7 +51,6 @@ class RequirementF2AggregateService(
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
-            isRequirementOf = command.isRequirementOf,
             hasQualifiedRelation = command.hasQualifiedRelation,
         ).let { requirementAggregateService.create(it) }
     }

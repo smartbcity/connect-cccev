@@ -1,13 +1,20 @@
 package cccev.s2.evidence.domain
 
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListAddEvidenceTypesCommand
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListAddedEvidenceTypesEvent
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreateCommand
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreatedEvent
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListRemoveEvidenceTypesCommand
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListRemovedEvidenceTypesEvent
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListUpdateCommand
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListUpdatedEvent
 import s2.dsl.automate.Evt
 import s2.dsl.automate.S2Command
 import s2.dsl.automate.S2InitCommand
 import s2.dsl.automate.S2State
 import s2.dsl.automate.WithId
-import s2.dsl.automate.builder.s2
+import s2.dsl.automate.builder.s2Sourcing
+import s2.dsl.automate.model.WithS2Id
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -19,13 +26,21 @@ import kotlin.js.JsName
  */
 typealias EvidenceTypeListId = String
 
-val s2EvidenceTypeList = s2 {
+val s2EvidenceTypeList = s2Sourcing {
 	name = "EvidenceTypeListS2"
-	init<EvidenceTypeListCreateCommand> {
+	init<EvidenceTypeListCreateCommand, EvidenceTypeListCreatedEvent> {
 		to = EvidenceTypeListState.EXISTS
 		role = EditorRole
 	}
-	selfTransaction<EvidenceTypeListUpdateCommand> {
+	selfTransaction<EvidenceTypeListUpdateCommand, EvidenceTypeListUpdatedEvent> {
+		states += EvidenceTypeListState.EXISTS
+		role = EditorRole
+	}
+	selfTransaction<EvidenceTypeListAddEvidenceTypesCommand, EvidenceTypeListAddedEvidenceTypesEvent> {
+		states += EvidenceTypeListState.EXISTS
+		role = EditorRole
+	}
+	selfTransaction<EvidenceTypeListRemoveEvidenceTypesCommand, EvidenceTypeListRemovedEvidenceTypesEvent> {
 		states += EvidenceTypeListState.EXISTS
 		role = EditorRole
 	}
@@ -45,4 +60,6 @@ interface EvidenceTypeListCommand: S2Command<EvidenceTypeListId>
 
 @JsExport
 @JsName("EvidenceTypeListEvent")
-interface EvidenceTypeListEvent: Evt, WithId<EvidenceTypeListId>
+interface EvidenceTypeListEvent: Evt, WithS2Id<EvidenceTypeListId>, WithId<EvidenceTypeListId> {
+	override fun s2Id() = id
+}

@@ -1,27 +1,17 @@
 package cccev.projection.api.entity.evidencetype
 
-import cccev.projection.api.entity.Relation
-import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListEntity
+import cccev.projection.api.entity.EntityBase
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeState
-import org.springframework.data.neo4j.core.schema.Id
 import org.springframework.data.neo4j.core.schema.Node
-import org.springframework.data.neo4j.core.schema.Relationship
-import java.util.UUID
 
 @Node("EvidenceType")
-class EvidenceTypeEntity {
-    @Id
-    val id: EvidenceTypeId = UUID.randomUUID().toString()
+class EvidenceTypeEntity: EntityBase<EvidenceTypeId, EvidenceTypeState>() {
+    var identifier: String? = null
 
     lateinit var name: String
 
     lateinit var description: String
 
-    @Relationship(Relation.SPECIFIES_EVIDENCE_TYPE, direction = Relationship.Direction.INCOMING)
-    lateinit var isSpecifiedIn: List<EvidenceTypeListEntity>
-
     var validityPeriodConstraint: Long? = null
-
-    lateinit var status: EvidenceTypeState
 }

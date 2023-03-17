@@ -1,10 +1,10 @@
 package cccev.test.s2.evidenceType.data
 
-import cccev.s2.evidence.api.entity.type.EvidenceTypeEntity
-import cccev.s2.evidence.api.entity.type.EvidenceTypeRepository
+import cccev.projection.api.entity.evidencetype.EvidenceTypeEntity
+import cccev.projection.api.entity.evidencetype.EvidenceTypeRepository
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeState
-import cccev.test.AssertionMongoEntity
+import cccev.test.AssertionCrudEntity
 import fixers.bdd.assertion.AssertionBdd
 import org.assertj.core.api.Assertions
 
@@ -12,7 +12,7 @@ fun AssertionBdd.evidenceType(evidenceTypeRepository: EvidenceTypeRepository) = 
 
 class AssertionEvidenceType(
     override val repository: EvidenceTypeRepository
-): AssertionMongoEntity<EvidenceTypeEntity, EvidenceTypeId, AssertionEvidenceType.EvidenceTypeAssert>() {
+): AssertionCrudEntity<EvidenceTypeEntity, EvidenceTypeId, AssertionEvidenceType.EvidenceTypeAssert>() {
 
     override suspend fun assertThat(entity: EvidenceTypeEntity) = EvidenceTypeAssert(entity)
 

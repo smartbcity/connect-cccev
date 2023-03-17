@@ -1,7 +1,7 @@
 package cccev.test.s2.evidenceType.command
 
+import cccev.projection.api.entity.evidencetype.EvidenceTypeRepository
 import cccev.s2.evidence.api.EvidenceTypeAggregateService
-import cccev.s2.evidence.api.entity.type.EvidenceTypeRepository
 import cccev.s2.evidence.domain.EvidenceTypeState
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreateCommand
 import cccev.test.CccevCucumberStepsDefinition
@@ -13,6 +13,7 @@ import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.UUID
 
 class EvidenceTypeCreateSteps: En, CccevCucumberStepsDefinition() {
 
@@ -62,7 +63,7 @@ class EvidenceTypeCreateSteps: En, CccevCucumberStepsDefinition() {
         Then("The evidence type should be created") {
             step {
                 val evidenceTypeId = context.evidenceTypeIds.lastUsed
-                AssertionBdd.evidenceType(evidenceTypeRepository).assertThat(evidenceTypeId).hasFields(
+                AssertionBdd.evidenceType(evidenceTypeRepository).assertThatId(evidenceTypeId).hasFields(
                     status = EvidenceTypeState.EXISTS,
                     name = command.name,
                     description = command.description,
@@ -90,10 +91,12 @@ class EvidenceTypeCreateSteps: En, CccevCucumberStepsDefinition() {
 
     private suspend fun createEvidenceType(params: EvidenceTypeCreateParams) = context.evidenceTypeIds.register(params.identifier) {
         command = EvidenceTypeCreateCommand(
+            identifier = "${params.identifier}_${UUID.randomUUID()}",
             name = params.name,
             description = params.description,
             validityPeriodConstraint = params.validityPeriodConstraint,
         )
+        context.evidenceTypeIdentifiers[params.identifier] = command.identifier
         evidenceTypeAggregateService.create(command).id
     }
 

@@ -1,7 +1,7 @@
 package cccev.test.s2.evidenceTypeList.command
 
+import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListRepository
 import cccev.s2.evidence.api.EvidenceTypeAggregateService
-import cccev.s2.evidence.api.entity.list.EvidenceTypeListRepository
 import cccev.s2.evidence.domain.EvidenceTypeListState
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreateCommand
 import cccev.test.CccevCucumberStepsDefinition
@@ -14,6 +14,7 @@ import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.UUID
 
 class EvidenceTypeListCreateSteps: En, CccevCucumberStepsDefinition() {
 
@@ -63,7 +64,7 @@ class EvidenceTypeListCreateSteps: En, CccevCucumberStepsDefinition() {
         Then("The evidence type list should be created") {
             step {
                 val evidenceTypeListId = context.evidenceTypeListIds.lastUsed
-                AssertionBdd.evidenceTypeList(evidenceTypeListRepository).assertThat(evidenceTypeListId).hasFields(
+                AssertionBdd.evidenceTypeList(evidenceTypeListRepository).assertThatId(evidenceTypeListId).hasFields(
                     status = EvidenceTypeListState.EXISTS,
                     name = command.name,
                     description = command.description,
@@ -83,7 +84,7 @@ class EvidenceTypeListCreateSteps: En, CccevCucumberStepsDefinition() {
                     name = params.name ?: evidenceTypeList.name,
                     description = params.description ?: evidenceTypeList.description,
                     specifiesEvidenceType = params.specifiesEvidenceType?.map { context.evidenceTypeIds.safeGet(it) }
-                        ?: evidenceTypeList.specifiesEvidenceType
+                        ?: evidenceTypeList.specifiesEvidenceType.map { it.id }
                 )
             }
         }
@@ -92,10 +93,12 @@ class EvidenceTypeListCreateSteps: En, CccevCucumberStepsDefinition() {
     private suspend fun createEvidenceTypeList(params: EvidenceTypeListCreateParams) =
         context.evidenceTypeListIds.register(params.identifier) {
         command = EvidenceTypeListCreateCommand(
+            identifier = "${params.identifier}_${UUID.randomUUID()}",
             name = params.name,
             description = params.description,
             specifiesEvidenceType = params.specifiesEvidenceType.map { context.evidenceTypeIds[it] ?: it }
         )
+        context.evidenceTypeListIdentifiers[params.identifier] = command.identifier
         evidenceTypeListAggregateService.createList(command).id
     }
 

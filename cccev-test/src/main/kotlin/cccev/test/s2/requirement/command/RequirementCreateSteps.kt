@@ -1,7 +1,7 @@
 package cccev.test.s2.requirement.command
 
+import cccev.projection.api.entity.requirement.RequirementRepository
 import cccev.s2.requirement.api.RequirementAggregateService
-import cccev.s2.requirement.api.entity.RequirementRepository
 import cccev.s2.requirement.domain.RequirementState
 import cccev.s2.requirement.domain.command.RequirementCreateCommand
 import cccev.s2.requirement.domain.model.RequirementKind
@@ -16,6 +16,7 @@ import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
+import java.util.UUID
 
 class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
 
@@ -64,8 +65,8 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
 
         Then("The requirement should be created") {
             step {
-                val conceptId = context.conceptIds.lastUsed
-                AssertionBdd.requirement(requirementRepository).assertThat(conceptId).hasFields(
+                val requirementId = context.requirementIds.lastUsed
+                AssertionBdd.requirement(requirementRepository).assertThatId(requirementId).hasFields(
                     status = RequirementState.CREATED,
                     kind = command.kind,
                     name = command.name,
@@ -79,8 +80,8 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
 
         Then("The requirement should be created:") { params: RequirementAssertParams ->
             step {
-                val conceptId = context.conceptIds.safeGet(params.identifier)
-                val requirement = requirementRepository.findById(conceptId).awaitSingleOrNull()
+                val requirementId = context.requirementIds.safeGet(params.identifier)
+                val requirement = requirementRepository.findById(requirementId).awaitSingleOrNull()
                 Assertions.assertThat(requirement).isNotNull
 
                 AssertionBdd.requirement(requirementRepository).assertThat(requirement!!).hasFields(
@@ -88,27 +89,28 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
                     kind = params.kind ?: requirement.kind,
                     name = params.name ?: requirement.name,
                     description = params.description ?: requirement.description,
-                    hasRequirement = params.hasRequirement?.map(context.requirementIds::safeGet) ?: requirement.hasRequirement,
-                    hasConcept = params.hasConcept?.map(context.conceptIds::safeGet) ?: requirement.hasConcept,
+                    hasRequirement = params.hasRequirement?.map(context.requirementIds::safeGet)
+                        ?: requirement.hasRequirement.map { it.id },
+                    hasConcept = params.hasConcept?.map(context.conceptIds::safeGet) ?: requirement.hasConcept.map { it.id },
                     hasEvidenceTypeList = params.hasEvidenceTypeList?.map(context.evidenceTypeListIds::safeGet)
-                        ?: requirement.hasEvidenceTypeList,
+                        ?: requirement.hasEvidenceTypeList.map { it.id },
                 )
             }
         }
     }
 
-    private suspend fun createRequirement(params: RequirementCreateParams) = context.conceptIds.register(params.identifier) {
+    private suspend fun createRequirement(params: RequirementCreateParams) = context.requirementIds.register(params.identifier) {
         command = RequirementCreateCommand(
-            identifier = params.identifier,
+            identifier = "${params.identifier}_${UUID.randomUUID()}",
             kind = params.kind,
             name = params.name,
             description = params.description,
-            hasRequirement = params.hasRequirement.map { context.requirementIds[it] ?: it },
+            hasRequirement = params.hasRequirement.map { context.requirementIdentifiers[it] ?: it },
+            hasQualifiedRelation = params.hasQualifiedRelation.map { context.requirementIdentifiers[it] ?: it },
             hasConcept = params.hasConcept.map { context.conceptIds[it] ?: it },
             hasEvidenceTypeList = params.hasEvidenceTypeList.map { context.evidenceTypeListIds[it] ?: it },
-            isRequirementOf = params.isRequirementOf.map { context.isRequirementOf[it] ?: it },
-            hasQualifiedRelation = params.hasQualifiedRelation.map { context.hasQualifiedRelation[it] ?: it },
         )
+        context.requirementIdentifiers[params.identifier] = command.identifier
         requirementAggregateService.create(command).id
     }
 

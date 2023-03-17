@@ -1,6 +1,7 @@
 package cccev.s2.concept.domain
 
 import cccev.s2.concept.domain.command.InformationConceptCreateCommand
+import cccev.s2.concept.domain.command.InformationConceptCreatedEvent
 import s2.dsl.automate.Evt
 import s2.dsl.automate.S2Command
 import s2.dsl.automate.S2InitCommand
@@ -8,6 +9,8 @@ import s2.dsl.automate.S2Role
 import s2.dsl.automate.S2State
 import s2.dsl.automate.WithId
 import s2.dsl.automate.builder.s2
+import s2.dsl.automate.builder.s2Sourcing
+import s2.dsl.automate.model.WithS2Id
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -20,9 +23,9 @@ import kotlin.js.JsName
  */
 typealias InformationConceptId = String
 
-val s2InformationConcept = s2 {
+val s2InformationConcept = s2Sourcing {
 	name = "RequestS2"
-	init<InformationConceptCreateCommand> {
+	init<InformationConceptCreateCommand, InformationConceptCreatedEvent> {
 		to = InformationConceptState.EXISTS
 		role = EditorRole
 	}
@@ -45,4 +48,4 @@ interface InformationConceptCommand: S2Command<InformationConceptId>
 
 @JsExport
 @JsName("InformationConceptEvent")
-interface InformationConceptEvent: Evt, WithId<InformationConceptId>
+interface InformationConceptEvent: Evt, WithS2Id<InformationConceptId>

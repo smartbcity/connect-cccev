@@ -72,4 +72,6 @@ interface EvidenceTypeListUpdatedEventDTO: EvidenceTypeListEvent {
 @Serializable
 data class EvidenceTypeListUpdatedEvent(
     override val id: EvidenceTypeListId
-): EvidenceTypeListUpdatedEventDTO
+): EvidenceTypeListUpdatedEventDTO {
+    override fun s2Id() = id
+}
