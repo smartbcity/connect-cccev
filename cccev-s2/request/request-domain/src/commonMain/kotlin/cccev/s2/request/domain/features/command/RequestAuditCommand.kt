@@ -6,6 +6,7 @@ import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Command to add a supported Value to a request.
@@ -36,6 +37,7 @@ interface RequestAuditedEventDTO: RequestEvent {
 /**
  * @d2 inherit
  */
+@Serializable
 class RequestAuditCommand(
 	override val id: RequestId,
 ): RequestAuditCommandDTO
@@ -43,6 +45,7 @@ class RequestAuditCommand(
 /**
  * @d2 inherit
  */
+@Serializable
 class RequestAuditedEvent(
 	override val id: RequestId,
 	override val type: RequestState.Audited = RequestState.Audited,

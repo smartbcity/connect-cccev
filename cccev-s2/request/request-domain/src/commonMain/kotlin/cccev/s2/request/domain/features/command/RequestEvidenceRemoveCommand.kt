@@ -7,6 +7,7 @@ import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 
 @JsExport
@@ -29,6 +30,7 @@ interface RequestEvidenceRemovedEventDTO: RequestEvent {
  * Command to remove an evidence from a request.
  * @D2 command
  */
+@Serializable
 class RequestEvidenceRemoveCommand(
     override val id: RequestId,
     override val evidenceTypeId: EvidenceTypeId,
@@ -38,6 +40,7 @@ class RequestEvidenceRemoveCommand(
  * Event sent when an evidence has been added to a request.
  * @D2 event
  */
+@Serializable
 class RequestEvidenceRemovedEvent(
     override val id: RequestId,
     /**

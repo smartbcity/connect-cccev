@@ -6,6 +6,7 @@ import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 @JsExport
 @JsName("RequestSendCommandDTO")
@@ -25,6 +26,7 @@ interface RequestSentEventDTO: RequestEvent {
  * Command to add a supported Value to a request.
  * @D2 command
  */
+@Serializable
 class RequestSendCommand(
 	override val id: RequestId,
 ): RequestSendCommandDTO
@@ -33,6 +35,7 @@ class RequestSendCommand(
  * Event sent when a supported Value a has been added to a request.
  * @D2 event
  */
+@Serializable
 class RequestSentEvent(
 	override val id: RequestId,
 	/**

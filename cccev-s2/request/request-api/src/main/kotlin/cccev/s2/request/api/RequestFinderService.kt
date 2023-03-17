@@ -1,10 +1,11 @@
 package cccev.s2.request.api
 
-import cccev.s2.request.api.entity.RequestRepository
+import cccev.projection.api.entity.request.RequestRepository
 import cccev.s2.request.api.entity.toRequest
 import cccev.s2.request.domain.model.Request
 import cccev.s2.request.domain.model.RequestId
-import kotlinx.coroutines.reactor.awaitSingle
+import kotlin.jvm.optionals.getOrNull
+import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -13,7 +14,7 @@ class RequestFinderService(
 ) {
     suspend fun get(id: RequestId): Request? {
         return requestRepository.findById(id)
-            .awaitSingle()
+            .awaitSingleOrNull()
             ?.toRequest()
     }
 }

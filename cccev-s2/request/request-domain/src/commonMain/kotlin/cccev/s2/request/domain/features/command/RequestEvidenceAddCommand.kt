@@ -9,6 +9,7 @@ import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Command to add an evidence to a request.
@@ -37,12 +38,13 @@ interface RequestEvidenceAddedEventDTO: RequestEvent {
 	 * @example "Created"
 	 */
 	override val type: RequestState.Created
-	val evidenceId: EvidenceId
+	val evidence: EvidenceDTO
 }
 
 /**
  * @d2 inherit
  */
+@Serializable
 class RequestEvidenceAddCommand(
     override val id: RequestId,
     override val evidence: Evidence,
@@ -51,8 +53,9 @@ class RequestEvidenceAddCommand(
 /**
  * @d2 inherit
  */
+@Serializable
 class RequestEvidenceAddedEvent(
-    override val id: RequestId,
-    override val type: RequestState.Created = RequestState.Created,
-    override val evidenceId: EvidenceId,
+	override val id: RequestId,
+	override val type: RequestState.Created = RequestState.Created,
+	override val evidence: Evidence
 ): RequestEvidenceAddedEventDTO

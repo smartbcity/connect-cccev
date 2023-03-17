@@ -8,8 +8,6 @@ services:
       - 8083:8083
     networks:
       - nginx-proxy
-    environment:
-      SPRING_DATA_MONGODB_URI: mongodb://${MONGODB_USER}:${MONGODB_PASS}@mongo-db/cccev
 
 networks:
   bclannet-it:

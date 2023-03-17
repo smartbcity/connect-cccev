@@ -17,6 +17,7 @@ import s2.dsl.automate.builder.s2
 import kotlin.js.JsExport
 import kotlin.js.JsName
 import kotlinx.serialization.Serializable
+import s2.dsl.automate.model.WithS2Id
 
 fun s2Request() = S2Request
 
@@ -84,9 +85,13 @@ val S2Request = s2 {
 }
 @Serializable
 open class RequestState(override var position: Int): S2State {
+	@Serializable
 	object Created: RequestState(position = 0)
+	@Serializable
 	object Sent: RequestState(position = 10)
+	@Serializable
 	object Signed: RequestState(position = 20)
+	@Serializable
 	object Audited: RequestState(position = 30)
 }
 
@@ -95,7 +100,9 @@ class AuditorRole: S2Role
 
 @JsExport
 @JsName("RequestEvent")
-interface RequestEvent: S2Event<RequestState, RequestId>
+interface RequestEvent: S2Event<RequestState, RequestId>, WithS2Id<RequestId> {
+	override fun s2Id() = id
+}
 
 @JsExport
 @JsName("RequestCommand")

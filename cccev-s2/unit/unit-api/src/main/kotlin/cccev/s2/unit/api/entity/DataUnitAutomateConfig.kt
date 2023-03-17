@@ -42,6 +42,7 @@ class DataUnitAutomateConfig(
 
 	override fun json(): Json = Json {
 		serializersModule = SerializersModule {
+			classDiscriminator = "class"
 			polymorphic(DataUnitEvent::class) {
 				subclass(DataUnitCreatedEvent::class, DataUnitCreatedEvent.serializer())
 			}

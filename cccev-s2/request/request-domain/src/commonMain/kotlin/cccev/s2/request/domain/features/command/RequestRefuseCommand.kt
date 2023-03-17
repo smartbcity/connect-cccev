@@ -6,6 +6,7 @@ import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 @JsExport
 @JsName("RequestRefuseCommandDTO")
@@ -28,6 +29,7 @@ interface RequestRefusedEventDTO: RequestEvent {
  * Command to add a supported Value to a request.
  * @D2 command
  */
+@Serializable
 class RequestRefuseCommand(
 	override val id: RequestId,
 ): RequestRefuseCommandDTO
@@ -36,6 +38,7 @@ class RequestRefuseCommand(
  * Event sent when a supported Value a has been added to a request.
  * @D2 event
  */
+@Serializable
 class RequestRefusedEvent(
 	override val id: RequestId,
 	/**

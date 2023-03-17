@@ -1,6 +1,5 @@
 package cccev.s2.request.domain.features.command
 
-import cccev.dsl.model.InformationConceptId
 import cccev.dsl.model.SupportedValue
 import cccev.dsl.model.SupportedValueDTO
 import cccev.s2.request.domain.RequestCommand
@@ -9,6 +8,7 @@ import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 @JsExport
 @JsName("RequestSupportedValueAddCommandDTO")
@@ -23,13 +23,14 @@ interface RequestSupportedValueAddCommandDTO: RequestCommand {
 interface RequestSupportedValueAddedEventDTO: RequestEvent {
 	override val id: RequestId
 	override val type: RequestState.Created
-	val providesValueFor: InformationConceptId
+	val supportedValue: SupportedValue
 }
 
 /**
  * Command to add a supported Value to a request.
  * @D2 command
  */
+@Serializable
 class RequestSupportedValueAddCommand(
     override val id: RequestId,
     /**
@@ -42,6 +43,7 @@ class RequestSupportedValueAddCommand(
  * Event sent when a supported Value has been added to a request.
  * @D2 event
  */
+@Serializable
 class RequestSupportedValueAddedEvent(
     override val id: RequestId,
 
@@ -51,8 +53,5 @@ class RequestSupportedValueAddedEvent(
 	 */
 	override val type: RequestState.Created = RequestState.Created,
 
-    /**
-	 * Identifier of the information concept for which the newly added supported value provides a value.
-	 */
-	override val providesValueFor: InformationConceptId,
+	override val supportedValue: SupportedValue
 ): RequestSupportedValueAddedEventDTO

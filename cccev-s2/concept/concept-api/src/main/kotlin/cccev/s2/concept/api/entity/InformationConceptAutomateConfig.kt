@@ -42,6 +42,7 @@ class InformationConceptAutomateConfig(
 
 	override fun json(): Json = Json {
 		serializersModule = SerializersModule {
+			classDiscriminator = "class"
 			polymorphic(InformationConceptEvent::class) {
 				subclass(InformationConceptCreatedEvent::class, InformationConceptCreatedEvent.serializer())
 			}

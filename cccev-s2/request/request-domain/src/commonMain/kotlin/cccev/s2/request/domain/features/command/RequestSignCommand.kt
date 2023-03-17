@@ -6,6 +6,7 @@ import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 
 @JsExport
@@ -26,6 +27,7 @@ interface RequestSignedEventDTO: RequestEvent {
  * Event sent when a supported Value a has been added to a request.
  * @D2 event
  */
+@Serializable
 class RequestSignCommand(
 	override val id: RequestId,
 ): RequestSignCommandDTO
@@ -34,6 +36,7 @@ class RequestSignCommand(
  * Command to add a supported Value to a request.
  * @D2 command
  */
+@Serializable
 class RequestSignedEvent(
 	override val id: RequestId,
 	/**

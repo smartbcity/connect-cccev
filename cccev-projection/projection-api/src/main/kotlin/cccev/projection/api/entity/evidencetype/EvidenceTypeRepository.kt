@@ -1,6 +1,5 @@
 package cccev.projection.api.entity.evidencetype
 
-import cccev.projection.api.entity.concept.InformationConceptEntity
 import cccev.s2.evidence.domain.EvidenceTypeId
 import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.reactor.awaitSingleOrNull

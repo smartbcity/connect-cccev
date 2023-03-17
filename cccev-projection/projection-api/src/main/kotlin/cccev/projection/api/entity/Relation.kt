@@ -9,4 +9,5 @@ object Relation {
     const val HAS_UNIT = "HAS_UNIT"
     const val IS_DERIVED_FROM = "IS_DERIVED_FROM"
     const val SPECIFIES_EVIDENCE_TYPE = "SPECIFIES_EVIDENCE_TYPE"
+    const val PROVIDE_EVIDENCE = "PROVIDE_EVIDENCE"
 }

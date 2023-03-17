@@ -49,6 +49,7 @@ class RequirementAutomateConfig(
 
 	override fun json(): Json = Json {
 		serializersModule = SerializersModule {
+			classDiscriminator = "class"
 			polymorphic(RequirementEvent::class) {
 				subclass(RequirementCreatedEvent::class, RequirementCreatedEvent.serializer())
 				subclass(RequirementUpdatedEvent::class, RequirementUpdatedEvent.serializer())

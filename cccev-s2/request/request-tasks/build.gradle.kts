@@ -6,6 +6,7 @@ plugins {
 
 dependencies {
 	implementation(project(":api-commons"))
+
 	implementation(project(":cccev-s2:request:request-api"))
 	implementation(project(":cccev-f2:concept-f2:concept-f2-domain"))
 

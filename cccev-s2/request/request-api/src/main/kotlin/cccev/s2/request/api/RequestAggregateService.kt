@@ -1,7 +1,6 @@
 package cccev.s2.request.api
 
-import cccev.s2.request.api.config.RequestS2Aggregate
-import cccev.s2.request.api.entity.RequestEntity
+import cccev.s2.request.api.config.RequestDecider
 import cccev.s2.request.domain.RequestAggregate
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.features.command.RequestAuditCommand
@@ -20,77 +19,63 @@ import cccev.s2.request.domain.features.command.RequestSignCommand
 import cccev.s2.request.domain.features.command.RequestSignedEvent
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddedEvent
-import cccev.s2.request.domain.model.RequestId
 import org.springframework.stereotype.Service
-import s2.dsl.automate.S2Event
 
 @Service
 class RequestAggregateService(
-	private val aggregate: RequestS2Aggregate,
+	private val aggregate: RequestDecider,
 ): RequestAggregate {
 
-	override suspend fun init(cmd: RequestInitCommand) = aggregate.createWithEvent(cmd, { RequestInitializedEvent(id) }) {
-		RequestEntity(
+	override suspend fun init(cmd: RequestInitCommand) = aggregate.init(cmd) {
+		RequestInitializedEvent(
 			id = cmd.id,
-			status = RequestState.Created,
+			type = RequestState.Created,
 			frameworkId = cmd.frameworkId,
-			evidences = mutableListOf(),
-			supportedValues = mutableMapOf()
 		)
 	}
 
-	override suspend fun addEvidence(cmd: RequestEvidenceAddCommand) = aggregate.doTransition(cmd) {
-		evidences.add(cmd.evidence)
-		this to RequestEvidenceAddedEvent(
-			id = id,
-			evidenceId = cmd.evidence.identifier
+	override suspend fun addEvidence(
+		cmd: RequestEvidenceAddCommand
+	) = aggregate.transition(cmd) { entity ->
+		RequestEvidenceAddedEvent(
+			id = entity.id,
+			evidence = cmd.evidence
 		)
 	}
 
-	override suspend fun removeEvidence(cmd: RequestEvidenceRemoveCommand) = aggregate.doTransition(cmd) {
-		evidences.removeIf { evidence -> cmd.evidenceTypeId in evidence.isConformantTo }
-
-		this to RequestEvidenceRemovedEvent(
-			id = id,
+	override suspend fun removeEvidence(
+		cmd: RequestEvidenceRemoveCommand
+	) = aggregate.transition(cmd) { entity ->
+		RequestEvidenceRemovedEvent(
+			id = entity.id,
 			evidenceTypeId = cmd.evidenceTypeId
 		)
 	}
 
-	override suspend fun addSupportedValue(cmd: RequestSupportedValueAddCommand) = aggregate.doTransition(cmd) {
-		supportedValues[cmd.supportedValue.providesValueFor] = cmd.supportedValue
-
-		this to RequestSupportedValueAddedEvent(
-			id = id,
-			providesValueFor = cmd.supportedValue.providesValueFor
+	override suspend fun addSupportedValue(
+		cmd: RequestSupportedValueAddCommand
+	) = aggregate.transition(cmd) { entity ->
+		RequestSupportedValueAddedEvent(
+			id = entity.id,
+			supportedValue = cmd.supportedValue
 		)
 	}
 
-	override suspend fun send(cmd: RequestSendCommand) = aggregate.doTransition(cmd) {
-		this to updateStatus {
-			RequestSentEvent(id = id)
-		}
+	override suspend fun send(cmd: RequestSendCommand) = aggregate.transition(cmd) { entity ->
+		RequestSentEvent(id = entity.id)
 	}
 
-	override suspend fun sign(cmd: RequestSignCommand) = aggregate.doTransition(cmd) {
-		this to updateStatus {
-			RequestSignedEvent(id = id)
-		}
+	override suspend fun sign(cmd: RequestSignCommand) = aggregate.transition(cmd) { entity ->
+		RequestSignedEvent(id = entity.id)
 	}
 
-	override suspend fun audit(cmd: RequestAuditCommand) = aggregate.doTransition(cmd) {
-		this to updateStatus {
-			RequestAuditedEvent(id = id)
-		}
+	override suspend fun audit(cmd: RequestAuditCommand) = aggregate.transition(cmd) { entity ->
+		RequestAuditedEvent(id = entity.id)
 	}
 
-	override suspend fun refuse(cmd: RequestRefuseCommand) = aggregate.doTransition(cmd) {
-		this to updateStatus {
-			RequestRefusedEvent(id = id)
-		}
+	override suspend fun refuse(cmd: RequestRefuseCommand) = aggregate.transition(cmd) { entity ->
+		RequestRefusedEvent(id = entity.id)
 	}
 
-	private fun <E: S2Event<RequestState, RequestId>> RequestEntity.updateStatus(buildEvent: () -> E): E {
-		return buildEvent().also { event -> status = event.type }
-	}
 
 }

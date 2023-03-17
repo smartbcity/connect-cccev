@@ -5,17 +5,17 @@ import cccev.dsl.model.InformationConcept
 import cccev.dsl.model.SupportedValue
 import cccev.f2.concept.domain.query.GetInformationConceptsQuery
 import cccev.f2.concept.domain.query.GetInformationConceptsQueryFunction
+import cccev.projection.api.entity.request.RequestEntity
+import cccev.projection.api.entity.request.RequestRepository
 import cccev.s2.request.api.RequestAggregateService
-import cccev.s2.request.api.entity.RequestEntity
-import cccev.s2.request.api.entity.RequestRepository
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddedEvent
 import f2.dsl.fnc.invoke
-import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Component
 import java.util.UUID
 import javax.script.ScriptEngineManager
+import kotlinx.coroutines.reactor.awaitSingleOrNull
 
 @Component
 class ComputeExpectedValuesHandler(
@@ -26,12 +26,14 @@ class ComputeExpectedValuesHandler(
 
     @EventListener
     fun onSupportedValueAdded(event: RequestSupportedValueAddedEvent) = handleEvent(
-        "ComputeExpectedValuesHandler - onSupportedValueAdded - Request[${event.id}] InformationConcept[${event.providesValueFor}]"
+        "ComputeExpectedValuesHandler - onSupportedValueAdded - Request[${event.id}] " +
+                "InformationConcept[${event.supportedValue.providesValueFor}]"
     ) {
         val requestId = event.id
-        val supportedInfoConceptId = event.providesValueFor
+        val supportedInfoConceptId = event.supportedValue.providesValueFor
 
-        val request = requestRepository.findById(requestId).awaitSingle()
+        val request = requestRepository.findById(requestId).awaitSingleOrNull()
+            ?: throw IllegalStateException("Request[$requestId] not found")
 
         val query = GetInformationConceptsQuery(id = requestId, requirement = request.frameworkId)
         val infoConcepts = getInformationConceptsQueryFunction.invoke(query).informationConcepts

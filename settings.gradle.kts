@@ -17,7 +17,6 @@ include(
 	"api-gateway",
 	"api-commons",
 	"cccev-f2",
-	"cccev-infra:mongodb",
 	"cccev-test",
 	"fixers-bdd"
 )

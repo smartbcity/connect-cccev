@@ -8,6 +8,6 @@ dependencies {
 
 	Dependencies.Jvm.cucumber(::api)
 	Dependencies.Jvm.f2(::api)
+	Dependencies.Mpp.s2(::implementation)
 	Dependencies.Jvm.junit(::api)
-	Dependencies.Jvm.s2Mongo(::api)
 }

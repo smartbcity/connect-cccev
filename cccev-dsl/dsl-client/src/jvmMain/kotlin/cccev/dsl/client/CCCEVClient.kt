@@ -104,7 +104,8 @@ class CCCEVClient(
         InformationConceptCreateCommand(
             name = name,
             identifier = identifier,
-            unitId = unit.identifier,
+
+            hasUnit = unit.identifier,
             description = description,
             expressionOfExpectedValue = expressionOfExpectedValue,
             dependsOn = dependsOn,

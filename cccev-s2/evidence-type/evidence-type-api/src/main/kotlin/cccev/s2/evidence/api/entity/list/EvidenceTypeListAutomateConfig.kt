@@ -44,6 +44,7 @@ class EvidenceTypeListAutomateConfig(
 
 	override fun json(): Json = Json {
 		serializersModule = SerializersModule {
+			classDiscriminator = "class"
 			polymorphic(EvidenceTypeListEvent::class) {
 				subclass(EvidenceTypeListCreatedEvent::class, EvidenceTypeListCreatedEvent.serializer())
 				subclass(EvidenceTypeListAddedEvidenceTypesEvent::class, EvidenceTypeListAddedEvidenceTypesEvent.serializer())

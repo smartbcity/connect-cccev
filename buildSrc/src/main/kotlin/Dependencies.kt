@@ -42,14 +42,12 @@ object Dependencies {
 			"city.smartb.fs:file-client:${Versions.fs}"
 		)
 
-		fun s2Mongo(scope: Scope) = scope.add(
-			"city.smartb.s2:s2-spring-boot-starter-storing-data:${Versions.s2}",
-			"city.smartb.f2:f2-spring-data-mongodb:${Versions.f2}",
+		fun s2EventSouringBc(scope: Scope) = scope.add(
+			"city.smartb.s2:s2-spring-boot-starter-sourcing-ssm:${Versions.s2}",
 			"city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}"
 		)
 
-		fun s2EventSouringBc(scope: Scope) = scope.add(
-			"city.smartb.s2:s2-spring-boot-starter-sourcing-ssm:${Versions.s2}",
+		fun s2Logger(scope: Scope) = scope.add(
 			"city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}"
 		)
 
@@ -59,6 +57,9 @@ object Dependencies {
 		}
 		fun junit(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
 			scope.add("org.awaitility:awaitility:${Versions.awaitility}")
+		}
+		fun springTx(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
+			scope.add("org.springframework:spring-tx:${FixersVersions.Spring.framework}")
 		}
 	}
 	object Mpp {

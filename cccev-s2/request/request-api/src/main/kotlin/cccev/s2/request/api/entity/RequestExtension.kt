@@ -1,5 +1,6 @@
 package cccev.s2.request.api.entity
 
+import cccev.projection.api.entity.request.RequestEntity
 import cccev.s2.request.domain.model.Request
 
 fun RequestEntity.toRequest() = Request(

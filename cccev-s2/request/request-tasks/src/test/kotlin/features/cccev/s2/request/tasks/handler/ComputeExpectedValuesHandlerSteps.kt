@@ -4,8 +4,9 @@ import cccev.dsl.model.RequirementId
 import cccev.dsl.model.SupportedValue
 import cccev.f2.concept.domain.query.GetInformationConceptsQuery
 import cccev.f2.concept.domain.query.GetInformationConceptsQueryFunction
+import cccev.projection.api.entity.request.RequestEntity
+import cccev.projection.api.entity.request.RequestRepository
 import cccev.s2.request.api.RequestAggregateService
-import cccev.s2.request.api.entity.RequestEntity
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.model.RequestId
@@ -17,13 +18,14 @@ import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions
 import org.awaitility.Awaitility
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.data.mongodb.core.MongoTemplate
 import java.util.UUID
+import kotlinx.coroutines.reactor.awaitSingle
+import kotlinx.coroutines.reactor.awaitSingleOrNull
 
 class ComputeExpectedValuesHandlerSteps: En {
 
     @Autowired
-    private lateinit var mongoTemplate: MongoTemplate
+    private lateinit var requestRepository: RequestRepository
     @Autowired
     private lateinit var getInformationConceptsFunction: GetInformationConceptsQueryFunction
     @Autowired
@@ -61,14 +63,16 @@ class ComputeExpectedValuesHandlerSteps: En {
         }
 
         Given("A request is instantiated on this framework") {
-            val request = RequestEntity(
-                frameworkId = frameworkId,
-                status = RequestState.Created,
-                evidences = mutableListOf(),
+            val request = RequestEntity().apply {
+                frameworkId = frameworkId
+                status = RequestState.Created
+                evidences = mutableListOf()
                 supportedValues = mutableMapOf()
-            )
+            }
             requestId = request.id
-            mongoTemplate.save(request)
+            runBlocking {
+                requestRepository.save(request).awaitSingle()
+            }
         }
 
         When("Some supported values are added") { dataTable: DataTable ->
@@ -86,11 +90,14 @@ class ComputeExpectedValuesHandlerSteps: En {
 
         Then("The value of the information concept is computed") { expectedValue: SupportedValue ->
             Awaitility.await().untilAsserted {
-                val request = mongoTemplate.findById(requestId, RequestEntity::class.java)!!
-                val computedValue = request.supportedValues[expectedValue.providesValueFor]
+                runBlocking {
+                    val request = requestRepository.findById(requestId).awaitSingleOrNull()
 
-                Assertions.assertThat(computedValue).isNotNull
-                Assertions.assertThat(computedValue!!.value).isEqualTo(expectedValue.value)
+                    Assertions.assertThat(request).isNotNull
+
+                    val computedValue = request!!.supportedValues[expectedValue.providesValueFor]
+                    Assertions.assertThat(computedValue!!.value).isEqualTo(expectedValue.value)
+                }
             }
         }
     }
