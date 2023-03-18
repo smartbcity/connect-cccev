@@ -4,7 +4,7 @@ import cccev.projection.api.entity.evidencetype.EvidenceTypeEntity
 import cccev.projection.api.entity.evidencetype.EvidenceTypeRepository
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeState
-import cccev.test.AssertionCrudEntity
+import fixers.bdd.repository.AssertionCrudEntity
 import fixers.bdd.assertion.AssertionBdd
 import org.assertj.core.api.Assertions
 

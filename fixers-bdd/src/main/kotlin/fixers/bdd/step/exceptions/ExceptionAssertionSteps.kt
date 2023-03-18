@@ -1,16 +1,16 @@
-package cccev.test.generics.exceptions
+package fixers.bdd.step.exceptions
 
-import cccev.test.CccevCucumberStepsDefinition
 import f2.spring.exception.ConflictException
 import f2.spring.exception.ForbiddenAccessException
 import f2.spring.exception.MessageConverterException
 import f2.spring.exception.NotFoundException
+import fixers.bdd.CucumberStepsDefinition
 import fixers.bdd.assertion.AssertionBdd
 import fixers.bdd.assertion.exceptions
 import fixers.bdd.data.parser.safeExtract
 import io.cucumber.java8.En
 
-class ExceptionAssertionSteps: En, CccevCucumberStepsDefinition() {
+class ExceptionAssertionSteps: En, CucumberStepsDefinition()  {
     init {
         DataTableType(::exceptionAssertionParams)
 
@@ -31,6 +31,7 @@ class ExceptionAssertionSteps: En, CccevCucumberStepsDefinition() {
         }
     }
 
+    @Suppress("MagicNumber")
     private fun Int.toExceptionClass() = when (this) {
         400 -> MessageConverterException::class
         403 -> ForbiddenAccessException::class

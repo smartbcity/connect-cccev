@@ -1,12 +1,12 @@
-package cccev.test.generics.exceptions
+package fixers.bdd.step.exceptions
 
-import cccev.test.CccevCucumberStepsDefinition
+import fixers.bdd.CucumberStepsDefinition
 import fixers.bdd.assertion.AssertionBdd
 import fixers.bdd.assertion.exceptions
 import io.cucumber.java8.En
 import s2.automate.core.error.AutomateException
 
-class AutomateExceptionAssertionSteps: En, CccevCucumberStepsDefinition() {
+class AutomateExceptionAssertionSteps: En, CucumberStepsDefinition() {
     init {
         DataTableType(::exceptionAssertionParams)
 

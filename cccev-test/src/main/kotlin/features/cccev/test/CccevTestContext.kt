@@ -1,4 +1,4 @@
-package cccev.test
+package features.cccev.test
 
 import cccev.dsl.model.EvidenceTypeBase
 import cccev.dsl.model.EvidenceTypeListBase
@@ -22,15 +22,12 @@ class CccevTestContext(
     private val testContext: TestContext
 ): BddContext by testContext {
 
-    val conceptIds = testContext.testEntities<TestContextKey, InformationConceptId>("InformationConcept")
-    val conceptIdentifiers = testContext.testEntities<TestContextKey, String>("InformationConcept with identifier")
-    val evidenceTypeIds = testContext.testEntities<TestContextKey, EvidenceTypeId>("EvidenceType")
-    val evidenceTypeIdentifiers = testContext.testEntities<TestContextKey, String>("EvidenceType with identifier")
-    val evidenceTypeListIds = testContext.testEntities<TestContextKey, EvidenceTypeListId>("EvidenceTypeList")
-    val evidenceTypeListIdentifiers = testContext.testEntities<TestContextKey, String>("EvidenceTypeList with identifier")
-    val requirementIds = testContext.testEntities<TestContextKey, RequirementId>("Requirement")
-    val requirementIdentifiers = testContext.testEntities<TestContextKey, RequirementIdentifier>("Requirement with identifier")
-    val unitIds = testContext.testEntities<TestContextKey, DataUnitId>("DataUnit")
+    var evidenceTypes = testContext.testEntities<EvidenceTypeId, EvidenceTypeBase>("EvidenceTypeBase")
+    var evidenceTypeLists = testContext.testEntities<EvidenceTypeListId, EvidenceTypeListBase>("EvidenceTypeListBase")
+    var informationConcepts = testContext.testEntities<InformationConceptId, InformationConceptBase>("InformationConceptBase")
+    var requirements = testContext.testEntities<RequirementId, Requirement>("Requirements")
+
+    var requests = TestEntityIds<RequestId>()
 
     final var fetched = FetchContext()
         private set

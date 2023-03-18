@@ -1,12 +1,12 @@
-package cccev.test.generics.exceptions
+package fixers.bdd.step.exceptions
 
-import cccev.test.CccevCucumberStepsDefinition
 import f2.spring.exception.ForbiddenAccessException
+import fixers.bdd.CucumberStepsDefinition
 import fixers.bdd.assertion.AssertionBdd
 import fixers.bdd.assertion.exceptions
 import io.cucumber.java8.En
 
-class ForbiddenExceptionAssertionSteps: En, CccevCucumberStepsDefinition() {
+class ForbiddenExceptionAssertionSteps: En, CucumberStepsDefinition() {
     init {
         Then("I should be forbidden to do so") {
             step {

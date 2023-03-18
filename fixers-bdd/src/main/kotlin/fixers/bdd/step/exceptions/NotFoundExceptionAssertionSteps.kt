@@ -1,18 +1,21 @@
-package cccev.test.generics.exceptions
+package fixers.bdd.step.exceptions
 
-import cccev.test.CccevCucumberStepsDefinition
 import f2.spring.exception.NotFoundException
+import fixers.bdd.CucumberStepsDefinition
 import fixers.bdd.assertion.AssertionBdd
 import fixers.bdd.assertion.exceptions
 import fixers.bdd.data.TestContextKey
 import fixers.bdd.data.parser.safeExtract
 import io.cucumber.java8.En
-
-class NotFoundExceptionAssertionSteps: En, CccevCucumberStepsDefinition() {
+class NotFoundExceptionAssertionSteps: En, CucumberStepsDefinition() {
     init {
         DataTableType(::notFoundParams)
 
-        Then("The data unit should not be found") { assert(context.unitIds.lastUsedKey) }
+        Then("The {string} should not be found") { objectName: String ->
+            val lastUsedKey = context.testEntities<Any, Any>(objectName).lastUsedKey
+            assert(lastUsedKey.toString())
+        }
+
     }
 
     private fun assert(id: String) = step {

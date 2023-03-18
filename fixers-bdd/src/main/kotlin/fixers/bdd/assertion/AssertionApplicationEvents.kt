@@ -15,7 +15,7 @@ class AssertionApplicationEvents(
     inner class ApplicationEventAssert<Event: Any>(
         eventClass: KClass<Event>
     ) {
-        private val events = context.events.filterIsInstance(eventClass.java)
+        private val events = context.events().filterIsInstance(eventClass.java)
 
         fun hasNotBeenSent(matcher: (Event) -> Boolean = { true }) {
             hasBeenSent(0, matcher)

@@ -12,6 +12,6 @@ class TestApplicationEventListener(
 
     @EventListener
     fun onApplicationEvent(event: Event) {
-        testContext.events.add(event)
+        testContext.events().add(event)
     }
 }

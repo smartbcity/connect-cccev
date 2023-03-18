@@ -2,6 +2,7 @@ package fixers.bdd
 
 import city.smartb.i2.spring.boot.auth.config.WebSecurityConfig
 import f2.dsl.cqrs.exception.F2Exception
+import fixers.bdd.data.BddContext
 import fixers.bdd.data.TestContext
 import io.cucumber.core.backend.CucumberInvocationTargetException
 import io.cucumber.datatable.CucumberDataTableException
@@ -21,9 +22,9 @@ import reactor.util.context.Context
 import s2.automate.core.error.AutomateException
 import java.util.UUID
 
-abstract class CucumberStepsDefinition {
+open class CucumberStepsDefinition {
 
-    protected abstract val context: TestContext
+    protected open val context: BddContext = TestContext()
 
     protected fun String?.orRandom() = this ?: UUID.randomUUID().toString()
 
@@ -63,7 +64,7 @@ abstract class CucumberStepsDefinition {
                 throw actualException
             } catch (e: Exception) {
                 e.printStackTrace()
-                context.errors.add(e)
+                context.errors().add(e)
                 if (propagateException(e)) {
                     throw e
                 }
@@ -72,7 +73,7 @@ abstract class CucumberStepsDefinition {
     }
 
     protected open fun authedContext(): ReactorContext {
-        val authedUser = context.authedUser
+        val authedUser = context.authedUser()
             ?: return ReactorContext(Context.of(SecurityContext::class.java, Mono.empty<SecurityContext>()))
 
         val securityContext = mapOf(

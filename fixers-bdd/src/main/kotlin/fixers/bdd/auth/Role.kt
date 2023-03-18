@@ -1,3 +1,3 @@
-package city.smartb.im.commons.auth
+package fixers.bdd.auth
 
 enum class Role(val value: String)

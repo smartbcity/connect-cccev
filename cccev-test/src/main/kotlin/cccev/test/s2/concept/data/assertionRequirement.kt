@@ -5,7 +5,7 @@ import cccev.projection.api.entity.concept.InformationConceptRepository
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.concept.domain.InformationConceptState
 import cccev.s2.unit.domain.DataUnitId
-import cccev.test.AssertionCrudEntity
+import fixers.bdd.repository.AssertionCrudEntity
 import fixers.bdd.assertion.AssertionBdd
 import org.assertj.core.api.Assertions
 

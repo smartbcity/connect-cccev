@@ -5,7 +5,7 @@ import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListRepository
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.evidence.domain.EvidenceTypeListState
-import cccev.test.AssertionCrudEntity
+import fixers.bdd.repository.AssertionCrudEntity
 import fixers.bdd.assertion.AssertionBdd
 import org.assertj.core.api.Assertions
 

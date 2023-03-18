@@ -58,9 +58,14 @@ object Dependencies {
 		fun junit(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
 			scope.add("org.awaitility:awaitility:${Versions.awaitility}")
 		}
-		fun springTx(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
-			scope.add("org.springframework:spring-tx:${FixersVersions.Spring.framework}")
+
+		object Spring {
+			fun dataCommons(scope: Scope) = FixersDependencies.Jvm.Spring.dataCommons(scope)
+			fun tx(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
+				scope.add("org.springframework:spring-tx:${FixersVersions.Spring.framework}")
+			}
 		}
+
 	}
 	object Mpp {
 		fun f2(scope: Scope) = scope.add(

@@ -1,4 +1,4 @@
-package features.cccev.test.data.context
+package fixers.bdd.data
 
 class TestEntityIds<ID: Any> {
     private val mutableIds = mutableSetOf<ID>()

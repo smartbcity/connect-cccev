@@ -3,7 +3,7 @@ package fixers.bdd.data
 import fixers.bdd.exception.EntityNotInitializedException
 
 class TestEntities<KEY: Any, ITEM>(
-    private val type: String
+    private val name: String
 ) {
     private val mutableEntities = mutableMapOf<KEY, ITEM?>()
 
@@ -13,13 +13,13 @@ class TestEntities<KEY: Any, ITEM>(
     private var lastUsedPair: Pair<KEY, ITEM?>? = null
 
     val lastUsedKey: KEY
-        get() = lastUsedPair?.first ?: throw EntityNotInitializedException("lastUsed", type)
+        get() = lastUsedPair?.first ?: throw EntityNotInitializedException("lastUsed", name)
 
     val lastUsedOrNull: ITEM?
         get() = lastUsedPair?.second
 
     val lastUsed: ITEM
-        get() = lastUsedOrNull ?: throw EntityNotInitializedException("lastUsed", type)
+        get() = lastUsedOrNull ?: throw EntityNotInitializedException("lastUsed", name)
 
     val size
         get() = items.size
@@ -27,7 +27,7 @@ class TestEntities<KEY: Any, ITEM>(
     operator fun get(key: KEY): ITEM? = mutableEntities[key]
         .also { lastUsedPair = key to it }
 
-    fun safeGet(key: KEY): ITEM = get(key) ?: throw EntityNotInitializedException(key.toString(), type)
+    fun safeGet(key: KEY): ITEM = get(key) ?: throw EntityNotInitializedException(key.toString(), name)
 
     fun containsKey(key: KEY): Boolean = mutableEntities.containsKey(key)
 
@@ -48,5 +48,13 @@ class TestEntities<KEY: Any, ITEM>(
             set(key, null)
             throw e
         }
+    }
+
+    fun putAll(vararg entries: Pair<KEY, ITEM>) {
+        entries.forEach { (id, entity) -> set(id, entity) }
+    }
+
+    fun putAll(from: Map<KEY, ITEM>) {
+        from.forEach { (id, entity) -> set(id, entity) }
     }
 }

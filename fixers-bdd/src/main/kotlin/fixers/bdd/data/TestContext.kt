@@ -1,28 +1,45 @@
 package fixers.bdd.data
 
-//import fixers.bdd.auth.AuthedUser
 import fixers.bdd.auth.AuthedUser
 import f2.dsl.cqrs.Event
+import org.springframework.stereotype.Component
 
 typealias TestContextKey = String
 
-open class TestContext {
-    protected val entityLists = mutableListOf<TestEntities<*, *>>()
+interface BddContext {
+    fun reset()
+    fun resetEnv()
+    fun <K: Any, V> testEntities(name: String): TestEntities<K, V>
 
-    var authedUser: AuthedUser? = null
+    fun authedUser(): AuthedUser?
+    fun errors(): ExceptionList
+    fun events(): MutableList<Event>
+}
 
-    val errors = ExceptionList()
-    val events = mutableListOf<Event>()
+@Component
+open class TestContext: BddContext {
+    protected val entityLists = mutableMapOf<String, TestEntities<*, *>>()
 
-    protected fun <K: Any, V> testEntities(name: String) = TestEntities<K, V>(name)
-        .also(entityLists::add)
+    protected var authedUser: AuthedUser? = null
 
-    fun reset() {
+    protected val errors = ExceptionList()
+    protected val events = mutableListOf<Event>()
+
+    override fun <K: Any, V> testEntities(name: String): TestEntities<K, V> = TestEntities<K, V>(name)
+        .also {
+            entityLists[name] to it
+        }
+
+    override fun authedUser() = authedUser
+    override fun errors() = errors
+    override fun events() = events
+
+    override fun reset() {
         resetEnv()
-        entityLists.forEach(TestEntities<*, *>::reset)
+        entityLists.values.forEach(TestEntities<*, *>::reset)
         errors.reset()
         events.clear()
     }
 
-    open fun resetEnv() = Unit
+    override fun resetEnv() = Unit
 }

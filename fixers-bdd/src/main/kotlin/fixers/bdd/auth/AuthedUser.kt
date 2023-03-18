@@ -1,8 +1,5 @@
 package fixers.bdd.auth
 
-import city.smartb.im.commons.auth.Role
-
-
 typealias OrganizationId = String
 typealias UserId = String
 

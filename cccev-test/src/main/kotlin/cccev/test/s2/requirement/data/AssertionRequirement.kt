@@ -7,7 +7,7 @@ import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.RequirementState
 import cccev.s2.requirement.domain.model.RequirementKind
-import cccev.test.AssertionCrudEntity
+import fixers.bdd.repository.AssertionCrudEntity
 import fixers.bdd.assertion.AssertionBdd
 import org.assertj.core.api.Assertions
 
