@@ -37,7 +37,7 @@ interface RequestEvidenceAddedEventDTO: RequestEvent {
 	 * The current state of the request.
 	 * @example "Created"
 	 */
-	override val type: RequestState.Created
+	override val type: RequestState
 	val evidence: EvidenceDTO
 }
 
@@ -56,6 +56,6 @@ class RequestEvidenceAddCommand(
 @Serializable
 class RequestEvidenceAddedEvent(
 	override val id: RequestId,
-	override val type: RequestState.Created = RequestState.Created,
+	override val type: RequestState = RequestState.CREATED,
 	override val evidence: Evidence
 ): RequestEvidenceAddedEventDTO

@@ -8,9 +8,9 @@ import cccev.s2.requirement.domain.model.RequirementKind
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.requirement.data.extractRequirementKind
 import cccev.test.s2.requirement.data.requirement
-import fixers.bdd.assertion.AssertionBdd
-import fixers.bdd.data.TestContextKey
-import fixers.bdd.data.parser.extractList
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.data.TestContextKey
+import s2.bdd.data.parser.extractList
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull

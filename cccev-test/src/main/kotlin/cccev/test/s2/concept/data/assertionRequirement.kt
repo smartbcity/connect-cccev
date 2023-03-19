@@ -5,8 +5,8 @@ import cccev.projection.api.entity.concept.InformationConceptRepository
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.concept.domain.InformationConceptState
 import cccev.s2.unit.domain.DataUnitId
-import fixers.bdd.repository.AssertionCrudEntity
-import fixers.bdd.assertion.AssertionBdd
+import s2.bdd.repository.AssertionCrudEntity
+import s2.bdd.assertion.AssertionBdd
 import org.assertj.core.api.Assertions
 
 fun AssertionBdd.informationConcept(conceptRepository: InformationConceptRepository) = AssertionInformationConcept(conceptRepository)

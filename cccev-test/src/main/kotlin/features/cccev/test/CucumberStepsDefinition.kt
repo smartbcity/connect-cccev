@@ -1,8 +1,8 @@
 package features.cccev.test
 
-import fixers.bdd.data.TestEntities
-import fixers.bdd.exception.EntityNotInitializedException
-import fixers.bdd.exception.NullDataTableParamException
+import s2.bdd.data.TestEntities
+import s2.bdd.exception.EntityNotInitializedException
+import s2.bdd.exception.NullDataTableParamException
 import org.springframework.beans.factory.annotation.Autowired
 import java.util.UUID
 

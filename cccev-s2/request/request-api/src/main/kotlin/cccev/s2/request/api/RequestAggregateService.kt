@@ -29,7 +29,7 @@ class RequestAggregateService(
 	override suspend fun init(cmd: RequestInitCommand) = aggregate.init(cmd) {
 		RequestInitializedEvent(
 			id = cmd.id,
-			type = RequestState.Created,
+			type = RequestState.CREATED,
 			frameworkId = cmd.frameworkId,
 		)
 	}

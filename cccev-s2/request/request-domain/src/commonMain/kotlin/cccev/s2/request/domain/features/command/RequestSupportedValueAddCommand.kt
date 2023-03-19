@@ -22,7 +22,7 @@ interface RequestSupportedValueAddCommandDTO: RequestCommand {
 @JsName("RequestSupportedValueAddedEventDto")
 interface RequestSupportedValueAddedEventDTO: RequestEvent {
 	override val id: RequestId
-	override val type: RequestState.Created
+	override val type: RequestState
 	val supportedValue: SupportedValue
 }
 
@@ -51,7 +51,7 @@ class RequestSupportedValueAddedEvent(
 	 * The current state of the request.
 	 * @example "Created"
 	 */
-	override val type: RequestState.Created = RequestState.Created,
+	override val type: RequestState = RequestState.CREATED,
 
 	override val supportedValue: SupportedValue
 ): RequestSupportedValueAddedEventDTO

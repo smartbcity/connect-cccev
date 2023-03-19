@@ -7,6 +7,7 @@ import cccev.f2.concept.domain.query.GetInformationConceptsQuery
 import cccev.f2.concept.domain.query.GetInformationConceptsQueryFunction
 import cccev.projection.api.entity.request.RequestEntity
 import cccev.projection.api.entity.request.RequestRepository
+import cccev.projection.api.entity.request.toRequest
 import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddedEvent
@@ -43,7 +44,7 @@ class ComputeExpectedValuesHandler(
         }
 
         infoConceptsDependingOnNewValue.filter { infoConcept ->
-            request.supportedValues.keys.containsAll(infoConcept.dependsOn)
+            request.toRequest().supportedValues.keys.containsAll(infoConcept.dependsOn)
         }.mapNotNull { infoConcept ->
             infoConcept.computeSupportedValue(request)
         }.map { value ->
@@ -61,7 +62,7 @@ class ComputeExpectedValuesHandler(
 
         val engine = ScriptEngineManager().getEngineByName("kotlin")
         dependsOn.forEach { infoConceptId ->
-            engine.eval("val `$infoConceptId` = ${request.supportedValues[infoConceptId]!!.value}")
+            engine.eval("val `$infoConceptId` = ${request.toRequest().supportedValues[infoConceptId]!!.value}")
         }
 
         val value = engine.eval(expressionOfExpectedValue).toString()
@@ -73,6 +74,6 @@ class ComputeExpectedValuesHandler(
     }
 
     private fun InformationConcept.everyDependenciesSatisfied(request: RequestEntity): Boolean {
-        return dependsOn.all { infoConceptId -> infoConceptId in request.supportedValues.keys }
+        return dependsOn.all { infoConceptId -> infoConceptId in request.toRequest().supportedValues.keys }
     }
 }

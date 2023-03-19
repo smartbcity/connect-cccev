@@ -11,10 +11,10 @@ import cccev.s2.request.domain.model.RequestId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.model.RequirementIdentifier
 import cccev.s2.unit.domain.DataUnitId
-import fixers.bdd.data.BddContext
-import fixers.bdd.data.TestContext
-import fixers.bdd.data.TestContextKey
-import fixers.bdd.data.TestEntityIds
+import s2.bdd.data.BddContext
+import s2.bdd.data.TestContext
+import s2.bdd.data.TestContextKey
+import s2.bdd.data.TestEntityIds
 import org.springframework.stereotype.Component
 
 @Component

@@ -31,7 +31,7 @@ interface RequestAuditedEventDTO: RequestEvent {
 	 * The current state of the request.
 	 * @example "Audited"
 	 */
-	override val type: RequestState.Audited
+	override val type: RequestState
 }
 
 /**
@@ -48,5 +48,5 @@ class RequestAuditCommand(
 @Serializable
 class RequestAuditedEvent(
 	override val id: RequestId,
-	override val type: RequestState.Audited = RequestState.Audited,
+	override val type: RequestState = RequestState.AUDITED,
 ): RequestAuditedEventDTO

@@ -1,9 +1,9 @@
 package cccev.test
 
-import fixers.bdd.CucumberStepsDefinition
+import s2.bdd.CucumberStepsDefinition
 import org.springframework.beans.factory.annotation.Autowired
 
-open class CccevCucumberStepsDefinition: CucumberStepsDefinition() {
+open class CccevCucumberStepsDefinition: s2.bdd.CucumberStepsDefinition() {
 
     @Autowired
     override lateinit var context: CccevTestContext

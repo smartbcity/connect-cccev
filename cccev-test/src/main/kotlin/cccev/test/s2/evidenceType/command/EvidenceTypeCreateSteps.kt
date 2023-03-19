@@ -6,8 +6,8 @@ import cccev.s2.evidence.domain.EvidenceTypeState
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreateCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.evidenceType.data.evidenceType
-import fixers.bdd.assertion.AssertionBdd
-import fixers.bdd.data.TestContextKey
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.data.TestContextKey
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull

@@ -6,6 +6,7 @@ import cccev.f2.concept.domain.query.GetInformationConceptsQuery
 import cccev.f2.concept.domain.query.GetInformationConceptsQueryFunction
 import cccev.projection.api.entity.request.RequestEntity
 import cccev.projection.api.entity.request.RequestRepository
+import cccev.projection.api.entity.request.toRequest
 import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.features.command.RequestSupportedValueAddCommand
@@ -65,9 +66,9 @@ class ComputeExpectedValuesHandlerSteps: En {
         Given("A request is instantiated on this framework") {
             val request = RequestEntity().apply {
                 frameworkId = frameworkId
-                status = RequestState.Created
+                status = RequestState.CREATED
                 evidences = mutableListOf()
-                supportedValues = mutableMapOf()
+//                supportedValues = mutableMapOf()
             }
             requestId = request.id
             runBlocking {
@@ -95,7 +96,7 @@ class ComputeExpectedValuesHandlerSteps: En {
 
                     Assertions.assertThat(request).isNotNull
 
-                    val computedValue = request!!.supportedValues[expectedValue.providesValueFor]
+                    val computedValue = request!!.toRequest().supportedValues[expectedValue.providesValueFor]
                     Assertions.assertThat(computedValue!!.value).isEqualTo(expectedValue.value)
                 }
             }

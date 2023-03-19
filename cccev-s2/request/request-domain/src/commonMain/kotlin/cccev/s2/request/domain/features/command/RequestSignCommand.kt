@@ -20,7 +20,7 @@ interface RequestSignCommandDTO: RequestCommand {
 @JsName("RequestSignedEventDto")
 interface RequestSignedEventDTO: RequestEvent {
 	override val id: RequestId
-	override val type: RequestState.Signed
+	override val type: RequestState
 }
 
 /**
@@ -43,5 +43,5 @@ class RequestSignedEvent(
 	 * The current state of the request.
 	 * @example "Signed"
 	 */
-	override val type: RequestState.Signed = RequestState.Signed,
+	override val type: RequestState = RequestState.SIGNED,
 ): RequestSignedEventDTO
