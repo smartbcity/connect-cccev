@@ -17,9 +17,9 @@ include(
 	"api-gateway",
 	"api-commons",
 	"cccev-f2",
-	"cccev-test",
-	"fixers-bdd"
+	"cccev-test"
 )
+
 include(
 	"cccev-f2:concept-f2:concept-f2-api",
 	"cccev-f2:concept-f2:concept-f2-client",
