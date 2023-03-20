@@ -5,9 +5,9 @@ import cccev.s2.evidence.api.EvidenceTypeAggregateService
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListRemoveEvidenceTypesCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.evidenceTypeList.data.evidenceTypeList
-import fixers.bdd.assertion.AssertionBdd
-import fixers.bdd.data.TestContextKey
-import fixers.bdd.data.parser.safeExtractList
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.data.TestContextKey
+import s2.bdd.data.parser.safeExtractList
 import io.cucumber.java8.En
 import org.springframework.beans.factory.annotation.Autowired
 

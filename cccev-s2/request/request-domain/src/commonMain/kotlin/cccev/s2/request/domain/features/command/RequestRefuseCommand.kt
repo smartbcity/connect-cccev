@@ -22,7 +22,7 @@ interface RequestRefuseCommandDTO: RequestCommand {
 @JsName("RequestRefusedEventDto")
 interface RequestRefusedEventDTO: RequestEvent {
 	override val id: RequestId
-	override val type: RequestState.Created
+	override val type: RequestState
 }
 
 /**
@@ -45,5 +45,5 @@ class RequestRefusedEvent(
 	 * The current state of the request.
 	 * @example "Created"
 	 */
-	override val type: RequestState.Created = RequestState.Created,
+	override val type: RequestState = RequestState.CREATED,
 ): RequestRefusedEventDTO

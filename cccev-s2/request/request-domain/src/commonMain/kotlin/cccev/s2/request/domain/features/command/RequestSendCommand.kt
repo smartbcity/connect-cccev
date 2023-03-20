@@ -19,7 +19,7 @@ interface RequestSendCommandDTO: RequestCommand {
 @JsName("RequestSentEventDto")
 interface RequestSentEventDTO: RequestEvent {
 	override val id: RequestId
-	override val type: RequestState.Sent
+	override val type: RequestState
 }
 
 /**
@@ -42,5 +42,5 @@ class RequestSentEvent(
 	 * The current state of the request.
 	 * @example "Sent"
 	 */
-	override val type: RequestState.Sent = RequestState.Sent,
+	override val type: RequestState = RequestState.SENT,
 ): RequestSentEventDTO

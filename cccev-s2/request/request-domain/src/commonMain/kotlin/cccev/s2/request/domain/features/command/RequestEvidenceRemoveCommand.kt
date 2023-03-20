@@ -22,7 +22,7 @@ interface RequestEvidenceRemoveCommandDTO: RequestCommand {
 @JsName("RequestEvidenceRemovedEventDTO")
 interface RequestEvidenceRemovedEventDTO: RequestEvent {
 	override val id: RequestId
-	override val type: RequestState.Created
+	override val type: RequestState
 	val evidenceTypeId: EvidenceTypeId
 }
 
@@ -47,7 +47,7 @@ class RequestEvidenceRemovedEvent(
 	 * The current state of the request.
 	 * @example "Created"
 	 */
-	override val type: RequestState.Created = RequestState.Created,
+	override val type: RequestState = RequestState.CREATED,
     /**
 	 * Identifier of the removed evidence type.
 	 * @example "082f9b5b-4ffa-4e95-8288-2de2972cade5"

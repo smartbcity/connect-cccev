@@ -1,16 +1,15 @@
 package features.cccev.test
 
-import features.cccev.test.data.context.TestContext
-import features.cccev.test.data.context.TestEntities
-import features.cccev.test.exception.EntityNotInitializedException
-import features.cccev.test.exception.NullDataTableParamException
+import s2.bdd.data.TestEntities
+import s2.bdd.exception.EntityNotInitializedException
+import s2.bdd.exception.NullDataTableParamException
 import org.springframework.beans.factory.annotation.Autowired
 import java.util.UUID
 
 open class CucumberStepsDefinition {
 
     @Autowired
-    protected lateinit var context: TestContext
+    protected lateinit var context: CccevTestContext
 
     protected fun <K: Any, V> Map<K, V>.safeExtract(key: K): V {
         return get(key) ?: throw NullDataTableParamException(key.toString())

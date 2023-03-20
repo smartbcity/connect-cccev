@@ -34,6 +34,13 @@ object Repo {
 
 object Dependencies {
 	object Jvm {
+
+		fun s2Bdd(scope: Scope) = scope.add(
+			"city.smartb.s2:s2-test-bdd:${Versions.s2}",
+			"org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}"
+		).also(::cucumber)
+			.also(::junit)
+
 		fun f2(scope: Scope) = scope.add(
 			"city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}"
 		)
@@ -58,9 +65,14 @@ object Dependencies {
 		fun junit(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
 			scope.add("org.awaitility:awaitility:${Versions.awaitility}")
 		}
-		fun springTx(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
-			scope.add("org.springframework:spring-tx:${FixersVersions.Spring.framework}")
+
+		object Spring {
+			fun dataCommons(scope: Scope) = FixersDependencies.Jvm.Spring.dataCommons(scope)
+			fun tx(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
+				scope.add("org.springframework:spring-tx:${FixersVersions.Spring.framework}")
+			}
 		}
+
 	}
 	object Mpp {
 		fun f2(scope: Scope) = scope.add(

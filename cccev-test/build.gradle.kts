@@ -20,7 +20,6 @@ dependencies {
 	implementation(project(":cccev-s2:requirement:requirement-api"))
 	implementation(project(":cccev-s2:unit:unit-api"))
 
-	api(project(":fixers-bdd"))
+	Dependencies.Jvm.s2Bdd(::api)
 
-	implementation("org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}")
 }

@@ -24,76 +24,84 @@ fun s2Request() = S2Request
 val S2Request = s2 {
 	name = "RequestS2"
 	init<RequestInitCommand> {
-		to = RequestState.Created
+		to = RequestState.CREATED
 		role = EditorRole()
 	}
 	transaction<RequestEvidenceAddCommand> {
-		from = RequestState.Created
-		to = RequestState.Created
+		from = RequestState.CREATED
+		to = RequestState.CREATED
 		role = EditorRole()
 	}
 	transaction<RequestEvidenceRemoveCommand> {
-		from = RequestState.Created
-		to = RequestState.Created
+		from = RequestState.CREATED
+		to = RequestState.CREATED
 		role = EditorRole()
 	}
 	transaction<RequestSupportedValueAddCommand> {
-		from = RequestState.Created
-		to = RequestState.Created
+		from = RequestState.CREATED
+		to = RequestState.CREATED
 		role = EditorRole()
 	}
 	transaction<RequestSendCommand> {
-		from = RequestState.Created
-		to = RequestState.Sent
+		from = RequestState.CREATED
+		to = RequestState.SENT
 		role = EditorRole()
 	}
 	transaction<RequestEvidenceAddCommand> {
-		from = RequestState.Sent
-		to = RequestState.Sent
+		from = RequestState.SENT
+		to = RequestState.SENT
 		role = EditorRole()
 	}
 	transaction<RequestEvidenceRemoveCommand> {
-		from = RequestState.Sent
-		to = RequestState.Sent
+		from = RequestState.SENT
+		to = RequestState.SENT
 		role = EditorRole()
 	}
 	transaction<RequestSupportedValueAddCommand> {
-		from = RequestState.Sent
-		to = RequestState.Sent
+		from = RequestState.SENT
+		to = RequestState.SENT
 		role = EditorRole()
 	}
 	transaction<RequestSendCommand> {
-		from = RequestState.Sent
-		to = RequestState.Sent
+		from = RequestState.SENT
+		to = RequestState.SENT
 		role = EditorRole()
 	}
 	transaction<RequestSignCommand> {
-		from = RequestState.Sent
-		to = RequestState.Signed
+		from = RequestState.SENT
+		to = RequestState.SIGNED
 		role = EditorRole()
 	}
 	transaction<RequestAuditCommand> {
-		from = RequestState.Signed
-		to = RequestState.Audited
+		from = RequestState.SIGNED
+		to = RequestState.AUDITED
 		role = EditorRole()
 	}
 	transaction<RequestRefuseCommand> {
-		from = RequestState.Signed
-		to = RequestState.Created
+		from = RequestState.SIGNED
+		to = RequestState.CREATED
 		role = EditorRole()
 	}
 }
+
 @Serializable
-open class RequestState(override var position: Int): S2State {
-	@Serializable
-	object Created: RequestState(position = 0)
-	@Serializable
-	object Sent: RequestState(position = 10)
-	@Serializable
-	object Signed: RequestState(position = 20)
-	@Serializable
-	object Audited: RequestState(position = 30)
+enum class RequestState(override var position: Int): S2State {
+	CREATED(position = 0),
+	SENT(position = 10),
+	SIGNED(position = 20),
+	AUDITED(position = 30)
 }
+
+//open class RequestState(override var position: Int): S2State {
+//	@Serializable
+//	object Created: RequestState(position = 0)
+//	@Serializable
+//	object Sent: RequestState(position = 10)
+//	@Serializable
+//	object Signed: RequestState(position = 20)
+//	@Serializable
+//	object Audited: RequestState(position = 30)
+//}
 
 class EditorRole: S2Role
 class AuditorRole: S2Role

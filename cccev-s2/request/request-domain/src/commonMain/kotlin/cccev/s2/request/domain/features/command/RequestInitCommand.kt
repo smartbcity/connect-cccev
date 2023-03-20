@@ -1,7 +1,6 @@
 package cccev.s2.request.domain.features.command
 
 import cccev.dsl.model.FrameworkId
-import cccev.dsl.model.RequirementId
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
@@ -9,7 +8,6 @@ import s2.dsl.automate.S2InitCommand
 import kotlin.js.JsExport
 import kotlin.js.JsName
 import kotlinx.serialization.Serializable
-import s2.dsl.automate.Evt
 
 
 @JsExport
@@ -23,7 +21,7 @@ interface RequestInitCommandDTO: S2InitCommand {
 @JsName("RequestInitializedEventDTO")
 interface RequestInitializedEventDTO: RequestEvent {
 	override val id: RequestId
-	val frameworkId: RequirementId
+	val frameworkId: FrameworkId
 }
 
 /**
@@ -33,7 +31,7 @@ interface RequestInitializedEventDTO: RequestEvent {
 @Serializable
 class RequestInitCommand(
 	override val id: RequestId,
-	override val frameworkId: RequirementId
+	override val frameworkId: FrameworkId
 ): RequestInitCommandDTO
 
 /**
@@ -47,5 +45,5 @@ class RequestInitializedEvent(
 	 */
 	override val id: RequestId,
 	override val type: RequestState,
-	override val frameworkId: RequirementId
+	override val frameworkId: FrameworkId
 ): RequestInitializedEventDTO

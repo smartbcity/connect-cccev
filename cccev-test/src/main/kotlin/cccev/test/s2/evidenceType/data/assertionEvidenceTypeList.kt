@@ -4,8 +4,8 @@ import cccev.projection.api.entity.evidencetype.EvidenceTypeEntity
 import cccev.projection.api.entity.evidencetype.EvidenceTypeRepository
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeState
-import cccev.test.AssertionCrudEntity
-import fixers.bdd.assertion.AssertionBdd
+import s2.bdd.repository.AssertionCrudEntity
+import s2.bdd.assertion.AssertionBdd
 import org.assertj.core.api.Assertions
 
 fun AssertionBdd.evidenceType(evidenceTypeRepository: EvidenceTypeRepository) = AssertionEvidenceType(evidenceTypeRepository)

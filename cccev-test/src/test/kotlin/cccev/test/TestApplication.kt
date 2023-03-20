@@ -10,5 +10,5 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EntityScan("cccev")
 @EnableReactiveNeo4jAuditing
 @EnableReactiveNeo4jRepositories("cccev")
-@SpringBootApplication(scanBasePackages = ["cccev", "fixers.bdd"])
+@SpringBootApplication(scanBasePackages = ["cccev", "s2.bdd"])
 class TestApplication

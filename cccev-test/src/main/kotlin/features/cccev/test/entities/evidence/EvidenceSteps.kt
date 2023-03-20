@@ -7,7 +7,7 @@ import cccev.s2.request.domain.features.command.RequestEvidenceAddCommand
 import cccev.s2.request.domain.model.RequestId
 import features.cccev.test.CucumberStepsDefinition
 import features.cccev.test.data.DataTest
-import features.cccev.test.exception.EntityNotInitializedException
+import s2.bdd.exception.EntityNotInitializedException
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
 import kotlinx.coroutines.runBlocking

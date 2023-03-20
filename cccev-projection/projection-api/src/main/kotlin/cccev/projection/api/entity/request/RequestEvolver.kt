@@ -39,20 +39,20 @@ class RequestEvolver(
 	}
 
 	private suspend fun RequestEntity.addEvidence(cmd: RequestEvidenceAddedEvent) = this.apply {
-		evidences.add(cmd.evidence)
+//		evidences.add(cmd.evidence)
 	}
 
 	private suspend fun RequestEntity.removeEvidence(cmd: RequestEvidenceRemovedEvent) = this.apply {
-		evidences.removeIf { evidence -> cmd.evidenceTypeId in evidence.isConformantTo }
+//		evidences.removeIf { evidence -> cmd.evidenceTypeId in evidence.isConformantTo }
 	}
 
 	private suspend fun init(cmd: RequestInitializedEvent): RequestEntity {
 		return RequestEntity().apply {
 			id = cmd.id
-			status = RequestState.Created
+			status = RequestState.CREATED
 			frameworkId = cmd.frameworkId
 			evidences = mutableListOf()
-			supportedValues = mutableMapOf()
+//			supportedValues = mutableMapOf()
 		}
 	}
 
@@ -69,7 +69,8 @@ class RequestEvolver(
 	}
 
 	private suspend fun RequestEntity.addSupportedValue(cmd: RequestSupportedValueAddedEvent) = this.apply {
-		supportedValues[cmd.supportedValue.providesValueFor] = cmd.supportedValue
+		TODO()
+//		supportedValues[cmd.supportedValue.providesValueFor] = cmd.supportedValue
 	}
 
 }
