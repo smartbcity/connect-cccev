@@ -18,9 +18,6 @@ fun localConsultationProtocolPreparation(init: InformationRequirementBuilder.() 
                             informationRequirement {
                                 identifier = "PoPinP"
                                 name = "ProtocolOfTheProtocolInTheProtocol"
-                                isRequirementOf {
-                                    informationRequirement { identifier = "P" }
-                                }
                             }
                             informationRequirement {
                                 identifier = "PoPinP2"
