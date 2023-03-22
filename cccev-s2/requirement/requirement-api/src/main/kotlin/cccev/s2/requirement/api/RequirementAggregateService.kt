@@ -19,8 +19,8 @@ import cccev.s2.requirement.domain.command.RequirementRemovedEvidenceTypeListsEv
 import cccev.s2.requirement.domain.command.RequirementRemovedRequirementsEvent
 import cccev.s2.requirement.domain.command.RequirementUpdateCommand
 import cccev.s2.requirement.domain.command.RequirementUpdatedEvent
-import java.util.UUID
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class RequirementAggregateService(
@@ -29,7 +29,7 @@ class RequirementAggregateService(
 
     override suspend fun create(command: RequirementCreateCommand) = automate.init(command) {
         RequirementCreatedEvent(
-            id = command.identifier ?: UUID.randomUUID().toString(),
+            id = UUID.randomUUID().toString(),
             identifier = command.identifier,
             kind = command.kind,
             name = command.name,

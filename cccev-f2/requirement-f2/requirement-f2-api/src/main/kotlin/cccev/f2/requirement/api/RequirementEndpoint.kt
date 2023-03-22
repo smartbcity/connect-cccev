@@ -74,7 +74,7 @@ class RequirementEndpoint(
 
     @Bean
     override fun requirementCreate(): RequirementCreateFunction = f2Function { cmd ->
-        logger.info("requirementCreate: $cmd")
+        logger.info("requirementCreate: ${cmd}")
         when (RequirementKind.valueOf(cmd.kind)) {
             RequirementKind.CONSTRAINT -> requirementF2AggregateService.create(ConstraintCreateCommandDTOBase(
                 identifier = cmd.identifier,

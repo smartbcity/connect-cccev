@@ -9,17 +9,24 @@ import cccev.f2.concept.client.informationConceptClient
 import cccev.f2.evidence.type.client.EvidenceTypeClient
 import cccev.f2.evidence.type.client.evidenceTypeClient
 import cccev.f2.requirement.domain.command.RequirementCreateCommandDTOBase
+import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.concept.domain.command.InformationConceptCreateCommand
+import cccev.s2.concept.domain.command.InformationConceptCreatedEvent
+import cccev.s2.evidence.domain.EvidenceTypeId
+import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreateCommand
+import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreatedEvent
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreateCommand
+import cccev.s2.evidence.domain.command.type.EvidenceTypeCreatedEvent
 import cccev.s2.requirement.client.RequirementClient
 import cccev.s2.requirement.client.requirementClient
+import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.command.RequirementCreatedEvent
 import cccev.s2.requirement.domain.model.RequirementIdentifier
 import cccev.s2.requirement.domain.model.RequirementKind
 import f2.client.ktor.F2ClientBuilder
 import f2.client.ktor.get
-import f2.dsl.fnc.invoke
+import f2.dsl.fnc.invokeWith
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flatMapConcat
@@ -44,9 +51,10 @@ class CCCEVClient(
 
     suspend fun createGraph(requirements: Flow<Requirement>): Flow<RequirementCreatedEvent> {
         val visitedRequirementIdentifiers = mutableSetOf<RequirementIdentifier>()
-        val visitedConceptIdentifiers = mutableSetOf<String>()
-        val visitedEvidenceTypeIdentifiers = mutableSetOf<String>()
-        val visitedEvidenceTypeListIdentifiers = mutableSetOf<String>()
+        val createdConcepts = mutableMapOf<String, InformationConceptId>()
+        val createdEvidenceTypes = mutableMapOf<String, EvidenceTypeId>()
+        val createdEvidenceTypeLists = mutableMapOf<String, EvidenceTypeListId>()
+        val createdRequirements = mutableMapOf<RequirementIdentifier, RequirementId>()
 
         fun Requirement.flatten(): Flow<Requirement> = flow {
             if (identifier in visitedRequirementIdentifiers) {
@@ -54,33 +62,33 @@ class CCCEVClient(
             }
             visitedRequirementIdentifiers += identifier!!
 
-            emit(this@flatten)
             hasRequirement?.forEach { emitAll(it.flatten()) }
             isRequirementOf?.forEach { emitAll(it.flatten()) }
             hasQualifiedRelation?.forEach { emitAll(it.flatten()) }
+            emit(this@flatten)
         }
 
         return requirements.flatMapConcat(Requirement::flatten)
             .map { requirement ->
                 requirement.hasConcept?.forEach { concept ->
-                    if (concept.identifier !in visitedConceptIdentifiers) {
-                        visitedConceptIdentifiers += concept.identifier
-                        concept.create()
+                    if (concept.identifier !in createdConcepts) {
+                        val conceptId = concept.create(createdConcepts).id
+                        createdConcepts[concept.identifier] = conceptId
                     }
                 }
 
                 requirement.hasEvidenceTypeList?.forEach { etl ->
-                    if (etl.identifier !in visitedEvidenceTypeListIdentifiers) {
-                        visitedEvidenceTypeListIdentifiers += etl.identifier
+                    if (etl.identifier !in createdEvidenceTypeLists) {
 
                         etl.specifiesEvidenceType.forEach { et ->
-                            if (et.identifier !in visitedEvidenceTypeIdentifiers) {
-                                visitedEvidenceTypeIdentifiers += et.identifier
-                                et.create()
+                            if (et.identifier !in createdEvidenceTypes) {
+                                val evidenceTypeId = et.create().id
+                                createdEvidenceTypes[et.identifier] = evidenceTypeId
                             }
                         }
 
-                        etl.create()
+                        val evidenceTypeListId = etl.create(createdEvidenceTypes).id
+                        createdEvidenceTypeLists[etl.identifier] = evidenceTypeListId
                     }
                 }
 
@@ -88,45 +96,43 @@ class CCCEVClient(
                     identifier = requirement.identifier,
                     name = requirement.name,
                     description = requirement.description,
-                    hasConcept = requirement.hasConcept?.map(InformationConceptBase::identifier).orEmpty(),
-                    hasEvidenceTypeList = requirement.hasEvidenceTypeList?.map(EvidenceTypeListBase::identifier).orEmpty(),
-                    hasRequirement = requirement.hasRequirement?.mapNotNull(Requirement::identifier).orEmpty(),
-                    isRequirementOf = requirement.isRequirementOf?.mapNotNull(Requirement::identifier),
-                    hasQualifiedRelation = requirement.hasQualifiedRelation?.mapNotNull(Requirement::identifier),
+                    hasConcept = requirement.hasConcept?.map { createdConcepts[it.identifier]!! }.orEmpty(),
+                    hasEvidenceTypeList = requirement.hasEvidenceTypeList?.map { createdEvidenceTypeLists[it.identifier]!! }.orEmpty(),
+                    hasRequirement = requirement.hasRequirement?.map { createdRequirements[it.identifier]!! }.orEmpty(),
+                    isRequirementOf = requirement.isRequirementOf?.map { createdRequirements[it.identifier]!! },
+                    hasQualifiedRelation = requirement.hasQualifiedRelation?.map { createdRequirements[it.identifier]!! },
                     kind = RequirementKind.INFORMATION.name
-                )
-            }.let { flow ->
-                requirementClient.requirementCreate().invoke(flow)
+                ).invokeWith(requirementClient.requirementCreate())
+                    .also { createdRequirements[it.identifier!!] = it.id }
             }
     }
 
-    suspend fun InformationConceptBase.create() {
-        InformationConceptCreateCommand(
+    private suspend fun InformationConceptBase.create(conceptIdMap: Map<String, InformationConceptId>): InformationConceptCreatedEvent {
+        return InformationConceptCreateCommand(
             name = name,
             identifier = identifier,
-
             hasUnit = unit.identifier,
             description = description,
             expressionOfExpectedValue = expressionOfExpectedValue,
-            dependsOn = dependsOn,
-        ).let { informationConceptClient.conceptCreate().invoke(it) }
+            dependsOn = dependsOn.map { conceptIdMap[it]!! },
+        ).invokeWith(informationConceptClient.conceptCreate())
     }
 
-    suspend fun EvidenceTypeBase.create() {
-        EvidenceTypeCreateCommand(
+    private suspend fun EvidenceTypeBase.create(): EvidenceTypeCreatedEvent {
+        return EvidenceTypeCreateCommand(
             identifier = identifier,
             name = name,
             description = "",
             validityPeriodConstraint = null
-        ).let { evidenceTypeClient.evidenceTypeCreate().invoke(it) }
+        ).invokeWith(evidenceTypeClient.evidenceTypeCreate())
     }
 
-    suspend fun EvidenceTypeListBase.create() {
-        EvidenceTypeListCreateCommand(
+    private suspend fun EvidenceTypeListBase.create(evidenceTypeIdMap: Map<String, EvidenceTypeId>): EvidenceTypeListCreatedEvent {
+        return EvidenceTypeListCreateCommand(
             identifier = identifier,
             name = name,
             description = description,
-            specifiesEvidenceType = specifiesEvidenceType.map(EvidenceTypeBase::identifier)
-        ).let { evidenceTypeClient.evidenceTypeListCreate().invoke(it) }
+            specifiesEvidenceType = specifiesEvidenceType.map { evidenceTypeIdMap[it.identifier]!! }
+        ).invokeWith(evidenceTypeClient.evidenceTypeListCreate())
     }
 }

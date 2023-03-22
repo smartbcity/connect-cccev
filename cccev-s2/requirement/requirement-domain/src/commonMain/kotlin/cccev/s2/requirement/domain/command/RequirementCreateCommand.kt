@@ -9,9 +9,9 @@ import cccev.s2.requirement.domain.RequirementInitCommand
 import cccev.s2.requirement.domain.RequirementState
 import cccev.s2.requirement.domain.model.RequirementIdentifier
 import cccev.s2.requirement.domain.model.RequirementKind
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
-import kotlinx.serialization.Serializable
 
 /**
  * Create a new requirement.
@@ -58,7 +58,7 @@ data class RequirementCreateCommand(
      * Sub-requirements that must be fulfilled for the requirement to be validated.
      * @example [cccev.s2.requirement.domain.model.Requirement.hasRequirement]
      */
-    val hasRequirement: List<RequirementIdentifier>,
+    val hasRequirement: List<RequirementId>,
 
     /**
      * Described and/or categorised relation to another Requirement. <br/>
@@ -68,7 +68,7 @@ data class RequirementCreateCommand(
      * in Member States' specific requirements.
      * @example [["baee57d9-7f0a-4cb0-92e5-402b80c18c74"]]
      */
-    var hasQualifiedRelation: List<RequirementIdentifier>?,
+    var hasQualifiedRelation: List<RequirementId>?,
 
     /**
      * Concepts used by the requirement
@@ -115,12 +115,12 @@ interface RequirementCreatedEventDTO: RequirementEvent {
     /**
      * @ref [RequirementCreateCommand.hasRequirement]
      */
-    val hasRequirement: List<RequirementIdentifier>
+    val hasRequirement: List<RequirementId>
 
     /**
      * @ref [RequirementCreateCommand.hasQualifiedRelation]
      */
-    val hasQualifiedRelation: List<RequirementIdentifier>?
+    val hasQualifiedRelation: List<RequirementId>?
 
     /**
      * @ref [RequirementCreateCommand.hasConcept]

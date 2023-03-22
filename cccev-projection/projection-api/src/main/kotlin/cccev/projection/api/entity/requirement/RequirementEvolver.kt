@@ -35,10 +35,10 @@ class RequirementEvolver(
 	}
 
 	private suspend fun create(event: RequirementCreatedEvent): RequirementEntity {
-		val subRequirements = requirementRepository.findByIdentifierIn(event.hasRequirement).collectList().awaitSingle()
-		val relatedRequirements = requirementRepository.findByIdentifierIn(event.hasQualifiedRelation.orEmpty()).collectList().awaitSingle()
-		val concepts = informationConceptRepository.findByIdIn(event.hasConcept).collectList().awaitSingle()
-		val evidenceTypeLists = evidenceTypeListRepository.findByIdIn(event.hasEvidenceTypeList).collectList().awaitSingle()
+		val subRequirements = requirementRepository.findAllById(event.hasRequirement).collectList().awaitSingle()
+		val relatedRequirements = requirementRepository.findAllById(event.hasQualifiedRelation.orEmpty()).collectList().awaitSingle()
+		val concepts = informationConceptRepository.findAllById(event.hasConcept).collectList().awaitSingle()
+		val evidenceTypeLists = evidenceTypeListRepository.findAllById(event.hasEvidenceTypeList).collectList().awaitSingle()
 
 		return RequirementEntity().apply {
 			id = event.id
@@ -70,7 +70,7 @@ class RequirementEvolver(
 	}
 
 	private suspend fun RequirementEntity.addConcepts(event: RequirementAddedConceptsEvent) = apply {
-		hasConcept += informationConceptRepository.findByIdIn(event.conceptIds).collectList().awaitSingle()
+		hasConcept += informationConceptRepository.findAllById(event.conceptIds).collectList().awaitSingle()
 	}
 
 	private suspend fun RequirementEntity.removeConcepts(event: RequirementRemovedConceptsEvent) = apply {
@@ -78,7 +78,7 @@ class RequirementEvolver(
 	}
 
 	private suspend fun RequirementEntity.addEvidenceTypeLists(event: RequirementAddedEvidenceTypeListsEvent) = apply {
-		hasEvidenceTypeList += evidenceTypeListRepository.findByIdIn(event.evidenceTypeListIds).collectList().awaitSingle()
+		hasEvidenceTypeList += evidenceTypeListRepository.findAllById(event.evidenceTypeListIds).collectList().awaitSingle()
 	}
 
 	private suspend fun RequirementEntity.removeEvidenceTypeLists(event: RequirementRemovedEvidenceTypeListsEvent) = apply {
