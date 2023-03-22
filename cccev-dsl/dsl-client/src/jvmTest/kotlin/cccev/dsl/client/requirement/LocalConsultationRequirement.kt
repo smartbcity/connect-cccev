@@ -95,5 +95,8 @@ val LocalConsultationProtocolPreparationRequirements = listOf(
     localConsultationProtocolPreparation {
         identifier = "D112"
         name = "CLIP"
+        isRequirementOf {
+            informationRequirement { identifier = "D111" }
+        }
     }
 )

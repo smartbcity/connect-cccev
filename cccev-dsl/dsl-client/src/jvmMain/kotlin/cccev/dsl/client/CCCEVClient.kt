@@ -21,6 +21,7 @@ import cccev.s2.evidence.domain.command.type.EvidenceTypeCreatedEvent
 import cccev.s2.requirement.client.RequirementClient
 import cccev.s2.requirement.client.requirementClient
 import cccev.s2.requirement.domain.RequirementId
+import cccev.s2.requirement.domain.command.RequirementAddRequirementsCommand
 import cccev.s2.requirement.domain.command.RequirementCreatedEvent
 import cccev.s2.requirement.domain.model.RequirementIdentifier
 import cccev.s2.requirement.domain.model.RequirementKind
@@ -92,18 +93,27 @@ class CCCEVClient(
                     }
                 }
 
-                RequirementCreateCommandDTOBase(
+                val event = RequirementCreateCommandDTOBase(
                     identifier = requirement.identifier,
                     name = requirement.name,
                     description = requirement.description,
                     hasConcept = requirement.hasConcept?.map { createdConcepts[it.identifier]!! }.orEmpty(),
                     hasEvidenceTypeList = requirement.hasEvidenceTypeList?.map { createdEvidenceTypeLists[it.identifier]!! }.orEmpty(),
                     hasRequirement = requirement.hasRequirement?.map { createdRequirements[it.identifier]!! }.orEmpty(),
-                    isRequirementOf = requirement.isRequirementOf?.map { createdRequirements[it.identifier]!! },
                     hasQualifiedRelation = requirement.hasQualifiedRelation?.map { createdRequirements[it.identifier]!! },
                     kind = RequirementKind.INFORMATION.name
                 ).invokeWith(requirementClient.requirementCreate())
-                    .also { createdRequirements[it.identifier!!] = it.id }
+
+                createdRequirements[event.identifier!!] = event.id
+
+                requirement.isRequirementOf?.forEach { parent ->
+                    RequirementAddRequirementsCommand(
+                        id = createdRequirements[parent.identifier]!!,
+                        requirementIds = listOf(event.id)
+                    ).invokeWith(requirementClient.requirementAddRequirements())
+                }
+
+                event
             }
     }
 

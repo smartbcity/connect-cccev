@@ -62,7 +62,7 @@ class RequirementEvolver(
 	}
 
 	private suspend fun RequirementEntity.addRequirements(event: RequirementAddedRequirementsEvent) = apply {
-		hasRequirement += requirementRepository.findByIdentifierIn(event.requirementIds).collectList().awaitSingle()
+		hasRequirement += requirementRepository.findAllById(event.requirementIds).collectList().awaitSingle()
 	}
 
 	private suspend fun RequirementEntity.removeRequirements(event: RequirementRemovedRequirementsEvent) = apply {

@@ -9,6 +9,7 @@ import cccev.f2.requirement.domain.command.CriterionCreateCommandDTOBase
 import cccev.f2.requirement.domain.command.CriterionCreateFunction
 import cccev.f2.requirement.domain.command.InformationRequirementCreateCommandDTOBase
 import cccev.f2.requirement.domain.command.InformationRequirementCreateFunction
+import cccev.f2.requirement.domain.command.RequirementAddRequirementsFunction
 import cccev.f2.requirement.domain.command.RequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementUpdateFunction
 import cccev.f2.requirement.domain.query.GetRequirementListQueryFunction
@@ -73,45 +74,48 @@ class RequirementEndpoint(
     }
 
     @Bean
-    override fun requirementCreate(): RequirementCreateFunction = f2Function { cmd ->
-        logger.info("requirementCreate: ${cmd}")
-        when (RequirementKind.valueOf(cmd.kind)) {
+    override fun requirementCreate(): RequirementCreateFunction = f2Function { command ->
+        logger.info("requirementCreate: $command")
+        when (RequirementKind.valueOf(command.kind)) {
             RequirementKind.CONSTRAINT -> requirementF2AggregateService.create(ConstraintCreateCommandDTOBase(
-                identifier = cmd.identifier,
-                name = cmd.name,
-                description = cmd.description,
-                hasRequirement = cmd.hasRequirement,
-                hasConcept = cmd.hasConcept,
-                hasEvidenceTypeList = cmd.hasEvidenceTypeList,
-                isRequirementOf = cmd.isRequirementOf,
-                hasQualifiedRelation = cmd.hasQualifiedRelation
+                identifier = command.identifier,
+                name = command.name,
+                description = command.description,
+                hasRequirement = command.hasRequirement,
+                hasConcept = command.hasConcept,
+                hasEvidenceTypeList = command.hasEvidenceTypeList,
+                hasQualifiedRelation = command.hasQualifiedRelation
             ))
             RequirementKind.CRITERION ->  requirementF2AggregateService.create(CriterionCreateCommandDTOBase(
-                identifier = cmd.identifier,
-                name = cmd.name,
-                description = cmd.description,
-                hasRequirement = cmd.hasRequirement,
-                hasConcept = cmd.hasConcept,
-                hasEvidenceTypeList = cmd.hasEvidenceTypeList,
-                isRequirementOf = cmd.isRequirementOf,
-                hasQualifiedRelation = cmd.hasQualifiedRelation
+                identifier = command.identifier,
+                name = command.name,
+                description = command.description,
+                hasRequirement = command.hasRequirement,
+                hasConcept = command.hasConcept,
+                hasEvidenceTypeList = command.hasEvidenceTypeList,
+                hasQualifiedRelation = command.hasQualifiedRelation
             ))
             RequirementKind.INFORMATION -> requirementF2AggregateService.create(InformationRequirementCreateCommandDTOBase(
-                identifier = cmd.identifier,
-                name = cmd.name,
-                description = cmd.description,
-                hasRequirement = cmd.hasRequirement,
-                hasConcept = cmd.hasConcept,
-                hasEvidenceTypeList = cmd.hasEvidenceTypeList,
-                isRequirementOf = cmd.isRequirementOf,
-                hasQualifiedRelation = cmd.hasQualifiedRelation
+                identifier = command.identifier,
+                name = command.name,
+                description = command.description,
+                hasRequirement = command.hasRequirement,
+                hasConcept = command.hasConcept,
+                hasEvidenceTypeList = command.hasEvidenceTypeList,
+                hasQualifiedRelation = command.hasQualifiedRelation
             ))
         }
     }
 
     @Bean
-    override fun requirementUpdate(): RequirementUpdateFunction = f2Function { cmd ->
-        logger.info("requirementCreate: $cmd")
-        requirementF2AggregateService.update(cmd)
+    override fun requirementUpdate(): RequirementUpdateFunction = f2Function { command ->
+        logger.info("requirementCreate: $command")
+        requirementF2AggregateService.update(command)
+    }
+
+    @Bean
+    override fun requirementAddRequirements(): RequirementAddRequirementsFunction = f2Function { command ->
+        logger.info("requirementAddRequirements: $command")
+        requirementF2AggregateService.addRequirements(command)
     }
 }

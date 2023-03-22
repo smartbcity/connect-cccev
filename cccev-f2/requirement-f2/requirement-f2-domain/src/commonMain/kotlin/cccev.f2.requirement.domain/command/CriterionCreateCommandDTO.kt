@@ -24,7 +24,6 @@ data class CriterionCreateCommandDTOBase(
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,
-    override var isRequirementOf: List<RequirementId>? = emptyList(),
     override var hasQualifiedRelation: List<RequirementId>? = emptyList(),
 ): CriterionCreateCommandDTO{
     override val kind: String = RequirementKind.CRITERION.name

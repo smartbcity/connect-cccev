@@ -24,7 +24,6 @@ data class ConstraintCreateCommandDTOBase(
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,
-    override var isRequirementOf: List<RequirementId>?,
     override var hasQualifiedRelation: List<RequirementId>?
 ): ConstraintCreateCommandDTO {
     override val kind: String = RequirementKind.CONSTRAINT.name

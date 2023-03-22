@@ -4,12 +4,13 @@ import cccev.f2.requirement.domain.command.ConstraintCreateCommandDTOBase
 import cccev.f2.requirement.domain.command.CriterionCreateCommandDTOBase
 import cccev.f2.requirement.domain.command.InformationRequirementCreateCommandDTOBase
 import cccev.s2.requirement.api.RequirementAggregateService
+import cccev.s2.requirement.domain.command.RequirementAddRequirementsCommand
+import cccev.s2.requirement.domain.command.RequirementAddedRequirementsEvent
 import cccev.s2.requirement.domain.command.RequirementCreateCommand
 import cccev.s2.requirement.domain.command.RequirementCreatedEvent
 import cccev.s2.requirement.domain.command.RequirementUpdateCommand
 import cccev.s2.requirement.domain.command.RequirementUpdatedEvent
 import cccev.s2.requirement.domain.model.RequirementKind
-import f2.dsl.fnc.invokeWith
 import org.springframework.stereotype.Service
 
 @Service
@@ -57,5 +58,9 @@ class RequirementF2AggregateService(
 
     suspend fun update(command: RequirementUpdateCommand): RequirementUpdatedEvent {
         return requirementAggregateService.update(command)
+    }
+
+    suspend fun addRequirements(command: RequirementAddRequirementsCommand): RequirementAddedRequirementsEvent {
+        return requirementAggregateService.addRequirements(command)
     }
 }

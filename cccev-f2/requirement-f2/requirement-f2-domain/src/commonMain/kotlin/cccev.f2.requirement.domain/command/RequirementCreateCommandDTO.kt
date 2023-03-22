@@ -5,9 +5,9 @@ import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.command.RequirementCreatedEvent
 import f2.dsl.fnc.F2Function
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
-import kotlinx.serialization.Serializable
 
 typealias RequirementCreateFunction = F2Function<RequirementCreateCommandDTOBase, RequirementCreatedEvent>
 
@@ -21,7 +21,6 @@ interface RequirementCreateCommandDTO {
     val hasConcept: List<InformationConceptId>
     val hasEvidenceTypeList: List<EvidenceTypeListId>
     val hasRequirement: List<RequirementId>
-    var isRequirementOf: List<RequirementId>?
     var hasQualifiedRelation: List<RequirementId>?
 }
 
@@ -34,7 +33,6 @@ data class RequirementCreateCommandDTOBase(
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,
-    override var isRequirementOf: List<RequirementId>?,
     override var hasQualifiedRelation: List<RequirementId>?
 ): RequirementCreateCommandDTO
 

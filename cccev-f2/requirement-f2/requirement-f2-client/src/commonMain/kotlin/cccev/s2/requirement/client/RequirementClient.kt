@@ -4,6 +4,7 @@ import cccev.f2.requirement.domain.RequirementApi
 import cccev.f2.requirement.domain.command.ConstraintCreateFunction
 import cccev.f2.requirement.domain.command.CriterionCreateFunction
 import cccev.f2.requirement.domain.command.InformationRequirementCreateFunction
+import cccev.f2.requirement.domain.command.RequirementAddRequirementsFunction
 import cccev.f2.requirement.domain.command.RequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementUpdateFunction
 import cccev.f2.requirement.domain.query.GetRequirementListQueryFunction
@@ -31,4 +32,5 @@ open class RequirementClient constructor(private val client: F2Client) : Require
         = client.function(this::informationRequirementCreate.name)
     override fun requirementCreate(): RequirementCreateFunction  = client.function(this::requirementCreate.name)
     override fun requirementUpdate(): RequirementUpdateFunction  = client.function(this::requirementUpdate.name)
+    override fun requirementAddRequirements(): RequirementAddRequirementsFunction  = client.function(this::requirementAddRequirements.name)
 }
