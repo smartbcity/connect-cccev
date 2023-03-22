@@ -1,23 +1,21 @@
 package cccev.test.s2.request.command
 
-import cccev.dsl.model.FrameworkId
 import cccev.projection.api.entity.request.RequestRepository
 import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.domain.RequestState
-import cccev.s2.request.domain.features.command.RequestInitCommand
+import cccev.s2.request.domain.command.RequestCreateCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.request.data.request
-import s2.bdd.assertion.AssertionBdd
-import s2.bdd.data.TestContextKey
-import s2.bdd.data.parser.extractList
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
-import java.util.UUID
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.data.TestContextKey
+import s2.bdd.data.parser.extractList
 
-class RequestInitSteps: En, CccevCucumberStepsDefinition() {
+class RequestCreateSteps: En, CccevCucumberStepsDefinition() {
 
     @Autowired
     private lateinit var requestAggregateService: RequestAggregateService
@@ -25,7 +23,7 @@ class RequestInitSteps: En, CccevCucumberStepsDefinition() {
     @Autowired
     private lateinit var requestRepository: RequestRepository
 
-    private lateinit var command: RequestInitCommand
+    private lateinit var command: RequestCreateCommand
 
     init {
         DataTableType(::requestCreateParams)
@@ -37,7 +35,7 @@ class RequestInitSteps: En, CccevCucumberStepsDefinition() {
             }
         }
 
-        When("I create a request:") { params: RequestInitParams ->
+        When("I create a request:") { params: RequestCreateParams ->
             step {
                 createRequest(params)
             }
@@ -49,7 +47,7 @@ class RequestInitSteps: En, CccevCucumberStepsDefinition() {
             }
         }
 
-        Given("A request is created:") { params: RequestInitParams ->
+        Given("A request is created:") { params: RequestCreateParams ->
             step {
                 createRequest(params)
             }
@@ -57,7 +55,7 @@ class RequestInitSteps: En, CccevCucumberStepsDefinition() {
 
         Given("Some requests are created:") { dataTable: DataTable ->
             step {
-                dataTable.asList(RequestInitParams::class.java)
+                dataTable.asList(RequestCreateParams::class.java)
                     .forEach { createRequest(it) }
             }
         }
@@ -67,7 +65,9 @@ class RequestInitSteps: En, CccevCucumberStepsDefinition() {
                 val requestId = context.requestIds.lastUsed
                 AssertionBdd.request(requestRepository).assertThatId(requestId).hasFields(
                     status = RequestState.CREATED,
-                    frameworkId = command.frameworkId,
+                    name = command.name,
+                    description = command.description,
+                    requirements = command.requirements
                 )
             }
         }
@@ -80,38 +80,48 @@ class RequestInitSteps: En, CccevCucumberStepsDefinition() {
 
                 AssertionBdd.request(requestRepository).assertThat(request!!).hasFields(
                     status = RequestState.CREATED,
-                    frameworkId = params.frameworkId,
+                    name = params.name ?: request.name,
+                    description = params.description ?: request.description,
+                    requirements = params.requirements?.map(context.requirementIds::safeGet) ?: request.requirements.map { it.id }
                 )
             }
         }
     }
 
-    private suspend fun createRequest(params: RequestInitParams) = context.requestIds.register(params.identifier) {
-        command = RequestInitCommand(
-            id = "${params.identifier}_${UUID.randomUUID()}",
-            frameworkId = params.frameworkId
+    private suspend fun createRequest(params: RequestCreateParams) = context.requestIds.register(params.identifier) {
+        command = RequestCreateCommand(
+            name = params.name,
+            description = params.description,
+            requirements = params.requirements.map(context.requirementIds::safeGet),
         )
-        context.requestIds[params.identifier] = command.id
-        requestAggregateService.init(command).id
+        requestAggregateService.create(command).id
     }
 
-    private fun requestCreateParams(entry: Map<String, String>?) = RequestInitParams(
+    private fun requestCreateParams(entry: Map<String, String>?) = RequestCreateParams(
         identifier = entry?.get("identifier").orRandom(),
-        frameworkId = entry?.get("frameworkId").orRandom(),
+        name = entry?.get("name").orRandom(),
+        description = entry?.get("description"),
+        requirements = entry?.extractList("requirements").orEmpty()
     )
 
-    private data class RequestInitParams(
+    private data class RequestCreateParams(
         val identifier: TestContextKey,
-        val frameworkId: TestContextKey,
+        val name: String,
+        val description: String?,
+        val requirements: List<TestContextKey>,
     )
 
     private fun requestAssertParams(entry: Map<String, String>) = RequestAssertParams(
-        identifier = entry["identifier"] ?: context.conceptIds.lastUsedKey,
-        frameworkId = entry["frameworkId"],
+        identifier = entry["identifier"] ?: context.requestIds.lastUsedKey,
+        name = entry["name"],
+        description = entry["description"],
+        requirements = entry.extractList("requirements")
     )
 
     private data class RequestAssertParams(
         val identifier: TestContextKey,
-        val frameworkId: TestContextKey?,
+        val name: String?,
+        val description: String?,
+        val requirements: List<TestContextKey>?,
     )
 }
