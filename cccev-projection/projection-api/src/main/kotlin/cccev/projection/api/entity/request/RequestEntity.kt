@@ -1,13 +1,8 @@
 package cccev.projection.api.entity.request
 
-import cccev.dsl.model.Evidence
-import cccev.dsl.model.FrameworkId
-import cccev.dsl.model.RequirementId
-import cccev.dsl.model.SupportedValue
 import cccev.projection.api.entity.EntityBase
 import cccev.projection.api.entity.Relation
-import cccev.projection.api.entity.evidence.EvidenceEntity
-import cccev.s2.concept.domain.InformationConceptId
+import cccev.projection.api.entity.requirement.RequirementEntity
 import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.RequestId
 import org.springframework.data.neo4j.core.schema.Node
@@ -15,8 +10,38 @@ import org.springframework.data.neo4j.core.schema.Relationship
 
 @Node("Request")
 class RequestEntity: EntityBase<RequestId, RequestState>() {
-    lateinit var frameworkId: FrameworkId
-    @Relationship(type = Relation.PROVIDE_EVIDENCE)
+    lateinit var name: String
+
+    var description: String? = null
+
+    var startDate: Long? = null
+
+    var endDate: Long? = null
+
+    var estimatedEndDate: Long? = null
+
+    var creator: String? = null
+
+    var executor: String? = null
+
+    var validator: String? = null
+
+    var isPublic: Boolean = false
+
+    var issuable: Boolean = false
+
+    var verifiable: Boolean = false
+
+    var verifier: String? = null
+
+    var verificationDate: Long? = null
+
+    @Relationship(type = Relation.FULFILLS)
+    var requirements: MutableList<RequirementEntity> = mutableListOf()
+
+    @Relationship(type = Relation.PROVIDES_EVIDENCE)
     var evidences: MutableList<EvidenceEntity> = mutableListOf()
-//    var supportedValues: MutableMap<InformationConceptId, SupportedValue> = mutableMapOf()
+
+    @Relationship(type = Relation.PROVIDES_VALUE_FOR)
+    var supportedValues: MutableList<SupportedValueEntity> = mutableListOf()
 }

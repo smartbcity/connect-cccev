@@ -1,18 +1,15 @@
 package cccev.f2.request.api
 
+import cccev.f2.request.api.service.RequestF2AggregateService
 import cccev.f2.request.api.service.RequestF2FinderService
-import cccev.f2.request.domain.features.RequestCommandApi
-import cccev.f2.request.domain.features.RequestQueryApi
-import cccev.f2.request.domain.features.command.RequestAuditCommandFunction
-import cccev.f2.request.domain.features.command.RequestEvidenceAddCommandFunction
-import cccev.f2.request.domain.features.command.RequestEvidenceRemoveCommandFunction
-import cccev.f2.request.domain.features.command.RequestInitCommandFunction
-import cccev.f2.request.domain.features.command.RequestRefuseCommandFunction
-import cccev.f2.request.domain.features.command.RequestSendCommandFunction
-import cccev.f2.request.domain.features.command.RequestSignCommandFunction
-import cccev.f2.request.domain.features.command.RequestSupportedValueAddCommandFunction
-import cccev.f2.request.domain.features.query.GetRequestScoreQueryFunction
-import cccev.s2.request.api.RequestAggregateService
+import cccev.f2.request.domain.RequestCommandApi
+import cccev.f2.request.domain.RequestQueryApi
+import cccev.f2.request.domain.command.RequestAddEvidenceFunction
+import cccev.f2.request.domain.command.RequestAddRequirementsFunction
+import cccev.f2.request.domain.command.RequestAddValuesFunction
+import cccev.f2.request.domain.command.RequestCreateFunction
+import cccev.f2.request.domain.command.RequestRemoveEvidenceFunction
+import cccev.f2.request.domain.command.RequestRemoveRequirementsFunction
 import f2.dsl.fnc.f2Function
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -20,62 +17,44 @@ import s2.spring.utils.logger.Logger
 
 @Configuration
 class RequestEndpoint(
-    private val requestAggregateService: RequestAggregateService,
+    private val requestF2AggregateService: RequestF2AggregateService,
     private val requestF2FinderService: RequestF2FinderService
 ): RequestCommandApi, RequestQueryApi {
     private val logger by Logger()
 
     @Bean
-    override fun initRequest(): RequestInitCommandFunction = f2Function { cmd ->
-        logger.info("Request [${cmd.id}]: init")
-        requestAggregateService.init(cmd)
+    override fun requestCreate(): RequestCreateFunction = f2Function { command ->
+        logger.info("requestCreate: $command")
+        requestF2AggregateService.create(command)
     }
 
     @Bean
-    override fun addEvidence(): RequestEvidenceAddCommandFunction = f2Function { cmd ->
-        logger.info("Request [${cmd.id}]: addEvidence")
-        requestAggregateService.addEvidence(cmd)
+    override fun requestAddRequirements(): RequestAddRequirementsFunction = f2Function { command ->
+        logger.info("requestAddRequirements: $command")
+        requestF2AggregateService.addRequirements(command)
     }
 
     @Bean
-    override fun removeEvidence(): RequestEvidenceRemoveCommandFunction = f2Function { cmd ->
-        logger.info("Request [${cmd.id}]: removeEvidence")
-        requestAggregateService.removeEvidence(cmd)
+    override fun requestRemoveRequirements(): RequestRemoveRequirementsFunction = f2Function { command ->
+        logger.info("requestRemoveRequirements: $command")
+        requestF2AggregateService.removeRequirements(command)
     }
 
     @Bean
-    override fun addSupportedValue(): RequestSupportedValueAddCommandFunction = f2Function { cmd ->
-        logger.info("Request [${cmd.id}]: addSupportedValue")
-        requestAggregateService.addSupportedValue(cmd)
+    override fun requestAddValues(): RequestAddValuesFunction = f2Function { command ->
+        logger.info("requestAddValues: $command")
+        requestF2AggregateService.addValues(command)
     }
 
     @Bean
-    override fun sendRequest(): RequestSendCommandFunction = f2Function { cmd ->
-        logger.info("Request [${cmd.id}]: send")
-        requestAggregateService.send(cmd)
+    override fun requestAddEvidence(): RequestAddEvidenceFunction = f2Function { command ->
+        logger.info("requestAddEvidence: $command")
+        requestF2AggregateService.addEvidence(command)
     }
 
     @Bean
-    override fun signRequest(): RequestSignCommandFunction = f2Function { cmd ->
-        logger.info("Request [${cmd.id}]: sign")
-        requestAggregateService.sign(cmd)
-    }
-
-    @Bean
-    override fun auditRequest(): RequestAuditCommandFunction = f2Function { cmd ->
-        logger.info("Request [${cmd.id}]: audit")
-        requestAggregateService.audit(cmd)
-    }
-
-    @Bean
-    override fun refuseRequest(): RequestRefuseCommandFunction = f2Function { cmd ->
-        logger.info("Request [${cmd.id}]: refuse")
-        requestAggregateService.refuse(cmd)
-    }
-
-    @Bean
-    override fun getRequestScore(): GetRequestScoreQueryFunction = f2Function { query ->
-        logger.info("Request [${query.requestId}]: get score")
-        requestF2FinderService.getRequestScore(query.requestId)
+    override fun requestRemoveEvidence(): RequestRemoveEvidenceFunction = f2Function { command ->
+        logger.info("requestRemoveEvidence: $command")
+        requestF2AggregateService.removeEvidence(command)
     }
 }

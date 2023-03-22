@@ -1,19 +1,16 @@
-package cccev.s2.request.api.config
+package cccev.s2.request.api.entity
 
 import cccev.projection.api.entity.request.RequestEntity
 import cccev.projection.api.entity.request.RequestEvolver
 import cccev.projection.api.entity.request.RequestSnapRepository
-import cccev.projection.api.entity.requirement.RequirementEvolver
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.RequestState
-import cccev.s2.request.domain.features.command.RequestAuditedEvent
-import cccev.s2.request.domain.features.command.RequestEvidenceAddedEvent
-import cccev.s2.request.domain.features.command.RequestEvidenceRemovedEvent
-import cccev.s2.request.domain.features.command.RequestInitializedEvent
-import cccev.s2.request.domain.features.command.RequestRefusedEvent
-import cccev.s2.request.domain.features.command.RequestSentEvent
-import cccev.s2.request.domain.features.command.RequestSignedEvent
-import cccev.s2.request.domain.features.command.RequestSupportedValueAddedEvent
+import cccev.s2.request.domain.command.RequestAddedEvidenceEvent
+import cccev.s2.request.domain.command.RequestAddedRequirementsEvent
+import cccev.s2.request.domain.command.RequestAddedValuesEvent
+import cccev.s2.request.domain.command.RequestCreatedEvent
+import cccev.s2.request.domain.command.RequestRemovedEvidenceEvent
+import cccev.s2.request.domain.command.RequestRemovedRequirementsEvent
 import cccev.s2.request.domain.model.RequestId
 import cccev.s2.request.domain.s2Request
 import kotlinx.serialization.json.Json
@@ -31,17 +28,17 @@ import kotlin.reflect.KClass
 
 @Configuration
 class RequestAutomateConfig(
-	decider: RequestDecider,
-	requirementEvolver: RequestEvolver,
+	automateExecutor: RequestAutomateExecutor,
+	requestEvolver: RequestEvolver,
 	requestSnapRepository: RequestSnapRepository,
 ): S2SourcingSsmAdapter<
 		RequestEntity,
 		RequestState,
 		RequestEvent,
 		RequestId,
-		RequestDecider
-	>(decider, requirementEvolver, requestSnapRepository) {
-	override fun automate() = s2Request()
+		RequestAutomateExecutor
+>(automateExecutor, requestEvolver, requestSnapRepository) {
+	override fun automate() = s2Request
 	override fun entityType(): KClass<RequestEvent> {
 		return RequestEvent::class
 	}
@@ -52,14 +49,12 @@ class RequestAutomateConfig(
 		serializersModule = SerializersModule {
 			classDiscriminator = "class"
 			polymorphic(RequestEvent::class) {
-				subclass(RequestAuditedEvent::class, RequestAuditedEvent.serializer())
-				subclass(RequestEvidenceAddedEvent::class, RequestEvidenceAddedEvent.serializer())
-				subclass(RequestEvidenceRemovedEvent::class, RequestEvidenceRemovedEvent.serializer())
-				subclass(RequestInitializedEvent::class, RequestInitializedEvent.serializer())
-				subclass(RequestRefusedEvent::class, RequestRefusedEvent.serializer())
-				subclass(RequestSentEvent::class, RequestSentEvent.serializer())
-				subclass(RequestSignedEvent::class, RequestSignedEvent.serializer())
-				subclass(RequestSupportedValueAddedEvent::class, RequestSupportedValueAddedEvent.serializer())
+				subclass(RequestCreatedEvent::class, RequestCreatedEvent.serializer())
+				subclass(RequestAddedValuesEvent::class, RequestAddedValuesEvent.serializer())
+				subclass(RequestAddedEvidenceEvent::class, RequestAddedEvidenceEvent.serializer())
+				subclass(RequestRemovedEvidenceEvent::class, RequestRemovedEvidenceEvent.serializer())
+				subclass(RequestAddedRequirementsEvent::class, RequestAddedRequirementsEvent.serializer())
+				subclass(RequestRemovedRequirementsEvent::class, RequestRemovedRequirementsEvent.serializer())
 			}
 		}
 	}
@@ -77,4 +72,4 @@ class RequestAutomateConfig(
 }
 
 @Service
-class RequestDecider : S2AutomateDeciderSpring<RequestEntity, RequestState, RequestEvent, RequestId>()
+class RequestAutomateExecutor: S2AutomateDeciderSpring<RequestEntity, RequestState, RequestEvent, RequestId>()

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
 
 @Repository
-interface RequestRepository : ReactiveNeo4jRepository<RequestEntity, RequestId>
+interface RequestRepository: ReactiveNeo4jRepository<RequestEntity, RequestId>
 
 @Service
 class RequestSnapRepository(

@@ -5,6 +5,7 @@ plugins {
 }
 
 dependencies {
-	commonMainApi(project(":cccev-dsl:dsl-model"))
-	commonMainApi("city.smartb.s2:s2-automate-dsl:${Versions.s2}")
+	commonMainApi(project(":cccev-s2:concept:concept-domain"))
+	commonMainApi(project(":cccev-s2:evidence-type:evidence-type-domain"))
+	commonMainApi(project(":cccev-s2:requirement:requirement-domain"))
 }

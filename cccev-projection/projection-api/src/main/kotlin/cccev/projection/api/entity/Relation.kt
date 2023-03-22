@@ -2,6 +2,7 @@ package cccev.projection.api.entity
 
 object Relation {
     const val DEPENDS_ON = "DEPENDS_ON"
+    const val FULFILLS = "FULFILLS"
     const val HAS_CONCEPT = "HAS_CONCEPT"
     const val HAS_EVIDENCE_TYPE_LIST = "HAS_EVIDENCE_TYPE_LIST"
     const val HAS_QUALIFIED_RELATION = "HAS_QUALIFIED_RELATION"
@@ -9,5 +10,6 @@ object Relation {
     const val HAS_UNIT = "HAS_UNIT"
     const val IS_DERIVED_FROM = "IS_DERIVED_FROM"
     const val SPECIFIES_EVIDENCE_TYPE = "SPECIFIES_EVIDENCE_TYPE"
-    const val PROVIDE_EVIDENCE = "PROVIDE_EVIDENCE"
+    const val PROVIDES_EVIDENCE = "PROVIDES_EVIDENCE"
+    const val PROVIDES_VALUE_FOR = "PROVIDES_VALUE_FOR"
 }
