@@ -18,6 +18,8 @@ import cccev.f2.requirement.domain.query.GetRequirementQueryFunction
 import cccev.f2.requirement.domain.query.GetRequirementQueryResult
 import cccev.f2.requirement.domain.query.RequirementGetFunction
 import cccev.f2.requirement.domain.query.RequirementGetResultDTOBase
+import cccev.f2.requirement.domain.query.RequirementListByIdsAndTypeFunction
+import cccev.f2.requirement.domain.query.RequirementListByIdsAndTypeResultDTOBase
 import cccev.s2.requirement.api.DeprecatedRequirementFinderService
 import cccev.s2.requirement.domain.model.RequirementKind
 import f2.dsl.fnc.f2Function
@@ -44,6 +46,13 @@ class RequirementEndpoint(
     @Bean
     override fun getRequirement(): GetRequirementQueryFunction = f2Function { query ->
         deprecatedRequirementFinderService.get(query.requirementId).let(::GetRequirementQueryResult)
+    }
+
+    @Bean
+    fun requirementListByIdsAndType(): RequirementListByIdsAndTypeFunction = f2Function { query ->
+        logger.info("requirementListByIdsAndType: $query")
+        requirementF2FinderService.listByIdsAndType(query.ids, query.type)
+            .let(::RequirementListByIdsAndTypeResultDTOBase)
     }
 
     @Bean

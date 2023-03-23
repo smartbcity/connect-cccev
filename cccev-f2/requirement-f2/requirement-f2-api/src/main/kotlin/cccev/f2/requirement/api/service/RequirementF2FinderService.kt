@@ -10,7 +10,6 @@ import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.requirement.api.RequirementFinderService
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.model.Requirement
-import cccev.s2.requirement.domain.model.RequirementIdentifier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.springframework.stereotype.Service
@@ -28,6 +27,11 @@ class RequirementF2FinderService(
     suspend fun get(id: RequirementId): RequirementDTOBase {
         return requirementFinderService.get(id).toDTO()
     }
+
+    suspend fun listByIdsAndType(ids: List<RequirementId>, type: String): List<RequirementDTOBase> {
+        return requirementFinderService.listByIdWithChildrenOfType(ids, type).map { it.toDTO() }
+    }
+
     suspend fun list(
         isRequirementOf: RequirementId?,
         concept: InformationConceptId?,
@@ -36,18 +40,14 @@ class RequirementF2FinderService(
         return requirementFinderService.list(isRequirementOf, concept, evidenceType).toDTOs()
     }
 
-    private suspend fun Flow<Requirement>.toDTOs(cache: Cache = Cache()) = map { it.toDTO() }
+    private suspend fun Flow<Requirement>.toDTOs(cache: Cache = Cache()) = map { it.toDTO(cache) }
     private suspend fun Requirement.toDTO(cache: Cache = Cache()): RequirementDTOBase = toDTO(
         getConcept = cache.concepts::get,
         getEvidenceTypeList = cache.evidenceTypeLists::get,
-        getRequirement = cache.requirements::get,
     )
 
     private inner class Cache {
         val concepts = SimpleCache(informationConceptF2FinderService::get)
         val evidenceTypeLists = SimpleCache(evidenceTypeF2FinderService::getList)
-        val requirements = SimpleCache<RequirementIdentifier, RequirementDTOBase> { identifier ->
-            requirementFinderService.getByIdentifier(identifier).toDTO(this)
-        }
     }
 }
