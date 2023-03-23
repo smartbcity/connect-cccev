@@ -17,14 +17,14 @@ Feature: RequirementCreate
   Scenario: I want to create a requirement
     When I create a requirement:
       | type     | hasConcept | hasEvidenceTypeList |
-      | Activity | c1         | etl1                |
+      | activity | c1         | etl1                |
     Then The requirement should be created
 
   Scenario: I want to create a requirement with a sub-requirement
     Given A requirement is created:
-      | identifier | hasConcept | hasEvidenceTypeList |
-      | r1         | c1         | etl1                |
+      | identifier | type | hasConcept | hasEvidenceTypeList |
+      | r1         | step | c1         | etl1                |
     When I create a requirement:
-      | hasRequirement |
-      | r1             |
+      | type     | hasRequirement |
+      | activity | r1             |
     Then The requirement should be created

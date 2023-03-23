@@ -6,13 +6,13 @@ import cccev.s2.evidence.domain.EvidenceTypeState
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreateCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.evidenceType.data.evidenceType
-import s2.bdd.assertion.AssertionBdd
-import s2.bdd.data.TestContextKey
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.data.TestContextKey
 import java.util.UUID
 
 class EvidenceTypeCreateSteps: En, CccevCucumberStepsDefinition() {
@@ -96,7 +96,6 @@ class EvidenceTypeCreateSteps: En, CccevCucumberStepsDefinition() {
             description = params.description,
             validityPeriodConstraint = params.validityPeriodConstraint,
         )
-        context.evidenceTypeIdentifiers[params.identifier] = command.identifier
         evidenceTypeAggregateService.create(command).id
     }
 

@@ -108,12 +108,11 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
             name = params.name,
             description = params.description,
             type = params.type,
-            hasRequirement = params.hasRequirement.map { context.requirementIdentifiers[it] ?: it },
-            hasQualifiedRelation = params.hasQualifiedRelation.map { context.requirementIdentifiers[it] ?: it },
+            hasRequirement = params.hasRequirement.map { context.requirementIds[it] ?: it },
+            hasQualifiedRelation = params.hasQualifiedRelation.map { context.requirementIds[it] ?: it },
             hasConcept = params.hasConcept.map { context.conceptIds[it] ?: it },
             hasEvidenceTypeList = params.hasEvidenceTypeList.map { context.evidenceTypeListIds[it] ?: it },
         )
-        context.requirementIdentifiers[params.identifier] = command.identifier
         requirementAggregateService.create(command).id
     }
 

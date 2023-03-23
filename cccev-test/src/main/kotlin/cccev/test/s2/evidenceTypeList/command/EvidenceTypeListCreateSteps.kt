@@ -6,14 +6,14 @@ import cccev.s2.evidence.domain.EvidenceTypeListState
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreateCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.evidenceTypeList.data.evidenceTypeList
-import s2.bdd.assertion.AssertionBdd
-import s2.bdd.data.TestContextKey
-import s2.bdd.data.parser.extractList
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.data.TestContextKey
+import s2.bdd.data.parser.extractList
 import java.util.UUID
 
 class EvidenceTypeListCreateSteps: En, CccevCucumberStepsDefinition() {
@@ -98,7 +98,6 @@ class EvidenceTypeListCreateSteps: En, CccevCucumberStepsDefinition() {
             description = params.description,
             specifiesEvidenceType = params.specifiesEvidenceType.map { context.evidenceTypeIds[it] ?: it }
         )
-        context.evidenceTypeListIdentifiers[params.identifier] = command.identifier
         evidenceTypeListAggregateService.createList(command).id
     }
 

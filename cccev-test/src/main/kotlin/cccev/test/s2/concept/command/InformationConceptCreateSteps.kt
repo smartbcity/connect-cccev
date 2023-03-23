@@ -6,14 +6,14 @@ import cccev.s2.concept.domain.InformationConceptState
 import cccev.s2.concept.domain.command.InformationConceptCreateCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.concept.data.informationConcept
-import s2.bdd.assertion.AssertionBdd
-import s2.bdd.data.TestContextKey
-import s2.bdd.data.parser.extractList
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.data.TestContextKey
+import s2.bdd.data.parser.extractList
 import java.util.UUID
 
 class InformationConceptCreateSteps: En, CccevCucumberStepsDefinition() {
@@ -102,7 +102,6 @@ class InformationConceptCreateSteps: En, CccevCucumberStepsDefinition() {
             expressionOfExpectedValue = params.expressionOfExpectedValue,
             dependsOn = params.dependsOn
         )
-        context.conceptIdentifiers[params.identifier] = command.identifier
         informationConceptAggregateService.create(command).id
     }
 

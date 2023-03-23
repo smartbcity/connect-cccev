@@ -5,11 +5,11 @@ import cccev.s2.requirement.api.RequirementAggregateService
 import cccev.s2.requirement.domain.command.RequirementAddRequirementsCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.requirement.data.requirement
+import io.cucumber.java8.En
+import org.springframework.beans.factory.annotation.Autowired
 import s2.bdd.assertion.AssertionBdd
 import s2.bdd.data.TestContextKey
 import s2.bdd.data.parser.safeExtractList
-import io.cucumber.java8.En
-import org.springframework.beans.factory.annotation.Autowired
 
 class RequirementAddRequirementsSteps: En, CccevCucumberStepsDefinition() {
 
@@ -57,7 +57,7 @@ class RequirementAddRequirementsSteps: En, CccevCucumberStepsDefinition() {
     private suspend fun addRequirement(params: RequirementAddRequirementsParams) {
         command = RequirementAddRequirementsCommand(
             id = context.requirementIds[params.identifier] ?: params.identifier,
-            requirementIds = params.requirements.map { context.requirementIdentifiers[it] ?: it }
+            requirementIds = params.requirements.map { context.requirementIds[it] ?: it }
         )
         requirementAggregateService.addRequirements(command)
     }
