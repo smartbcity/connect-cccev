@@ -60,7 +60,7 @@ data class Requirement(
      * Sub-requirements that must be fulfilled for the requirement to be validated.
      * @example [["78e1e5f3-6e81-411d-afe6-aa7e6dae59b4"]]
      */
-    val hasRequirement: List<RequirementIdentifier>,
+    val hasRequirement: List<Requirement>,
 
     /**
      * A reference between a sub-Requirement and its parent Requirement.
@@ -71,7 +71,7 @@ data class Requirement(
      * without additional information, the simple relationship as proposed here can be directly used.
      *  @example [["b25975b6-f4ff-4773-b535-9a18192b30de"]]
      */
-    var isRequirementOf: List<RequirementIdentifier>?,
+    var isRequirementOf: List<RequirementId>?,
 
     /**
      * Described and/or categorised relation to another Requirement. <br/>
@@ -81,7 +81,7 @@ data class Requirement(
      * in Member States' specific requirements.
      * @example [["baee57d9-7f0a-4cb0-92e5-402b80c18c74"]]
      */
-    var hasQualifiedRelation: List<RequirementIdentifier>?,
+    var hasQualifiedRelation: List<RequirementId>?,
 
     /**
      * Concepts used by the requirement

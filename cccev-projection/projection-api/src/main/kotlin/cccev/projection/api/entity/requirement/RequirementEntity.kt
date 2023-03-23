@@ -1,23 +1,18 @@
 package cccev.projection.api.entity.requirement
 
-import cccev.dsl.model.EvidenceTypeListId
 import cccev.projection.api.entity.EntityBase
+import cccev.projection.api.entity.NodeLabel
 import cccev.projection.api.entity.Relation
 import cccev.projection.api.entity.concept.InformationConceptEntity
 import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListEntity
 import cccev.projection.api.entity.framework.ReferenceFrameworkEntity
-import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.RequirementState
 import cccev.s2.requirement.domain.model.RequirementKind
-import org.springframework.data.neo4j.core.schema.Id
 import org.springframework.data.neo4j.core.schema.Node
 import org.springframework.data.neo4j.core.schema.Relationship
-import java.util.UUID
-import s2.dsl.automate.model.WithS2Id
-import s2.dsl.automate.model.WithS2State
 
-@Node("Requirement")
+@Node(NodeLabel.REQUIREMENT)
 class RequirementEntity: EntityBase<RequirementId, RequirementState>() {
     var identifier: String? = null
 

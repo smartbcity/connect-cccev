@@ -1,6 +1,7 @@
 package cccev.projection.api.entity.request
 
 import cccev.projection.api.entity.EntityBase
+import cccev.projection.api.entity.NodeLabel
 import cccev.projection.api.entity.Relation
 import cccev.projection.api.entity.requirement.RequirementEntity
 import cccev.s2.request.domain.RequestState
@@ -8,7 +9,7 @@ import cccev.s2.request.domain.model.RequestId
 import org.springframework.data.neo4j.core.schema.Node
 import org.springframework.data.neo4j.core.schema.Relationship
 
-@Node("Request")
+@Node(NodeLabel.REQUEST)
 class RequestEntity: EntityBase<RequestId, RequestState>() {
     lateinit var name: String
 
