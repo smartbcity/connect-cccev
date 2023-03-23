@@ -15,9 +15,10 @@ typealias RequirementCreateFunction = F2Function<RequirementCreateCommandDTOBase
 @JsName("RequirementCreateCommandDTO")
 interface RequirementCreateCommandDTO {
     val identifier: String?
+    val kind: String
     val name: String?
     val description: String?
-    val kind: String
+    val type: String?
     val hasConcept: List<InformationConceptId>
     val hasEvidenceTypeList: List<EvidenceTypeListId>
     val hasRequirement: List<RequirementId>
@@ -27,9 +28,10 @@ interface RequirementCreateCommandDTO {
 @Serializable
 data class RequirementCreateCommandDTOBase(
     override val identifier: String?,
+    override val kind: String,
     override val name: String?,
     override val description: String?,
-    override val kind: String,
+    override val type: String?,
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,

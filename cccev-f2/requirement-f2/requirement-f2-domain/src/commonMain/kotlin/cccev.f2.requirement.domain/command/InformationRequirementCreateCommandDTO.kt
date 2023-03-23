@@ -21,6 +21,7 @@ data class InformationRequirementCreateCommandDTOBase(
     override val identifier: String?,
     override val name: String?,
     override val description: String?,
+    override val type: String?,
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,

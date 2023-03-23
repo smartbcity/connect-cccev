@@ -2,7 +2,6 @@ package cccev.s2.requirement.domain.model
 
 import cccev.dsl.model.EvidenceTypeListId
 import cccev.dsl.model.InformationConceptId
-import cccev.dsl.model.Requirement
 import cccev.s2.requirement.domain.D2RequirementPage
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.RequirementState
@@ -52,6 +51,12 @@ data class Requirement(
     val description: String?,
 
     /**
+     * Arbitrary categorization of the requirement.
+     * @example "Activity"
+     */
+    val type: String?,
+
+    /**
      * Sub-requirements that must be fulfilled for the requirement to be validated.
      * @example [["78e1e5f3-6e81-411d-afe6-aa7e6dae59b4"]]
      */
@@ -90,9 +95,10 @@ data class Requirement(
      * @example [["dc006198-067e-4a58-8672-7d5377ae022b"]]
      */
     val hasEvidenceTypeList: List<EvidenceTypeListId>,
+
     /**
      * The state of the requirement.
-     * @example ["CREATED"]
+     * @example "CREATED"
      */
     val state: RequirementState
 ): WithS2Id<RequirementId>, WithS2State<RequirementState> {

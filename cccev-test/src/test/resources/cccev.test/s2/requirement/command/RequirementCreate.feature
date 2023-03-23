@@ -16,8 +16,8 @@ Feature: RequirementCreate
 
   Scenario: I want to create a requirement
     When I create a requirement:
-      | hasConcept | hasEvidenceTypeList |
-      | c1         | etl1                |
+      | type     | hasConcept | hasEvidenceTypeList |
+      | Activity | c1         | etl1                |
     Then The requirement should be created
 
   Scenario: I want to create a requirement with a sub-requirement

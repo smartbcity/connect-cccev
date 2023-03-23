@@ -8,14 +8,14 @@ import cccev.s2.requirement.domain.model.RequirementKind
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.requirement.data.extractRequirementKind
 import cccev.test.s2.requirement.data.requirement
-import s2.bdd.assertion.AssertionBdd
-import s2.bdd.data.TestContextKey
-import s2.bdd.data.parser.extractList
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.data.TestContextKey
+import s2.bdd.data.parser.extractList
 import java.util.UUID
 
 class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
@@ -71,6 +71,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
                     kind = command.kind,
                     name = command.name,
                     description = command.description,
+                    type = command.type,
                     hasRequirement = command.hasRequirement,
                     hasConcept = command.hasConcept,
                     hasEvidenceTypeList = command.hasEvidenceTypeList,
@@ -89,6 +90,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
                     kind = params.kind ?: requirement.kind,
                     name = params.name ?: requirement.name,
                     description = params.description ?: requirement.description,
+                    type = params.type ?: requirement.type,
                     hasRequirement = params.hasRequirement?.map(context.requirementIds::safeGet)
                         ?: requirement.hasRequirement.map { it.id },
                     hasConcept = params.hasConcept?.map(context.conceptIds::safeGet) ?: requirement.hasConcept.map { it.id },
@@ -105,6 +107,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
             kind = params.kind,
             name = params.name,
             description = params.description,
+            type = params.type,
             hasRequirement = params.hasRequirement.map { context.requirementIdentifiers[it] ?: it },
             hasQualifiedRelation = params.hasQualifiedRelation.map { context.requirementIdentifiers[it] ?: it },
             hasConcept = params.hasConcept.map { context.conceptIds[it] ?: it },
@@ -119,6 +122,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         kind = entry?.extractRequirementKind("kind") ?: RequirementKind.INFORMATION,
         name = entry?.get("name").orRandom(),
         description = entry?.get("description").orRandom(),
+        type = entry?.get("type").orRandom(),
         hasRequirement = entry?.extractList("hasRequirement").orEmpty(),
         hasConcept = entry?.extractList("hasConcept").orEmpty(),
         hasEvidenceTypeList = entry?.extractList("hasEvidenceTypeList").orEmpty(),
@@ -131,6 +135,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         val kind: RequirementKind,
         val name: String,
         val description: String,
+        val type: String,
         val hasRequirement: List<TestContextKey>,
         val hasConcept: List<TestContextKey>,
         val hasEvidenceTypeList: List<TestContextKey>,
@@ -143,6 +148,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         kind = entry.extractRequirementKind("kind"),
         name = entry["name"],
         description = entry["description"],
+        type = entry["type"],
         hasRequirement = entry.extractList("hasRequirement"),
         hasConcept = entry.extractList("hasConcept"),
         hasEvidenceTypeList = entry.extractList("hasEvidenceTypeList")
@@ -153,6 +159,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         val kind: RequirementKind?,
         val name: String?,
         val description: String?,
+        val type: String?,
         val hasRequirement: List<TestContextKey>?,
         val hasConcept: List<TestContextKey>?,
         val hasEvidenceTypeList: List<TestContextKey>?

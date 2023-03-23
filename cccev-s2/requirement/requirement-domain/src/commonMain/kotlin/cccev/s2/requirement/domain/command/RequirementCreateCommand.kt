@@ -55,6 +55,11 @@ data class RequirementCreateCommand(
     val description: String?,
 
     /**
+     * @ref [cccev.s2.requirement.domain.model.Requirement.type]
+     */
+    val type: String?,
+
+    /**
      * Sub-requirements that must be fulfilled for the requirement to be validated.
      * @example [cccev.s2.requirement.domain.model.Requirement.hasRequirement]
      */
@@ -113,6 +118,11 @@ interface RequirementCreatedEventDTO: RequirementEvent {
     val description: String?
 
     /**
+     * @ref [cccev.s2.requirement.domain.model.Requirement.type]
+     */
+    val type: String?
+
+    /**
      * @ref [RequirementCreateCommand.hasRequirement]
      */
     val hasRequirement: List<RequirementId>
@@ -150,6 +160,7 @@ data class RequirementCreatedEvent(
     override val kind: RequirementKind,
     override val name: String?,
     override val description: String?,
+    override val type: String?,
     override val hasRequirement: List<RequirementId>,
     override val hasQualifiedRelation: List<RequirementId>?,
     override val hasConcept: List<InformationConceptId>,

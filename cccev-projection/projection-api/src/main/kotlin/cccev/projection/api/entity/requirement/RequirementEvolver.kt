@@ -46,7 +46,7 @@ class RequirementEvolver(
 			kind = event.kind
 			name = event.name
 			description = event.description
-			type = null // TODO
+			type = event.type
 			isDerivedFrom = emptyList() // TODO
 			hasRequirement = subRequirements
 			hasQualifiedRelation = relatedRequirements

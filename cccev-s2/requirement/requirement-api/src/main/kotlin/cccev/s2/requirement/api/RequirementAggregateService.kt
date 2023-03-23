@@ -34,6 +34,7 @@ class RequirementAggregateService(
             kind = command.kind,
             name = command.name,
             description = command.description,
+            type = command.type,
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
