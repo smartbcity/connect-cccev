@@ -44,6 +44,7 @@ class RequestAggregateService(
 			evidenceId = UUID.randomUUID().toString(),
 			name = command.name,
 			file = command.file,
+			url = command.url,
 			isConformantTo = command.isConformantTo,
 		)
 	}

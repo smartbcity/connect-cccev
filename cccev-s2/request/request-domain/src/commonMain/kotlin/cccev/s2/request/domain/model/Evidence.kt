@@ -1,6 +1,9 @@
 package cccev.s2.request.domain.model
 
 import cccev.s2.evidence.domain.EvidenceTypeId
+import city.smartb.fs.s2.file.domain.model.FilePath
+import city.smartb.fs.s2.file.domain.model.FilePathDTO
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -28,7 +31,13 @@ interface EvidenceDTO {
      * Path to a file serving as evidence.
      * @example "/document/id_card.png"
      */
-    val file: String?
+    val file: FilePathDTO?
+
+    /**
+     * Url pointing to any data serving as evidence.
+     * @example null
+     */
+    val url: String?
 
     /**
      * Ids of the evidence types this evidence can be used as.
@@ -36,9 +45,11 @@ interface EvidenceDTO {
     val isConformantTo: List<EvidenceTypeId>
 }
 
+@Serializable
 data class Evidence(
     override val id: EvidenceId,
     override val name: String,
-    override val file: String?,
+    override val file: FilePath?,
+    override val url: String?,
     override val isConformantTo: List<EvidenceTypeId>
 ): EvidenceDTO

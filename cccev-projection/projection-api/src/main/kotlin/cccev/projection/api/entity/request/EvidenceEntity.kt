@@ -3,6 +3,7 @@ package cccev.projection.api.entity.request
 import cccev.dsl.model.EvidenceId
 import cccev.projection.api.entity.NodeLabel
 import cccev.projection.api.entity.evidencetype.EvidenceTypeEntity
+import city.smartb.fs.s2.file.domain.model.FilePath
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.annotation.Version
@@ -17,7 +18,9 @@ class EvidenceEntity {
 
     lateinit var name: String
 
-    var file: String? = null
+    var file: FilePath? = null
+
+    var url: String? = null
 
     @Relationship
     var isConformantTo: MutableList<EvidenceTypeEntity> = mutableListOf()

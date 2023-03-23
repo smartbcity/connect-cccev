@@ -1,6 +1,5 @@
 package cccev.f2.request.domain
 
-import cccev.f2.request.domain.command.RequestAddEvidenceFunction
 import cccev.f2.request.domain.command.RequestAddRequirementsFunction
 import cccev.f2.request.domain.command.RequestAddValuesFunction
 import cccev.f2.request.domain.command.RequestCreateFunction
@@ -19,9 +18,6 @@ interface RequestCommandApi {
 
     /** Add values to a request */
     fun requestAddValues(): RequestAddValuesFunction
-
-    /** Add an evidence to a request */
-    fun requestAddEvidence(): RequestAddEvidenceFunction
 
     /** Remove an evidence from a request */
     fun requestRemoveEvidence(): RequestRemoveEvidenceFunction

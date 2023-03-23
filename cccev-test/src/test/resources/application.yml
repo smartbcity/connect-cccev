@@ -5,10 +5,13 @@ spring:
       username: neo4j
       password: smartbsmartb
 
+fs:
+  url: http://localhost:8090
+
 ssm:
   signer:
     user:
-      name: ssm-admin
+      name: ssm-adminA
       key: user/ssm-admin
     admin:
       name: ssm-admin
@@ -20,7 +23,6 @@ ssm:
     serviceName: s2-sample-did
   chaincode:
     url: http://localhost:9090
-
 
 i2:
   issuers:

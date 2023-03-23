@@ -31,5 +31,6 @@ fun EvidenceEntity.toEvidence() = Evidence(
     id = id,
     name = name,
     file = file,
+    url = url,
     isConformantTo = isConformantTo.map(EvidenceTypeEntity::id),
 )

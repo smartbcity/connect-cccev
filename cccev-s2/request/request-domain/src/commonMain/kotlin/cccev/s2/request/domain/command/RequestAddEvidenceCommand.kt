@@ -5,46 +5,19 @@ import cccev.s2.request.domain.RequestCommand
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.model.EvidenceId
 import cccev.s2.request.domain.model.RequestId
+import city.smartb.fs.s2.file.domain.model.FilePath
+import city.smartb.fs.s2.file.domain.model.FilePathDTO
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
-/**
- * @d2 command
- */
-@JsExport
-@JsName("RequestAddEvidenceCommandDTO")
-interface RequestAddEvidenceCommandDTO: RequestCommand {
-    /**
-     * Id of the request to add the evidence to.
-     */
-    override val id: RequestId
-
-    /**
-     * @ref [cccev.s2.request.domain.model.EvidenceDTO.name]
-     */
-    val name: String
-
-    /**
-     * @ref [cccev.s2.request.domain.model.EvidenceDTO.file]
-     */
-    val file: String?
-
-    /**
-     * @ref [cccev.s2.request.domain.model.EvidenceDTO.isConformantTo]
-     */
-    val isConformantTo: List<EvidenceTypeId>
-}
-
-/**
- * @d2 inherit
- */
 data class RequestAddEvidenceCommand(
     override val id: RequestId,
-    override val name: String,
-    override val file: String?,
-    override val isConformantTo: List<EvidenceTypeId>
-): RequestAddEvidenceCommandDTO
+    val name: String,
+    val file: FilePath?,
+    val url: String?,
+    val isConformantTo: List<EvidenceTypeId>
+): RequestCommand
 
 /**
  * @d2 event
@@ -70,7 +43,12 @@ interface RequestAddedEvidenceEventDTO: RequestEvent {
     /**
      * @ref [cccev.s2.request.domain.model.EvidenceDTO.file]
      */
-    val file: String?
+    val file: FilePathDTO?
+
+    /**
+     * @ref [cccev.s2.request.domain.model.EvidenceDTO.url]
+     */
+    val url: String?
 
     /**
      * @ref [cccev.s2.request.domain.model.EvidenceDTO.isConformantTo]
@@ -86,6 +64,7 @@ data class RequestAddedEvidenceEvent(
     override val id: RequestId,
     override val evidenceId: EvidenceId,
     override val name: String,
-    override val file: String?,
+    override val file: FilePath?,
+    override val url: String?,
     override val isConformantTo: List<EvidenceTypeId>
 ): RequestAddedEvidenceEventDTO

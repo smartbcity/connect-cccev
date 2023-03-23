@@ -1,7 +1,6 @@
 package cccev.f2.request.client
 
 import cccev.f2.request.domain.RequestApi
-import cccev.f2.request.domain.command.RequestAddEvidenceFunction
 import cccev.f2.request.domain.command.RequestAddRequirementsFunction
 import cccev.f2.request.domain.command.RequestAddValuesFunction
 import cccev.f2.request.domain.command.RequestCreateFunction
@@ -23,6 +22,5 @@ open class RequestClient constructor(private val client: F2Client) : RequestApi 
     override fun requestAddRequirements(): RequestAddRequirementsFunction = client.function(this::requestAddRequirements.name)
     override fun requestRemoveRequirements(): RequestRemoveRequirementsFunction = client.function(this::requestRemoveRequirements.name)
     override fun requestAddValues(): RequestAddValuesFunction = client.function(this::requestAddValues.name)
-    override fun requestAddEvidence(): RequestAddEvidenceFunction = client.function(this::requestAddEvidence.name)
     override fun requestRemoveEvidence(): RequestRemoveEvidenceFunction = client.function(this::requestRemoveEvidence.name)
 }

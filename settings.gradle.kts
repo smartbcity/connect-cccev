@@ -14,8 +14,9 @@ include(
 	"cccev-dsl:dsl-client",
 )
 include(
-	"api-gateway",
 	"api-commons",
+	"api-config",
+	"api-gateway",
 	"cccev-f2",
 	"cccev-test"
 )

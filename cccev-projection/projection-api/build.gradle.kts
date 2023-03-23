@@ -7,7 +7,8 @@ plugins {
 dependencies {
 	api(project(":cccev-projection:projection-domain"))
 
-	api("org.springframework.boot:spring-boot-starter-data-neo4j:${Versions.springBoot}")
+	implementation(project(":api-commons"))
 
+	api("org.springframework.boot:spring-boot-starter-data-neo4j:${Versions.springBoot}")
 	testImplementation("org.springframework.boot:spring-boot-starter-test:${Versions.springBoot}")
 }

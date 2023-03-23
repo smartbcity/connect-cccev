@@ -24,6 +24,7 @@ dependencies {
     implementation(project(":cccev-s2:requirement:requirement-api"))
 
     implementation(project(":api-commons"))
+    implementation(project(":api-config"))
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootBuildImage> {

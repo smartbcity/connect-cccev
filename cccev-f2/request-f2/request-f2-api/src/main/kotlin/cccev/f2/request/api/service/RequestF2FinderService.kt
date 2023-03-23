@@ -2,6 +2,8 @@ package cccev.f2.request.api.service
 
 import cccev.f2.concept.api.service.InformationConceptF2FinderService
 import cccev.s2.request.api.RequestFinderService
+import cccev.s2.request.domain.model.Request
+import cccev.s2.request.domain.model.RequestId
 import org.springframework.stereotype.Service
 
 @Service
@@ -9,6 +11,14 @@ class RequestF2FinderService(
     private val informationConceptF2FinderService: InformationConceptF2FinderService,
     private val requestFinderService: RequestFinderService,
 ) {
+
+    suspend fun getOrNull(id: RequestId): Request? {
+        return requestFinderService.getOrNull(id)
+    }
+
+    suspend fun get(id: RequestId): Request {
+        return requestFinderService.get(id)
+    }
 
 //    object Score {
 //        const val VALUE = 50

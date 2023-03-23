@@ -1,3 +1,8 @@
 package cccev.f2.request.domain
 
-interface RequestQueryApi
+import cccev.f2.request.domain.query.RequestGetFunction
+
+interface RequestQueryApi {
+    /** Get request */
+    fun requestGet(): RequestGetFunction
+}

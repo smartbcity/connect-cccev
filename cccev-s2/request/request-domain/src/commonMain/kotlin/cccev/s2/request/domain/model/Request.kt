@@ -2,6 +2,7 @@ package cccev.s2.request.domain.model
 
 import cccev.dsl.model.RequirementId
 import cccev.s2.concept.domain.InformationConceptId
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
@@ -115,6 +116,7 @@ interface RequestDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class Request(
     override val id: RequestId,
     override val name: String,

@@ -68,7 +68,6 @@ class RequestAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
                     .assertThatEvidence(evidenceId)
                     .hasFields(
                         name = command.name,
-                        file = command.file,
                         isConformantTo = command.isConformantTo
                     )
             }
@@ -92,7 +91,8 @@ class RequestAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         command = RequestAddEvidenceCommand(
             id = context.requestIds[params.identifier] ?: params.identifier,
             name = params.name,
-            file = params.file,
+            file = null,
+            url = null,
             isConformantTo = params.isConformantTo.map(context.evidenceTypeIds::safeGet),
         )
         requestAggregateService.addEvidence(command).evidenceId
@@ -102,7 +102,6 @@ class RequestAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         identifier = entry?.get("identifier") ?: context.requestIds.lastUsedKey,
         evidence = entry?.get("evidence").orRandom(),
         name = entry?.get("name").orRandom(),
-        file = entry?.get("file"),
         isConformantTo = entry?.extractList("isConformantTo").orEmpty()
     )
 
@@ -110,7 +109,6 @@ class RequestAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         val identifier: TestContextKey,
         val evidence: TestContextKey,
         val name: String,
-        val file: String?,
         val isConformantTo: List<TestContextKey>,
     )
 
@@ -127,7 +125,6 @@ class RequestAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         val evidence = request.evidences.first { it.id == evidenceId }
         requestAsserter.assertThatEvidence(evidenceId).hasFields(
             name = params.name ?: evidence.name,
-            file = params.file ?: evidence.file,
             isConformantTo = params.isConformantTo?.map(context.evidenceTypeIds::safeGet) ?: evidence.isConformantTo.map { it.id }
         )
     }
@@ -136,7 +133,6 @@ class RequestAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         identifier = entry["identifier"] ?: context.requestIds.lastUsedKey,
         evidence = entry["evidence"] ?: context.evidenceIds.lastUsedKey,
         name = entry["name"],
-        file = entry["file"],
         isConformantTo = entry.extractList("isConformantTo")
     )
 
@@ -144,7 +140,6 @@ class RequestAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         val identifier: TestContextKey,
         val evidence: TestContextKey,
         val name: String?,
-        val file: String?,
         val isConformantTo: List<TestContextKey>?,
     )
 }

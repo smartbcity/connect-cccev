@@ -9,6 +9,7 @@ import cccev.s2.request.domain.RequestState
 import cccev.s2.request.domain.model.EvidenceId
 import cccev.s2.request.domain.model.RequestId
 import cccev.s2.requirement.domain.RequirementId
+import city.smartb.fs.s2.file.domain.model.FilePath
 import org.assertj.core.api.Assertions
 import s2.bdd.assertion.AssertionBdd
 import s2.bdd.repository.AssertionCrudEntity
@@ -102,12 +103,14 @@ class AssertionRequest(
         fun hasFields(
             id: EvidenceId = evidence.id,
             name: String = evidence.name,
-            file: String? = evidence.file,
+            file: FilePath? = evidence.file,
+            url: String? = evidence.url,
             isConformantTo: List<EvidenceTypeId> = evidence.isConformantTo.map { it.id }
         ) {
             Assertions.assertThat(evidence.id).isEqualTo(id)
             Assertions.assertThat(evidence.name).isEqualTo(name)
             Assertions.assertThat(evidence.file).isEqualTo(file)
+            Assertions.assertThat(evidence.url).isEqualTo(url)
             Assertions.assertThat(evidence.isConformantTo.map { it.id }).containsExactlyInAnyOrderElementsOf(isConformantTo)
         }
     }
