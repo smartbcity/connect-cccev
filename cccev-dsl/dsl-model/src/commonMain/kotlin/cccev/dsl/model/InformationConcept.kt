@@ -11,7 +11,7 @@ typealias InformationConceptId = String
 interface InformationConcept {
 	val identifier: InformationConceptId
 	val name: String
-	val unit: CUnitDTO
+	val unit: DataUnitDTO
 	val type: Code
 	val description: String
 	val expressionOfExpectedValue: String?
@@ -21,7 +21,7 @@ interface InformationConcept {
 open class InformationConceptBase(
     override val identifier: InformationConceptId,
     override val name: String,
-    override val unit: CUnit,
+    override val unit: DataUnit,
     override val type: Code,
     override val description: String,
     override val expressionOfExpectedValue: String? = null,

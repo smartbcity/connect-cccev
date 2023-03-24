@@ -5,100 +5,100 @@ import kotlin.js.JsName
 import kotlinx.serialization.Serializable
 
 @JsExport
-@JsName("CUnitDTO")
-interface CUnitDTO {
+@JsName("DataUnitDTO")
+interface DataUnitDTO {
     val identifier: String
     val name: String
     val description: String
     val notation: String?
-    val type: CUnitType
+    val type: DataUnitType
 }
 @Serializable
-open class CUnit(
+open class DataUnit(
     override val identifier: String,
     override val name: String,
     override val description: String,
     override val notation: String? = null,
-    override val type: CUnitType
-): CUnitDTO
+    override val type: DataUnitType
+): DataUnitDTO
 
 @Suppress("EnumNaming")
-enum class CUnitType {
+enum class DataUnitType {
     boolean, date, number, string
 }
 
-object XSDDate: CUnit(
+object XSDDate: DataUnit(
     identifier = "xsdDate",
     name = "XSDDate",
     description = "Date",
-    type = CUnitType.date
+    type = DataUnitType.date
 )
 
-object XSDDouble: CUnit(
+object XSDDouble: DataUnit(
     identifier = "xsdDouble",
     name = "XSDDouble",
     description = "Nombre réel quelconque",
-    type = CUnitType.number
+    type = DataUnitType.number
 )
 
-object XSDInt: CUnit(
+object XSDInt: DataUnit(
     identifier = "xsdInt",
     name = "XSDInt",
     description = "Nombre entier quelconque",
-    type = CUnitType.number
+    type = DataUnitType.number
 )
 
-object XSDString: CUnit(
+object XSDString: DataUnit(
     identifier = "xsdString",
     name = "XSDString",
     description = "Chaîne de caractères quelconque",
-    type = CUnitType.string
+    type = DataUnitType.string
 )
 
-object XSDBoolean: CUnit(
+object XSDBoolean: DataUnit(
     identifier = "xsdBoolean",
     name = "XSDBoolean",
     description = "Vrai ou faux",
-    type = CUnitType.boolean
+    type = DataUnitType.boolean
 )
 
 object Duration {
-    object Hour: CUnit(
+    object Hour: DataUnit(
         identifier = "hourDuration",
         name = "Durée en heures",
         description = "Durée en heures",
         notation = "h",
-        type = CUnitType.number
+        type = DataUnitType.number
     )
-    object Year: CUnit(
+    object Year: DataUnit(
         identifier = "yearDuration",
         name = "Durée en années",
         description = "Durée en années",
         notation = "an(s)",
-        type = CUnitType.number
+        type = DataUnitType.number
     )
 }
 
-object Ratio: CUnit(
+object Ratio: DataUnit(
     identifier = "ration",
     name = "Ration",
     description = "Ratio entre deux valeurs",
     notation = "%",
-    type = CUnitType.number
+    type = DataUnitType.number
 )
 
-object SquareMeter: CUnit(
+object SquareMeter: DataUnit(
     identifier = "squareMeter",
     name = "Mètre carré",
     description = "Mètre carré",
     notation = "m²",
-    type = CUnitType.number
+    type = DataUnitType.number
 )
 
-object CubicMeter: CUnit(
+object CubicMeter: DataUnit(
     identifier = "cubicMeter",
     name = "Mètre cube",
     description = "Mètre cube",
     notation = "m³",
-    type = CUnitType.number
+    type = DataUnitType.number
 )

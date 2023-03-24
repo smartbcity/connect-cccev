@@ -6,6 +6,7 @@ import cccev.f2.request.domain.command.RequestAddValuesFunction
 import cccev.f2.request.domain.command.RequestCreateFunction
 import cccev.f2.request.domain.command.RequestRemoveEvidenceFunction
 import cccev.f2.request.domain.command.RequestRemoveRequirementsFunction
+import cccev.f2.request.domain.query.RequestGetFunction
 import f2.client.F2Client
 import f2.client.function
 import f2.dsl.fnc.F2SupplierSingle
@@ -18,6 +19,7 @@ expect fun requestClient(urlBase: String): F2SupplierSingle<RequestClient>
 @JsExport
 @JsName("RequestClient")
 open class RequestClient constructor(private val client: F2Client) : RequestApi {
+    override fun requestGet(): RequestGetFunction = client.function(this::requestGet.name)
     override fun requestCreate(): RequestCreateFunction = client.function(this::requestCreate.name)
     override fun requestAddRequirements(): RequestAddRequirementsFunction = client.function(this::requestAddRequirements.name)
     override fun requestRemoveRequirements(): RequestRemoveRequirementsFunction = client.function(this::requestRemoveRequirements.name)

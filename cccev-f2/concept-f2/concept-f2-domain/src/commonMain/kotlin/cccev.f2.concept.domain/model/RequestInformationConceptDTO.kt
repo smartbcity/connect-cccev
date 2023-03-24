@@ -1,6 +1,6 @@
 package cccev.f2.concept.domain.model
 
-import cccev.dsl.model.CUnitDTO
+import cccev.dsl.model.DataUnitDTO
 import cccev.dsl.model.Code
 import cccev.dsl.model.InformationConcept
 import cccev.dsl.model.InformationConceptId
@@ -32,7 +32,7 @@ class RequestInformationConceptDTOBase(
     override val identifier: String,
     override val name: String,
     override val type: Code,
-    override val unit: CUnitDTO,
+    override val unit: DataUnitDTO,
     override val description: String,
     override val expressionOfExpectedValue: String?,
     override val dependsOn: List<InformationConceptId>,

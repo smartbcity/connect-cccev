@@ -93,7 +93,6 @@ data class DataUnitCreatedEvent(
     override val name: String,
     override val description: String,
     override val notation: String?,
-    @SerialName("unitType")
     override val type: DataUnitType,
     override val status: DataUnitState
 ): DataUnitCreatedEventDTO {
