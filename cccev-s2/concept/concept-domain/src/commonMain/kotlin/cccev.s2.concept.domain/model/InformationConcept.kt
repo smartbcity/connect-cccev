@@ -27,13 +27,13 @@ data class InformationConcept(
      * The data unit used for this information concept.
      * @example [cccev.s2.unit.domain.model.DataUnit.id]
      */
-    val unitId: DataUnitId,
+    val unitId: DataUnitId?,
 
     /**
      * The description of this information concept.
      * @example "Represents the height above sea level"
      */
-    val description: String,
+    val description: String?,
 
     /**
      * Expression to evaluate in order to auto-compute the SupportedValue associated with this information concept, if applicable. <br />
@@ -47,5 +47,5 @@ data class InformationConcept(
      * A list of information concepts this one depends on for auto-computation, if applicable.
      * @example [["height", "groundAltitude"]]
      */
-    val dependsOn: List<InformationConceptId>
+    val dependsOn: List<InformationConceptId>?
 )

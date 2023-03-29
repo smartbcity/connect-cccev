@@ -21,8 +21,12 @@ class InformationConceptEvolver(
 	}
 
 	private suspend fun created(event: InformationConceptCreatedEvent): InformationConceptEntity {
-		val concepts = informationConceptRepository.findAllById(event.dependsOn).collectList().awaitSingle()
-		val unit = dataUnitRepository.findById(event.hasUnit).awaitSingle()
+		val concepts = event.dependsOn?.let { dependsOn ->
+			informationConceptRepository.findAllById(dependsOn).collectList().awaitSingle()
+		} ?: emptyList()
+		val unit = event.hasUnit?.let { hasUnit ->
+			dataUnitRepository.findById(hasUnit).awaitSingle()
+		}
 
 		return InformationConceptEntity().apply {
 			id = event.id

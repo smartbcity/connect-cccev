@@ -1,52 +1,22 @@
 ### version
-GET https://api.registry.smartb.network/ver/about
+GET {{urlbase}}/about
 
 ### version
-GET https://api.registry.smartb.network/cccev/about
+GET {{urlbase}}/about
 
 
 ###
-POST https://api.registry.smartb.network/cccev/requirementsList
+POST {{urlbase}}/requirementsList
 Content-Type: application/json
 
 {
 
 }
-
 ###
-POST http://146.59.242.43:8080/requirementsList
+POST{{urlbase}}/requirementListChildrenByType
 Content-Type: application/json
 
 {
-
+  "identifiers": ["P1", "P2", "P3", "P4", "P5"],
+  "type": "Activities"
 }
-
-###
-POST http://localhost:8083/requirementsList
-Content-Type: application/json
-
-{
-
-}
-
-###
-
-POST http://localhost:8083/about
-Content-Type: application/json
-
-{
-
-}
-
-###
-
-POST http://localhost:8083/requirementsList
-Content-Type: application/json
-
-{
-
-}
-
-###
-
-GET http://localhost:8083/api-docs

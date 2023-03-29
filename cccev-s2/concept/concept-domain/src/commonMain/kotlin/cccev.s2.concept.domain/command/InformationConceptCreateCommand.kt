@@ -37,13 +37,13 @@ interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
      * The data unit used for the information concept.
      * @example [cccev.s2.concept.domain.model.InformationConcept.unitId]
      */
-    val hasUnit: DataUnitId
+    val hasUnit: DataUnitId?
 
     /**
      * The description of the information concept.
      * @example [cccev.s2.concept.domain.model.InformationConcept.description]
      */
-    val description: String
+    val description: String?
 
     /**
      * Expression to evaluate in order to auto-compute the SupportedValue associated with the information concept, if applicable. <br />
@@ -57,7 +57,7 @@ interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
      * A list of information concepts the one depends on for auto-computation, if applicable.
      * @example [cccev.s2.concept.domain.model.InformationConcept.dependsOn]
      */
-    val dependsOn: List<InformationConceptId>
+    val dependsOn: List<InformationConceptId>?
 }
 
 /**
@@ -68,10 +68,10 @@ interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
 data class InformationConceptCreateCommand(
     override val name: String,
     override val identifier: String?,
-    override val hasUnit: DataUnitId,
-    override val description: String,
+    override val hasUnit: DataUnitId?,
+    override val description: String?,
     override val expressionOfExpectedValue: String?,
-    override val dependsOn: List<InformationConceptId>
+    override val dependsOn: List<InformationConceptId>?
 ): InformationConceptCreateCommandDTO
 
 /**
@@ -99,12 +99,12 @@ interface InformationConceptCreatedEventDTO: InformationConceptEvent {
     /**
      * @ref [InformationConceptCreateCommandDTO.hasUnit]
      */
-    val hasUnit: DataUnitId
+    val hasUnit: DataUnitId?
 
     /**
      * @ref [InformationConceptCreateCommandDTO.description]
      */
-    val description: String
+    val description: String?
 
     /**
      * @ref [InformationConceptCreateCommandDTO.expressionOfExpectedValue]
@@ -114,7 +114,7 @@ interface InformationConceptCreatedEventDTO: InformationConceptEvent {
     /**
      * @ref [InformationConceptCreateCommandDTO.dependsOn]
      */
-    val dependsOn: List<InformationConceptId>
+    val dependsOn: List<InformationConceptId>?
 
     /**
      * Status of the information concept
@@ -130,10 +130,10 @@ data class InformationConceptCreatedEvent(
     override val id: InformationConceptId,
     override val identifier: String?,
     override val name: String,
-    override val hasUnit: DataUnitId,
-    override val description: String,
+    override val hasUnit: DataUnitId?,
+    override val description: String?,
     override val expressionOfExpectedValue: String?,
-    override val dependsOn: List<InformationConceptId>,
+    override val dependsOn: List<InformationConceptId>?,
     override val status: InformationConceptState
 ): InformationConceptCreatedEventDTO {
     override fun s2Id() = id

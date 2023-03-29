@@ -30,7 +30,7 @@ class RequirementFinderService(
     }
 
     override suspend fun listByIdWithChildrenOfType(ids: List<RequirementId>, type: String): List<Requirement> {
-        return requirementRepository.findByIdWithChildrenOfType(ids, type)
+        return requirementRepository.findByIdentifierWithChildrenOfType(ids, type)
             .map(RequirementEntity::toRequirement)
             .collectList().awaitSingle()
     }

@@ -16,12 +16,12 @@ class InformationConceptEntity: EntityBase<InformationConceptId, InformationConc
     lateinit var name: String
 
     @Relationship(Relation.HAS_UNIT)
-    lateinit var hasUnit: DataUnitEntity
+    var hasUnit: DataUnitEntity? = null
 
-    lateinit var description: String
+    var description: String? = null
 
     var expressionOfExpectedValue: String? = null
 
     @Relationship(Relation.DEPENDS_ON)
-    lateinit var dependsOn: List<InformationConceptEntity>
+    var dependsOn: List<InformationConceptEntity>? = null
 }

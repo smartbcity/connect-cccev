@@ -2,7 +2,6 @@ package cccev.dsl.client
 
 import cccev.dsl.model.EvidenceTypeBase
 import cccev.dsl.model.EvidenceTypeListBase
-import cccev.dsl.model.InformationConcept
 import cccev.dsl.model.InformationConceptBase
 import cccev.dsl.model.Requirement
 import cccev.f2.concept.client.InformationConceptClient
@@ -41,10 +40,10 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 class CCCEVClient(
-    private val evidenceTypeClient: EvidenceTypeClient,
-    private val informationConceptClient: InformationConceptClient,
-    private val requirementClient: RequirementClient,
-    private val dataUnitClient: DataUnitClient
+    val evidenceType: EvidenceTypeClient,
+    val informationConcept: InformationConceptClient,
+    val requirement: RequirementClient,
+    val dataUnit: DataUnitClient
 ) {
     companion object {
         suspend operator fun invoke(url: String): CCCEVClient {
@@ -82,9 +81,10 @@ class CCCEVClient(
         return requirements.flatMapConcat(Requirement::flatten)
             .map { requirement ->
                 requirement.hasConcept?.forEach { concept ->
-                    if(concept.unit.identifier !in createdUnit) {
-                        val unitId = concept.unit.create().id
-                        createdUnit[concept.unit.identifier] = unitId
+                    val unit = concept.unit
+                    if(unit != null && unit.identifier !in createdUnit) {
+                        val unitId = unit.create().id
+                        createdUnit[unit.identifier] = unitId
                     }
                     if (concept.identifier !in createdConcepts) {
                         val conceptId = concept.create(createdConcepts, createdUnit).id
@@ -117,7 +117,7 @@ class CCCEVClient(
                     hasQualifiedRelation = requirement.hasQualifiedRelation?.map { createdRequirements[it.identifier]!! },
                     kind = RequirementKind.INFORMATION.name,
                     type = requirement.type?.let {it::class.simpleName}
-                ).invokeWith(requirementClient.requirementCreate())
+                ).invokeWith(this.requirement.requirementCreate())
 
                 createdRequirements[event.identifier!!] = event.id
 
@@ -125,7 +125,7 @@ class CCCEVClient(
                     RequirementAddRequirementsCommand(
                         id = createdRequirements[parent.identifier]!!,
                         requirementIds = listOf(event.id)
-                    ).invokeWith(requirementClient.requirementAddRequirements())
+                    ).invokeWith(this.requirement.requirementAddRequirements())
                 }
 
                 event
@@ -138,7 +138,7 @@ class CCCEVClient(
             description = description,
             notation = notation,
             type = type.name.uppercase()
-        ).invokeWith(dataUnitClient.dataUnitCreate())
+        ).invokeWith(dataUnit.dataUnitCreate())
     }
     private suspend fun InformationConceptBase.create(
         conceptIdMap: Map<String, InformationConceptId>,
@@ -147,11 +147,11 @@ class CCCEVClient(
         return InformationConceptCreateCommand(
             name = name,
             identifier = identifier,
-            hasUnit = unitIdMap[unit.identifier]!!,
+            hasUnit = unitIdMap[unit?.identifier],
             description = description,
             expressionOfExpectedValue = expressionOfExpectedValue,
-            dependsOn = dependsOn.map { conceptIdMap[it]!! },
-        ).invokeWith(informationConceptClient.conceptCreate())
+            dependsOn = dependsOn?.map { conceptIdMap[it]!! },
+        ).invokeWith(informationConcept.conceptCreate())
     }
 
     private suspend fun EvidenceTypeBase.create(): EvidenceTypeCreatedEvent {
@@ -160,7 +160,7 @@ class CCCEVClient(
             name = name,
             description = "",
             validityPeriodConstraint = null
-        ).invokeWith(evidenceTypeClient.evidenceTypeCreate())
+        ).invokeWith(evidenceType.evidenceTypeCreate())
     }
 
     private suspend fun EvidenceTypeListBase.create(evidenceTypeIdMap: Map<String, EvidenceTypeId>): EvidenceTypeListCreatedEvent {
@@ -169,6 +169,6 @@ class CCCEVClient(
             name = name,
             description = description,
             specifiesEvidenceType = specifiesEvidenceType.map { evidenceTypeIdMap[it.identifier]!! }
-        ).invokeWith(evidenceTypeClient.evidenceTypeListCreate())
+        ).invokeWith(evidenceType.evidenceTypeListCreate())
     }
 }

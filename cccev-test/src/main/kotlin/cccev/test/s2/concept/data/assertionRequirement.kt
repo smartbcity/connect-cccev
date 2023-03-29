@@ -24,18 +24,18 @@ class AssertionInformationConcept(
             id: InformationConceptId = concept.id,
             status: InformationConceptState = concept.status,
             name: String = concept.name,
-            hasUnit: DataUnitId = concept.hasUnit.id,
-            description: String = concept.description,
+            hasUnit: DataUnitId? = concept.hasUnit?.id,
+            description: String? = concept.description,
             expressionOfExpectedValue: String? = concept.expressionOfExpectedValue,
-            dependsOn: List<InformationConceptId> = concept.dependsOn.map { it.id }
+            dependsOn: List<InformationConceptId>? = concept.dependsOn?.map { it.id }
         ) = also {
             Assertions.assertThat(concept.id).isEqualTo(id)
             Assertions.assertThat(concept.status).isEqualTo(status)
             Assertions.assertThat(concept.name).isEqualTo(name)
-            Assertions.assertThat(concept.hasUnit.id).isEqualTo(hasUnit)
+            Assertions.assertThat(concept.hasUnit?.id).isEqualTo(hasUnit)
             Assertions.assertThat(concept.description).isEqualTo(description)
             Assertions.assertThat(concept.expressionOfExpectedValue).isEqualTo(expressionOfExpectedValue)
-            Assertions.assertThat(concept.dependsOn.map { it.id }).containsExactlyInAnyOrderElementsOf(dependsOn)
+            Assertions.assertThat(concept.dependsOn?.map { it.id }).containsExactlyInAnyOrderElementsOf(dependsOn)
         }
     }
 }

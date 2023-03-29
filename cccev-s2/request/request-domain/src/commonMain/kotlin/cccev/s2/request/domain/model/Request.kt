@@ -2,6 +2,7 @@ package cccev.s2.request.domain.model
 
 import cccev.dsl.model.RequirementId
 import cccev.s2.concept.domain.InformationConceptId
+import cccev.s2.requirement.domain.D2RequirementPage
 import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -12,6 +13,11 @@ import kotlin.js.JsName
  */
 typealias RequestId = String
 
+/**
+ * @d2 model
+ * @parent [cccev.s2.request.domain.D2RequestPage]
+ * @order 10
+ */
 @JsExport
 @JsName("RequestDTO")
 interface RequestDTO {

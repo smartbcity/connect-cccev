@@ -23,5 +23,4 @@ dependencies {
 	implementation(project(":cccev-s2:unit:unit-api"))
 
 	Dependencies.Jvm.s2Bdd(::api)
-
 }

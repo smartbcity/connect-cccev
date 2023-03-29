@@ -10,6 +10,7 @@ import cccev.f2.requirement.domain.command.RequirementUpdateFunction
 import cccev.f2.requirement.domain.query.GetRequirementListQueryFunction
 import cccev.f2.requirement.domain.query.GetRequirementQueryFunction
 import cccev.f2.requirement.domain.query.RequirementGetFunction
+import cccev.f2.requirement.domain.query.RequirementListChildrenByTypeFunction
 import f2.client.F2Client
 import f2.client.function
 import f2.dsl.fnc.F2SupplierSingle
@@ -25,7 +26,9 @@ open class RequirementClient constructor(private val client: F2Client) : Require
     override fun requirementGet(): RequirementGetFunction  = client.function(this::requirementGet.name)
     @Deprecated("Use requirementGet instead", ReplaceWith("requirementGet()"))
     override fun getRequirement(): GetRequirementQueryFunction  = client.function(this::getRequirement.name)
-    override fun requirementsList(): GetRequirementListQueryFunction  = client.function(this::requirementsList.name)
+    override fun requirementsList(): GetRequirementListQueryFunction = client.function(this::requirementsList.name)
+    override fun requirementListChildrenByType(): RequirementListChildrenByTypeFunction = client.function(this::requirementsList.name)
+
     override fun constraintCreate(): ConstraintCreateFunction  = client.function(this::constraintCreate.name)
     override fun criterionCreate(): CriterionCreateFunction  = client.function(this::criterionCreate.name)
     override fun informationRequirementCreate(): InformationRequirementCreateFunction

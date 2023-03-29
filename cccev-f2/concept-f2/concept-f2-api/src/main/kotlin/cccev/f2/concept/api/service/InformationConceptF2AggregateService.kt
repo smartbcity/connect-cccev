@@ -20,11 +20,11 @@ class InformationConceptF2AggregateService(
         return informationConceptAggregateService.create(command)
     }
 
-    private suspend fun checkConceptsExist(ids: Collection<DataUnitId>) {
-        ids.forEach { informationConceptFinderService.get(it) }
+    private suspend fun checkConceptsExist(ids: Collection<DataUnitId>?) {
+        ids?.forEach { informationConceptFinderService.get(it) }
     }
 
-    private suspend fun checkUnitExists(id: DataUnitId) {
-        dataUnitFinderService.get(id)
+    private suspend fun checkUnitExists(id: DataUnitId?) {
+        id?.let { dataUnitFinderService.get(id) }
     }
 }

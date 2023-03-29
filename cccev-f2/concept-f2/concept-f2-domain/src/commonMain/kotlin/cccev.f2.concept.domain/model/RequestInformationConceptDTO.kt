@@ -31,11 +31,11 @@ interface RequestInformationConceptDTO: InformationConcept {
 class RequestInformationConceptDTOBase(
     override val identifier: String,
     override val name: String,
-    override val type: Code,
-    override val unit: DataUnitDTO,
-    override val description: String,
+    override val type: Code?,
+    override val unit: DataUnitDTO?,
+    override val description: String?,
     override val expressionOfExpectedValue: String?,
-    override val dependsOn: List<InformationConceptId>,
+    override val dependsOn: List<InformationConceptId>?,
     override val evidenceTypeChoices: EvidenceTypeListChoicesDTOBase,
     override val supportedValue: SupportedValue
 ): RequestInformationConceptDTO

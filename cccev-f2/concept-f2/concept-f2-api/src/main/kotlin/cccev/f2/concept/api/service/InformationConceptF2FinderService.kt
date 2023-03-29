@@ -62,9 +62,9 @@ class InformationConceptF2FinderService(
 //    }
 
     private suspend fun Collection<InformationConcept>.toDTOs(cache: Cache = Cache()) = map { it.toDTO(cache) }
-    private suspend fun InformationConcept.toDTO(cache: Cache = Cache()) = toDTO(
-        getUnit = cache.units::get
-    )
+    private suspend fun InformationConcept.toDTO(cache: Cache = Cache()) = toDTO {
+        it?.let {  cache.units.get(it) }
+    }
 
     private inner class Cache {
         val units = SimpleCache(dataUnitF2FinderService::get)

@@ -84,10 +84,10 @@ class InformationConceptCreateSteps: En, CccevCucumberStepsDefinition() {
                 AssertionBdd.informationConcept(informationConceptRepository).assertThat(concept!!).hasFields(
                     status = InformationConceptState.EXISTS,
                     name = params.name ?: concept.name,
-                    hasUnit = params.unit?.let(context.unitIds::safeGet) ?: concept.hasUnit.id,
+                    hasUnit = params.unit?.let(context.unitIds::safeGet) ?: concept.hasUnit?.id,
                     description = params.description ?: concept.description,
                     expressionOfExpectedValue = params.expressionOfExpectedValue.parseNullableOrDefault(concept.expressionOfExpectedValue),
-                    dependsOn = params.dependsOn ?: concept.dependsOn.map { it.id },
+                    dependsOn = params.dependsOn ?: concept.dependsOn?.map { it.id },
                 )
             }
         }
@@ -111,7 +111,7 @@ class InformationConceptCreateSteps: En, CccevCucumberStepsDefinition() {
         unit = entry?.get("unit") ?: context.unitIds.lastUsedKey,
         description = entry?.get("description").orRandom(),
         expressionOfExpectedValue = entry?.get("expressionOfExpectedValue"),
-        dependsOn = entry?.extractList("dependsOn").orEmpty()
+            dependsOn = entry?.extractList("dependsOn").orEmpty()
     )
 
     private data class InformationConceptCreateParams(

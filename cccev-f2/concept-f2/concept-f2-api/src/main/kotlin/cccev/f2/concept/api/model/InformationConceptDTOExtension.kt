@@ -31,7 +31,7 @@ fun InformationConceptBase.toRequestDTO(
 )
 
 suspend fun InformationConcept.toDTO(
-    getUnit: suspend (DataUnitId) -> DataUnitDTOBase
+    getUnit: suspend (DataUnitId?) -> DataUnitDTOBase?
 ) = InformationConceptDTOBase(
     id = id,
     name = name,

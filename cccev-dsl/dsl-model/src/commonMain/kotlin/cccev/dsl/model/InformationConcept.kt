@@ -11,19 +11,19 @@ typealias InformationConceptId = String
 interface InformationConcept {
 	val identifier: InformationConceptId
 	val name: String
-	val unit: DataUnitDTO
-	val type: Code
-	val description: String
+	val unit: DataUnitDTO?
+	val type: Code?
+	val description: String?
 	val expressionOfExpectedValue: String?
-	val dependsOn: List<InformationConceptId>
+	val dependsOn: List<InformationConceptId>?
 }
 @Serializable
 open class InformationConceptBase(
     override val identifier: InformationConceptId,
     override val name: String,
-    override val unit: DataUnit,
-    override val type: Code,
-    override val description: String,
+    override val unit: DataUnit?,
+    override val type: Code?,
+    override val description: String?,
     override val expressionOfExpectedValue: String? = null,
-    override val dependsOn: List<InformationConceptId> = emptyList()
+    override val dependsOn: List<InformationConceptId>? = emptyList()
 ): InformationConcept
