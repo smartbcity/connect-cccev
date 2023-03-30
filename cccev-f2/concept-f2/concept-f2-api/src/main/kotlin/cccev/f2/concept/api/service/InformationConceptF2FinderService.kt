@@ -9,7 +9,6 @@ import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.concept.domain.model.InformationConcept
 import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.api.RequestFinderService
-import cccev.s2.requirement.api.DeprecatedRequirementFinderService
 import org.springframework.stereotype.Service
 import s2.spring.utils.logger.Logger
 
@@ -19,7 +18,6 @@ class InformationConceptF2FinderService(
     private val informationConceptFinderService: InformationConceptFinderService,
     private val requestAggregateService: RequestAggregateService,
     private val requestFinderService: RequestFinderService,
-    private val deprecatedRequirementFinderService: DeprecatedRequirementFinderService
 ) {
     private val logger by Logger()
 

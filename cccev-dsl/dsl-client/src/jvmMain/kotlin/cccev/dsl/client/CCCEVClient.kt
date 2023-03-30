@@ -46,8 +46,8 @@ class CCCEVClient(
     val dataUnit: DataUnitClient
 ) {
     companion object {
-        suspend operator fun invoke(url: String): CCCEVClient {
-            val f2Client = F2ClientBuilder.get(url)
+        suspend operator fun invoke(url: String, config: f2.client.ktor.http.F2ClientConfigLambda? = null): CCCEVClient {
+            val f2Client = F2ClientBuilder.get(url, config = config)
             return CCCEVClient(
                 f2Client.evidenceTypeClient().invoke(),
                 f2Client.informationConceptClient().invoke(),

@@ -10,7 +10,7 @@ import kotlin.js.JsExport
 import kotlin.js.JsName
 
 typealias RequirementListChildrenByTypeFunction
-        = F2Function<RequirementChildrenByTypeQueryDTOBase, RequirementChildrenByTypeResultDTOBase>
+        = F2Function<RequirementListChildrenByTypeQueryDTOBase, RequirementListChildrenByTypeResultDTOBase>
 
 @JsExport
 @JsName("RequirementListChildrenByTypeQueryDTO")
@@ -20,18 +20,18 @@ interface RequirementListChildrenByTypeQueryDTO {
 }
 
 @Serializable
-data class RequirementChildrenByTypeQueryDTOBase(
+data class RequirementListChildrenByTypeQueryDTOBase(
     override val identifiers: List<RequirementId>,
     override val type: String
 ): RequirementListChildrenByTypeQueryDTO
 
 @JsExport
-@JsName("RequirementChildrenByTypeResultDTO")
-interface RequirementChildrenByTypeResultDTO {
+@JsName("RequirementListChildrenByTypeResultDTO")
+interface RequirementListChildrenByTypeResultDTO {
     val items: List<RequirementDTO>?
 }
 
 @Serializable
-data class RequirementChildrenByTypeResultDTOBase(
+data class RequirementListChildrenByTypeResultDTOBase(
     override val items: List<RequirementDTOBase>?
-): RequirementChildrenByTypeResultDTO
+): RequirementListChildrenByTypeResultDTO

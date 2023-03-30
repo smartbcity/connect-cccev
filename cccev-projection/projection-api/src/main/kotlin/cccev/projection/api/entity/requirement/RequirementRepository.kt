@@ -10,9 +10,13 @@ import org.springframework.data.neo4j.repository.query.Query
 import org.springframework.stereotype.Repository
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
+import reactor.core.publisher.Mono
 
 @Repository
 interface RequirementRepository: ReactiveNeo4jRepository<RequirementEntity, RequirementId> {
+
+    fun findByIdentifier(identifier: RequirementIdentifier): Mono<RequirementEntity>
+
     // TODO also fetch other relations (info concepts, evidence type lists, ...) or it won't be filled in the entity
     @Query("" +
             "MATCH (root:${NodeLabel.REQUIREMENT}) WHERE root.identifier IN \$ids\n" +

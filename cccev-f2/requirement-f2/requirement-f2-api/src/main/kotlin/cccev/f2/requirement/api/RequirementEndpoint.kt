@@ -12,15 +12,12 @@ import cccev.f2.requirement.domain.command.InformationRequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementAddRequirementsFunction
 import cccev.f2.requirement.domain.command.RequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementUpdateFunction
-import cccev.f2.requirement.domain.query.GetRequirementListQueryFunction
-import cccev.f2.requirement.domain.query.GetRequirementListQueryResult
-import cccev.f2.requirement.domain.query.GetRequirementQueryFunction
-import cccev.f2.requirement.domain.query.GetRequirementQueryResult
+import cccev.f2.requirement.domain.query.RequirementListQueryFunction
+import cccev.f2.requirement.domain.query.RequirementListResult
 import cccev.f2.requirement.domain.query.RequirementGetFunction
 import cccev.f2.requirement.domain.query.RequirementGetResultDTOBase
 import cccev.f2.requirement.domain.query.RequirementListChildrenByTypeFunction
-import cccev.f2.requirement.domain.query.RequirementChildrenByTypeResultDTOBase
-import cccev.s2.requirement.api.DeprecatedRequirementFinderService
+import cccev.f2.requirement.domain.query.RequirementListChildrenByTypeResultDTOBase
 import cccev.s2.requirement.domain.model.RequirementKind
 import f2.dsl.fnc.f2Function
 import kotlinx.coroutines.flow.toList
@@ -32,7 +29,6 @@ import s2.spring.utils.logger.Logger
 class RequirementEndpoint(
     private val requirementF2AggregateService: RequirementF2AggregateService,
     private val requirementF2FinderService: RequirementF2FinderService,
-    private val deprecatedRequirementFinderService: DeprecatedRequirementFinderService
 ): RequirementApi {
     private val logger by Logger()
 
@@ -42,26 +38,20 @@ class RequirementEndpoint(
         requirementF2FinderService.getOrNull(query.id).let(::RequirementGetResultDTOBase)
     }
 
-    @Deprecated("Use requirementGet instead")
-    @Bean
-    override fun getRequirement(): GetRequirementQueryFunction = f2Function { query ->
-        deprecatedRequirementFinderService.get(query.requirementId).let(::GetRequirementQueryResult)
-    }
-
     @Bean
     override fun requirementListChildrenByType(): RequirementListChildrenByTypeFunction = f2Function { query ->
         logger.info("requirementListChildrenByTypeFunction $query")
         requirementF2FinderService.listByIdsAndType(query.identifiers, query.type)
-            .let(::RequirementChildrenByTypeResultDTOBase)
+            .let(::RequirementListChildrenByTypeResultDTOBase)
     }
 
-//    @Bean
-    override fun requirementsList(): GetRequirementListQueryFunction = f2Function { query ->
+    @Bean
+    override fun requirementsList(): RequirementListQueryFunction = f2Function { query ->
         requirementF2FinderService.list(
             isRequirementOf = query.parentId,
             concept = query.conceptId,
             evidenceType = query.evidenceTypeId
-        ).toList().let(::GetRequirementListQueryResult)
+        ).toList().let(::RequirementListResult)
     }
 
     @Bean

@@ -2,7 +2,6 @@ package cccev.f2.requirement.domain.query
 
 import cccev.dsl.model.EvidenceTypeId
 import cccev.dsl.model.InformationConceptId
-import cccev.dsl.model.Requirement
 import cccev.dsl.model.RequirementId
 import cccev.f2.requirement.domain.model.RequirementDTO
 import f2.dsl.fnc.F2Function
@@ -12,19 +11,19 @@ import kotlin.js.JsName
 /**
  * Get a list of requirements.
  * @parent [cccev.f2.requirement.domain.D2RequirementApiPage]
- * @child [GetRequirementListQueryDTO]
- * @child [GetRequirementListQueryResultDTO]
+ * @child [RequirementListQueryDTO]
+ * @child [RequirementListResultDTO]
  * @d2 function
  */
-typealias GetRequirementListQueryFunction = F2Function<GetRequirementListQuery, GetRequirementListQueryResult>
+typealias RequirementListQueryFunction = F2Function<RequirementListQuery, RequirementListResult>
 
 /**
  * Requirement List Query
  * @d2 query
  */
 @JsExport
-@JsName("GetRequirementListQueryDTO")
-interface GetRequirementListQueryDTO {
+@JsName("RequirementListQueryDTO")
+interface RequirementListQueryDTO {
     val parentId: RequirementId?
     val conceptId: InformationConceptId?
     val evidenceTypeId: EvidenceTypeId?
@@ -35,23 +34,23 @@ interface GetRequirementListQueryDTO {
  * @d2 result
  */
 @JsExport
-@JsName("GetRequirementListQueryResultDTO")
-interface GetRequirementListQueryResultDTO {
+@JsName("RequirementListResultDTO")
+interface RequirementListResultDTO {
     val requirements: List<RequirementDTO>
 }
 
 /**
  * @d2 inherit
  */
-class GetRequirementListQuery(
+class RequirementListQuery(
     override val parentId: RequirementId?,
     override val conceptId: InformationConceptId?,
     override val evidenceTypeId: EvidenceTypeId?
-): GetRequirementListQueryDTO
+): RequirementListQueryDTO
 
 /**
  * @d2 inherit
  */
-class GetRequirementListQueryResult(
+class RequirementListResult(
     override val requirements: List<RequirementDTO>
-): GetRequirementListQueryResultDTO
+): RequirementListResultDTO
