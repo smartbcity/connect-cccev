@@ -24,7 +24,8 @@ expect fun requirementClient(urlBase: String): F2SupplierSingle<RequirementClien
 open class RequirementClient constructor(private val client: F2Client) : RequirementApi {
     override fun requirementGet(): RequirementGetFunction  = client.function(this::requirementGet.name)
     override fun requirementsList(): RequirementListQueryFunction = client.function(this::requirementsList.name)
-    override fun requirementListChildrenByType(): RequirementListChildrenByTypeFunction = client.function(this::requirementsList.name)
+    override fun requirementListChildrenByType(): RequirementListChildrenByTypeFunction
+        = client.function(this::requirementListChildrenByType.name)
     override fun constraintCreate(): ConstraintCreateFunction  = client.function(this::constraintCreate.name)
     override fun criterionCreate(): CriterionCreateFunction  = client.function(this::criterionCreate.name)
     override fun informationRequirementCreate(): InformationRequirementCreateFunction
