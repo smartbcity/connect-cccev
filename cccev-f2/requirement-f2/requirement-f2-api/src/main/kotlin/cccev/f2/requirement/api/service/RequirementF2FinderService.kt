@@ -27,6 +27,9 @@ class RequirementF2FinderService(
     suspend fun get(id: RequirementId): RequirementDTOBase {
         return requirementFinderService.get(id).toDTO()
     }
+    suspend fun getOrNullByIdentifier(id: RequirementId): RequirementDTOBase? {
+        return requirementFinderService.getOrNullByIdentifier(id)?.toDTO()
+    }
 
     suspend fun listByIdsAndType(ids: List<RequirementId>, type: String): List<RequirementDTOBase> {
         return requirementFinderService.listByIdWithChildrenOfType(ids, type).map { it.toDTO() }

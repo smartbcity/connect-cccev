@@ -7,6 +7,7 @@ import cccev.f2.requirement.domain.command.InformationRequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementAddRequirementsFunction
 import cccev.f2.requirement.domain.command.RequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementUpdateFunction
+import cccev.f2.requirement.domain.query.RequirementGetByIdentifierFunction
 import cccev.f2.requirement.domain.query.RequirementListQueryFunction
 import cccev.f2.requirement.domain.query.RequirementGetFunction
 import cccev.f2.requirement.domain.query.RequirementListChildrenByTypeFunction
@@ -23,6 +24,9 @@ expect fun requirementClient(urlBase: String): F2SupplierSingle<RequirementClien
 @JsName("RequirementClient")
 open class RequirementClient constructor(private val client: F2Client) : RequirementApi {
     override fun requirementGet(): RequirementGetFunction  = client.function(this::requirementGet.name)
+    override fun requirementGetByIdentifier(): RequirementGetByIdentifierFunction
+        = client.function(this::requirementGetByIdentifier.name)
+
     override fun requirementsList(): RequirementListQueryFunction = client.function(this::requirementsList.name)
     override fun requirementListChildrenByType(): RequirementListChildrenByTypeFunction
         = client.function(this::requirementListChildrenByType.name)
@@ -32,5 +36,6 @@ open class RequirementClient constructor(private val client: F2Client) : Require
         = client.function(this::informationRequirementCreate.name)
     override fun requirementCreate(): RequirementCreateFunction  = client.function(this::requirementCreate.name)
     override fun requirementUpdate(): RequirementUpdateFunction  = client.function(this::requirementUpdate.name)
-    override fun requirementAddRequirements(): RequirementAddRequirementsFunction  = client.function(this::requirementAddRequirements.name)
+    override fun requirementAddRequirements(): RequirementAddRequirementsFunction
+        = client.function(this::requirementAddRequirements.name)
 }

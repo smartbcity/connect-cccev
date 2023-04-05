@@ -14,4 +14,6 @@ interface RequirementFinder {
         concept: InformationConceptId? = null,
         evidenceType: EvidenceTypeId? = null
     ): Flow<Requirement>
+
+    suspend fun getOrNullByIdentifier(id: RequirementId): Requirement?
 }

@@ -12,10 +12,12 @@ import cccev.f2.requirement.domain.command.InformationRequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementAddRequirementsFunction
 import cccev.f2.requirement.domain.command.RequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementUpdateFunction
+import cccev.f2.requirement.domain.query.RequirementGetByIdentifierFunction
 import cccev.f2.requirement.domain.query.RequirementListQueryFunction
 import cccev.f2.requirement.domain.query.RequirementListResult
 import cccev.f2.requirement.domain.query.RequirementGetFunction
 import cccev.f2.requirement.domain.query.RequirementGetResultDTOBase
+import cccev.f2.requirement.domain.query.RequirementGetByIdentifierResultDTOBase
 import cccev.f2.requirement.domain.query.RequirementListChildrenByTypeFunction
 import cccev.f2.requirement.domain.query.RequirementListChildrenByTypeResultDTOBase
 import cccev.s2.requirement.domain.model.RequirementKind
@@ -36,6 +38,12 @@ class RequirementEndpoint(
     override fun requirementGet(): RequirementGetFunction = f2Function { query ->
         logger.info("requirementGet: $query")
         requirementF2FinderService.getOrNull(query.id).let(::RequirementGetResultDTOBase)
+    }
+
+    @Bean
+    override fun requirementGetByIdentifier(): RequirementGetByIdentifierFunction = f2Function { query ->
+        logger.info("requirementGetByIdentifierFunction: $query")
+        requirementF2FinderService.getOrNullByIdentifier(query.id).let(::RequirementGetByIdentifierResultDTOBase)
     }
 
     @Bean

@@ -11,7 +11,6 @@ import cccev.s2.requirement.domain.model.Requirement
 import f2.spring.exception.NotFoundException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.reactor.awaitSingle
@@ -24,6 +23,13 @@ class RequirementFinderService(
 ): RequirementFinder {
     override suspend fun getOrNull(id: RequirementId): Requirement? {
         return requirementRepository.findById(id)
+            .awaitSingleOrNull()
+            ?.toRequirement()
+    }
+
+
+    override suspend fun getOrNullByIdentifier(id: RequirementId): Requirement? {
+        return requirementRepository.findByIdentifier(id)
             .awaitSingleOrNull()
             ?.toRequirement()
     }
@@ -50,4 +56,5 @@ class RequirementFinderService(
 
         return requirements.map { it.toRequirement() }
     }
+
 }
