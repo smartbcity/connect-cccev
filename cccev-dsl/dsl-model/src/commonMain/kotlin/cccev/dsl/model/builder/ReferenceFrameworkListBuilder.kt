@@ -6,8 +6,9 @@ fun referenceFramework(block: ReferenceFrameworkBuilder.() -> Unit): ReferenceFr
     = ReferenceFrameworkBuilder().apply(block).build()
 class ReferenceFrameworkBuilder {
     var identifier: String? = null
+    var name: String = ""
 
-    fun build(): ReferenceFramework = ReferenceFramework(identifier!!)
+    fun build(): ReferenceFramework = ReferenceFramework(identifier!!, name)
 }
 
 class ReferenceFrameworkListBuilder {

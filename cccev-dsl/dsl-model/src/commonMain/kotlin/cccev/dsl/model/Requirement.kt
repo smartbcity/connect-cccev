@@ -21,7 +21,7 @@ sealed interface Requirement {
     val type: Code?
     val hasRequirement: List<Requirement>?
     var isRequirementOf: List<Requirement>?
-    var hasQualifiedRelation: List<Requirement>?
+    var hasQualifiedRelation: Map<String, List<Requirement>>?
 
     val hasConcept: List<InformationConceptBase>?
     val hasEvidenceTypeList: List<EvidenceTypeListBase>?
@@ -42,7 +42,7 @@ open class Criterion(
     override val hasEvidenceTypeList: List<EvidenceTypeListBase>? = emptyList(),
     override val isDerivedFrom: List<ReferenceFramework>? = emptyList(),
     override var isRequirementOf: List<Requirement>? = emptyList(),
-    override var hasQualifiedRelation: List<Requirement>? = emptyList(),
+    override var hasQualifiedRelation: Map<String, List<Requirement>>? = emptyMap(),
 ) : Requirement {
     override fun toString(): String {
         return "Criterion(" +
@@ -75,7 +75,7 @@ open class InformationRequirement(
     override val hasEvidenceTypeList: List<EvidenceTypeListBase>? = emptyList(),
     override val isDerivedFrom: List<ReferenceFramework>? = emptyList(),
     override var isRequirementOf: List<Requirement>? = emptyList(),
-    override var hasQualifiedRelation: List<Requirement>? = emptyList(),
+    override var hasQualifiedRelation: Map<String, List<Requirement>>? = emptyMap(),
 ) : Requirement {
     override fun toString(): String {
         return "InformationRequirement(" +
@@ -104,7 +104,7 @@ open class Constraint(
     override val hasEvidenceTypeList: List<EvidenceTypeListBase>? = emptyList(),
     override val isDerivedFrom: List<ReferenceFramework>? = emptyList(),
     override var isRequirementOf: List<Requirement>? = emptyList(),
-    override var hasQualifiedRelation: List<Requirement>? = emptyList(),
+    override var hasQualifiedRelation: Map<String, List<Requirement>>? = emptyMap(),
 ) : Requirement {
     override fun toString(): String {
         return "Constraint(" +
@@ -138,7 +138,7 @@ open class PartialRequirement(
     override val hasEvidenceTypeList: List<EvidenceTypeListBase>? = emptyList(),
     override val isDerivedFrom: List<ReferenceFramework>? = emptyList(),
     override var isRequirementOf: List<Requirement>? = emptyList(),
-    override var hasQualifiedRelation: List<Requirement>? = emptyList(),
+    override var hasQualifiedRelation: Map<String, List<Requirement>>? = emptyMap(),
 ) : Requirement
 
 fun criterion(init: CriterionBuilder.() -> Unit): Criterion = CriterionBuilder().apply(init).build()

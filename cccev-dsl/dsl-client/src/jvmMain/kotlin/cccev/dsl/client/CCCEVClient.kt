@@ -3,11 +3,14 @@ package cccev.dsl.client
 import cccev.dsl.model.EvidenceTypeBase
 import cccev.dsl.model.EvidenceTypeListBase
 import cccev.dsl.model.InformationConceptBase
+import cccev.dsl.model.ReferenceFramework
 import cccev.dsl.model.Requirement
 import cccev.f2.concept.client.InformationConceptClient
 import cccev.f2.concept.client.informationConceptClient
 import cccev.f2.evidence.type.client.EvidenceTypeClient
 import cccev.f2.evidence.type.client.evidenceTypeClient
+import cccev.f2.framework.client.FrameworkClient
+import cccev.f2.framework.client.frameworkClient
 import cccev.f2.requirement.domain.command.RequirementCreateCommandDTOBase
 import cccev.f2.unit.client.DataUnitClient
 import cccev.f2.unit.client.dataUnitClient
@@ -21,6 +24,9 @@ import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreateCommand
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreatedEvent
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreateCommand
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreatedEvent
+import cccev.s2.framework.domain.FrameworkId
+import cccev.s2.framework.domain.command.FrameworkCreateCommand
+import cccev.s2.framework.domain.command.FrameworkCreatedEvent
 import cccev.s2.requirement.client.RequirementClient
 import cccev.s2.requirement.client.requirementClient
 import cccev.s2.requirement.domain.RequirementId
@@ -40,10 +46,11 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 class CCCEVClient(
-    val evidenceType: EvidenceTypeClient,
-    val informationConcept: InformationConceptClient,
-    val requirement: RequirementClient,
-    val dataUnit: DataUnitClient
+    val evidenceTypeClient: EvidenceTypeClient,
+    val informationConceptClient: InformationConceptClient,
+    val requirementClient: RequirementClient,
+    val dataUnitClient: DataUnitClient,
+    val frameworkClient: FrameworkClient
 ) {
     companion object {
         suspend operator fun invoke(url: String, config: f2.client.ktor.http.F2ClientConfigLambda? = null): CCCEVClient {
@@ -52,7 +59,8 @@ class CCCEVClient(
                 f2Client.evidenceTypeClient().invoke(),
                 f2Client.informationConceptClient().invoke(),
                 f2Client.requirementClient().invoke(),
-                f2Client.dataUnitClient().invoke()
+                f2Client.dataUnitClient().invoke(),
+                f2Client.frameworkClient().invoke()
             )
         }
     }
@@ -60,7 +68,8 @@ class CCCEVClient(
     @Suppress("ComplexMethod")
     suspend fun createGraph(requirements: Flow<Requirement>): Flow<RequirementCreatedEvent> {
         val visitedRequirementIdentifiers = mutableSetOf<RequirementIdentifier>()
-        val createdUnit = mutableMapOf<String, DataUnitId>()
+        val createdFrameworks = mutableMapOf<String, FrameworkId>()
+        val createdUnits = mutableMapOf<String, DataUnitId>()
         val createdConcepts = mutableMapOf<String, InformationConceptId>()
         val createdEvidenceTypes = mutableMapOf<String, EvidenceTypeId>()
         val createdEvidenceTypeLists = mutableMapOf<String, EvidenceTypeListId>()
@@ -74,20 +83,27 @@ class CCCEVClient(
 
             hasRequirement?.forEach { emitAll(it.flatten()) }
             isRequirementOf?.forEach { emitAll(it.flatten()) }
-            hasQualifiedRelation?.forEach { emitAll(it.flatten()) }
+            hasQualifiedRelation?.values?.flatten()?.forEach { emitAll(it.flatten()) }
             emit(this@flatten)
         }
 
         return requirements.flatMapConcat(Requirement::flatten)
             .map { requirement ->
+                requirement.isDerivedFrom?.forEach { framework ->
+                    if (framework.identifier !in createdFrameworks) {
+                        val frameworkId = framework.create().id
+                        createdFrameworks[framework.identifier] = frameworkId
+                    }
+                }
+
                 requirement.hasConcept?.forEach { concept ->
                     val unit = concept.unit
-                    if(unit != null && unit.identifier !in createdUnit) {
+                    if (unit != null && unit.identifier !in createdUnits) {
                         val unitId = unit.create().id
-                        createdUnit[unit.identifier] = unitId
+                        createdUnits[unit.identifier] = unitId
                     }
                     if (concept.identifier !in createdConcepts) {
-                        val conceptId = concept.create(createdConcepts, createdUnit).id
+                        val conceptId = concept.create(createdConcepts, createdUnits).id
                         createdConcepts[concept.identifier] = conceptId
                     }
                 }
@@ -111,13 +127,16 @@ class CCCEVClient(
                     identifier = requirement.identifier,
                     name = requirement.name,
                     description = requirement.description,
+                    isDerivedFrom = requirement.isDerivedFrom?.map { createdFrameworks[it.identifier]!! }.orEmpty(),
                     hasConcept = requirement.hasConcept?.map { createdConcepts[it.identifier]!! }.orEmpty(),
                     hasEvidenceTypeList = requirement.hasEvidenceTypeList?.map { createdEvidenceTypeLists[it.identifier]!! }.orEmpty(),
                     hasRequirement = requirement.hasRequirement?.map { createdRequirements[it.identifier]!! }.orEmpty(),
-                    hasQualifiedRelation = requirement.hasQualifiedRelation?.map { createdRequirements[it.identifier]!! },
+                    hasQualifiedRelation = requirement.hasQualifiedRelation?.mapValues { (_, requirements) ->
+                        requirements.map { createdRequirements[it.identifier]!! }
+                   }.orEmpty(),
                     kind = RequirementKind.INFORMATION.name,
-                    type = requirement.type?.let {it::class.simpleName}
-                ).invokeWith(this.requirement.requirementCreate())
+                    type = requirement.type?.let { it::class.simpleName }
+                ).invokeWith(requirementClient.requirementCreate())
 
                 createdRequirements[event.identifier!!] = event.id
 
@@ -125,11 +144,18 @@ class CCCEVClient(
                     RequirementAddRequirementsCommand(
                         id = createdRequirements[parent.identifier]!!,
                         requirementIds = listOf(event.id)
-                    ).invokeWith(this.requirement.requirementAddRequirements())
+                    ).invokeWith(requirementClient.requirementAddRequirements())
                 }
 
                 event
             }
+    }
+
+    private suspend fun ReferenceFramework.create(): FrameworkCreatedEvent {
+        return FrameworkCreateCommand(
+            identifier = identifier,
+            name = name
+        ).invokeWith(frameworkClient.frameworkCreate())
     }
 
     private suspend fun cccev.dsl.model.DataUnit.create(): DataUnitCreatedEvent {
@@ -138,8 +164,9 @@ class CCCEVClient(
             description = description,
             notation = notation,
             type = type.name.uppercase()
-        ).invokeWith(dataUnit.dataUnitCreate())
+        ).invokeWith(dataUnitClient.dataUnitCreate())
     }
+
     private suspend fun InformationConceptBase.create(
         conceptIdMap: Map<String, InformationConceptId>,
         unitIdMap: Map<String, DataUnitId>
@@ -151,7 +178,7 @@ class CCCEVClient(
             description = description,
             expressionOfExpectedValue = expressionOfExpectedValue,
             dependsOn = dependsOn?.map { conceptIdMap[it]!! },
-        ).invokeWith(informationConcept.conceptCreate())
+        ).invokeWith(informationConceptClient.conceptCreate())
     }
 
     private suspend fun EvidenceTypeBase.create(): EvidenceTypeCreatedEvent {
@@ -160,7 +187,7 @@ class CCCEVClient(
             name = name,
             description = "",
             validityPeriodConstraint = null
-        ).invokeWith(evidenceType.evidenceTypeCreate())
+        ).invokeWith(evidenceTypeClient.evidenceTypeCreate())
     }
 
     private suspend fun EvidenceTypeListBase.create(evidenceTypeIdMap: Map<String, EvidenceTypeId>): EvidenceTypeListCreatedEvent {
@@ -169,6 +196,6 @@ class CCCEVClient(
             name = name,
             description = description,
             specifiesEvidenceType = specifiesEvidenceType.map { evidenceTypeIdMap[it.identifier]!! }
-        ).invokeWith(evidenceType.evidenceTypeListCreate())
+        ).invokeWith(evidenceTypeClient.evidenceTypeListCreate())
     }
 }

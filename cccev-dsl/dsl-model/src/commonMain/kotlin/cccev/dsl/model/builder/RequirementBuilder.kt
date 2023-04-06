@@ -28,7 +28,7 @@ interface RequirementBuilder<T : Requirement> {
 
     fun isRequirementOf(lambda: RequirementsLinkedBuilder.() -> Unit)
     fun hasRequirement(lambda: RequirementsLinkedBuilder.() -> Unit)
-    fun hasQualifiedRelation(lambda: RequirementsLinkedBuilder.() -> Unit)
+    fun hasQualifiedRelation(relation: String, lambda: RequirementsLinkedBuilder.() -> Unit)
     fun isDerivedFrom(lambda: ReferenceFrameworkListBuilder.() -> Unit)
     fun build(): Requirement
 }
@@ -43,7 +43,7 @@ abstract class AbstractRequirementBuilder<T : Requirement> : RequirementBuilder<
     protected var isDerivedFrom = mutableListOf<ReferenceFramework>()
     protected var isRequirementOf = mutableListOf<Requirement>()
     protected var hasRequirement = mutableListOf<Requirement>()
-    protected var hasQualifiedRelation = mutableListOf<Requirement>()
+    protected var hasQualifiedRelation = mutableMapOf<String, List<Requirement>>()
 
     @Deprecated("Use isRequirementOf, hasRequirement or hasQualifiedRelation")
     override fun criterion(
@@ -74,17 +74,18 @@ abstract class AbstractRequirementBuilder<T : Requirement> : RequirementBuilder<
         val list = RequirementsLinkedBuilder().apply(lambda).build()
         isRequirementOf.addAll(list)
     }
+
     override fun hasRequirement(lambda: RequirementsLinkedBuilder.() -> Unit) {
         val list = RequirementsLinkedBuilder().apply(lambda).build()
         hasRequirement.addAll(list)
     }
-    override fun hasQualifiedRelation(lambda: RequirementsLinkedBuilder.() -> Unit) {
+
+    override fun hasQualifiedRelation(relation: String, lambda: RequirementsLinkedBuilder.() -> Unit) {
         val list = RequirementsLinkedBuilder().apply(lambda).build()
-        hasQualifiedRelation.addAll(list)
+        hasQualifiedRelation[relation] = hasQualifiedRelation.getOrElse(relation) { emptyList() } + list
     }
 
     override fun isDerivedFrom(lambda: ReferenceFrameworkListBuilder.() -> Unit) {
-        val list = ReferenceFrameworkListBuilder().apply(lambda).build()
         isDerivedFrom.addAll(ReferenceFrameworkListBuilder().apply(lambda).build())
     }
 }

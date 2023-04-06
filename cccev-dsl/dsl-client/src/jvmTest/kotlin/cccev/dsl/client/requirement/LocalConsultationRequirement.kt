@@ -22,7 +22,7 @@ fun localConsultationProtocolPreparation(init: InformationRequirementBuilder.() 
                             informationRequirement {
                                 identifier = "PoPinP2"
                                 name = "ProtocolOfTheProtocolInTheProtocol2"
-                                hasQualifiedRelation {
+                                hasQualifiedRelation("IS_RELATED_TO") {
                                     informationRequirement { identifier = "PoPinP" }
                                 }
                             }
@@ -41,7 +41,7 @@ val LocalConsultationProtocolPreparationRequirements = listOf(
     localConsultationProtocolPreparation {
         identifier = "D101"
         name = "Termes de référence (TDR)"
-        hasQualifiedRelation {
+        hasQualifiedRelation("IS_RELATED_TO") {
             +localConsultationProtocolPreparation { identifier = "D100" }
         }
         hasRequirement {
