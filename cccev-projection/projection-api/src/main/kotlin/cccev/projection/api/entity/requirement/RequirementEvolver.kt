@@ -38,7 +38,9 @@ class RequirementEvolver(
 
 	private suspend fun create(event: RequirementCreatedEvent): RequirementEntity {
 		val subRequirements = requirementRepository.findAllById(event.hasRequirement).collectList().awaitSingle()
-		val relatedRequirements = requirementRepository.findAllById(event.hasQualifiedRelation.orEmpty()).collectList().awaitSingle()
+		val relatedRequirements = event.hasQualifiedRelation.mapValues { (_, requirementIds) ->
+			requirementRepository.findAllById(requirementIds).collectList().awaitSingle()
+		}
 		val concepts = informationConceptRepository.findAllById(event.hasConcept).collectList().awaitSingle()
 		val evidenceTypeLists = evidenceTypeListRepository.findAllById(event.hasEvidenceTypeList).collectList().awaitSingle()
 		val frameworks = frameworkRepository.findAllById(event.isDerivedFrom).collectList().awaitSingle()
@@ -52,7 +54,7 @@ class RequirementEvolver(
 			type = event.type
 			isDerivedFrom = frameworks
 			hasRequirement = subRequirements
-			hasQualifiedRelation = relatedRequirements
+			hasQualifiedRelation = relatedRequirements.toMutableMap()
 			hasConcept = concepts
 			hasEvidenceTypeList = evidenceTypeLists
 			status = event.status

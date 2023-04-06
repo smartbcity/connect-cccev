@@ -72,14 +72,9 @@ data class RequirementCreateCommand(
     val hasRequirement: List<RequirementId>,
 
     /**
-     * Described and/or categorised relation to another Requirement. <br/>
-     * This property leaves the possiblity to define a qualified relation from Requirement
-     * to Information Requirement or Constraint as well as a qualified relation
-     * from Requirement to Requirement. A use case would be to specialize an EU requirement
-     * in Member States' specific requirements.
-     * @example [["baee57d9-7f0a-4cb0-92e5-402b80c18c74"]]
+     * @ref [cccev.s2.requirement.domain.model.Requirement.hasQualifiedRelation]
      */
-    var hasQualifiedRelation: List<RequirementId>?,
+    var hasQualifiedRelation: Map<String, List<RequirementId>>,
 
     /**
      * Concepts used by the requirement
@@ -129,7 +124,7 @@ interface RequirementCreatedEventDTO: RequirementEvent {
     val type: String?
 
     /**
-     * @ref [RequirementCreateCommand.hasRequirement]
+     * @ref [RequirementCreateCommand.isDerivedFrom]
      */
     val isDerivedFrom: List<FrameworkId>
 
@@ -141,7 +136,7 @@ interface RequirementCreatedEventDTO: RequirementEvent {
     /**
      * @ref [RequirementCreateCommand.hasQualifiedRelation]
      */
-    val hasQualifiedRelation: List<RequirementId>?
+    val hasQualifiedRelation: Map<String, List<RequirementId>>
 
     /**
      * @ref [RequirementCreateCommand.hasConcept]
@@ -174,7 +169,7 @@ data class RequirementCreatedEvent(
     override val type: String?,
     override val isDerivedFrom: List<FrameworkId>,
     override val hasRequirement: List<RequirementId>,
-    override val hasQualifiedRelation: List<RequirementId>?,
+    override val hasQualifiedRelation: Map<String, List<RequirementId>>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,
     override val status: RequirementState

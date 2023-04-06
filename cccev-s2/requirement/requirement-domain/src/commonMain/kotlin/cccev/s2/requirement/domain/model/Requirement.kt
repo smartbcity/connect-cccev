@@ -64,7 +64,6 @@ data class Requirement(
 
     /**
      * Sub-requirements that must be fulfilled for the requirement to be validated.
-     * @example [["78e1e5f3-6e81-411d-afe6-aa7e6dae59b4"]]
      */
     val hasRequirement: List<Requirement>,
 
@@ -81,13 +80,11 @@ data class Requirement(
 
     /**
      * Described and/or categorised relation to another Requirement. <br/>
-     * This property leaves the possiblity to define a qualified relation from Requirement
-     * to Information Requirement or Constraint as well as a qualified relation
-     * from Requirement to Requirement. A use case would be to specialize an EU requirement
-     * in Member States' specific requirements.
-     * @example [["baee57d9-7f0a-4cb0-92e5-402b80c18c74"]]
+     * This property leaves the possiblity to define a qualified relation from Requirement to another Requirement.
+     * A use case would be to specialize an EU requirement in Member States' specific requirements.
+     * @example { HAS_NEXT: [["baee57d9-7f0a-4cb0-92e5-402b80c18c74"]] }
      */
-    var hasQualifiedRelation: List<RequirementId>?,
+    var hasQualifiedRelation: Map<String, List<RequirementId>>?,
 
     /**
      * Concepts used by the requirement

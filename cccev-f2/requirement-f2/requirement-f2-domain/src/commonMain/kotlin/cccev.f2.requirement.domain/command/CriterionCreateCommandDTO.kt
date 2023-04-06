@@ -2,6 +2,7 @@ package cccev.f2.requirement.domain.command
 
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.evidence.domain.EvidenceTypeListId
+import cccev.s2.framework.domain.FrameworkId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.command.RequirementCreatedEvent
 import cccev.s2.requirement.domain.model.RequirementKind
@@ -26,7 +27,7 @@ data class CriterionCreateCommandDTOBase(
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,
-    override var hasQualifiedRelation: List<RequirementId>? = emptyList(),
+    override var hasQualifiedRelation: Map<String, List<RequirementId>>,
 ): CriterionCreateCommandDTO{
     override val kind: String = RequirementKind.CRITERION.name
 }

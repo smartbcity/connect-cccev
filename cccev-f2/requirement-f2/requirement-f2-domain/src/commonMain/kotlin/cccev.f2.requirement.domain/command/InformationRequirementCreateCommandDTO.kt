@@ -27,7 +27,7 @@ data class InformationRequirementCreateCommandDTOBase(
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,
-    override var hasQualifiedRelation: List<RequirementId>? = emptyList(),
+    override var hasQualifiedRelation: Map<String, List<RequirementId>>,
 ): InformationRequirementCreateCommandDTO{
     override val kind: String = RequirementKind.INFORMATION.name
 }

@@ -24,7 +24,7 @@ interface RequirementCreateCommandDTO {
     val hasConcept: List<InformationConceptId>
     val hasEvidenceTypeList: List<EvidenceTypeListId>
     val hasRequirement: List<RequirementId>
-    var hasQualifiedRelation: List<RequirementId>?
+    var hasQualifiedRelation: Map<String, List<RequirementId>>
 }
 
 @Serializable
@@ -38,7 +38,7 @@ data class RequirementCreateCommandDTOBase(
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,
-    override var hasQualifiedRelation: List<RequirementId>?
+    override var hasQualifiedRelation: Map<String, List<RequirementId>>
 ): RequirementCreateCommandDTO
 
 @JsExport

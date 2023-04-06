@@ -114,7 +114,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
             type = params.type,
             isDerivedFrom = params.isDerivedFrom.map { context.frameworkIds[it] ?: it },
             hasRequirement = params.hasRequirement.map { context.requirementIds[it] ?: it },
-            hasQualifiedRelation = params.hasQualifiedRelation.map { context.requirementIds[it] ?: it },
+            hasQualifiedRelation = emptyMap(),
             hasConcept = params.hasConcept.map { context.conceptIds[it] ?: it },
             hasEvidenceTypeList = params.hasEvidenceTypeList.map { context.evidenceTypeListIds[it] ?: it },
         )
