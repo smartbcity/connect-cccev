@@ -15,6 +15,7 @@ dependencies {
     implementation(project(":cccev-f2:concept-f2:concept-f2-api"))
     implementation(project(":cccev-f2:evidence-f2:evidence-f2-api"))
     implementation(project(":cccev-f2:evidence-type-f2:evidence-type-f2-api"))
+    implementation(project(":cccev-f2:framework-f2:framework-f2-api"))
     implementation(project(":cccev-f2:request-f2:request-f2-api"))
     implementation(project(":cccev-f2:requirement-f2:requirement-f2-api"))
     implementation(project(":cccev-f2:unit-f2:unit-f2-api"))

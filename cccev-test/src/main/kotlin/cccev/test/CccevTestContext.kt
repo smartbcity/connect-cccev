@@ -3,6 +3,7 @@ package cccev.test
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeListId
+import cccev.s2.framework.domain.FrameworkId
 import cccev.s2.request.domain.model.EvidenceId
 import cccev.s2.request.domain.model.RequestId
 import cccev.s2.requirement.domain.RequirementId
@@ -18,6 +19,7 @@ class CccevTestContext(
 ): BddContext by testContext {
 
     val conceptIds = testContext.testEntities<TestContextKey, InformationConceptId>("InformationConcept")
+    val frameworkIds = testContext.testEntities<TestContextKey, FrameworkId>("Framework")
     val evidenceIds = testContext.testEntities<TestContextKey, EvidenceId>("Evidence")
     val evidenceTypeIds = testContext.testEntities<TestContextKey, EvidenceTypeId>("EvidenceType")
     val evidenceTypeListIds = testContext.testEntities<TestContextKey, EvidenceTypeListId>("EvidenceTypeList")

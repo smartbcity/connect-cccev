@@ -21,6 +21,7 @@ object Versions {
 
 	const val cucumber = FixersVersions.Test.cucumber
 	const val awaitility = "4.1.1"
+	const val datafaker = "1.8.1"
 }
 
 object Repo {
@@ -71,6 +72,12 @@ object Dependencies {
 			fun tx(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
 				scope.add("org.springframework:spring-tx:${FixersVersions.Spring.framework}")
 			}
+		}
+
+		object Test {
+			fun dataFaker(scope: Scope) = scope.add(
+				"net.datafaker:datafaker:${Versions.datafaker}",
+			)
 		}
 
 	}
