@@ -5,6 +5,8 @@ import cccev.f2.concept.api.service.InformationConceptF2FinderService
 import cccev.f2.concept.domain.D2InformationConceptF2Page
 import cccev.f2.concept.domain.InformationConceptApi
 import cccev.f2.concept.domain.command.InformationConceptCreateFunction
+import cccev.f2.concept.domain.query.InformationConceptGetByIdentifierFunction
+import cccev.f2.concept.domain.query.InformationConceptGetByIdentifierResultDTOBase
 import cccev.f2.concept.domain.query.InformationConceptGetFunction
 import cccev.f2.concept.domain.query.InformationConceptGetResultDTOBase
 import f2.dsl.fnc.f2Function
@@ -27,6 +29,12 @@ class InformationConceptEndpoint(
     override fun conceptGet(): InformationConceptGetFunction = f2Function { query ->
         logger.info("conceptGet: $query")
         informationConceptF2FinderService.getOrNull(query.id).let(::InformationConceptGetResultDTOBase)
+    }
+
+    @Bean
+    override fun conceptGetByIdentifier(): InformationConceptGetByIdentifierFunction = f2Function { query ->
+        logger.info("conceptGetByIdentifier: $query")
+        informationConceptF2FinderService.getByIdentifierOrNull(query.identifier).let(::InformationConceptGetByIdentifierResultDTOBase)
     }
 
     // TODO move to request-f2 module?

@@ -10,7 +10,6 @@ import cccev.s2.concept.domain.model.InformationConcept
 import cccev.s2.request.api.RequestAggregateService
 import cccev.s2.request.api.RequestFinderService
 import org.springframework.stereotype.Service
-import s2.spring.utils.logger.Logger
 
 @Service
 class InformationConceptF2FinderService(
@@ -19,14 +18,20 @@ class InformationConceptF2FinderService(
     private val requestAggregateService: RequestAggregateService,
     private val requestFinderService: RequestFinderService,
 ) {
-    private val logger by Logger()
-
     suspend fun getOrNull(id: InformationConceptId): InformationConceptDTOBase? {
         return informationConceptFinderService.getOrNull(id)?.toDTO()
     }
 
     suspend fun get(id: InformationConceptId): InformationConceptDTOBase {
         return informationConceptFinderService.get(id).toDTO()
+    }
+
+    suspend fun getByIdentifierOrNull(identifier: InformationConceptId): InformationConceptDTOBase? {
+        return informationConceptFinderService.getByIdentifierOrNull(identifier)?.toDTO()
+    }
+
+    suspend fun getByIdentifier(identifier: InformationConceptId): InformationConceptDTOBase {
+        return informationConceptFinderService.getByIdentifier(identifier).toDTO()
     }
 
     // TODO move to request-f2 module?

@@ -22,4 +22,14 @@ class InformationConceptFinderService(
     override suspend fun get(id: InformationConceptId): InformationConcept {
         return getOrNull(id) ?: throw NotFoundException("InformationConcept", id)
     }
+
+    override suspend fun getByIdentifierOrNull(identifier: InformationConceptId): InformationConcept? {
+        return informationConceptRepository.findByIdentifier(identifier)
+            .awaitSingleOrNull()
+            ?.toInformationConcept()
+    }
+
+    override suspend fun getByIdentifier(identifier: InformationConceptId): InformationConcept {
+        return getByIdentifierOrNull(identifier) ?: throw NotFoundException("InformationConcept with identifier", identifier)
+    }
 }
