@@ -11,7 +11,7 @@ class ReferenceFrameworkBuilderTest {
 
     @Test
     fun informationRequirementReferenceFrameworkBuilderBuilder() {
-        val referenceFramework = ReferenceFramework("ReferenceFrameworkInformationRequirement")
+        val referenceFramework = ReferenceFramework("ReferenceFrameworkInformationRequirement","Reference Framework Information Requirement",)
         val localConsultation = informationRequirement {
             identifier = "LocalConsultation"
             name = "Loc"
@@ -28,7 +28,7 @@ class ReferenceFrameworkBuilderTest {
 
     @Test
     fun criterionReferenceFrameworkBuilderBuilder() {
-        val referenceFramework = ReferenceFramework("ReferenceFrameworkCriterion")
+        val referenceFramework = ReferenceFramework("ReferenceFrameworkCriterion","Reference Framework Criterion",)
         val localConsultation = criterion {
             identifier = "LocalConsultation"
             name = "Loc"
@@ -44,7 +44,7 @@ class ReferenceFrameworkBuilderTest {
     }
     @Test
     fun criterionBuilder() {
-        val referenceFramework = ReferenceFramework("ReferenceFrameworkCriterion")
+        val referenceFramework = ReferenceFramework("ReferenceFrameworkCriterion","Reference Framework Criterion",)
         val localConsultation = constraint {
             identifier = "LocalConsultation"
             name = "Loc"
@@ -58,7 +58,7 @@ class ReferenceFrameworkBuilderTest {
 
         Assertions.assertThat(localConsultation.isDerivedFrom).hasSize(2).contains(
             referenceFramework,
-            ReferenceFramework("OtherReferenceFrameworkInformationRequirement")
+            ReferenceFramework("OtherReferenceFrameworkInformationRequirement", "Other Reference Framework Information Requirement",)
         )
 
 

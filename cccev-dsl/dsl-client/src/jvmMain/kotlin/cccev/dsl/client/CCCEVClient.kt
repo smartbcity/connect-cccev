@@ -65,7 +65,7 @@ class CCCEVClient(
         }
     }
 
-    @Suppress("ComplexMethod")
+    @Suppress("ComplexMethod", "LongMethod")
     suspend fun createGraph(requirements: Flow<Requirement>): Flow<RequirementCreatedEvent> {
         val visitedRequirementIdentifiers = mutableSetOf<RequirementIdentifier>()
         val createdFrameworks = mutableMapOf<String, FrameworkId>()
