@@ -8,5 +8,6 @@ plugins {
 dependencies {
     commonMainApi(project(":cccev-f2:concept-f2:concept-f2-domain"))
     commonMainApi(project(":cccev-f2:evidence-type-f2:evidence-type-f2-domain"))
+    commonMainApi(project(":cccev-f2:framework-f2:framework-f2-domain"))
     commonMainApi(project(":cccev-s2:requirement:requirement-domain"))
 }

@@ -1,6 +1,7 @@
 package cccev.s2.requirement.domain.model
 
 import cccev.dsl.model.EvidenceTypeListId
+import cccev.dsl.model.FrameworkId
 import cccev.dsl.model.InformationConceptId
 import cccev.s2.requirement.domain.D2RequirementPage
 import cccev.s2.requirement.domain.RequirementId
@@ -55,6 +56,11 @@ data class Requirement(
      * @example "Activity"
      */
     val type: String?,
+
+    /**
+     * The reference framework(s) the requirement is derived from
+     */
+    val isDerivedFrom: List<FrameworkId>,
 
     /**
      * Sub-requirements that must be fulfilled for the requirement to be validated.

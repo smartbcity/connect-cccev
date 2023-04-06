@@ -2,6 +2,7 @@ package cccev.f2.requirement.domain.command
 
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.evidence.domain.EvidenceTypeListId
+import cccev.s2.framework.domain.FrameworkId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.command.RequirementCreatedEvent
 import cccev.s2.requirement.domain.model.RequirementKind
@@ -22,6 +23,7 @@ data class InformationRequirementCreateCommandDTOBase(
     override val name: String?,
     override val description: String?,
     override val type: String?,
+    override val isDerivedFrom: List<FrameworkId>,
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,

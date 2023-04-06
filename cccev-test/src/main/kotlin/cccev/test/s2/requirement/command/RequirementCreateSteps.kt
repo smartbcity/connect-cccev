@@ -11,6 +11,7 @@ import cccev.test.s2.requirement.data.requirement
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
 import kotlinx.coroutines.reactor.awaitSingleOrNull
+import net.datafaker.Faker
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
 import s2.bdd.assertion.AssertionBdd
@@ -72,6 +73,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
                     name = command.name,
                     description = command.description,
                     type = command.type,
+                    isDerivedFrom = command.isDerivedFrom,
                     hasRequirement = command.hasRequirement,
                     hasConcept = command.hasConcept,
                     hasEvidenceTypeList = command.hasEvidenceTypeList,
@@ -91,6 +93,8 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
                     name = params.name ?: requirement.name,
                     description = params.description ?: requirement.description,
                     type = params.type ?: requirement.type,
+                    isDerivedFrom = params.isDerivedFrom?.map(context.frameworkIds::safeGet)
+                        ?: requirement.isDerivedFrom.map { it.id },
                     hasRequirement = params.hasRequirement?.map(context.requirementIds::safeGet)
                         ?: requirement.hasRequirement.map { it.id },
                     hasConcept = params.hasConcept?.map(context.conceptIds::safeGet) ?: requirement.hasConcept.map { it.id },
@@ -108,6 +112,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
             name = params.name,
             description = params.description,
             type = params.type,
+            isDerivedFrom = params.isDerivedFrom.map { context.frameworkIds[it] ?: it },
             hasRequirement = params.hasRequirement.map { context.requirementIds[it] ?: it },
             hasQualifiedRelation = params.hasQualifiedRelation.map { context.requirementIds[it] ?: it },
             hasConcept = params.hasConcept.map { context.conceptIds[it] ?: it },
@@ -116,18 +121,22 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         requirementAggregateService.create(command).id
     }
 
-    private fun requirementCreateParams(entry: Map<String, String>?) = RequirementCreateParams(
-        identifier = entry?.get("identifier").orRandom(),
-        kind = entry?.extractRequirementKind("kind") ?: RequirementKind.INFORMATION,
-        name = entry?.get("name").orRandom(),
-        description = entry?.get("description").orRandom(),
-        type = entry?.get("type").orRandom(),
-        hasRequirement = entry?.extractList("hasRequirement").orEmpty(),
-        hasConcept = entry?.extractList("hasConcept").orEmpty(),
-        hasEvidenceTypeList = entry?.extractList("hasEvidenceTypeList").orEmpty(),
-        isRequirementOf = entry?.extractList("isRequirementOf").orEmpty(),
-        hasQualifiedRelation = entry?.extractList("hasQualifiedRelation").orEmpty(),
-    )
+    private fun requirementCreateParams(entry: Map<String, String>?): RequirementCreateParams {
+        val fakerRestaurant = Faker().restaurant()
+        return RequirementCreateParams(
+            identifier = entry?.get("identifier").orRandom(),
+            kind = entry?.extractRequirementKind("kind") ?: RequirementKind.INFORMATION,
+            name = entry?.get("name") ?: fakerRestaurant.name(),
+            description = entry?.get("description") ?: fakerRestaurant.description(),
+            type = entry?.get("type") ?: fakerRestaurant.type(),
+            isDerivedFrom = entry?.extractList("isDerivedFrom").orEmpty(),
+            hasRequirement = entry?.extractList("hasRequirement").orEmpty(),
+            hasConcept = entry?.extractList("hasConcept").orEmpty(),
+            hasEvidenceTypeList = entry?.extractList("hasEvidenceTypeList").orEmpty(),
+            isRequirementOf = entry?.extractList("isRequirementOf").orEmpty(),
+            hasQualifiedRelation = entry?.extractList("hasQualifiedRelation").orEmpty(),
+        )
+    }
 
     private data class RequirementCreateParams(
         val identifier: TestContextKey,
@@ -135,6 +144,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         val name: String,
         val description: String,
         val type: String,
+        val isDerivedFrom: List<TestContextKey>,
         val hasRequirement: List<TestContextKey>,
         val hasConcept: List<TestContextKey>,
         val hasEvidenceTypeList: List<TestContextKey>,
@@ -148,6 +158,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         name = entry["name"],
         description = entry["description"],
         type = entry["type"],
+        isDerivedFrom = entry.extractList("isDerivedFrom"),
         hasRequirement = entry.extractList("hasRequirement"),
         hasConcept = entry.extractList("hasConcept"),
         hasEvidenceTypeList = entry.extractList("hasEvidenceTypeList")
@@ -159,6 +170,7 @@ class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
         val name: String?,
         val description: String?,
         val type: String?,
+        val isDerivedFrom: List<TestContextKey>?,
         val hasRequirement: List<TestContextKey>?,
         val hasConcept: List<TestContextKey>?,
         val hasEvidenceTypeList: List<TestContextKey>?

@@ -13,11 +13,14 @@ Feature: RequirementCreate
     And An evidence type list is created:
       | identifier | specifiesEvidenceType |
       | etl1       | et1, et2, et3         |
+    And A framework is created:
+      | identifier |
+      | f1         |
 
   Scenario: I want to create a requirement
     When I create a requirement:
-      | type     | hasConcept | hasEvidenceTypeList |
-      | activity | c1         | etl1                |
+      | type     | hasConcept | hasEvidenceTypeList | isDerivedFrom |
+      | activity | c1         | etl1                | f1            |
     Then The requirement should be created
 
   Scenario: I want to create a requirement with a sub-requirement

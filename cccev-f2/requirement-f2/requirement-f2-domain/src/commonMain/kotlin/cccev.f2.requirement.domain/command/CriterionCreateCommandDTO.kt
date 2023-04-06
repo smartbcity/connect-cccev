@@ -22,6 +22,7 @@ data class CriterionCreateCommandDTOBase(
     override val name: String?,
     override val description: String?,
     override val type: String?,
+    override val isDerivedFrom: List<FrameworkId>,
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,

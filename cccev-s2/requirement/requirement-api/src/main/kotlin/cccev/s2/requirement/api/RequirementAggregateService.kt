@@ -35,10 +35,11 @@ class RequirementAggregateService(
             name = command.name,
             description = command.description,
             type = command.type,
+            isDerivedFrom = command.isDerivedFrom,
             hasRequirement = command.hasRequirement,
             hasConcept = command.hasConcept,
             hasEvidenceTypeList = command.hasEvidenceTypeList,
-            hasQualifiedRelation = command.hasQualifiedRelation.orEmpty(),
+            hasQualifiedRelation = command.hasQualifiedRelation,
             status = RequirementState.CREATED
         )
     }

@@ -10,6 +10,7 @@ fun RequirementEntity.toRequirement(): Requirement = Requirement(
     description = description,
     type = type,
     name = name,
+    isDerivedFrom = isDerivedFrom.map { it.id },
     hasRequirement = hasRequirement.map(RequirementEntity::toRequirement),
     hasConcept = hasConcept.map { it.id },
     hasEvidenceTypeList = hasEvidenceTypeList.map { it.id },

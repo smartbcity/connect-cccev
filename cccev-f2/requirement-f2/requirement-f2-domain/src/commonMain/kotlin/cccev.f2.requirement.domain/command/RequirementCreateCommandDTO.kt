@@ -2,6 +2,7 @@ package cccev.f2.requirement.domain.command
 
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.evidence.domain.EvidenceTypeListId
+import cccev.s2.framework.domain.FrameworkId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.command.RequirementCreatedEvent
 import f2.dsl.fnc.F2Function
@@ -19,6 +20,7 @@ interface RequirementCreateCommandDTO {
     val name: String?
     val description: String?
     val type: String?
+    val isDerivedFrom: List<FrameworkId>
     val hasConcept: List<InformationConceptId>
     val hasEvidenceTypeList: List<EvidenceTypeListId>
     val hasRequirement: List<RequirementId>
@@ -32,6 +34,7 @@ data class RequirementCreateCommandDTOBase(
     override val name: String?,
     override val description: String?,
     override val type: String?,
+    override val isDerivedFrom: List<FrameworkId>,
     override val hasRequirement: List<RequirementId>,
     override val hasConcept: List<InformationConceptId>,
     override val hasEvidenceTypeList: List<EvidenceTypeListId>,

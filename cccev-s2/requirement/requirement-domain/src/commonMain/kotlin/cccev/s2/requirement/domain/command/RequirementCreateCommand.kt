@@ -1,6 +1,7 @@
 package cccev.s2.requirement.domain.command
 
 import cccev.dsl.model.EvidenceTypeListId
+import cccev.dsl.model.FrameworkId
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.requirement.domain.D2RequirementPage
 import cccev.s2.requirement.domain.RequirementEvent
@@ -58,6 +59,11 @@ data class RequirementCreateCommand(
      * @ref [cccev.s2.requirement.domain.model.Requirement.type]
      */
     val type: String?,
+
+    /**
+     * @ref [cccev.s2.requirement.domain.model.Requirement.isDerivedFrom]
+     */
+    val isDerivedFrom: List<FrameworkId>,
 
     /**
      * Sub-requirements that must be fulfilled for the requirement to be validated.
@@ -125,6 +131,11 @@ interface RequirementCreatedEventDTO: RequirementEvent {
     /**
      * @ref [RequirementCreateCommand.hasRequirement]
      */
+    val isDerivedFrom: List<FrameworkId>
+
+    /**
+     * @ref [RequirementCreateCommand.hasRequirement]
+     */
     val hasRequirement: List<RequirementId>
 
     /**
@@ -161,6 +172,7 @@ data class RequirementCreatedEvent(
     override val name: String?,
     override val description: String?,
     override val type: String?,
+    override val isDerivedFrom: List<FrameworkId>,
     override val hasRequirement: List<RequirementId>,
     override val hasQualifiedRelation: List<RequirementId>?,
     override val hasConcept: List<InformationConceptId>,

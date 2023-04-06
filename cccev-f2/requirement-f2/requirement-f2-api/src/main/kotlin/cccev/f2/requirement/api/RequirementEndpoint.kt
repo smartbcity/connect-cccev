@@ -13,13 +13,13 @@ import cccev.f2.requirement.domain.command.RequirementAddRequirementsFunction
 import cccev.f2.requirement.domain.command.RequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementUpdateFunction
 import cccev.f2.requirement.domain.query.RequirementGetByIdentifierFunction
-import cccev.f2.requirement.domain.query.RequirementListQueryFunction
-import cccev.f2.requirement.domain.query.RequirementListResult
+import cccev.f2.requirement.domain.query.RequirementGetByIdentifierResultDTOBase
 import cccev.f2.requirement.domain.query.RequirementGetFunction
 import cccev.f2.requirement.domain.query.RequirementGetResultDTOBase
-import cccev.f2.requirement.domain.query.RequirementGetByIdentifierResultDTOBase
 import cccev.f2.requirement.domain.query.RequirementListChildrenByTypeFunction
 import cccev.f2.requirement.domain.query.RequirementListChildrenByTypeResultDTOBase
+import cccev.f2.requirement.domain.query.RequirementListQueryFunction
+import cccev.f2.requirement.domain.query.RequirementListResult
 import cccev.s2.requirement.domain.model.RequirementKind
 import f2.dsl.fnc.f2Function
 import kotlinx.coroutines.flow.toList
@@ -89,6 +89,7 @@ class RequirementEndpoint(
                 name = command.name,
                 description = command.description,
                 type = command.type,
+                isDerivedFrom = command.isDerivedFrom,
                 hasRequirement = command.hasRequirement,
                 hasConcept = command.hasConcept,
                 hasEvidenceTypeList = command.hasEvidenceTypeList,
@@ -99,6 +100,7 @@ class RequirementEndpoint(
                 name = command.name,
                 description = command.description,
                 type = command.type,
+                isDerivedFrom = command.isDerivedFrom,
                 hasRequirement = command.hasRequirement,
                 hasConcept = command.hasConcept,
                 hasEvidenceTypeList = command.hasEvidenceTypeList,
@@ -109,6 +111,7 @@ class RequirementEndpoint(
                 name = command.name,
                 description = command.description,
                 type = command.type,
+                isDerivedFrom = command.isDerivedFrom,
                 hasRequirement = command.hasRequirement,
                 hasConcept = command.hasConcept,
                 hasEvidenceTypeList = command.hasEvidenceTypeList,
