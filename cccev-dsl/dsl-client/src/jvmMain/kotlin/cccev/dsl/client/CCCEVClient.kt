@@ -1,7 +1,9 @@
 package cccev.dsl.client
 
+import cccev.dsl.model.DataUnitDTO
 import cccev.dsl.model.EvidenceTypeBase
 import cccev.dsl.model.EvidenceTypeListBase
+import cccev.dsl.model.InformationConcept
 import cccev.dsl.model.InformationConceptBase
 import cccev.dsl.model.ReferenceFramework
 import cccev.dsl.model.Requirement
@@ -162,7 +164,7 @@ class CCCEVClient(
         ).invokeWith(frameworkClient.frameworkCreate())
     }
 
-    private suspend fun cccev.dsl.model.DataUnit.create(): DataUnitCreatedEvent {
+    private suspend fun DataUnitDTO.create(): DataUnitCreatedEvent {
        return DataUnitCreateCommandDTOBase(
             name = name,
             description = description,
@@ -170,8 +172,7 @@ class CCCEVClient(
             type = type.name.uppercase()
         ).invokeWith(dataUnitClient.dataUnitCreate())
     }
-
-    private suspend fun InformationConceptBase.create(
+    private suspend fun InformationConcept.create(
         conceptIdMap: Map<String, InformationConceptId>,
         unitIdMap: Map<String, DataUnitId>
     ): InformationConceptCreatedEvent {

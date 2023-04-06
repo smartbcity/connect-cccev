@@ -7,6 +7,7 @@ import cccev.dsl.model.InformationRequirement
 import cccev.dsl.model.Requirement
 
 class RequirementsLinkedBuilder {
+
     private var requirements = mutableListOf<Requirement>()
 
     fun criterion(
