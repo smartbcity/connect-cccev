@@ -3,6 +3,7 @@ package cccev.f2.requirement.domain.query
 import cccev.f2.requirement.domain.model.RequirementDTO
 import cccev.f2.requirement.domain.model.RequirementDTOBase
 import cccev.s2.requirement.domain.RequirementId
+import cccev.s2.requirement.domain.model.RequirementIdentifier
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -13,12 +14,12 @@ typealias RequirementGetByIdentifierFunction = F2Function<RequirementGetByIdenti
 @JsExport
 @JsName("RequirementGetByIdentifierQueryDTO")
 interface RequirementGetByIdentifierQueryDTO {
-    val id: RequirementId
+    val identifier: RequirementIdentifier
 }
 
 @Serializable
 data class RequirementGetByIdentifierQueryDTOBase(
-    override val id: RequirementId
+    override val identifier: RequirementIdentifier
 ): RequirementGetByIdentifierQueryDTO
 
 @JsExport

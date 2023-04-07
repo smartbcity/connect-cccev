@@ -8,6 +8,7 @@ import cccev.s2.requirement.api.entity.toRequirement
 import cccev.s2.requirement.domain.RequirementFinder
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.model.Requirement
+import cccev.s2.requirement.domain.model.RequirementIdentifier
 import f2.spring.exception.NotFoundException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
@@ -28,8 +29,8 @@ class RequirementFinderService(
     }
 
 
-    override suspend fun getOrNullByIdentifier(id: RequirementId): Requirement? {
-        return requirementRepository.findByIdentifier(id)
+    override suspend fun getOrNullByIdentifier(identifier: RequirementIdentifier): Requirement? {
+        return requirementRepository.findByIdentifier(identifier)
             .awaitSingleOrNull()
             ?.toRequirement()
     }

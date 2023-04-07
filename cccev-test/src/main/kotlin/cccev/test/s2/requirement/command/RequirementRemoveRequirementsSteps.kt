@@ -56,8 +56,8 @@ class RequirementRemoveRequirementsSteps: En, CccevCucumberStepsDefinition() {
 
     private suspend fun removeRequirement(params: RequirementRemoveRequirementParams) {
         command = RequirementRemoveRequirementsCommand(
-            id = context.requirementIds[params.identifier] ?: params.identifier,
-            requirementIds = params.requirements.map { context.requirementIds[it] ?: it }
+            id =  context.requirementIds.safeGet(params.identifier),
+            requirementIds = params.requirements.map(context.requirementIds::safeGet)
         )
         requirementAggregateService.removeRequirements(command)
     }

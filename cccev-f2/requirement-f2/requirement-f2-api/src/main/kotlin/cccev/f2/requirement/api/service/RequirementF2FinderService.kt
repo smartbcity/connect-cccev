@@ -10,6 +10,7 @@ import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.requirement.api.RequirementFinderService
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.model.Requirement
+import cccev.s2.requirement.domain.model.RequirementIdentifier
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.springframework.stereotype.Service
@@ -27,8 +28,8 @@ class RequirementF2FinderService(
     suspend fun get(id: RequirementId): RequirementDTOBase {
         return requirementFinderService.get(id).toDTO()
     }
-    suspend fun getOrNullByIdentifier(id: RequirementId): RequirementDTOBase? {
-        return requirementFinderService.getOrNullByIdentifier(id)?.toDTO()
+    suspend fun getOrNullByIdentifier(identifier: RequirementIdentifier): RequirementDTOBase? {
+        return requirementFinderService.getOrNullByIdentifier(identifier)?.toDTO()
     }
 
     suspend fun listByIdsAndType(ids: List<RequirementId>, type: String): List<RequirementDTOBase> {

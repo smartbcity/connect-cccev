@@ -14,6 +14,7 @@ interface FrameworkCreateCommandDTO: FrameworkInitCommand {
     val name: String
 }
 
+@Serializable
 data class FrameworkCreateCommand(
     override val identifier: String?,
     override val name: String

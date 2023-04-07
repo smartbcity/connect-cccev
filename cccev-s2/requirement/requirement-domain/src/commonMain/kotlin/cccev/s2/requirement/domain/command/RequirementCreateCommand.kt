@@ -126,7 +126,7 @@ interface RequirementCreatedEventDTO: RequirementEvent {
     /**
      * @ref [RequirementCreateCommand.isDerivedFrom]
      */
-    val isDerivedFrom: List<FrameworkId>
+    val isDerivedFrom: List<FrameworkId>?
 
     /**
      * @ref [RequirementCreateCommand.hasRequirement]
@@ -167,7 +167,7 @@ data class RequirementCreatedEvent(
     override val name: String?,
     override val description: String?,
     override val type: String?,
-    override val isDerivedFrom: List<FrameworkId>,
+    override val isDerivedFrom: List<FrameworkId>? = null,
     override val hasRequirement: List<RequirementId>,
     override val hasQualifiedRelation: Map<String, List<RequirementId>>,
     override val hasConcept: List<InformationConceptId>,

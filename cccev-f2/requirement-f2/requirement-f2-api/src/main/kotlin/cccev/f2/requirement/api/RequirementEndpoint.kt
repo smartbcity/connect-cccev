@@ -43,7 +43,7 @@ class RequirementEndpoint(
     @Bean
     override fun requirementGetByIdentifier(): RequirementGetByIdentifierFunction = f2Function { query ->
         logger.info("requirementGetByIdentifierFunction: $query")
-        requirementF2FinderService.getOrNullByIdentifier(query.id).let(::RequirementGetByIdentifierResultDTOBase)
+        requirementF2FinderService.getOrNullByIdentifier(query.identifier).let(::RequirementGetByIdentifierResultDTOBase)
     }
 
     @Bean

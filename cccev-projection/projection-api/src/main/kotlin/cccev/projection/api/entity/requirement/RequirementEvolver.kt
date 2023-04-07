@@ -43,7 +43,7 @@ class RequirementEvolver(
 		}
 		val concepts = informationConceptRepository.findAllById(event.hasConcept).collectList().awaitSingle()
 		val evidenceTypeLists = evidenceTypeListRepository.findAllById(event.hasEvidenceTypeList).collectList().awaitSingle()
-		val frameworks = frameworkRepository.findAllById(event.isDerivedFrom).collectList().awaitSingle()
+		val frameworks = frameworkRepository.findAllById(event.isDerivedFrom ?: emptyList()).collectList().awaitSingle()
 
 		return RequirementEntity().apply {
 			id = event.id
@@ -71,7 +71,7 @@ class RequirementEvolver(
 	}
 
 	private suspend fun RequirementEntity.removeRequirements(event: RequirementRemovedRequirementsEvent) = apply {
-		hasRequirement.removeIf { it.identifier in event.requirementIds }
+		hasRequirement.removeIf { it.id in event.requirementIds }
 	}
 
 	private suspend fun RequirementEntity.addConcepts(event: RequirementAddedConceptsEvent) = apply {
