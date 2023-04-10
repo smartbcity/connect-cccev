@@ -31,7 +31,7 @@ class RequirementEntity: EntityBase<RequirementId, RequirementState>() {
     lateinit var hasRequirement: MutableList<RequirementEntity>
 
     @Relationship
-    lateinit var hasQualifiedRelation: MutableMap<String, List<RequirementEntity>>
+    var hasQualifiedRelation: MutableMap<String, List<RequirementEntity>> = mutableMapOf()
 
     @Relationship(type = Relation.HAS_CONCEPT)
     lateinit var hasConcept: MutableList<InformationConceptEntity>

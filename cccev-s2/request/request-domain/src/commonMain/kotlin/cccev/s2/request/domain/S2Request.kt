@@ -32,27 +32,22 @@ val s2Request = s2Sourcing {
 		role = EditorRole()
 	}
 	selfTransaction<RequestAddValuesCommand, RequestAddedValuesEvent> {
-		name = "AddValues"
 		states += RequestState.CREATED
 		role = EditorRole()
 	}
 	selfTransaction<RequestAddEvidenceCommand, RequestAddedEvidenceEvent> {
-		name = "AddEvidence"
 		states += RequestState.CREATED
 		role = EditorRole()
 	}
 	selfTransaction<RequestRemoveEvidenceCommand, RequestRemovedEvidenceEvent> {
-		name = "RemoveEvidence"
 		states += RequestState.CREATED
 		role = EditorRole()
 	}
 	selfTransaction<RequestAddRequirementsCommand, RequestAddedRequirementsEvent> {
-		name = "AddRequirements"
 		states += RequestState.CREATED
 		role = EditorRole()
 	}
 	selfTransaction<RequestRemoveRequirementsCommand, RequestRemovedRequirementsEvent> {
-		name = "RemoveRequirements"
 		states += RequestState.CREATED
 		role = EditorRole()
 	}

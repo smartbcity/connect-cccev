@@ -24,7 +24,7 @@ import kotlin.js.JsName
 typealias InformationConceptId = String
 
 val s2InformationConcept = s2Sourcing {
-	name = "RequestS2"
+	name = "InformationConceptS2"
 	init<InformationConceptCreateCommand, InformationConceptCreatedEvent> {
 		to = InformationConceptState.EXISTS
 		role = EditorRole

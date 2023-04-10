@@ -33,6 +33,7 @@ interface RequestCreateCommandDTO: RequestInitCommand {
 /**
  * @d2 inherit
  */
+@Serializable
 data class RequestCreateCommand(
     override val name: String,
     override val description: String?,
