@@ -5,7 +5,6 @@ import cccev.projection.api.entity.requirement.RequirementRepository
 import cccev.s2.requirement.domain.model.RequirementKind
 import java.util.UUID
 import kotlinx.coroutines.reactor.awaitSingle
-import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance

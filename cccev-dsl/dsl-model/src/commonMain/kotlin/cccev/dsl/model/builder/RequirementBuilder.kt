@@ -3,7 +3,6 @@ package cccev.dsl.model.builder
 import cccev.dsl.model.Code
 import cccev.dsl.model.EvidenceTypeListBase
 import cccev.dsl.model.InformationConcept
-import cccev.dsl.model.InformationConceptBase
 import cccev.dsl.model.ReferenceFramework
 import cccev.dsl.model.Requirement
 import cccev.dsl.model.RequirementId

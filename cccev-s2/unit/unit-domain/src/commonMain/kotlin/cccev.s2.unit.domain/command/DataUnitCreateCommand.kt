@@ -6,7 +6,6 @@ import cccev.s2.unit.domain.DataUnitId
 import cccev.s2.unit.domain.DataUnitInitCommand
 import cccev.s2.unit.domain.DataUnitState
 import cccev.s2.unit.domain.model.DataUnitType
-import kotlinx.serialization.SerialName
 import kotlin.js.JsExport
 import kotlin.js.JsName
 import kotlinx.serialization.Serializable

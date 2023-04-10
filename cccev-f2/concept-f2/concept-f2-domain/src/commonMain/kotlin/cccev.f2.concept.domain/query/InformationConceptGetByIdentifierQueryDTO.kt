@@ -4,9 +4,9 @@ import cccev.f2.concept.domain.D2InformationConceptF2Page
 import cccev.f2.concept.domain.model.InformationConceptDTO
 import cccev.f2.concept.domain.model.InformationConceptDTOBase
 import f2.dsl.fnc.F2Function
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Get an information concept by its identifier.

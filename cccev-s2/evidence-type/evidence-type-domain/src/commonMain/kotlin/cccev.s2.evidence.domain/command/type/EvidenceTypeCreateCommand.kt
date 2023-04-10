@@ -4,10 +4,10 @@ import cccev.s2.evidence.domain.D2EvidenceTypePage
 import cccev.s2.evidence.domain.EvidenceTypeEvent
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeInitCommand
-import kotlinx.serialization.Serializable
 import cccev.s2.evidence.domain.EvidenceTypeState
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Create a new evidence type.

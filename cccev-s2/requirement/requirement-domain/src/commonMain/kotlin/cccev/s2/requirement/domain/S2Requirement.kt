@@ -14,6 +14,8 @@ import cccev.s2.requirement.domain.command.RequirementRemoveRequirementsCommand
 import cccev.s2.requirement.domain.command.RequirementRemovedConceptsEvent
 import cccev.s2.requirement.domain.command.RequirementRemovedEvidenceTypeListsEvent
 import cccev.s2.requirement.domain.command.RequirementRemovedRequirementsEvent
+import kotlin.js.JsExport
+import kotlin.js.JsName
 import s2.dsl.automate.Evt
 import s2.dsl.automate.S2Command
 import s2.dsl.automate.S2InitCommand
@@ -21,8 +23,6 @@ import s2.dsl.automate.S2Role
 import s2.dsl.automate.S2State
 import s2.dsl.automate.WithId
 import s2.dsl.automate.builder.s2Sourcing
-import kotlin.js.JsExport
-import kotlin.js.JsName
 import s2.dsl.automate.model.WithS2Id
 
 /**

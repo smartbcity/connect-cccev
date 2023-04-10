@@ -5,9 +5,9 @@ import cccev.projection.api.entity.unit.DataUnitRepository
 import cccev.s2.unit.domain.DataUnitId
 import cccev.s2.unit.domain.DataUnitState
 import cccev.s2.unit.domain.model.DataUnitType
-import s2.bdd.repository.AssertionCrudEntity
-import s2.bdd.assertion.AssertionBdd
 import org.assertj.core.api.Assertions
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.repository.AssertionCrudEntity
 
 fun AssertionBdd.dataUnit(unitRepository: DataUnitRepository) = AssertionDataUnit(unitRepository)
 

@@ -2,7 +2,6 @@ package cccev.f2.requirement.domain.query
 
 import cccev.f2.requirement.domain.model.RequirementDTO
 import cccev.f2.requirement.domain.model.RequirementDTOBase
-import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.model.RequirementIdentifier
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport

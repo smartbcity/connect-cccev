@@ -16,8 +16,8 @@ import cccev.s2.evidence.domain.command.list.EvidenceTypeListUpdateCommand
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListUpdatedEvent
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreateCommand
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreatedEvent
-import org.springframework.stereotype.Service
 import java.util.UUID
+import org.springframework.stereotype.Service
 
 @Service
 class EvidenceTypeAggregateService(

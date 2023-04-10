@@ -8,6 +8,8 @@ import cccev.s2.evidence.domain.command.list.EvidenceTypeListRemoveEvidenceTypes
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListRemovedEvidenceTypesEvent
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListUpdateCommand
 import cccev.s2.evidence.domain.command.list.EvidenceTypeListUpdatedEvent
+import kotlin.js.JsExport
+import kotlin.js.JsName
 import s2.dsl.automate.Evt
 import s2.dsl.automate.S2Command
 import s2.dsl.automate.S2InitCommand
@@ -15,8 +17,6 @@ import s2.dsl.automate.S2State
 import s2.dsl.automate.WithId
 import s2.dsl.automate.builder.s2Sourcing
 import s2.dsl.automate.model.WithS2Id
-import kotlin.js.JsExport
-import kotlin.js.JsName
 
 /**
  * Identifier of an EvidenceTypeList

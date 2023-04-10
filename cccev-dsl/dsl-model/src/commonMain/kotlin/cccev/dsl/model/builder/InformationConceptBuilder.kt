@@ -1,7 +1,6 @@
 package cccev.dsl.model.builder
 
 import cccev.dsl.model.Code
-import cccev.dsl.model.Criterion
 import cccev.dsl.model.DataUnit
 import cccev.dsl.model.InformationConcept
 import cccev.dsl.model.InformationConceptBase

@@ -4,9 +4,9 @@ import cccev.s2.request.domain.model.Request
 import cccev.s2.request.domain.model.RequestDTO
 import cccev.s2.request.domain.model.RequestId
 import f2.dsl.fnc.F2Function
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 typealias RequestGetFunction = F2Function<RequestGetQueryDTOBase, RequestGetResultDTOBase>
 

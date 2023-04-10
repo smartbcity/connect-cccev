@@ -6,9 +6,9 @@ import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.concept.domain.InformationConceptInitCommand
 import cccev.s2.concept.domain.InformationConceptState
 import cccev.s2.unit.domain.DataUnitId
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Create a new information concept.

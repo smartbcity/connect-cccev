@@ -3,9 +3,9 @@ package cccev.s2.framework.domain.command
 import cccev.s2.framework.domain.FrameworkEvent
 import cccev.s2.framework.domain.FrameworkId
 import cccev.s2.framework.domain.FrameworkInitCommand
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 @JsExport
 @JsName("FrameworkCreateCommandDTO")

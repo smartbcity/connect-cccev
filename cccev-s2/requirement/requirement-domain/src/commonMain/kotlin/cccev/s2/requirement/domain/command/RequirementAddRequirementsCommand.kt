@@ -4,9 +4,9 @@ import cccev.s2.requirement.domain.D2RequirementPage
 import cccev.s2.requirement.domain.RequirementCommand
 import cccev.s2.requirement.domain.RequirementEvent
 import cccev.s2.requirement.domain.RequirementId
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Add a list of sub-requirement to a requirement.

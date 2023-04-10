@@ -15,6 +15,7 @@ import cccev.s2.requirement.domain.command.RequirementRemovedEvidenceTypeListsEv
 import cccev.s2.requirement.domain.command.RequirementRemovedRequirementsEvent
 import cccev.s2.requirement.domain.command.RequirementUpdatedEvent
 import cccev.s2.requirement.domain.s2Requirement
+import kotlin.reflect.KClass
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
@@ -26,7 +27,6 @@ import ssm.chaincode.dsl.model.Agent
 import ssm.chaincode.dsl.model.uri.ChaincodeUri
 import ssm.chaincode.dsl.model.uri.from
 import ssm.sdk.sign.extention.loadFromFile
-import kotlin.reflect.KClass
 
 @Configuration
 class RequirementAutomateConfig(

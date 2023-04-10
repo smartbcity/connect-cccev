@@ -8,9 +8,9 @@ import cccev.f2.requirement.domain.command.RequirementAddRequirementsFunction
 import cccev.f2.requirement.domain.command.RequirementCreateFunction
 import cccev.f2.requirement.domain.command.RequirementUpdateFunction
 import cccev.f2.requirement.domain.query.RequirementGetByIdentifierFunction
-import cccev.f2.requirement.domain.query.RequirementListQueryFunction
 import cccev.f2.requirement.domain.query.RequirementGetFunction
 import cccev.f2.requirement.domain.query.RequirementListChildrenByTypeFunction
+import cccev.f2.requirement.domain.query.RequirementListQueryFunction
 import f2.client.F2Client
 import f2.client.function
 import f2.dsl.fnc.F2SupplierSingle

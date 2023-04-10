@@ -19,8 +19,8 @@ import cccev.s2.requirement.domain.command.RequirementRemovedEvidenceTypeListsEv
 import cccev.s2.requirement.domain.command.RequirementRemovedRequirementsEvent
 import cccev.s2.requirement.domain.command.RequirementUpdateCommand
 import cccev.s2.requirement.domain.command.RequirementUpdatedEvent
-import org.springframework.stereotype.Service
 import java.util.UUID
+import org.springframework.stereotype.Service
 
 @Service
 class RequirementAggregateService(

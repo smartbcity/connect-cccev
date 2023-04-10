@@ -14,8 +14,8 @@ import cccev.s2.request.domain.command.RequestRemoveEvidenceCommand
 import cccev.s2.request.domain.command.RequestRemoveRequirementsCommand
 import cccev.s2.request.domain.command.RequestRemovedEvidenceEvent
 import cccev.s2.request.domain.command.RequestRemovedRequirementsEvent
-import org.springframework.stereotype.Service
 import java.util.UUID
+import org.springframework.stereotype.Service
 
 @Service
 class RequestAggregateService(

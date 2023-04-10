@@ -1,10 +1,7 @@
 package cccev.projection.api.entity.evidencetype
 
-import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListRepository
-import cccev.projection.api.entity.unit.DataUnitRepository
 import cccev.s2.evidence.domain.EvidenceTypeEvent
 import cccev.s2.evidence.domain.command.type.EvidenceTypeCreatedEvent
-import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.stereotype.Service
 import s2.sourcing.dsl.view.View
 

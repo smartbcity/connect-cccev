@@ -1,9 +1,9 @@
 package cccev.test
 
-import s2.bdd.data.TestContext
 import io.cucumber.java8.En
 import kotlinx.coroutines.runBlocking
 import org.springframework.data.neo4j.core.Neo4jClient
+import s2.bdd.data.TestContext
 
 class EnvironmentCleanerSteps(
     private val context: TestContext,

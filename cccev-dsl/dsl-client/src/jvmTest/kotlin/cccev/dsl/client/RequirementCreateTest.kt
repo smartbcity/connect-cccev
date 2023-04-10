@@ -5,7 +5,6 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Test
 
 class RequirementCreateTest {
 //    @Test

@@ -5,11 +5,11 @@ import cccev.s2.requirement.api.RequirementAggregateService
 import cccev.s2.requirement.domain.command.RequirementRemoveEvidenceTypeListsCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.requirement.data.requirement
+import io.cucumber.java8.En
+import org.springframework.beans.factory.annotation.Autowired
 import s2.bdd.assertion.AssertionBdd
 import s2.bdd.data.TestContextKey
 import s2.bdd.data.parser.safeExtractList
-import io.cucumber.java8.En
-import org.springframework.beans.factory.annotation.Autowired
 
 class RequirementRemoveEvidenceTypeListsSteps: En, CccevCucumberStepsDefinition() {
 

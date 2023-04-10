@@ -13,6 +13,8 @@ import cccev.s2.request.domain.command.RequestRemoveRequirementsCommand
 import cccev.s2.request.domain.command.RequestRemovedEvidenceEvent
 import cccev.s2.request.domain.command.RequestRemovedRequirementsEvent
 import cccev.s2.request.domain.model.RequestId
+import kotlin.js.JsExport
+import kotlin.js.JsName
 import kotlinx.serialization.Serializable
 import s2.dsl.automate.Evt
 import s2.dsl.automate.S2Command
@@ -22,8 +24,6 @@ import s2.dsl.automate.S2State
 import s2.dsl.automate.WithId
 import s2.dsl.automate.builder.s2Sourcing
 import s2.dsl.automate.model.WithS2Id
-import kotlin.js.JsExport
-import kotlin.js.JsName
 
 val s2Request = s2Sourcing {
 	name = "RequestS2"

@@ -1,7 +1,7 @@
 package cccev.f2.concept.domain.model
 
-import cccev.dsl.model.DataUnitDTO
 import cccev.dsl.model.Code
+import cccev.dsl.model.DataUnitDTO
 import cccev.dsl.model.InformationConcept
 import cccev.dsl.model.InformationConceptId
 import cccev.dsl.model.SupportedValue

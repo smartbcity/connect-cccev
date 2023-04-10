@@ -15,7 +15,6 @@ import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
-import io.ktor.http.content.PartData
 import kotlinx.coroutines.flow.map
 
 actual fun F2Client.requestClient(): F2SupplierSingle<RequestClient> = f2SupplierSingle {

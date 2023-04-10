@@ -4,7 +4,6 @@ import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.request.domain.command.RequestAddedEvidenceEvent
 import cccev.s2.request.domain.model.RequestId
 import f2.dsl.fnc.F2Function
-import io.ktor.http.content.PartData
 import kotlin.js.JsExport
 import kotlin.js.JsName
 

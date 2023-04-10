@@ -10,6 +10,7 @@ import cccev.test.s2.requirement.data.extractRequirementKind
 import cccev.test.s2.requirement.data.requirement
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
+import java.util.UUID
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import net.datafaker.Faker
 import org.assertj.core.api.Assertions
@@ -17,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import s2.bdd.assertion.AssertionBdd
 import s2.bdd.data.TestContextKey
 import s2.bdd.data.parser.extractList
-import java.util.UUID
 
 class RequirementCreateSteps: En, CccevCucumberStepsDefinition() {
 

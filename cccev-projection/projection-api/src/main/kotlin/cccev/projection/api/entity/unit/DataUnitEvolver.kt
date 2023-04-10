@@ -1,9 +1,7 @@
 package cccev.projection.api.entity.unit
 
-import cccev.projection.api.entity.unit.DataUnitRepository
 import cccev.s2.unit.domain.DataUnitEvent
 import cccev.s2.unit.domain.command.DataUnitCreatedEvent
-import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.stereotype.Service
 import s2.sourcing.dsl.view.View
 

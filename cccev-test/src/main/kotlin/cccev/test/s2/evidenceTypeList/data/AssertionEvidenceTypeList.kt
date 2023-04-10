@@ -5,9 +5,9 @@ import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListRepository
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.evidence.domain.EvidenceTypeListState
-import s2.bdd.repository.AssertionCrudEntity
-import s2.bdd.assertion.AssertionBdd
 import org.assertj.core.api.Assertions
+import s2.bdd.assertion.AssertionBdd
+import s2.bdd.repository.AssertionCrudEntity
 
 fun AssertionBdd.evidenceTypeList(evidenceTypeListRepository: EvidenceTypeListRepository)
     = AssertionEvidenceTypeList(evidenceTypeListRepository)

@@ -2,10 +2,9 @@ package cccev.s2.request.domain.model
 
 import cccev.dsl.model.RequirementId
 import cccev.s2.concept.domain.InformationConceptId
-import cccev.s2.requirement.domain.D2RequirementPage
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * @visual json "822cade3-84ec-4798-a899-53877dcf7ef2"

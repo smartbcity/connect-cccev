@@ -4,9 +4,9 @@ import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.request.domain.RequestCommand
 import cccev.s2.request.domain.RequestEvent
 import cccev.s2.request.domain.model.RequestId
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * @d2 command

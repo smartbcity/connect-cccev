@@ -7,9 +7,9 @@ import cccev.s2.request.domain.model.EvidenceId
 import cccev.s2.request.domain.model.RequestId
 import city.smartb.fs.s2.file.domain.model.FilePath
 import city.smartb.fs.s2.file.domain.model.FilePathDTO
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 data class RequestAddEvidenceCommand(
     override val id: RequestId,

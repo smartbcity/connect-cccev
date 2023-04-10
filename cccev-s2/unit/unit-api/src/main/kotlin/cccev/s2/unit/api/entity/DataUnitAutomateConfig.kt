@@ -8,6 +8,7 @@ import cccev.s2.unit.domain.DataUnitId
 import cccev.s2.unit.domain.DataUnitState
 import cccev.s2.unit.domain.command.DataUnitCreatedEvent
 import cccev.s2.unit.domain.s2DataUnit
+import kotlin.reflect.KClass
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
@@ -19,7 +20,6 @@ import ssm.chaincode.dsl.model.Agent
 import ssm.chaincode.dsl.model.uri.ChaincodeUri
 import ssm.chaincode.dsl.model.uri.from
 import ssm.sdk.sign.extention.loadFromFile
-import kotlin.reflect.KClass
 
 @Configuration
 class DataUnitAutomateConfig(

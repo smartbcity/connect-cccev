@@ -10,9 +10,9 @@ import cccev.s2.requirement.domain.RequirementInitCommand
 import cccev.s2.requirement.domain.RequirementState
 import cccev.s2.requirement.domain.model.RequirementIdentifier
 import cccev.s2.requirement.domain.model.RequirementKind
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Create a new requirement.

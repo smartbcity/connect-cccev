@@ -2,6 +2,8 @@ package cccev.s2.framework.domain
 
 import cccev.s2.framework.domain.command.FrameworkCreateCommand
 import cccev.s2.framework.domain.command.FrameworkCreatedEvent
+import kotlin.js.JsExport
+import kotlin.js.JsName
 import s2.dsl.automate.Evt
 import s2.dsl.automate.S2Command
 import s2.dsl.automate.S2InitCommand
@@ -10,8 +12,6 @@ import s2.dsl.automate.S2State
 import s2.dsl.automate.WithId
 import s2.dsl.automate.builder.s2Sourcing
 import s2.dsl.automate.model.WithS2Id
-import kotlin.js.JsExport
-import kotlin.js.JsName
 
 /**
  * @d2 hidden

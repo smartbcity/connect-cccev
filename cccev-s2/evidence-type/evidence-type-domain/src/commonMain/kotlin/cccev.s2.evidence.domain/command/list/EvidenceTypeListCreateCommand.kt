@@ -6,9 +6,9 @@ import cccev.s2.evidence.domain.EvidenceTypeListEvent
 import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.evidence.domain.EvidenceTypeListInitCommand
 import cccev.s2.evidence.domain.EvidenceTypeListState
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Create a new evidence type list.

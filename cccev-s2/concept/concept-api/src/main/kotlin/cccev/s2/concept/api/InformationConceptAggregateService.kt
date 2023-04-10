@@ -5,8 +5,8 @@ import cccev.s2.concept.domain.InformationConceptAggregate
 import cccev.s2.concept.domain.InformationConceptState
 import cccev.s2.concept.domain.command.InformationConceptCreateCommand
 import cccev.s2.concept.domain.command.InformationConceptCreatedEvent
-import org.springframework.stereotype.Service
 import java.util.UUID
+import org.springframework.stereotype.Service
 
 @Service
 class InformationConceptAggregateService(

@@ -6,9 +6,9 @@ import cccev.s2.framework.domain.FrameworkId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.command.RequirementCreatedEvent
 import f2.dsl.fnc.F2Function
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 typealias RequirementCreateFunction = F2Function<RequirementCreateCommandDTOBase, RequirementCreatedEvent>
 

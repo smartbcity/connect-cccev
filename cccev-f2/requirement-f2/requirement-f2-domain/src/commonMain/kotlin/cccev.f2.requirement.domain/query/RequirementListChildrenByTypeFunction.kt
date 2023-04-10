@@ -5,9 +5,9 @@ import cccev.f2.requirement.domain.model.RequirementDTOBase
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.model.RequirementIdentifier
 import f2.dsl.fnc.F2Function
-import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 typealias RequirementListChildrenByTypeFunction
         = F2Function<RequirementListChildrenByTypeQueryDTOBase, RequirementListChildrenByTypeResultDTOBase>
