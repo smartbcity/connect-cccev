@@ -2,6 +2,7 @@ package cccev.s2.concept.domain.model
 
 import cccev.s2.concept.domain.D2InformationConceptPage
 import cccev.s2.concept.domain.InformationConceptId
+import cccev.s2.concept.domain.InformationConceptIdentifier
 import cccev.s2.unit.domain.DataUnitId
 import kotlinx.serialization.Serializable
 
@@ -16,6 +17,10 @@ data class InformationConcept(
      * Unique identifier of this information concept.
      */
     val id: InformationConceptId,
+    /**
+     * Unique identifier of this information concept.
+     */
+    val identifier: InformationConceptIdentifier?,
 
     /**
      * The name of this information concept.

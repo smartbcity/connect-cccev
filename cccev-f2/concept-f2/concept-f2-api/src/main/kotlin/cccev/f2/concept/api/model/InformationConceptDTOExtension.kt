@@ -34,6 +34,7 @@ suspend fun InformationConcept.toDTO(
     getUnit: suspend (DataUnitId?) -> DataUnitDTOBase?
 ) = InformationConceptDTOBase(
     id = id,
+    identifier = identifier,
     name = name,
     unit = getUnit(unitId),
     description = description,

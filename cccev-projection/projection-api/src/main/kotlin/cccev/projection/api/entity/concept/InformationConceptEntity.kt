@@ -5,13 +5,14 @@ import cccev.projection.api.entity.NodeLabel
 import cccev.projection.api.entity.Relation
 import cccev.projection.api.entity.unit.DataUnitEntity
 import cccev.s2.concept.domain.InformationConceptId
+import cccev.s2.concept.domain.InformationConceptIdentifier
 import cccev.s2.concept.domain.InformationConceptState
 import org.springframework.data.neo4j.core.schema.Node
 import org.springframework.data.neo4j.core.schema.Relationship
 
 @Node(NodeLabel.INFORMATION_CONCEPT)
 class InformationConceptEntity: EntityBase<InformationConceptId, InformationConceptState>() {
-    var identifier: String? = null
+    var identifier: InformationConceptIdentifier? = null
 
     lateinit var name: String
 

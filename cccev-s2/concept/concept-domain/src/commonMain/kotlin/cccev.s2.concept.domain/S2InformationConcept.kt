@@ -20,6 +20,7 @@ import s2.dsl.automate.model.WithS2Id
  * @visual json "cdfca416-c284-4ef9-8591-31405c8c2acf"
  */
 typealias InformationConceptId = String
+typealias InformationConceptIdentifier = String
 
 val s2InformationConcept = s2Sourcing {
 	name = "InformationConceptS2"

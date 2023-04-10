@@ -4,6 +4,7 @@ import cccev.f2.concept.domain.D2InformationConceptF2Page
 import cccev.f2.unit.domain.model.DataUnitDTO
 import cccev.f2.unit.domain.model.DataUnitDTOBase
 import cccev.s2.concept.domain.InformationConceptId
+import cccev.s2.concept.domain.InformationConceptIdentifier
 import kotlin.js.JsExport
 import kotlin.js.JsName
 import kotlinx.serialization.Serializable
@@ -18,9 +19,14 @@ import kotlinx.serialization.Serializable
 @JsName("InformationConceptDTO")
 interface InformationConceptDTO {
     /**
-     * Unique identifier of this information concept.
+     * Unique id of this information concept.
      */
     val id: InformationConceptId
+
+    /**
+     * Unique identifier of this information concept.
+     */
+    val identifier: InformationConceptIdentifier?
 
     /**
      * The name of this information concept.
@@ -60,6 +66,7 @@ interface InformationConceptDTO {
 @Serializable
 data class InformationConceptDTOBase(
     override val id: InformationConceptId,
+    override val identifier: InformationConceptIdentifier?,
     override val name: String,
     override val unit: DataUnitDTOBase?,
     override val description: String?,

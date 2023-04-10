@@ -5,6 +5,7 @@ import kotlin.js.JsName
 import kotlinx.serialization.Serializable
 
 typealias InformationConceptId = String
+typealias InformationConceptIdentifier = String
 
 @JsExport
 @JsName("InformationConcept")
@@ -19,7 +20,7 @@ interface InformationConcept {
 }
 @Serializable
 open class InformationConceptBase(
-    override val identifier: InformationConceptId,
+    override val identifier: InformationConceptIdentifier,
     override val name: String,
     override val unit: DataUnit?,
     override val type: Code?,
