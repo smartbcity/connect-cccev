@@ -60,6 +60,7 @@ class InformationConceptAutomateConfig(
 		return Agent.loadFromFile("ssm-admin","user/ssm-admin")
 	}
 
+	// override fun preventOptimisticLocking(): Boolean = true
 }
 
 @Service

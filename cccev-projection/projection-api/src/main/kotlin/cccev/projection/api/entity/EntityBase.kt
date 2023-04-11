@@ -14,8 +14,8 @@ abstract class EntityBase<ID: Any, STATE: S2State>: WithS2Id<ID>, WithS2State<ST
 
     open lateinit var status: STATE
 
-    @Version
-    var version: Long = 0
+//    @Version
+//    var version: Long = 0
 
     @CreatedDate
     var creationDate: Long = 0

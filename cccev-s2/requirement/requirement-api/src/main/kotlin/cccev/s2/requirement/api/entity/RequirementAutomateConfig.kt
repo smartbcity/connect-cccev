@@ -73,6 +73,8 @@ class RequirementAutomateConfig(
 	override fun signerAgent(): Agent {
 		return Agent.loadFromFile("ssm-admin","user/ssm-admin")
 	}
+
+	// override fun preventOptimisticLocking(): Boolean = true
 }
 
 @Service
