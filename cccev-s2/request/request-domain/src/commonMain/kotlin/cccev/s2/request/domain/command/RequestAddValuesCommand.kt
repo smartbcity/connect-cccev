@@ -31,6 +31,7 @@ interface RequestAddValuesCommandDTO: RequestCommand {
 /**
  * @d2 inherit
  */
+@Serializable
 data class RequestAddValuesCommand(
     override val id: RequestId,
     override val values: Map<InformationConceptId, String?>
