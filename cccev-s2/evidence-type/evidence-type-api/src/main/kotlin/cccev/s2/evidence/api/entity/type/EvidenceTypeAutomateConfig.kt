@@ -61,7 +61,7 @@ class EvidenceTypeAutomateConfig(
 	}
 
 
-	// override fun preventOptimisticLocking(): Boolean = true
+	override fun preventOptimisticLocking(): Boolean = true
 
 }
 
