@@ -17,7 +17,9 @@ docker: docker-cccev-api
 docs: package-storybook
 
 package-kotlin:
-	@gradle clean build publish --stacktrace
+	VERSION=${VERSION} ./gradlew build publish --stacktrace
+local:
+	VERSION=${VERSION} ./gradlew build publishToMavenLocal --stacktrace
 
 docker-cccev-api:
 	VERSION=${VERSION} ./gradlew build ${CCCEV_APP_PACKAGE} -x test
