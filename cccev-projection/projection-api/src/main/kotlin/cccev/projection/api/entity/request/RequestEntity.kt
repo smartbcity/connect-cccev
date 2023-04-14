@@ -43,6 +43,6 @@ class RequestEntity: EntityBase<RequestId, RequestState>() {
     @Relationship(type = Relation.PROVIDES_EVIDENCE)
     var evidences: MutableList<EvidenceEntity> = mutableListOf()
 
-    @Relationship(type = Relation.PROVIDES_VALUE_FOR)
+    @Relationship(type = Relation.PROVIDES_VALUE)
     var supportedValues: MutableList<SupportedValueEntity> = mutableListOf()
 }

@@ -33,4 +33,4 @@ InformationConcepts.
 - The rest is computed according to the provided evidences for the field (from 0 to 50 included)
     - Each EvidenceTypeList has its own score
     - The final score corresponds to the highest amongst the EvidenceTypeLists
-    - The score of an ETL is `(totalEvidenceTypes / numberOfFulfilledEvidenceTypes) * 50`
+    - The score of an ETL is `(numberOfFulfilledEvidenceTypes / totalEvidenceTypes) * 50`

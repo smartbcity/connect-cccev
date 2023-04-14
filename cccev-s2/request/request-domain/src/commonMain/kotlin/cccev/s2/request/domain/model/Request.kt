@@ -2,9 +2,9 @@ package cccev.s2.request.domain.model
 
 import cccev.dsl.model.RequirementId
 import cccev.s2.concept.domain.InformationConceptId
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
-import kotlinx.serialization.Serializable
 
 /**
  * @visual json "822cade3-84ec-4798-a899-53877dcf7ef2"
@@ -116,6 +116,12 @@ interface RequestDTO {
      * @example { "59950d76-c39e-4566-834e-fe14356622c9": "a very peculiar thing" }
      */
     val supportedValues: Map<InformationConceptId, String?>
+
+    /**
+     * Fulfillment stats of the requirements in the context of the request
+     * @example { "082f9b5b-4ffa-4e95-8288-2de2972cade5": { id: "082f9b5b-4ffa-4e95-8288-2de2972cade5", completion: 50.0 } }
+     */
+    val requirementStats: Map<RequirementId, RequirementStatsDTO>
 }
 
 /**
@@ -140,4 +146,5 @@ data class Request(
     override val requirements: List<RequirementId>,
     override val evidences: List<Evidence>,
     override val supportedValues: Map<InformationConceptId, String?>,
+    override val requirementStats: Map<RequirementId, RequirementStats>,
 ): RequestDTO

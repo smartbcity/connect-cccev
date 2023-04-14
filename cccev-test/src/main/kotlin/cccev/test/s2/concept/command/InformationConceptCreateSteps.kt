@@ -8,13 +8,13 @@ import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.concept.data.informationConcept
 import io.cucumber.datatable.DataTable
 import io.cucumber.java8.En
-import java.util.UUID
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.assertj.core.api.Assertions
 import org.springframework.beans.factory.annotation.Autowired
 import s2.bdd.assertion.AssertionBdd
 import s2.bdd.data.TestContextKey
 import s2.bdd.data.parser.extractList
+import java.util.UUID
 
 class InformationConceptCreateSteps: En, CccevCucumberStepsDefinition() {
 
@@ -100,7 +100,7 @@ class InformationConceptCreateSteps: En, CccevCucumberStepsDefinition() {
             hasUnit = context.unitIds[params.unit] ?: params.unit,
             description = params.description,
             expressionOfExpectedValue = params.expressionOfExpectedValue,
-            dependsOn = params.dependsOn
+            dependsOn = params.dependsOn.map(context.conceptIds::safeGet)
         )
         informationConceptAggregateService.create(command).id
     }
@@ -111,7 +111,7 @@ class InformationConceptCreateSteps: En, CccevCucumberStepsDefinition() {
         unit = entry?.get("unit") ?: context.unitIds.lastUsedKey,
         description = entry?.get("description").orRandom(),
         expressionOfExpectedValue = entry?.get("expressionOfExpectedValue"),
-            dependsOn = entry?.extractList("dependsOn").orEmpty()
+        dependsOn = entry?.extractList("dependsOn").orEmpty()
     )
 
     private data class InformationConceptCreateParams(
