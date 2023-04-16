@@ -45,26 +45,26 @@ class RequirementEvolver(
 		val evidenceTypeLists = evidenceTypeListRepository.findAllById(event.hasEvidenceTypeList).collectList().awaitSingle()
 		val frameworks = frameworkRepository.findAllById(event.isDerivedFrom ?: emptyList()).collectList().awaitSingle()
 
-		return RequirementEntity().apply {
-			id = event.id
-			identifier = event.identifier
-			kind = event.kind
-			name = event.name
-			description = event.description
-			type = event.type
-			isDerivedFrom = frameworks
-			hasRequirement = subRequirements
-			hasQualifiedRelation = relatedRequirements.toMutableMap()
-			hasConcept = concepts
-			hasEvidenceTypeList = evidenceTypeLists
-			status = event.status
-		}
+		return RequirementEntity(
+				id = event.id,
+				identifier = event.identifier,
+				kind = event.kind,
+				name = event.name,
+				description = event.description,
+				type = event.type,
+				isDerivedFrom = frameworks,
+				hasRequirement = subRequirements,
+				hasQualifiedRelation = relatedRequirements.toMutableMap(),
+				hasConcept = concepts,
+				hasEvidenceTypeList = evidenceTypeLists,
+				status = event.status
+		)
 	}
 
-	private fun RequirementEntity.update(event: RequirementUpdatedEvent) = apply {
-		name = event.name
+	private fun RequirementEntity.update(event: RequirementUpdatedEvent) = copy (
+		name = event.name,
 		description = event.description
-	}
+	)
 
 	private suspend fun RequirementEntity.addRequirements(event: RequirementAddedRequirementsEvent) = apply {
 		hasRequirement += requirementRepository.findAllById(event.requirementIds).collectList().awaitSingle()

@@ -18,13 +18,13 @@ class DataUnitEvolver(
 	}
 
 	private suspend fun created(event: DataUnitCreatedEvent): DataUnitEntity {
-		return DataUnitEntity().apply {
-			id = event.id
-			name = event.name
-			description = event.description
-			notation = event.notation
-			type = event.type
+		return DataUnitEntity(
+			id = event.id,
+			name = event.name,
+			description = event.description,
+			notation = event.notation,
+			type = event.type,
 			status = event.status
-		}
+		)
 	}
 }

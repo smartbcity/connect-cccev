@@ -26,21 +26,21 @@ class EvidenceTypeListEvolver(
 	private suspend fun create(event: EvidenceTypeListCreatedEvent): EvidenceTypeListEntity {
 		val evidenceTypes = evidenceTypeRepository.findByIdIn(event.specifiesEvidenceType).collectList().awaitSingle()
 
-		return EvidenceTypeListEntity().apply {
-			id = event.id
-			identifier = event.identifier
-			name = event.name
-			description = event.description
-			specifiesEvidenceType = evidenceTypes
+		return EvidenceTypeListEntity(
+			id = event.id,
+			identifier = event.identifier,
+			name = event.name,
+			description = event.description,
+			specifiesEvidenceType = evidenceTypes,
 			status = event.status
-		}
+		)
 	}
 
-	private suspend fun EvidenceTypeListEntity.addEvidenceType(event: EvidenceTypeListAddedEvidenceTypesEvent) = apply {
-		specifiesEvidenceType += evidenceTypeRepository.findByIdIn(event.evidenceTypeIds).collectList().awaitSingle()
-	}
+	private suspend fun EvidenceTypeListEntity.addEvidenceType(event: EvidenceTypeListAddedEvidenceTypesEvent) = copy(
+		specifiesEvidenceType = specifiesEvidenceType + evidenceTypeRepository.findByIdIn(event.evidenceTypeIds).collectList().awaitSingle(),
+	)
 
-	private suspend fun EvidenceTypeListEntity.removeEvidenceType(event: EvidenceTypeListRemovedEvidenceTypesEvent) = apply {
-		specifiesEvidenceType.removeIf { it.id in event.evidenceTypeIds }
-	}
+	private suspend fun EvidenceTypeListEntity.removeEvidenceType(event: EvidenceTypeListRemovedEvidenceTypesEvent) = copy(
+		specifiesEvidenceType = specifiesEvidenceType.filter { it.id !in event.evidenceTypeIds }
+	)
 }

@@ -11,6 +11,7 @@ import cccev.s2.request.domain.command.RequestAddedValuesEvent
 import cccev.s2.request.domain.command.RequestCreatedEvent
 import cccev.s2.request.domain.command.RequestRemovedEvidenceEvent
 import cccev.s2.request.domain.command.RequestRemovedRequirementsEvent
+import java.util.UUID
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.stereotype.Service
 import s2.sourcing.dsl.view.View
@@ -33,13 +34,13 @@ class RequestEvolver(
 		else -> throw NotImplementedError("Evolution for event [${event::class.simpleName}] not implemented")
 	}
 
-	private suspend fun create(event: RequestCreatedEvent) = RequestEntity().apply {
-		id = event.id
-		status = RequestState.CREATED
-		name = event.name
-		description = event.description
+	private suspend fun create(event: RequestCreatedEvent) = RequestEntity(
+		id = event.id,
+		status = RequestState.CREATED,
+		name = event.name,
+		description = event.description,
 		requirements = requirementRepository.findAllById(event.requirements).collectList().awaitSingle()
-	}
+	)
 
 	private suspend fun RequestEntity.addValues(event: RequestAddedValuesEvent) = apply {
 		informationConceptRepository.findAllById(event.values.keys)
@@ -47,27 +48,27 @@ class RequestEvolver(
 			.forEach { concept ->
 				val existingSupportedValue = supportedValues.firstOrNull { it.providesValueFor.id == concept.id }
 				if (existingSupportedValue == null) {
-					supportedValues.add(SupportedValueEntity().apply {
-						providesValueFor = concept
+					supportedValues.add(SupportedValueEntity(
+						id = UUID.randomUUID().toString(),
+						providesValueFor = concept,
 						value = event.values[concept.id]
-					})
+					))
 				} else {
 					existingSupportedValue.value = event.values[concept.id]
 				}
 			}
-		requestRepository.save(this)
 	}
 
 	private suspend fun RequestEntity.addEvidence(event: RequestAddedEvidenceEvent) = apply {
 		val evidenceTypes = evidenceTypeRepository.findAllById(event.isConformantTo)
 			.collectList().awaitSingle()
 
-		evidences.add(EvidenceEntity().apply {
-			id = event.evidenceId
-			name = event.name
-			file = event.file
+		evidences.add(EvidenceEntity(
+			id = event.evidenceId,
+			name = event.name,
+			file = event.file,
 			isConformantTo = evidenceTypes
-		})
+		))
 	}
 
 	private suspend fun RequestEntity.removeEvidence(event: RequestRemovedEvidenceEvent) = apply {

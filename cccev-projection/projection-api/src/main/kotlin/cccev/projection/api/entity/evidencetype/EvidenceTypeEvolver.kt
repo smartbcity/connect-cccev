@@ -6,9 +6,7 @@ import org.springframework.stereotype.Service
 import s2.sourcing.dsl.view.View
 
 @Service
-class EvidenceTypeEvolver(
-	private val evidenceTypeRepository: EvidenceTypeRepository,
-): View<EvidenceTypeEvent, EvidenceTypeEntity> {
+class EvidenceTypeEvolver: View<EvidenceTypeEvent, EvidenceTypeEntity> {
 
 	override suspend fun evolve(
 		event: EvidenceTypeEvent, model: EvidenceTypeEntity?
@@ -18,13 +16,13 @@ class EvidenceTypeEvolver(
 	}
 
 	private suspend fun created(event: EvidenceTypeCreatedEvent): EvidenceTypeEntity {
-		return EvidenceTypeEntity().apply {
-			id = event.id
-			identifier = event.identifier
-			name = event.name
-			description = event.description
-			validityPeriodConstraint = event.validityPeriodConstraint
+		return EvidenceTypeEntity(
+			id = event.id,
+			identifier = event.identifier,
+			name = event.name,
+			description = event.description,
+			validityPeriodConstraint = event.validityPeriodConstraint,
 			status = event.status
-		}
+		)
 	}
 }

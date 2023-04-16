@@ -28,15 +28,15 @@ class InformationConceptEvolver(
 			dataUnitRepository.findById(hasUnit).awaitSingle()
 		}
 
-		return InformationConceptEntity().apply {
-			id = event.id
-			identifier = event.identifier
-			name = event.name
-			hasUnit = unit
-			description = event.description
-			expressionOfExpectedValue = event.expressionOfExpectedValue
-			dependsOn = concepts
+		return InformationConceptEntity(
+			id = event.id,
+			identifier = event.identifier,
+			name = event.name,
+			hasUnit = unit,
+			description = event.description,
+			expressionOfExpectedValue = event.expressionOfExpectedValue,
+			dependsOn = concepts,
 			status = event.status
-		}
+		)
 	}
 }

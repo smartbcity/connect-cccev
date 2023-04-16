@@ -2,6 +2,7 @@ package cccev.projection.api
 
 import cccev.projection.api.entity.requirement.RequirementEntity
 import cccev.projection.api.entity.requirement.RequirementRepository
+import cccev.s2.requirement.domain.RequirementState
 import cccev.s2.requirement.domain.model.RequirementKind
 import java.util.UUID
 import kotlinx.coroutines.reactor.awaitSingle
@@ -23,39 +24,46 @@ class Neo4jTest {
 
     @Test
     fun test() = runTest {
-        val requirementPoP = RequirementEntity().apply {
-            kind = RequirementKind.INFORMATION
-            identifier = "PoP"
-            name = "Protocol"
-        }
-        val requirementPoP2 = RequirementEntity().apply {
-            kind = RequirementKind.INFORMATION
-            identifier = "PoP2"
-            name = "Protocol"
-        }
-        val requirement = RequirementEntity().apply {
-            kind = RequirementKind.INFORMATION
-            identifier = "P"
-            id = UUID.randomUUID().toString()
-            name = "Protocol"
+        val requirementPoP = RequirementEntity(
+            id = UUID.randomUUID().toString(),
+            identifier = "PoP",
+            name = "Protocol",
+            kind = RequirementKind.INFORMATION,
+            status = RequirementState.CREATED,
+        )
+        val requirementPoP2 = RequirementEntity(
+            kind = RequirementKind.INFORMATION,
+            identifier = "PoP2",
+            name = "Protocol",
+            id = UUID.randomUUID().toString(),
+            status = RequirementState.CREATED,
+        )
+        val requirement = RequirementEntity(
+            kind = RequirementKind.INFORMATION,
+            identifier = "P",
+            id = UUID.randomUUID().toString(),
+            name = "Protocol",
+            status = RequirementState.CREATED,
 //            hasRequirement = listOf("PoP", "PoP2")
             hasRequirement = mutableListOf(
-                RequirementEntity().apply {
-                    kind = RequirementKind.INFORMATION
-                    identifier = "PoP"
-                    id = UUID.randomUUID().toString()
-                    name = "ProtocolOfProtocol"
+                RequirementEntity(
+                    kind = RequirementKind.INFORMATION,
+                    identifier = "PoP",
+                    id = UUID.randomUUID().toString(),
+                    name = "ProtocolOfProtocol",
+                    status = RequirementState.CREATED,
                     hasRequirement = mutableListOf(
-                        RequirementEntity().apply {
-                            kind = RequirementKind.INFORMATION
-                            identifier = "PoPinP"
-                            id = UUID.randomUUID().toString()
-                            name = "ProtocolOfProtocolInProtocol"
-                        }
+                        RequirementEntity(
+                            kind = RequirementKind.INFORMATION,
+                            identifier = "PoPinP",
+                            id = UUID.randomUUID().toString(),
+                            name = "ProtocolOfProtocolInProtocol",
+                            status = RequirementState.CREATED,
+                        )
                     )
-                }
+                )
             )
-        }
+        )
         requirementRepository.save(requirement).awaitSingle()
     }
 }

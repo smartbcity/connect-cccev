@@ -15,11 +15,11 @@ class FrameworkEvolver: View<FrameworkEvent, FrameworkEntity> {
 	}
 
 	private suspend fun create(event: FrameworkCreatedEvent): FrameworkEntity {
-		return FrameworkEntity().apply {
-			id = event.id
-			identifier = event.identifier
-			name = event.name
+		return FrameworkEntity(
+			id = event.id,
+			identifier = event.identifier,
+			name = event.name,
 			status = FrameworkState.CREATED
-		}
+		)
 	}
 }

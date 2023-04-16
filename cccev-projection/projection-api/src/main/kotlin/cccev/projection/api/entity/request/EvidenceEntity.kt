@@ -12,25 +12,18 @@ import org.springframework.data.neo4j.core.schema.Node
 import org.springframework.data.neo4j.core.schema.Relationship
 
 @Node(NodeLabel.EVIDENCE)
-class EvidenceEntity {
+data class EvidenceEntity(
     @Id
-    lateinit var id: EvidenceId
-
-    lateinit var name: String
-
-    var file: FilePath? = null
-
-    var url: String? = null
-
+    val id: EvidenceId,
+    val name: String,
+    val file: FilePath? = null,
+    val url: String? = null,
     @Relationship
-    var isConformantTo: MutableList<EvidenceTypeEntity> = mutableListOf()
-
+    val isConformantTo: MutableList<EvidenceTypeEntity> = mutableListOf(),
     @Version
-    var version: Long = 0
-
+    val version: Long = 0,
     @CreatedDate
-    var creationDate: Long = 0
-
+    val creationDate: Long = 0,
     @LastModifiedDate
-    var lastModificationDate: Long = 0
-}
+    val lastModificationDate: Long = 0
+)

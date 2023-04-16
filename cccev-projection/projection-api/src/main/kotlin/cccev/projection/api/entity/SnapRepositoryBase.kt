@@ -13,7 +13,7 @@ abstract class SnapRepositoryBase<ENTITY, ID>: SnapRepository<ENTITY, ID> {
     }
 
     override suspend fun remove(id: ID): Boolean {
-        repository.deleteById(id)
+        repository.deleteById(id).awaitSingle()
         return true
     }
 
