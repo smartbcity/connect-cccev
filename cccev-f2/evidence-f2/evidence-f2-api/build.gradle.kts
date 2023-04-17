@@ -6,6 +6,6 @@ plugins {
 
 dependencies {
     api(project(":cccev-f2:evidence-f2:evidence-f2-domain"))
-    implementation(project(":cccev-s2:request:request-api"))
+    implementation(project(":cccev-s2:certification:certification-api"))
     implementation(project(":cccev-s2:requirement:requirement-api"))
 }

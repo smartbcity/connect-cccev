@@ -7,16 +7,16 @@ import cccev.f2.unit.api.service.DataUnitF2FinderService
 import cccev.s2.concept.api.InformationConceptFinderService
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.concept.domain.model.InformationConcept
-import cccev.s2.request.api.RequestAggregateService
-import cccev.s2.request.api.RequestFinderService
+import cccev.s2.certification.api.CertificationAggregateService
+import cccev.s2.certification.api.CertificationFinderService
 import org.springframework.stereotype.Service
 
 @Service
 class InformationConceptF2FinderService(
     private val dataUnitF2FinderService: DataUnitF2FinderService,
     private val informationConceptFinderService: InformationConceptFinderService,
-    private val requestAggregateService: RequestAggregateService,
-    private val requestFinderService: RequestFinderService,
+    private val certificationAggregateService: CertificationAggregateService,
+    private val certificationFinderService: CertificationFinderService,
 ) {
     suspend fun getOrNull(id: InformationConceptId): InformationConceptDTOBase? {
         return informationConceptFinderService.getOrNull(id)?.toDTO()

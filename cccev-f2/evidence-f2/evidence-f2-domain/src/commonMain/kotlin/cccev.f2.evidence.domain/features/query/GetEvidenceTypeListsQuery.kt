@@ -8,7 +8,7 @@ import cccev.f2.evidence.domain.model.EvidenceTypeListChoicesDTO
 import cccev.f2.evidence.domain.model.EvidenceTypeListChoicesDTOBase
 import cccev.f2.evidence.domain.model.EvidenceTypeListDTO
 import cccev.f2.evidence.domain.model.EvidenceTypeListDTOBase
-import cccev.s2.request.domain.model.RequestId
+import cccev.s2.certification.domain.model.CertificationId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -30,7 +30,7 @@ typealias GetEvidenceTypeListsQueryFunction = F2Function<GetEvidenceTypeListsQue
 @JsExport
 @JsName("GetEvidenceTypeListsQueryDTO")
 interface GetEvidenceTypeListsQueryDTO {
-    val id: RequestId
+    val id: CertificationId
     val requirement: RequirementId
     val concept: InformationConceptId?
     val evidenceType: EvidenceTypeId?
@@ -52,7 +52,7 @@ interface GetEvidenceTypeListsQueryResultDTO {
  * @d2 inherit
  */
 class GetEvidenceTypeListsQuery(
-    override val id: RequestId,
+    override val id: CertificationId,
     override val requirement: RequirementId,
     override val concept: InformationConceptId?,
     override val evidenceType: EvidenceTypeId?

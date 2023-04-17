@@ -3,7 +3,7 @@ package cccev.f2.concept.domain.query
 import cccev.dsl.model.EvidenceTypeId
 import cccev.dsl.model.RequirementId
 import cccev.f2.concept.domain.model.RequestInformationConceptDTO
-import cccev.s2.request.domain.model.RequestId
+import cccev.s2.certification.domain.model.CertificationId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -25,7 +25,7 @@ typealias GetInformationConceptsQueryFunction = F2Function<GetInformationConcept
 @JsExport
 @JsName("GetInformationConceptsQueryDTO")
 interface GetInformationConceptsQueryDTO {
-    val id: RequestId
+    val id: CertificationId
     val requirement: RequirementId
     val evidenceType: EvidenceTypeId?
 }
@@ -44,7 +44,7 @@ interface GetInformationConceptsQueryResultDTO {
  * @d2 inherit
  */
 class GetInformationConceptsQuery(
-    override val id: RequestId,
+    override val id: CertificationId,
     override val requirement: RequirementId,
     override val evidenceType: EvidenceTypeId? = null
 ): GetInformationConceptsQueryDTO

@@ -4,9 +4,9 @@ import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.evidence.domain.EvidenceTypeListId
 import cccev.s2.framework.domain.FrameworkId
-import cccev.s2.request.domain.model.EvidenceId
-import cccev.s2.request.domain.model.Request
-import cccev.s2.request.domain.model.RequestId
+import cccev.s2.certification.domain.model.EvidenceId
+import cccev.s2.certification.domain.model.Certification
+import cccev.s2.certification.domain.model.CertificationId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.unit.domain.DataUnitId
 import org.springframework.stereotype.Component
@@ -21,7 +21,7 @@ class CccevTestContext: TestContext() {
     val evidenceIds = testEntities<TestContextKey, EvidenceId>("Evidence")
     val evidenceTypeIds = testEntities<TestContextKey, EvidenceTypeId>("EvidenceType")
     val evidenceTypeListIds = testEntities<TestContextKey, EvidenceTypeListId>("EvidenceTypeList")
-    val requestIds = testEntities<TestContextKey, RequestId>("Request")
+    val certificationIds = testEntities<TestContextKey, CertificationId>("Request")
     val requirementIds = testEntities<TestContextKey, RequirementId>("Requirement")
     val unitIds = testEntities<TestContextKey, DataUnitId>("DataUnit")
 
@@ -33,6 +33,6 @@ class CccevTestContext: TestContext() {
     }
 
     class FetchContext {
-        lateinit var request: Request
+        lateinit var certification: Certification
     }
 }

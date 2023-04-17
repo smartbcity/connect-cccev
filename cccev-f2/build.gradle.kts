@@ -5,8 +5,8 @@ plugins {
 
 dependencies {
     implementation(project(":api-commons"))
-    api(project(":cccev-f2:request-f2:request-f2-api"))
-    api(project(":cccev-s2:request:request-api"))
+    api(project(":cccev-f2:certification-f2:certification-f2-api"))
+    api(project(":cccev-s2:certification:certification-api"))
 
     api("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
 
