@@ -15,8 +15,8 @@ object Versions {
 	val s2 = PluginVersions.fixers
 	val f2 = PluginVersions.fixers
 	val i2 = PluginVersions.fixers
-	val fs = PluginVersions.fixers
-	val im = PluginVersions.fixers
+	val fs = "experimental-SNAPSHOT"
+	val im = "experimental-SNAPSHOT"
 	val springBoot = PluginVersions.springBoot
 
 	const val cucumber = FixersVersions.Test.cucumber
