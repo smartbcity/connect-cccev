@@ -1,12 +1,12 @@
 package cccev.s2.certification.api.entity
 
+import cccev.projection.api.entity.certification.CertificationEntity
+import cccev.projection.api.entity.certification.EvidenceEntity
 import cccev.projection.api.entity.concept.InformationConceptEntity
 import cccev.projection.api.entity.evidencetype.EvidenceTypeEntity
-import cccev.projection.api.entity.certification.EvidenceEntity
-import cccev.projection.api.entity.certification.CertificationEntity
 import cccev.projection.api.entity.requirement.RequirementEntity
-import cccev.s2.certification.domain.model.Evidence
 import cccev.s2.certification.domain.model.Certification
+import cccev.s2.certification.domain.model.Evidence
 import cccev.s2.certification.domain.model.RequirementStats
 import cccev.s2.requirement.domain.RequirementId
 
@@ -44,7 +44,7 @@ fun CertificationEntity.computeRequirementStats(): Map<RequirementId, Requiremen
     val values = supportedValues.associate { it.providesValueFor.id to it.value }
 
     fun RequirementEntity.completion(): Double {
-        val childrenCompletions = hasRequirement.map { stats[it.id]!!.completion }
+        val childrenCompletions = hasRequirement().map { stats[it.id]!!.completion }
 
         val concepts = hasConcept.ifEmpty { null }
             ?.flatMap {
@@ -68,7 +68,7 @@ fun CertificationEntity.computeRequirementStats(): Map<RequirementId, Requiremen
     fun RequirementEntity.computeStats() {
         if (stats[id] != null) return
 
-        hasRequirement.forEach(RequirementEntity::computeStats)
+        hasRequirement().forEach(RequirementEntity::computeStats)
 
         stats[id] = RequirementStats(
             id = id,

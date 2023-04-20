@@ -12,7 +12,7 @@ import s2.dsl.automate.model.WithS2Id
 import s2.dsl.automate.model.WithS2State
 
 @Node(NodeLabel.EVIDENCE_TYPE)
-class EvidenceTypeEntity(
+data class EvidenceTypeEntity(
     @Id
     var id: EvidenceTypeId,
     var status: EvidenceTypeState,

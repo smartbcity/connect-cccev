@@ -11,5 +11,5 @@ Feature: RequirementRemoveRequirements
       | r1           |
     Then The requirement should not contain the sub-requirements
     And The requirement should contain the sub-requirements:
-      | requirements |
-      | r2           |
+      | identifier | requirements |
+      | r3         | r2           |

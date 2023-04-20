@@ -51,7 +51,7 @@ class RequirementFinderService(
         evidenceType: EvidenceTypeId?
     ): Flow<Requirement> {
         val requirements = isRequirementOf?.let {
-            requirementRepository.findByIdentifier(isRequirementOf).awaitSingle().hasRequirement.asFlow()
+            requirementRepository.findByIdentifier(isRequirementOf).awaitSingle().hasRequirement().asFlow()
 //            requirementRepository.findAllByIsRequirementOf(isRequirementOf).asFlow()
         } ?: requirementRepository.findAll().asFlow()
 

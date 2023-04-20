@@ -7,16 +7,16 @@ import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.concept.domain.InformationConceptIdentifier
 import cccev.s2.concept.domain.InformationConceptState
 import org.springframework.data.annotation.CreatedDate
-import org.springframework.data.neo4j.core.schema.Id
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.annotation.Version
+import org.springframework.data.neo4j.core.schema.Id
 import org.springframework.data.neo4j.core.schema.Node
 import org.springframework.data.neo4j.core.schema.Relationship
 import s2.dsl.automate.model.WithS2Id
 import s2.dsl.automate.model.WithS2State
 
 @Node(NodeLabel.INFORMATION_CONCEPT)
-class InformationConceptEntity(
+data class InformationConceptEntity(
     @Id
     var id: InformationConceptId,
     var status: InformationConceptState,

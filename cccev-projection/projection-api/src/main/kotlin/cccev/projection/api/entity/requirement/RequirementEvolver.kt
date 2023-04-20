@@ -1,5 +1,6 @@
 package cccev.projection.api.entity.requirement
 
+import cccev.projection.api.entity.Relation
 import cccev.projection.api.entity.concept.InformationConceptRepository
 import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListRepository
 import cccev.projection.api.entity.framework.FrameworkRepository
@@ -37,10 +38,12 @@ class RequirementEvolver(
 	}
 
 	private suspend fun create(event: RequirementCreatedEvent): RequirementEntity {
-		val subRequirements = requirementRepository.findAllById(event.hasRequirement).collectList().awaitSingle()
-		val relatedRequirements = event.hasQualifiedRelation.mapValues { (_, requirementIds) ->
-			requirementRepository.findAllById(requirementIds).collectList().awaitSingle()
-		}
+		val hasQualifiedRelation = event.hasQualifiedRelation
+			.plus(Relation.HAS_REQUIREMENT to event.hasRequirement)
+			.mapValues { (_, requirementIds) ->
+				requirementRepository.findAllById(requirementIds).collectList().awaitSingle()
+			}
+
 		val concepts = informationConceptRepository.findAllById(event.hasConcept).collectList().awaitSingle()
 		val evidenceTypeLists = evidenceTypeListRepository.findAllById(event.hasEvidenceTypeList).collectList().awaitSingle()
 		val frameworks = frameworkRepository.findAllById(event.isDerivedFrom ?: emptyList()).collectList().awaitSingle()
@@ -53,8 +56,7 @@ class RequirementEvolver(
 				description = event.description,
 				type = event.type,
 				isDerivedFrom = frameworks,
-				hasRequirement = subRequirements,
-				hasQualifiedRelation = relatedRequirements.toMutableMap(),
+				hasQualifiedRelation = hasQualifiedRelation.toMutableMap(),
 				hasConcept = concepts,
 				hasEvidenceTypeList = evidenceTypeLists,
 				status = event.status
@@ -67,11 +69,14 @@ class RequirementEvolver(
 	)
 
 	private suspend fun RequirementEntity.addRequirements(event: RequirementAddedRequirementsEvent) = apply {
-		hasRequirement += requirementRepository.findAllById(event.requirementIds).collectList().awaitSingle()
+		val newRequirements = requirementRepository.findAllById(event.requirementIds).collectList().awaitSingle()
+		hasQualifiedRelation.getOrPut(Relation.HAS_REQUIREMENT, ::mutableListOf) += newRequirements
 	}
 
 	private suspend fun RequirementEntity.removeRequirements(event: RequirementRemovedRequirementsEvent) = apply {
-		hasRequirement.removeIf { it.id in event.requirementIds }
+		hasQualifiedRelation[Relation.HAS_REQUIREMENT]?.let { hasRequirement ->
+			hasRequirement.removeIf { it.id in event.requirementIds }
+		}
 	}
 
 	private suspend fun RequirementEntity.addConcepts(event: RequirementAddedConceptsEvent) = apply {

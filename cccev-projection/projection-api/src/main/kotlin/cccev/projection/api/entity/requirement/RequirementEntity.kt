@@ -35,8 +35,6 @@ data class RequirementEntity(
     val type: String? = null,
     @Relationship(type = Relation.IS_DERIVED_FROM)
     val isDerivedFrom: MutableList<FrameworkEntity> = mutableListOf(),
-    @Relationship(type = Relation.HAS_REQUIREMENT)
-    val hasRequirement: MutableList<RequirementEntity> = mutableListOf(),
     @Relationship
     val hasQualifiedRelation: MutableMap<String, MutableList<RequirementEntity>> = mutableMapOf(),
     @Relationship(type = Relation.HAS_CONCEPT)
@@ -46,4 +44,6 @@ data class RequirementEntity(
 ): WithS2Id<RequirementId>, WithS2State<RequirementState> {
     override fun s2Id() = id
     override fun s2State() = status
+
+    fun hasRequirement() = hasQualifiedRelation[Relation.HAS_REQUIREMENT].orEmpty()
 }

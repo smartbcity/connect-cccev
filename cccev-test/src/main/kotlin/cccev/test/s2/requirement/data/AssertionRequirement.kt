@@ -31,7 +31,7 @@ class AssertionRequirement(
             description: String? = requirement.description,
             type: String? = requirement.type,
             isDerivedFrom: List<FrameworkId> = requirement.isDerivedFrom.map { it.id },
-            hasRequirement: List<RequirementId> = requirement.hasRequirement.map { it.id },
+            hasRequirement: List<RequirementId> = requirement.hasRequirement().map { it.id },
             hasConcept: List<InformationConceptId> = requirement.hasConcept.map { it.id },
             hasEvidenceTypeList: List<EvidenceTypeListId> = requirement.hasEvidenceTypeList.map { it.id },
         ) = also {
@@ -42,17 +42,17 @@ class AssertionRequirement(
             Assertions.assertThat(requirement.description).isEqualTo(description)
             Assertions.assertThat(requirement.type).isEqualTo(type)
             Assertions.assertThat(requirement.isDerivedFrom.map { it.id }).containsExactlyInAnyOrderElementsOf(isDerivedFrom)
-            Assertions.assertThat(requirement.hasRequirement.map { it.id }).containsExactlyInAnyOrderElementsOf(hasRequirement)
+            Assertions.assertThat(requirement.hasRequirement().map { it.id }).containsExactlyInAnyOrderElementsOf(hasRequirement)
             Assertions.assertThat(requirement.hasConcept.map { it.id }).containsExactlyInAnyOrderElementsOf(hasConcept)
             Assertions.assertThat(requirement.hasEvidenceTypeList.map { it.id }).containsExactlyInAnyOrderElementsOf(hasEvidenceTypeList)
         }
 
         fun hasRequirements(ids: Collection<RequirementId>) {
-            Assertions.assertThat(requirement.hasRequirement.map { it.id }).containsAll(ids)
+            Assertions.assertThat(requirement.hasRequirement().map { it.id }).containsAll(ids)
         }
 
         fun doesNotHaveRequirements(ids: Collection<RequirementId>) {
-            Assertions.assertThat(requirement.hasRequirement.map { it.id }).doesNotContainAnyElementsOf(ids)
+            Assertions.assertThat(requirement.hasRequirement().map { it.id }).doesNotContainAnyElementsOf(ids)
         }
 
         fun hasConcepts(ids: Collection<InformationConceptId>) {
