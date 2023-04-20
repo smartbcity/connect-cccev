@@ -69,8 +69,13 @@ class RequirementEvolver(
 	)
 
 	private suspend fun RequirementEntity.addRequirements(event: RequirementAddedRequirementsEvent) = apply {
-		val newRequirements = requirementRepository.findAllById(event.requirementIds).collectList().awaitSingle()
-		hasQualifiedRelation.getOrPut(Relation.HAS_REQUIREMENT, ::mutableListOf) += newRequirements
+		val children = hasQualifiedRelation.getOrPut(Relation.HAS_REQUIREMENT, ::mutableListOf)
+		val currentChildrenIds = children.map { it.id }.toSet()
+
+		val newRequirements = event.requirementIds.filter { it !in currentChildrenIds }
+			.let { requirementRepository.findAllById(it).collectList().awaitSingle() }
+
+		children += newRequirements
 	}
 
 	private suspend fun RequirementEntity.removeRequirements(event: RequirementRemovedRequirementsEvent) = apply {
@@ -80,7 +85,9 @@ class RequirementEvolver(
 	}
 
 	private suspend fun RequirementEntity.addConcepts(event: RequirementAddedConceptsEvent) = apply {
-		hasConcept += informationConceptRepository.findAllById(event.conceptIds).collectList().awaitSingle()
+		val currentConceptIds = hasConcept.map { it.id }.toSet()
+		hasConcept += event.conceptIds.filter { it !in currentConceptIds }
+			.let { informationConceptRepository.findAllById(it).collectList().awaitSingle() }
 	}
 
 	private suspend fun RequirementEntity.removeConcepts(event: RequirementRemovedConceptsEvent) = apply {
@@ -88,7 +95,9 @@ class RequirementEvolver(
 	}
 
 	private suspend fun RequirementEntity.addEvidenceTypeLists(event: RequirementAddedEvidenceTypeListsEvent) = apply {
-		hasEvidenceTypeList += evidenceTypeListRepository.findAllById(event.evidenceTypeListIds).collectList().awaitSingle()
+		val currentETLIds = hasEvidenceTypeList.map { it.id }.toSet()
+		hasEvidenceTypeList += event.evidenceTypeListIds.filter { it !in currentETLIds }
+			.let { evidenceTypeListRepository.findAllById(it).collectList().awaitSingle() }
 	}
 
 	private suspend fun RequirementEntity.removeEvidenceTypeLists(event: RequirementRemovedEvidenceTypeListsEvent) = apply {
