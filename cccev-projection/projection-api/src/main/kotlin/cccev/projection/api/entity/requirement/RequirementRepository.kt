@@ -17,16 +17,18 @@ interface RequirementRepository: ReactiveNeo4jRepository<RequirementEntity, Requ
 
     fun findByIdentifier(identifier: RequirementIdentifier): Mono<RequirementEntity>
 
-    // TODO also fetch other relations (info concepts, evidence type lists, ...) or it won't be filled in the entity
+    // TODO also fetch other relations (info concepts, evidence type lists, ...) or it won't be filled in the entities
     @Query("" +
             "MATCH (root:${NodeLabel.REQUIREMENT}) WHERE root.identifier IN \$ids\n" +
             "OPTIONAL MATCH (root)-[hr:${Relation.HAS_REQUIREMENT}*1..]->(child:${NodeLabel.REQUIREMENT} {type: \$type})" +
-            "RETURN root, collect(hr), collect(child)"
+            "OPTIONAL MATCH (root)-[r]->(other)" +
+            "RETURN root, collect(hr), collect(child), collect(r), collect(other)"
     )
     fun findByIdentifierWithChildrenOfType(ids: Collection<RequirementIdentifier>, type: String): Flux<RequirementEntity>
     @Query("" +
             "MATCH (root:${NodeLabel.REQUIREMENT}) WHERE root.id IN \$ids\n" +
             "OPTIONAL MATCH (root)-[hr:${Relation.HAS_REQUIREMENT}*1..]->(child:${NodeLabel.REQUIREMENT} {type: \$type})" +
+            "OPTIONAL MATCH (root)-[r]->(other)" +
             "RETURN root, collect(hr), collect(child)"
     )
     fun findByIdWithChildrenOfType(ids: Collection<RequirementIdentifier>, type: String): Flux<RequirementEntity>

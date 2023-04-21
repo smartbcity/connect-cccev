@@ -18,6 +18,7 @@ suspend fun Requirement.toDTO(
     type = type,
     name = name,
     hasRequirement = hasRequirement.map { it.toDTO(getConcept, getEvidenceTypeList) },
+    hasQualifiedRelation = hasQualifiedRelation.orEmpty(),
     hasConcept = hasConcept.map { getConcept(it) },
     hasEvidenceTypeList = hasEvidenceTypeList.map { getEvidenceTypeList(it) },
 )
