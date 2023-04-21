@@ -10,3 +10,13 @@ Feature: RequirementAddRequirements
       | requirements |
       | r1, r2       |
     Then The requirement should contain the sub-requirements
+
+  Scenario: I don't want to get an OptimisticLockException when adding two times the same sub-requirement to a requirement
+    Given Some requirements are created:
+      | identifier | hasRequirement |
+      | r1         |                |
+      | r2         | r1             |
+    When I add sub-requirements to the requirement:
+      | identifier | requirements |
+      | r2         | r1           |
+    Then The requirement should contain the sub-requirements
