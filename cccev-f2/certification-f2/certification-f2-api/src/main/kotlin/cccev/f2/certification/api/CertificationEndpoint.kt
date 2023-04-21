@@ -11,6 +11,8 @@ import cccev.f2.certification.domain.command.CertificationCreateFunction
 import cccev.f2.certification.domain.command.CertificationRemoveEvidenceFunction
 import cccev.f2.certification.domain.command.CertificationRemoveRequirementsFunction
 import cccev.f2.certification.domain.query.CertificationDownloadEvidenceQueryDTOBase
+import cccev.f2.certification.domain.query.CertificationGetByIdentifierFunction
+import cccev.f2.certification.domain.query.CertificationGetByIdentifierResultDTOBase
 import cccev.f2.certification.domain.query.CertificationGetFunction
 import cccev.f2.certification.domain.query.CertificationGetResultDTOBase
 import cccev.s2.certification.domain.command.CertificationAddedEvidenceEvent
@@ -48,7 +50,13 @@ class CertificationEndpoint(
         certificationF2FinderService.getOrNull(query.id).let(::CertificationGetResultDTOBase)
     }
 
-    /** Download an evidence of a request */
+    @Bean
+    override fun certificationGetByIdentifier(): CertificationGetByIdentifierFunction = f2Function { query ->
+        logger.info("certificationGetByIdentifier: $query")
+        certificationF2FinderService.getOrNullByIdentifier(query.identifier).let(::CertificationGetByIdentifierResultDTOBase)
+    }
+
+    /** Download an evidence of a certification */
     @PostMapping("/certificationDownloadEvidence")
     suspend fun certificationDownloadEvidence(
         @RequestBody query: CertificationDownloadEvidenceQueryDTOBase,

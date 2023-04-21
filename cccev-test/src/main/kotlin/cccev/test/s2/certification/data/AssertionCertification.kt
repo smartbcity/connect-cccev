@@ -1,13 +1,14 @@
 package cccev.test.s2.certification.data
 
-import cccev.projection.api.entity.certification.EvidenceEntity
 import cccev.projection.api.entity.certification.CertificationEntity
 import cccev.projection.api.entity.certification.CertificationRepository
+import cccev.projection.api.entity.certification.EvidenceEntity
+import cccev.s2.certification.domain.CertificationState
+import cccev.s2.certification.domain.model.CertificationId
+import cccev.s2.certification.domain.model.CertificationIdentifier
+import cccev.s2.certification.domain.model.EvidenceId
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.evidence.domain.EvidenceTypeId
-import cccev.s2.certification.domain.CertificationState
-import cccev.s2.certification.domain.model.EvidenceId
-import cccev.s2.certification.domain.model.CertificationId
 import cccev.s2.requirement.domain.RequirementId
 import city.smartb.fs.s2.file.domain.model.FilePath
 import org.assertj.core.api.Assertions
@@ -27,6 +28,7 @@ class AssertionCertification(
     ) {
         fun hasFields(
             id: CertificationId = entity.id,
+            identifier: CertificationIdentifier = entity.identifier,
             status: CertificationState = entity.status,
             name: String? = entity.name,
             description: String? = entity.description,
@@ -46,6 +48,7 @@ class AssertionCertification(
             supportedValues: Map<InformationConceptId, String?> = entity.supportedValues.associate { it.providesValueFor.id to it.value }
         ) = also {
             Assertions.assertThat(entity.id).isEqualTo(id)
+            Assertions.assertThat(entity.identifier).isEqualTo(identifier)
             Assertions.assertThat(entity.status).isEqualTo(status)
             Assertions.assertThat(entity.name).isEqualTo(name)
             Assertions.assertThat(entity.description).isEqualTo(description)

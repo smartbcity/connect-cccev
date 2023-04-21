@@ -4,6 +4,7 @@ import cccev.f2.concept.api.service.InformationConceptF2FinderService
 import cccev.s2.certification.api.CertificationFinderService
 import cccev.s2.certification.domain.model.Certification
 import cccev.s2.certification.domain.model.CertificationId
+import cccev.s2.certification.domain.model.CertificationIdentifier
 import org.springframework.stereotype.Service
 
 @Service
@@ -18,6 +19,14 @@ class CertificationF2FinderService(
 
     suspend fun get(id: CertificationId): Certification {
         return certificationFinderService.get(id)
+    }
+
+    suspend fun getOrNullByIdentifier(identifier: CertificationIdentifier): Certification? {
+        return certificationFinderService.getOrNullByIdentifier(identifier)
+    }
+
+    suspend fun getByIdentifier(identifier: CertificationIdentifier): Certification {
+        return certificationFinderService.getByIdentifier(identifier)
     }
 
 //    object Score {

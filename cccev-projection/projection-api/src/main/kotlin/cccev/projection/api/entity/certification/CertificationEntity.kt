@@ -5,6 +5,7 @@ import cccev.projection.api.entity.Relation
 import cccev.projection.api.entity.requirement.RequirementEntity
 import cccev.s2.certification.domain.CertificationState
 import cccev.s2.certification.domain.model.CertificationId
+import cccev.s2.certification.domain.model.CertificationIdentifier
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
@@ -25,6 +26,7 @@ data class CertificationEntity(
     val creationDate: Long = 0,
     @LastModifiedDate
     val lastModificationDate: Long = 0,
+    val identifier: CertificationIdentifier = id,
     val name: String,
     val description: String? = null,
     val startDate: Long? = null,

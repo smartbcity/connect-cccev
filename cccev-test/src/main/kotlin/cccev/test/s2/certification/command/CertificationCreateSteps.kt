@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import s2.bdd.assertion.AssertionBdd
 import s2.bdd.data.TestContextKey
 import s2.bdd.data.parser.extractList
+import java.util.UUID
 
 class CertificationCreateSteps: En, CccevCucumberStepsDefinition() {
 
@@ -64,6 +65,7 @@ class CertificationCreateSteps: En, CccevCucumberStepsDefinition() {
             step {
                 val certificationId = context.certificationIds.lastUsed
                 AssertionBdd.certification(certificationRepository).assertThatId(certificationId).hasFields(
+                    identifier = command.identifier,
                     status = CertificationState.CREATED,
                     name = command.name,
                     description = command.description,
@@ -90,6 +92,7 @@ class CertificationCreateSteps: En, CccevCucumberStepsDefinition() {
 
     private suspend fun createCertification(params: CertificationCreateParams) = context.certificationIds.register(params.identifier) {
         command = CertificationCreateCommand(
+            identifier = "${params.identifier}_${UUID.randomUUID()}",
             name = params.name,
             description = params.description,
             requirements = params.requirements.map(context.requirementIds::safeGet),

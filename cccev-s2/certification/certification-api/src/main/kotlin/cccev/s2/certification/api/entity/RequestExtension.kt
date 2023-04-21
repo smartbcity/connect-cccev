@@ -12,6 +12,7 @@ import cccev.s2.requirement.domain.RequirementId
 
 fun CertificationEntity.toCertification() = Certification(
     id = id,
+    identifier = identifier,
     name = name,
     description = description,
     startDate = startDate,

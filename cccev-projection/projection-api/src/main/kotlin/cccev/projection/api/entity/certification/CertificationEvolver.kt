@@ -11,10 +11,10 @@ import cccev.s2.certification.domain.command.CertificationAddedValuesEvent
 import cccev.s2.certification.domain.command.CertificationCreatedEvent
 import cccev.s2.certification.domain.command.CertificationRemovedEvidenceEvent
 import cccev.s2.certification.domain.command.CertificationRemovedRequirementsEvent
-import java.util.UUID
 import kotlinx.coroutines.reactor.awaitSingle
 import org.springframework.stereotype.Service
 import s2.sourcing.dsl.view.View
+import java.util.UUID
 
 @Service
 class CertificationEvolver(
@@ -36,6 +36,7 @@ class CertificationEvolver(
 
 	private suspend fun create(event: CertificationCreatedEvent) = CertificationEntity(
 		id = event.id,
+		identifier = event.identifier,
 		status = CertificationState.CREATED,
 		name = event.name,
 		description = event.description,

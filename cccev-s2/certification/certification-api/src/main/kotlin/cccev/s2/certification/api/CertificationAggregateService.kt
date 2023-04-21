@@ -14,8 +14,8 @@ import cccev.s2.certification.domain.command.CertificationRemoveEvidenceCommand
 import cccev.s2.certification.domain.command.CertificationRemoveRequirementsCommand
 import cccev.s2.certification.domain.command.CertificationRemovedEvidenceEvent
 import cccev.s2.certification.domain.command.CertificationRemovedRequirementsEvent
-import java.util.UUID
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class CertificationAggregateService(
@@ -25,6 +25,7 @@ class CertificationAggregateService(
 	override suspend fun create(command: CertificationCreateCommand) = automate.init(command) {
 		CertificationCreatedEvent(
 			id = UUID.randomUUID().toString(),
+			identifier = command.identifier,
 			name = command.name,
 			description = command.description,
 			requirements = command.requirements,

@@ -13,6 +13,12 @@ import kotlin.js.JsName
 typealias CertificationId = String
 
 /**
+ * @visual json "C3P0"
+ * @d2 hidden
+ */
+typealias CertificationIdentifier = String
+
+/**
  * @d2 model
  * @parent [cccev.s2.certification.domain.D2CertificationPage]
  * @order 10
@@ -24,6 +30,11 @@ interface CertificationDTO {
      * Unique identifier of the request.
      */
     val id: CertificationId
+
+    /**
+     * Custom identifier of the request.
+     */
+    val identifier: CertificationIdentifier
 
     /**
      * Name of the request.
@@ -130,6 +141,7 @@ interface CertificationDTO {
 @Serializable
 data class Certification(
     override val id: CertificationId,
+    override val identifier: CertificationIdentifier,
     override val name: String,
     override val description: String?,
     override val startDate: Long?,

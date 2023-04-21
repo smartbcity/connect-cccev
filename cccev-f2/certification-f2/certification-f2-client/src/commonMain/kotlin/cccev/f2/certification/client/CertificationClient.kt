@@ -6,6 +6,7 @@ import cccev.f2.certification.domain.command.CertificationAddValuesFunction
 import cccev.f2.certification.domain.command.CertificationCreateFunction
 import cccev.f2.certification.domain.command.CertificationRemoveEvidenceFunction
 import cccev.f2.certification.domain.command.CertificationRemoveRequirementsFunction
+import cccev.f2.certification.domain.query.CertificationGetByIdentifierFunction
 import cccev.f2.certification.domain.query.CertificationGetFunction
 import f2.client.F2Client
 import f2.client.function
@@ -21,6 +22,8 @@ expect fun certificationClient(urlBase: String): F2SupplierSingle<CertificationC
 open class CertificationClient constructor(val client: F2Client) : CertificationApi {
     override fun certificationGet(): CertificationGetFunction
         = client.function(this::certificationGet.name)
+    override fun certificationGetByIdentifier(): CertificationGetByIdentifierFunction
+        = client.function(this::certificationGetByIdentifier.name)
     override fun certificationCreate(): CertificationCreateFunction
         = client.function(this::certificationCreate.name)
     override fun certificationAddRequirements(): CertificationAddRequirementsFunction
