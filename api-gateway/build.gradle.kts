@@ -6,11 +6,8 @@ plugins {
 }
 
 dependencies {
-    api("city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}")
-    api("city.smartb.f2:f2-spring-boot-openapi:${Versions.f2}")
-    api("city.smartb.i2:i2-spring-boot-starter-auth-keycloak:${Versions.i2}")
+    Dependencies.Jvm.f2Http(::api)
 
-//    implementation(project(":cccev-api"))
     implementation(project(":cccev-f2"))
     implementation(project(":cccev-f2:concept-f2:concept-f2-api"))
     implementation(project(":cccev-f2:evidence-f2:evidence-f2-api"))

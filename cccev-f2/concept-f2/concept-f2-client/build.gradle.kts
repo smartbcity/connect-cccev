@@ -6,5 +6,5 @@ plugins {
 
 dependencies {
 	commonMainApi(project(":cccev-f2:concept-f2:concept-f2-domain"))
-	commonMainApi("city.smartb.f2:f2-client-ktor:${Versions.f2}")
+	Dependencies.Mpp.f2CLient(::commonMainApi)
 }

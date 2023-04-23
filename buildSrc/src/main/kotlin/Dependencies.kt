@@ -4,18 +4,19 @@ import city.smartb.gradle.dependencies.FixersVersions
 import city.smartb.gradle.dependencies.Scope
 import city.smartb.gradle.dependencies.add
 
+object Framework {
+	val fixers = FixersPluginVersions.fixers
+	val connect =  "experimental-SNAPSHOT"
+}
 object PluginVersions {
 	const val kotlin = FixersPluginVersions.kotlin
 	const val springBoot = FixersPluginVersions.springBoot
-	val fixers = FixersPluginVersions.fixers
-	val d2 = PluginVersions.fixers
+	val fixers = Framework.fixers
+	val d2 = Framework.fixers
 }
 
 object Versions {
-	val s2 = PluginVersions.fixers
-	val f2 = PluginVersions.fixers
-	val i2 = PluginVersions.fixers
-	val fs = "experimental-SNAPSHOT"
+	val fs = Framework.connect
 	val springBoot = PluginVersions.springBoot
 
 	const val cucumber = FixersVersions.Test.cucumber
@@ -34,13 +35,17 @@ object Dependencies {
 	object Jvm {
 
 		fun s2Bdd(scope: Scope) = scope.add(
-			"city.smartb.s2:s2-test-bdd:${Versions.s2}",
+			"city.smartb.s2:s2-test-bdd:${Framework.fixers}",
 			"org.springframework.boot:spring-boot-starter-test:${PluginVersions.springBoot}"
 		).also(::cucumber)
 			.also(::junit)
 
 		fun f2(scope: Scope) = scope.add(
-			"city.smartb.f2:f2-spring-boot-starter-function-http:${Versions.f2}"
+			"city.smartb.f2:f2-spring-boot-starter-function:${Framework.fixers}"
+		)
+		fun f2Http(scope: Scope) = scope.add(
+			"city.smartb.f2:f2-spring-boot-starter-function-http:${Framework.fixers}",
+			"city.smartb.f2:f2-spring-boot-openapi:${Framework.fixers}"
 		)
 
 		fun fs(scope: Scope) = scope.add(
@@ -48,8 +53,8 @@ object Dependencies {
 		)
 
 		fun s2EventSouringBc(scope: Scope) = scope.add(
-			"city.smartb.s2:s2-spring-boot-starter-sourcing-ssm:${Versions.s2}",
-			"city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}"
+			"city.smartb.s2:s2-spring-boot-starter-sourcing-ssm:${Framework.fixers}",
+			"city.smartb.s2:s2-spring-boot-starter-utils-logger:${Framework.fixers}"
 		)
 		fun jackson(scope: Scope) = FixersDependencies.Jvm.Json.jackson(scope)
 		fun coroutines(scope: Scope) = FixersDependencies.Jvm.Kotlin.coroutines(scope)
@@ -76,8 +81,12 @@ object Dependencies {
 	}
 	object Mpp {
 		fun f2(scope: Scope) = scope.add(
-			"city.smartb.f2:f2-dsl-cqrs:${Versions.f2}",
-			"city.smartb.f2:f2-dsl-function:${Versions.f2}"
+			"city.smartb.f2:f2-dsl-cqrs:${Framework.fixers}",
+			"city.smartb.f2:f2-dsl-function:${Framework.fixers}"
+		)
+
+		fun f2CLient(scope: Scope) = scope.add(
+			"city.smartb.f2:f2-client-ktor:${Framework.fixers}",
 		)
 
 		fun fs(scope: Scope) = scope.add(
@@ -85,8 +94,8 @@ object Dependencies {
 		)
 
 		fun s2(scope: Scope) = scope.add(
-			"city.smartb.s2:s2-automate-core:${Versions.s2}",
-			"city.smartb.s2:s2-automate-dsl:${Versions.s2}"
+			"city.smartb.s2:s2-automate-core:${Framework.fixers}",
+			"city.smartb.s2:s2-automate-dsl:${Framework.fixers}"
 		)
 	}
 }
