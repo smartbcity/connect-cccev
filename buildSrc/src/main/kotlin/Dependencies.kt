@@ -16,7 +16,6 @@ object Versions {
 	val f2 = PluginVersions.fixers
 	val i2 = PluginVersions.fixers
 	val fs = "experimental-SNAPSHOT"
-	val im = "experimental-SNAPSHOT"
 	val springBoot = PluginVersions.springBoot
 
 	const val cucumber = FixersVersions.Test.cucumber
@@ -28,8 +27,6 @@ object Repo {
 	val snapshot: List<String> = listOf(
 		// For fixers
 		"https://oss.sonatype.org/content/repositories/snapshots",
-		//For pdfbox
-		"https://jitpack.io"
 	)
 }
 
@@ -54,11 +51,6 @@ object Dependencies {
 			"city.smartb.s2:s2-spring-boot-starter-sourcing-ssm:${Versions.s2}",
 			"city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}"
 		)
-
-		fun s2Logger(scope: Scope) = scope.add(
-			"city.smartb.s2:s2-spring-boot-starter-utils-logger:${Versions.s2}"
-		)
-
 		fun jackson(scope: Scope) = FixersDependencies.Jvm.Json.jackson(scope)
 		fun coroutines(scope: Scope) = FixersDependencies.Jvm.Kotlin.coroutines(scope)
 		fun cucumber(scope: Scope) = FixersDependencies.Jvm.Test.cucumber(scope).also {
@@ -90,10 +82,6 @@ object Dependencies {
 
 		fun fs(scope: Scope) = scope.add(
 			"city.smartb.fs:file-domain:${Versions.fs}"
-		)
-
-		fun im(scope: Scope) = scope.add(
-			"city.smartb.im:im-commons-domain:${Versions.im}"
 		)
 
 		fun s2(scope: Scope) = scope.add(
