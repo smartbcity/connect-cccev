@@ -1,5 +1,6 @@
 package cccev.projection.api
 
+import cccev.projection.api.entity.Relation
 import cccev.projection.api.entity.requirement.RequirementEntity
 import cccev.projection.api.entity.requirement.RequirementRepository
 import cccev.s2.requirement.domain.RequirementState
@@ -45,25 +46,28 @@ class Neo4jTest {
             name = "Protocol",
             status = RequirementState.CREATED,
 //            hasRequirement = listOf("PoP", "PoP2")
-            hasRequirement = mutableListOf(
+            hasQualifiedRelation = mutableMapOf(
+                Relation.HAS_REQUIREMENT to mutableListOf(
                 RequirementEntity(
                     kind = RequirementKind.INFORMATION,
                     identifier = "PoP",
                     id = UUID.randomUUID().toString(),
                     name = "ProtocolOfProtocol",
                     status = RequirementState.CREATED,
-                    hasRequirement = mutableListOf(
-                        RequirementEntity(
-                            kind = RequirementKind.INFORMATION,
-                            identifier = "PoPinP",
-                            id = UUID.randomUUID().toString(),
-                            name = "ProtocolOfProtocolInProtocol",
-                            status = RequirementState.CREATED,
+                    hasQualifiedRelation = mutableMapOf(
+                        Relation.HAS_REQUIREMENT to  mutableListOf(
+                            RequirementEntity(
+                                kind = RequirementKind.INFORMATION,
+                                identifier = "PoPinP",
+                                id = UUID.randomUUID().toString(),
+                                name = "ProtocolOfProtocolInProtocol",
+                                status = RequirementState.CREATED,
+                            )
                         )
                     )
                 )
             )
-        )
+        ))
         requirementRepository.save(requirement).awaitSingle()
     }
 }
