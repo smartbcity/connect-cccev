@@ -29,16 +29,16 @@ actual fun certificationClient(
     )
 }
 
-fun CertificationClient.requestAddEvidence(): CertificationAddEvidenceFunction = F2Function { msgs ->
+fun CertificationClient.certificationAddEvidence(): CertificationAddEvidenceFunction = F2Function { msgs ->
     msgs.map { (cmd, file) ->
-    val httpF2Client = (client as HttpF2Client)
-    httpF2Client.httpClient.submitFormWithBinaryData(
-        url = "${httpF2Client.urlBase}/requestAddEvidence",
-        formData = FormDataBodyBuilder().apply {
-            param("command", cmd)
-            file("file", file, cmd.name)
-        }.toFormData()
-    ).body()
+        val httpF2Client = (client as HttpF2Client)
+        httpF2Client.httpClient.submitFormWithBinaryData(
+            url = "${httpF2Client.urlBase}/certificationAddEvidence",
+            formData = FormDataBodyBuilder().apply {
+                param("command", cmd)
+                file("file", file, cmd.name)
+            }.toFormData()
+        ).body()
     }
 }
 

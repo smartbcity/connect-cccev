@@ -96,7 +96,7 @@ class CertificationEndpoint(
 
     /** Add an evidence to a certification */
     @PostMapping("/certificationAddEvidence")
-    suspend fun requestAddEvidence(
+    suspend fun certificationAddEvidence(
         @RequestPart("command") command: CertificationAddEvidenceCommandDTOBase,
         @RequestPart("file", required = false) file: FilePart?,
     ): CertificationAddedEvidenceEvent {
