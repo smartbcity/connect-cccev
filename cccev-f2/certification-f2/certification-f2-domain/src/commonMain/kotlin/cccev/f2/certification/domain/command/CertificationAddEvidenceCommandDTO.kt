@@ -52,7 +52,7 @@ data class CertificationAddEvidenceCommandDTOBase(
     override val id: CertificationId,
     override val name: String,
     override val url: String?,
-    override val isConformantTo: List<EvidenceTypeId>
+    override val isConformantTo: List<EvidenceTypeId> = emptyList()
 ): CertificationAddEvidenceCommandDTO
 
 @JsExport

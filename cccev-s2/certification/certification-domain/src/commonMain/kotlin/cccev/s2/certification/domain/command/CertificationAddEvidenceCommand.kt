@@ -53,7 +53,7 @@ interface CertificationAddedEvidenceEventDTO: CertificationEvent {
     /**
      * @ref [cccev.s2.certification.domain.model.EvidenceDTO.isConformantTo]
      */
-    val isConformantTo: List<EvidenceTypeId>
+    val isConformantTo: List<EvidenceTypeId>?
 }
 
 /**
@@ -64,7 +64,7 @@ data class CertificationAddedEvidenceEvent(
     override val id: CertificationId,
     override val evidenceId: EvidenceId,
     override val name: String,
-    override val file: FilePath?,
-    override val url: String?,
-    override val isConformantTo: List<EvidenceTypeId>
+    override val file: FilePath? = null,
+    override val url: String? = null,
+    override val isConformantTo: List<EvidenceTypeId>? = emptyList()
 ): CertificationAddedEvidenceEventDTO

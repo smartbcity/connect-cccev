@@ -36,7 +36,6 @@ import s2.spring.utils.logger.Logger
  */
 @RestController
 @RequestMapping
-@Configuration
 class CertificationEndpoint(
     private val fileClient: FileClient,
     private val certificationF2AggregateService: CertificationF2AggregateService,

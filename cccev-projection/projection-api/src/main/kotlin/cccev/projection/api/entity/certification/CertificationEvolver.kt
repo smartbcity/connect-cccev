@@ -61,9 +61,8 @@ class CertificationEvolver(
 	}
 
 	private suspend fun CertificationEntity.addEvidence(event: CertificationAddedEvidenceEvent) = apply {
-		val evidenceTypes = evidenceTypeRepository.findAllById(event.isConformantTo)
+		val evidenceTypes = evidenceTypeRepository.findAllById(event.isConformantTo ?: emptyList())
 			.collectList().awaitSingle()
-
 		evidences.add(EvidenceEntity(
 			id = event.evidenceId,
 			name = event.name,
