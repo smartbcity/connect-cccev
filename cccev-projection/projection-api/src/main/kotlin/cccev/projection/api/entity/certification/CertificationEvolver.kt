@@ -20,7 +20,6 @@ import java.util.UUID
 class CertificationEvolver(
 	private val evidenceTypeRepository: EvidenceTypeRepository,
 	private val informationConceptRepository: InformationConceptRepository,
-	private val certificationRepository: CertificationRepository,
 	private val requirementRepository: RequirementRepository,
 ): View<CertificationEvent, CertificationEntity> {
 

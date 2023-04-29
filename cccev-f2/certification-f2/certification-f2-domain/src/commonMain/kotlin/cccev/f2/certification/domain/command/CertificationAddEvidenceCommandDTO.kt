@@ -51,7 +51,7 @@ interface CertificationAddEvidenceCommandDTO {
 data class CertificationAddEvidenceCommandDTOBase(
     override val id: CertificationId,
     override val name: String,
-    override val url: String?,
+    override val url: String? = null,
     override val isConformantTo: List<EvidenceTypeId> = emptyList()
 ): CertificationAddEvidenceCommandDTO
 
