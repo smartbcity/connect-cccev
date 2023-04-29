@@ -47,6 +47,7 @@ import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.serialization.json.Json
 
 class CCCEVClient(
     val evidenceTypeClient: EvidenceTypeClient,
@@ -57,8 +58,12 @@ class CCCEVClient(
     val frameworkClient: FrameworkClient
 ) {
     companion object {
-        suspend operator fun invoke(url: String, config: f2.client.ktor.http.F2ClientConfigLambda? = null): CCCEVClient {
-            val f2Client = F2ClientBuilder.get(url, config = config)
+        suspend operator fun invoke(
+            url: String,
+            json: Json? = null,
+            config: f2.client.ktor.http.F2ClientConfigLambda? = null
+        ): CCCEVClient {
+            val f2Client = F2ClientBuilder.get(url, json, config = config)
             return CCCEVClient(
                 f2Client.evidenceTypeClient().invoke(),
                 f2Client.informationConceptClient().invoke(),

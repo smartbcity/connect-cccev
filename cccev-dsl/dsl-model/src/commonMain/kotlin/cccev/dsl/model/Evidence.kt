@@ -65,7 +65,7 @@ interface EvidenceDTO {
 @Serializable
 open class Evidence(
     override val identifier: EvidenceId,
-    override val isConformantTo: List<EvidenceTypeId>,
+    override val isConformantTo: List<EvidenceTypeId> = emptyList(),
     override val supportsValue: List<SupportedValueId> = emptyList(),
     override val supportsConcept: List<InformationConceptId> = emptyList(),
     override val supportsRequirement: List<RequirementId> = emptyList(),
