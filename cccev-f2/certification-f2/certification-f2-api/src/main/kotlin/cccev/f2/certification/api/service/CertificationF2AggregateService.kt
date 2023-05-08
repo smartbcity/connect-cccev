@@ -46,7 +46,7 @@ class CertificationF2AggregateService(
     }
 
     suspend fun addEvidence(command: CertificationAddEvidenceCommandDTOBase, file: FilePart?): CertificationAddedEvidenceEvent {
-        val filePath = file?.upload(command.id, CertificationFsPath.DIR_EVIDENCE)?.path
+        val filePath = file?.upload(command.id, CertificationFsPath.DIR_EVIDENCE, command.metadata)?.path
         return CertificationAddEvidenceCommand(
             id = command.id,
             name = command.name,
@@ -60,13 +60,17 @@ class CertificationF2AggregateService(
         return certificationAggregateService.removeEvidence(command)
     }
 
-    private suspend fun FilePart.upload(certificationId: CertificationId, directory: String): FileUploadedEvent {
+    private suspend fun FilePart.upload(
+        certificationId: CertificationId,
+        directory: String,
+        metadata: Map<String, String>?
+    ): FileUploadedEvent {
         val path = FilePath(
             objectType = CertificationFsPath.OBJECT_TYPE,
             objectId = certificationId,
             directory = directory,
-            name = filename()
+            name = filename(),
         )
-        return fileClient.fileUpload(path.toUploadCommand(), contentByteArray())
+        return fileClient.fileUpload(path.toUploadCommand(metadata ?: emptyMap()), contentByteArray())
     }
 }

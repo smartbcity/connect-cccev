@@ -14,9 +14,9 @@ suspend fun FilePart.contentByteArray(): ByteArray {
     }
 }
 
-fun FilePath.toUploadCommand() = FileUploadCommand(
+fun FilePath.toUploadCommand(metadata: Map<String, String>) = FileUploadCommand(
     path = this,
-    metadata = mapOf(
+    metadata = metadata + mapOf(
         "uploadedAt" to System.currentTimeMillis().toString()
     )
 )

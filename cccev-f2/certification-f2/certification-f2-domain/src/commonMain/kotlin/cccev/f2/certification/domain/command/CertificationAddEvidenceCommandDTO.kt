@@ -43,6 +43,11 @@ interface CertificationAddEvidenceCommandDTO {
      * @ref [cccev.s2.certification.domain.model.EvidenceDTO.isConformantTo]
      */
     val isConformantTo: List<EvidenceTypeId>
+
+    /**
+     * Metadata of the evidence's file.
+     */
+    val metadata: Map<String, String>?
 }
 
 /**
@@ -52,7 +57,8 @@ data class CertificationAddEvidenceCommandDTOBase(
     override val id: CertificationId,
     override val name: String,
     override val url: String? = null,
-    override val isConformantTo: List<EvidenceTypeId> = emptyList()
+    override val isConformantTo: List<EvidenceTypeId> = emptyList(),
+    override val metadata: Map<String, String>?
 ): CertificationAddEvidenceCommandDTO
 
 @JsExport
