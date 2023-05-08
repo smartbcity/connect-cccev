@@ -8,6 +8,7 @@ object Framework {
 	val fixers = FixersPluginVersions.fixers
 	val connect =  "experimental-SNAPSHOT"
 }
+
 object PluginVersions {
 	const val kotlin = FixersPluginVersions.kotlin
 	const val springBoot = FixersPluginVersions.springBoot
