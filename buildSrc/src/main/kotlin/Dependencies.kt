@@ -6,7 +6,7 @@ import city.smartb.gradle.dependencies.add
 
 object Framework {
 	val fixers = FixersPluginVersions.fixers
-	val connect =  "experimental-SNAPSHOT"
+	val connect = "experimental-SNAPSHOT"
 }
 
 object PluginVersions {
