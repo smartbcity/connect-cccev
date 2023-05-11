@@ -1,22 +1,24 @@
 package cccev.s2.certification.domain.command
 
-import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.certification.domain.CertificationCommand
 import cccev.s2.certification.domain.CertificationEvent
-import cccev.s2.certification.domain.model.EvidenceId
 import cccev.s2.certification.domain.model.CertificationId
+import cccev.s2.certification.domain.model.EvidenceId
+import cccev.s2.concept.domain.InformationConceptId
+import cccev.s2.evidence.domain.EvidenceTypeId
 import city.smartb.fs.s2.file.domain.model.FilePath
 import city.smartb.fs.s2.file.domain.model.FilePathDTO
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
-import kotlinx.serialization.Serializable
 
 data class CertificationAddEvidenceCommand(
     override val id: CertificationId,
     val name: String,
     val file: FilePath?,
     val url: String?,
-    val isConformantTo: List<EvidenceTypeId>
+    val isConformantTo: List<EvidenceTypeId>,
+    val supportsConcept: List<InformationConceptId>
 ): CertificationCommand
 
 /**
@@ -53,7 +55,12 @@ interface CertificationAddedEvidenceEventDTO: CertificationEvent {
     /**
      * @ref [cccev.s2.certification.domain.model.EvidenceDTO.isConformantTo]
      */
-    val isConformantTo: List<EvidenceTypeId>?
+    val isConformantTo: List<EvidenceTypeId>
+
+    /**
+     * @ref [cccev.s2.certification.domain.model.EvidenceDTO.supportsConcept]
+     */
+    val supportsConcept: List<InformationConceptId>
 }
 
 /**
@@ -64,7 +71,8 @@ data class CertificationAddedEvidenceEvent(
     override val id: CertificationId,
     override val evidenceId: EvidenceId,
     override val name: String,
-    override val file: FilePath? = null,
-    override val url: String? = null,
-    override val isConformantTo: List<EvidenceTypeId>? = emptyList()
+    override val file: FilePath?,
+    override val url: String?,
+    override val isConformantTo: List<EvidenceTypeId>,
+    override val supportsConcept: List<InformationConceptId>
 ): CertificationAddedEvidenceEventDTO

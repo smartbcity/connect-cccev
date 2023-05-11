@@ -118,12 +118,12 @@ interface CertificationDTO {
     val requirements: List<RequirementId>
 
     /**
-     * List of all the evidences provided for this request.
+     * List of all the evidences provided for this request, mapped by InformationConcept.
      */
-    val evidences: List<EvidenceDTO>
+    val evidences: Map<InformationConceptId, List<EvidenceDTO>>
 
     /**
-     * List of data provided for this request.
+     * List of data provided for this request, mapped by InformationConcept.
      * @example { "59950d76-c39e-4566-834e-fe14356622c9": "a very peculiar thing" }
      */
     val supportedValues: Map<InformationConceptId, String?>
@@ -156,7 +156,7 @@ data class Certification(
     override val verifier: String?,
     override val verificationDate: Long?,
     override val requirements: List<RequirementId>,
-    override val evidences: List<Evidence>,
+    override val evidences: Map<InformationConceptId, List<Evidence>>,
     override val supportedValues: Map<InformationConceptId, String?>,
     override val requirementStats: Map<RequirementId, RequirementStats>,
 ): CertificationDTO

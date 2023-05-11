@@ -52,7 +52,8 @@ class CertificationF2AggregateService(
             name = command.name,
             file = filePath,
             url = command.url,
-            isConformantTo = command.isConformantTo
+            isConformantTo = command.isConformantTo,
+            supportsConcept = command.supportsConcept,
         ).let { certificationAggregateService.addEvidence(it) }
     }
 

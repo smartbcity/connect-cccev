@@ -27,7 +27,9 @@ fun CertificationEntity.toCertification() = Certification(
     verifier = verifier,
     verificationDate = verificationDate,
     requirements = requirements.map(RequirementEntity::id),
-    evidences = evidences.map(EvidenceEntity::toEvidence),
+    evidences = evidences.map(EvidenceEntity::toEvidence)
+        .flatMap { evidence -> evidence.supportsConcept.map { it to evidence } }
+        .groupBy({ it.first }, { it.second }),
     supportedValues = supportedValues.associate { it.providesValueFor.id to it.value },
     requirementStats = computeRequirementStats()
 )
@@ -38,6 +40,7 @@ fun EvidenceEntity.toEvidence() = Evidence(
     file = file,
     url = url,
     isConformantTo = isConformantTo.map(EvidenceTypeEntity::id),
+    supportsConcept = supportsConcept.map(InformationConceptEntity::id)
 )
 
 fun CertificationEntity.computeRequirementStats(): Map<RequirementId, RequirementStats> {

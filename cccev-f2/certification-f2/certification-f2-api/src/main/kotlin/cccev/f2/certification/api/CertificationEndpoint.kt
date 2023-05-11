@@ -20,7 +20,6 @@ import city.smartb.fs.s2.file.client.FileClient
 import f2.dsl.fnc.f2Function
 import f2.spring.exception.NotFoundException
 import org.springframework.context.annotation.Bean
-import org.springframework.context.annotation.Configuration
 import org.springframework.http.codec.multipart.FilePart
 import org.springframework.http.server.reactive.ServerHttpResponse
 import org.springframework.web.bind.annotation.PostMapping
@@ -63,7 +62,7 @@ class CertificationEndpoint(
     ) = response.serveFile(fileClient) {
         logger.info("certificationDownloadEvidence: $query")
         val certification = certificationF2FinderService.get(query.id)
-        val evidence = certification.evidences.firstOrNull { it.id == query.evidenceId }
+        val evidence = certification.evidences.values.flatten().firstOrNull { it.id == query.evidenceId }
             ?: throw NotFoundException("Evidence", query.evidenceId)
 
         evidence.file

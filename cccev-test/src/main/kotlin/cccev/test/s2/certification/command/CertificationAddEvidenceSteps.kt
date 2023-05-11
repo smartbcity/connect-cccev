@@ -94,6 +94,7 @@ class CertificationAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
             file = null,
             url = null,
             isConformantTo = params.isConformantTo.map(context.evidenceTypeIds::safeGet),
+            supportsConcept = params.supportsConcept.map(context.conceptIds::safeGet),
         )
         certificationAggregateService.addEvidence(command).evidenceId
     }
@@ -102,7 +103,8 @@ class CertificationAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         identifier = entry?.get("identifier") ?: context.certificationIds.lastUsedKey,
         evidence = entry?.get("evidence").orRandom(),
         name = entry?.get("name").orRandom(),
-        isConformantTo = entry?.extractList("isConformantTo").orEmpty()
+        isConformantTo = entry?.extractList("isConformantTo").orEmpty(),
+        supportsConcept = entry?.extractList("supportsConcept").orEmpty()
     )
 
     private data class CertificationAddEvidenceParams(
@@ -110,6 +112,7 @@ class CertificationAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         val evidence: TestContextKey,
         val name: String,
         val isConformantTo: List<TestContextKey>,
+        val supportsConcept: List<TestContextKey>
     )
 
     private suspend fun assertCertification(params: CertificationAssertParams) {
@@ -125,7 +128,8 @@ class CertificationAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         val evidence = certification.evidences.first { it.id == evidenceId }
         certificationAsserter.assertThatEvidence(evidenceId).hasFields(
             name = params.name ?: evidence.name,
-            isConformantTo = params.isConformantTo?.map(context.evidenceTypeIds::safeGet) ?: evidence.isConformantTo.map { it.id }
+            isConformantTo = params.isConformantTo?.map(context.evidenceTypeIds::safeGet) ?: evidence.isConformantTo.map { it.id },
+            supportsConcept = params.supportsConcept?.map(context.conceptIds::safeGet) ?: evidence.supportsConcept.map { it.id }
         )
     }
 
@@ -133,7 +137,8 @@ class CertificationAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         identifier = entry["identifier"] ?: context.certificationIds.lastUsedKey,
         evidence = entry["evidence"] ?: context.evidenceIds.lastUsedKey,
         name = entry["name"],
-        isConformantTo = entry.extractList("isConformantTo")
+        isConformantTo = entry.extractList("isConformantTo"),
+        supportsConcept = entry.extractList("supportsConcept")
     )
 
     private data class CertificationAssertParams(
@@ -141,5 +146,6 @@ class CertificationAddEvidenceSteps: En, CccevCucumberStepsDefinition() {
         val evidence: TestContextKey,
         val name: String?,
         val isConformantTo: List<TestContextKey>?,
+        val supportsConcept: List<TestContextKey>?,
     )
 }

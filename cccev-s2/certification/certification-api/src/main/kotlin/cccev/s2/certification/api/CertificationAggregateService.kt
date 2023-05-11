@@ -47,6 +47,7 @@ class CertificationAggregateService(
 			file = command.file,
 			url = command.url,
 			isConformantTo = command.isConformantTo,
+			supportsConcept = command.supportsConcept,
 		)
 	}
 

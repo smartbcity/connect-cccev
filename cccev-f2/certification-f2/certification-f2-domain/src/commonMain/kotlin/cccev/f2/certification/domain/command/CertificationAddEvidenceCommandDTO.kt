@@ -1,8 +1,9 @@
 package cccev.f2.certification.domain.command
 
-import cccev.s2.evidence.domain.EvidenceTypeId
 import cccev.s2.certification.domain.command.CertificationAddedEvidenceEvent
 import cccev.s2.certification.domain.model.CertificationId
+import cccev.s2.concept.domain.InformationConceptId
+import cccev.s2.evidence.domain.EvidenceTypeId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -45,6 +46,11 @@ interface CertificationAddEvidenceCommandDTO {
     val isConformantTo: List<EvidenceTypeId>
 
     /**
+     * @ref [cccev.s2.certification.domain.model.EvidenceDTO.supportsConcept]
+     */
+    val supportsConcept: List<InformationConceptId>
+
+    /**
      * Metadata of the evidence's file.
      */
     val metadata: Map<String, String>?
@@ -56,8 +62,9 @@ interface CertificationAddEvidenceCommandDTO {
 data class CertificationAddEvidenceCommandDTOBase(
     override val id: CertificationId,
     override val name: String,
-    override val url: String? = null,
-    override val isConformantTo: List<EvidenceTypeId> = emptyList(),
+    override val url: String?,
+    override val isConformantTo: List<EvidenceTypeId>,
+    override val supportsConcept: List<InformationConceptId>,
     override val metadata: Map<String, String>?
 ): CertificationAddEvidenceCommandDTO
 

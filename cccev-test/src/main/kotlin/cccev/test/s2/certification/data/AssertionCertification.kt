@@ -108,13 +108,15 @@ class AssertionCertification(
             name: String = evidence.name,
             file: FilePath? = evidence.file,
             url: String? = evidence.url,
-            isConformantTo: List<EvidenceTypeId> = evidence.isConformantTo.map { it.id }
+            isConformantTo: List<EvidenceTypeId> = evidence.isConformantTo.map { it.id },
+            supportsConcept: List<InformationConceptId> = evidence.supportsConcept.map { it.id }
         ) {
             Assertions.assertThat(evidence.id).isEqualTo(id)
             Assertions.assertThat(evidence.name).isEqualTo(name)
             Assertions.assertThat(evidence.file).isEqualTo(file)
             Assertions.assertThat(evidence.url).isEqualTo(url)
             Assertions.assertThat(evidence.isConformantTo.map { it.id }).containsExactlyInAnyOrderElementsOf(isConformantTo)
+            Assertions.assertThat(evidence.supportsConcept.map { it.id }).containsExactlyInAnyOrderElementsOf(supportsConcept)
         }
     }
 }

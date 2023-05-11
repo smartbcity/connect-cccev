@@ -2,6 +2,8 @@ package cccev.projection.api.entity.certification
 
 import cccev.dsl.model.EvidenceId
 import cccev.projection.api.entity.NodeLabel
+import cccev.projection.api.entity.Relation
+import cccev.projection.api.entity.concept.InformationConceptEntity
 import cccev.projection.api.entity.evidencetype.EvidenceTypeEntity
 import city.smartb.fs.s2.file.domain.model.FilePath
 import org.springframework.data.annotation.CreatedDate
@@ -20,6 +22,8 @@ data class EvidenceEntity(
     val url: String? = null,
     @Relationship
     val isConformantTo: MutableList<EvidenceTypeEntity> = mutableListOf(),
+    @Relationship(Relation.SUPPORTS_CONCEPT)
+    val supportsConcept: MutableList<InformationConceptEntity> = mutableListOf(),
     @Version
     val version: Long = 0,
     @CreatedDate
