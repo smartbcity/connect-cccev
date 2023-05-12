@@ -43,8 +43,8 @@ interface CertificationCreateCommandDTO: CertificationInitCommand {
 data class CertificationCreateCommand(
     override val identifier: CertificationIdentifier,
     override val name: String,
-    override val description: String?,
-    override val requirements: List<RequirementId>
+    override val description: String? = null,
+    override val requirements: List<RequirementId> = emptyList()
 ): CertificationCreateCommandDTO
 
 /**
@@ -87,6 +87,6 @@ data class CertificationCreatedEvent(
     override val id: CertificationId,
     override val identifier: CertificationIdentifier,
     override val name: String,
-    override val description: String?,
-    override val requirements: List<RequirementId>
+    override val description: String? = null,
+    override val requirements: List<RequirementId> = emptyList()
 ): CertificationCreatedEventDTO

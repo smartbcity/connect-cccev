@@ -34,7 +34,7 @@ interface CertificationAddValuesCommandDTO: CertificationCommand {
 @Serializable
 data class CertificationAddValuesCommand(
     override val id: CertificationId,
-    override val values: Map<InformationConceptId, String?>
+    override val values: Map<InformationConceptId, String?> = emptyMap()
 ): CertificationAddValuesCommandDTO
 
 /**
@@ -60,5 +60,5 @@ interface CertificationAddedValuesEventDTO: CertificationEvent {
 @Serializable
 data class CertificationAddedValuesEvent(
     override val id: CertificationId,
-    override val values: Map<InformationConceptId, String?>
+    override val values: Map<InformationConceptId, String?> = emptyMap()
 ): CertificationAddedValuesEventDTO

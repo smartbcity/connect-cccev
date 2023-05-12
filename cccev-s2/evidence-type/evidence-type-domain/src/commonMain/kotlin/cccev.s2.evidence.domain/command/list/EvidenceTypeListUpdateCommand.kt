@@ -53,7 +53,7 @@ data class EvidenceTypeListUpdateCommand(
     override val id: EvidenceTypeListId,
     override val name: String,
     override val description: String,
-    override val specifiesEvidenceType: List<EvidenceTypeId>
+    override val specifiesEvidenceType: List<EvidenceTypeId> = emptyList()
 ): EvidenceTypeListUpdateCommandDTO
 
 @JsExport

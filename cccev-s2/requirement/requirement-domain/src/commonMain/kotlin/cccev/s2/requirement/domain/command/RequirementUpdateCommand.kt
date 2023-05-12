@@ -66,8 +66,8 @@ interface RequirementUpdateCommandDTO: RequirementCommand {
 @Serializable
 data class RequirementUpdateCommand(
     override val id: RequirementId,
-    override val name: String?,
-    override val description: String?,
+    override val name: String? = null,
+    override val description: String? = null,
 //    override val hasRequirement: List<RequirementId>,
 //    override val hasConcept: List<InformationConceptId>,
 //    override val hasEvidenceTypeList: List<EvidenceTypeListId>
@@ -91,8 +91,8 @@ interface RequirementUpdatedEventDTO: RequirementEvent {
 @Serializable
 data class RequirementUpdatedEvent(
     override val id: RequirementId,
-    override val name: String?,
-    override val description: String?,
+    override val name: String? = null,
+    override val description: String? = null,
 ): RequirementUpdatedEventDTO {
     override fun s2Id() = id
 }

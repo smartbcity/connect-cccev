@@ -16,7 +16,7 @@ interface FrameworkCreateCommandDTO: FrameworkInitCommand {
 
 @Serializable
 data class FrameworkCreateCommand(
-    override val identifier: String?,
+    override val identifier: String? = null,
     override val name: String
 ): FrameworkCreateCommandDTO
 
@@ -31,6 +31,6 @@ interface FrameworkCreatedEventDTO: FrameworkEvent {
 @Serializable
 data class FrameworkCreatedEvent(
     override val id: FrameworkId,
-    override val identifier: String?,
+    override val identifier: String? = null,
     override val name: String
 ): FrameworkCreatedEventDTO

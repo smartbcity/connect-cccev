@@ -40,5 +40,5 @@ data class EvidenceTypeListAddedEvidenceTypesEvent(
     override val id: EvidenceTypeListId,
 
     /** @ref [EvidenceTypeListAddEvidenceTypesCommand.evidenceTypeIds] */
-    val evidenceTypeIds: List<EvidenceTypeId>
+    val evidenceTypeIds: List<EvidenceTypeId> = emptyList()
 ): EvidenceTypeListEvent

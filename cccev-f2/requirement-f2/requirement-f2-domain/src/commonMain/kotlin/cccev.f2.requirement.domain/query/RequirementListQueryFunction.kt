@@ -7,6 +7,7 @@ import cccev.f2.requirement.domain.model.RequirementDTO
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Get a list of requirements.
@@ -42,10 +43,11 @@ interface RequirementListResultDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 class RequirementListQuery(
-    override val parentId: RequirementId?,
-    override val conceptId: InformationConceptId?,
-    override val evidenceTypeId: EvidenceTypeId?
+    override val parentId: RequirementId? = null,
+    override val conceptId: InformationConceptId? = null,
+    override val evidenceTypeId: EvidenceTypeId? = null
 ): RequirementListQueryDTO
 
 /**

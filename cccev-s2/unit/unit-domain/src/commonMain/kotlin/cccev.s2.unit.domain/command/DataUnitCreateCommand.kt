@@ -39,7 +39,7 @@ data class DataUnitCreateCommand(
      * The notation of the data unit.
      * @example [cccev.s2.unit.domain.model.DataUnit.notation]
      */
-    val notation: String?,
+    val notation: String? = null,
 
     /**
      * The type of data used for this data unit.
@@ -91,7 +91,7 @@ data class DataUnitCreatedEvent(
     override val id: DataUnitId,
     override val name: String,
     override val description: String,
-    override val notation: String?,
+    override val notation: String? = null,
     override val type: DataUnitType,
     override val status: DataUnitState
 ): DataUnitCreatedEventDTO {

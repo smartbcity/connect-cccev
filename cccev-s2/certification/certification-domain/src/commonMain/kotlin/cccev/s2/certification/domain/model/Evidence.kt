@@ -55,8 +55,8 @@ interface EvidenceDTO {
 data class Evidence(
     override val id: EvidenceId,
     override val name: String,
-    override val file: FilePath?,
-    override val url: String?,
-    override val isConformantTo: List<EvidenceTypeId>,
-    override val supportsConcept: List<InformationConceptId>
+    override val file: FilePath? = null,
+    override val url: String? = null,
+    override val isConformantTo: List<EvidenceTypeId> = emptyList(),
+    override val supportsConcept: List<InformationConceptId> = emptyList()
 ): EvidenceDTO

@@ -28,7 +28,7 @@ data class RequirementAddEvidenceTypeListsCommand(
     /**
      * Ids of the evidence type lists to add.
      */
-    val evidenceTypeListIds: List<EvidenceTypeListId>
+    val evidenceTypeListIds: List<EvidenceTypeListId> = emptyList()
 ): RequirementCommand
 
 /**
@@ -41,5 +41,5 @@ data class RequirementAddedEvidenceTypeListsEvent(
     override val id: RequirementId,
 
     /** @ref [RequirementAddEvidenceTypeListsCommand.evidenceTypeListIds] */
-    val evidenceTypeListIds: List<EvidenceTypeListId>
+    val evidenceTypeListIds: List<EvidenceTypeListId> = emptyList()
 ): RequirementEvent

@@ -66,10 +66,10 @@ interface InformationConceptDTO {
 @Serializable
 data class InformationConceptDTOBase(
     override val id: InformationConceptId,
-    override val identifier: InformationConceptIdentifier?,
+    override val identifier: InformationConceptIdentifier? = null,
     override val name: String,
-    override val unit: DataUnitDTOBase?,
-    override val description: String?,
-    override val expressionOfExpectedValue: String?,
-    override val dependsOn: List<InformationConceptId>?
+    override val unit: DataUnitDTOBase? = null,
+    override val description: String? = null,
+    override val expressionOfExpectedValue: String? = null,
+    override val dependsOn: List<InformationConceptId>? = emptyList(),
 ): InformationConceptDTO

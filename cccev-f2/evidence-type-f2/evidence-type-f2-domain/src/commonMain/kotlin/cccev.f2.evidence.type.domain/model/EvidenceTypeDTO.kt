@@ -46,5 +46,5 @@ data class EvidenceTypeDTOBase(
     override val id: EvidenceTypeId,
     override val name: String,
     override val description: String,
-    override val validityPeriodConstraint: Long?
+    override val validityPeriodConstraint: Long? = null
 ): EvidenceTypeDTO

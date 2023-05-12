@@ -19,15 +19,15 @@ interface CriterionCreateCommandDTO: RequirementCreateCommandDTO
 
 @Serializable
 data class CriterionCreateCommandDTOBase(
-    override val identifier: String?,
-    override val name: String?,
-    override val description: String?,
-    override val type: String?,
-    override val isDerivedFrom: List<FrameworkId>,
-    override val hasRequirement: List<RequirementId>,
-    override val hasConcept: List<InformationConceptId>,
-    override val hasEvidenceTypeList: List<EvidenceTypeListId>,
-    override var hasQualifiedRelation: Map<String, List<RequirementId>>,
+    override val identifier: String? = null,
+    override val name: String? = null,
+    override val description: String? = null,
+    override val type: String? = null,
+    override val isDerivedFrom: List<FrameworkId> = emptyList(),
+    override val hasRequirement: List<RequirementId> = emptyList(),
+    override val hasConcept: List<InformationConceptId> = emptyList(),
+    override val hasEvidenceTypeList: List<EvidenceTypeListId> = emptyList(),
+    override var hasQualifiedRelation: Map<String, List<RequirementId>> = emptyMap()
 ): CriterionCreateCommandDTO{
     override val kind: String = RequirementKind.CRITERION.name
 }

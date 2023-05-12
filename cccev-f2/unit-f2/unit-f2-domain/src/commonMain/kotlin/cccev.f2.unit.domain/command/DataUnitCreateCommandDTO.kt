@@ -54,7 +54,7 @@ interface DataUnitCreateCommandDTO {
 data class DataUnitCreateCommandDTOBase(
     override val name: String,
     override val description: String,
-    override val notation: String?,
+    override val notation: String? = null,
     override val type: String
 ): DataUnitCreateCommandDTO
 

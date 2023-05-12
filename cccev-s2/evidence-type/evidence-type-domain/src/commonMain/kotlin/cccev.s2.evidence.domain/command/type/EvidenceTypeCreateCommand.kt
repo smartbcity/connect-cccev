@@ -51,10 +51,10 @@ interface EvidenceTypeCreateCommandDTO: EvidenceTypeInitCommand {
  */
 @Serializable
 data class EvidenceTypeCreateCommand(
-    override val identifier: String?,
+    override val identifier: String? = null,
     override val name: String,
     override val description: String,
-    override val validityPeriodConstraint: Long?
+    override val validityPeriodConstraint: Long? = null
 ): EvidenceTypeCreateCommandDTO
 
 @JsExport
@@ -99,10 +99,10 @@ interface EvidenceTypeCreatedEventDTO: EvidenceTypeEvent {
 @Serializable
 data class EvidenceTypeCreatedEvent(
     override val id: EvidenceTypeId,
-    override val identifier: String?,
+    override val identifier: String? = null,
     override val name: String,
     override val description: String,
-    override val validityPeriodConstraint: Long?,
+    override val validityPeriodConstraint: Long? = null,
     override val status: EvidenceTypeState
 ): EvidenceTypeCreatedEventDTO {
     override fun s2Id() = id

@@ -28,7 +28,7 @@ data class RequirementRemoveEvidenceTypeListsCommand(
     /**
      * Ids of the evidence type lists to remove.
      */
-    val evidenceTypeListIds: List<EvidenceTypeListId>
+    val evidenceTypeListIds: List<EvidenceTypeListId> = emptyList()
 ): RequirementCommand
 
 /**
@@ -41,5 +41,5 @@ data class RequirementRemovedEvidenceTypeListsEvent(
     override val id: RequirementId,
 
     /** @ref [RequirementRemoveEvidenceTypeListsCommand.evidenceTypeListIds] */
-    val evidenceTypeListIds: List<EvidenceTypeListId>
+    val evidenceTypeListIds: List<EvidenceTypeListId> = emptyList()
 ): RequirementEvent

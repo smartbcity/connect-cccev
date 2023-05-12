@@ -30,5 +30,5 @@ interface CertificationGetByIdentifierResultDTO {
 
 @Serializable
 data class CertificationGetByIdentifierResultDTOBase(
-    override val item: Certification?
+    override val item: Certification? = null
 ): CertificationGetByIdentifierResultDTO

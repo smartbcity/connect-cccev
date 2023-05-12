@@ -35,7 +35,7 @@ open class EvidenceTypeListBase(
     override val description: String,
     override val identifier: EvidenceTypeListId,
     override val name: String,
-    override val specifiesEvidenceType: List<EvidenceTypeBase>
+    override val specifiesEvidenceType: List<EvidenceTypeBase> = emptyList()
 ): EvidenceTypeList
 
 @JsExport

@@ -32,7 +32,7 @@ data class RequirementCreateCommand(
      * A custom identifier for the requirement
      * @example [cccev.s2.requirement.domain.model.Requirement.identifier]
      */
-    val identifier: String?,
+    val identifier: String? = null,
 
     /**
      * Subtype used for the requirement.
@@ -44,7 +44,7 @@ data class RequirementCreateCommand(
      * Name of the requirement.
      * @example [cccev.s2.requirement.domain.model.Requirement.name]
      */
-    val name: String?,
+    val name: String? = null,
 
     /**
      * Description of the requirement. <br/>
@@ -53,23 +53,23 @@ data class RequirementCreateCommand(
      * The expression may contain known information concepts, identified by their id. They must be declared in the `hasConcept` field.
      * @example [cccev.s2.requirement.domain.model.Requirement.description]
      */
-    val description: String?,
+    val description: String? = null,
 
     /**
      * @ref [cccev.s2.requirement.domain.model.Requirement.type]
      */
-    val type: String?,
+    val type: String? = null,
 
     /**
      * @ref [cccev.s2.requirement.domain.model.Requirement.isDerivedFrom]
      */
-    val isDerivedFrom: List<FrameworkId>,
+    val isDerivedFrom: List<FrameworkId> = emptyList(),
 
     /**
      * Sub-requirements that must be fulfilled for the requirement to be validated.
      * @example [cccev.s2.requirement.domain.model.Requirement.hasRequirement]
      */
-    val hasRequirement: List<RequirementId>,
+    val hasRequirement: List<RequirementId> = emptyList(),
 
     /**
      * @ref [cccev.s2.requirement.domain.model.Requirement.hasQualifiedRelation]
@@ -80,14 +80,14 @@ data class RequirementCreateCommand(
      * Concepts used by the requirement
      * @example [cccev.s2.requirement.domain.model.Requirement.hasConcept]
      */
-    val hasConcept: List<InformationConceptId>,
+    val hasConcept: List<InformationConceptId> = emptyList(),
 
     /**
      * Evidences that must be provided for the requirement to be validated. <br/>
      * This list represents an OR-relation, i.e. only one of the specified evidence lists has to be fully provided.
      * @example [cccev.s2.requirement.domain.model.Requirement.hasEvidenceTypeList]
      */
-    val hasEvidenceTypeList: List<EvidenceTypeListId>
+    val hasEvidenceTypeList: List<EvidenceTypeListId> = emptyList()
 ): RequirementInitCommand
 
 @JsExport
@@ -162,15 +162,15 @@ interface RequirementCreatedEventDTO: RequirementEvent {
 @Serializable
 data class RequirementCreatedEvent(
     override val id: RequirementId,
-    override val identifier: RequirementIdentifier?,
+    override val identifier: RequirementIdentifier? = null,
     override val kind: RequirementKind,
-    override val name: String?,
-    override val description: String?,
-    override val type: String?,
+    override val name: String? = null,
+    override val description: String? = null,
+    override val type: String? = null,
     override val isDerivedFrom: List<FrameworkId>? = null,
-    override val hasRequirement: List<RequirementId>,
-    override val hasQualifiedRelation: Map<String, List<RequirementId>>,
-    override val hasConcept: List<InformationConceptId>,
-    override val hasEvidenceTypeList: List<EvidenceTypeListId>,
+    override val hasRequirement: List<RequirementId> = emptyList(),
+    override val hasQualifiedRelation: Map<String, List<RequirementId>> = emptyMap(),
+    override val hasConcept: List<InformationConceptId> = emptyList(),
+    override val hasEvidenceTypeList: List<EvidenceTypeListId> = emptyList(),
     override val status: RequirementState
 ): RequirementCreatedEventDTO

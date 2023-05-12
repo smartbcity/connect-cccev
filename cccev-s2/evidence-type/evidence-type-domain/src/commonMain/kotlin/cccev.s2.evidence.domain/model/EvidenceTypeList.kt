@@ -31,5 +31,5 @@ data class EvidenceTypeList(
     /**
      *
      */
-    val specifiesEvidenceType: List<EvidenceType>
+    val specifiesEvidenceType: List<EvidenceType> = emptyList()
 )

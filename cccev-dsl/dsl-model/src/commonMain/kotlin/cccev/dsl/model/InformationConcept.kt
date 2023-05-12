@@ -22,9 +22,9 @@ interface InformationConcept {
 open class InformationConceptBase(
     override val identifier: InformationConceptIdentifier,
     override val name: String,
-    override val unit: DataUnit?,
-    override val type: Code?,
-    override val description: String?,
+    override val unit: DataUnit? = null,
+    override val type: Code? = null,
+    override val description: String? = null,
     override val expressionOfExpectedValue: String? = null,
     override val dependsOn: List<InformationConceptId>? = emptyList()
 ): InformationConcept

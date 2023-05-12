@@ -20,7 +20,7 @@ data class InformationConcept(
     /**
      * Unique identifier of this information concept.
      */
-    val identifier: InformationConceptIdentifier?,
+    val identifier: InformationConceptIdentifier? = null,
 
     /**
      * The name of this information concept.
@@ -32,13 +32,13 @@ data class InformationConcept(
      * The data unit used for this information concept.
      * @example [cccev.s2.unit.domain.model.DataUnit.id]
      */
-    val unitId: DataUnitId?,
+    val unitId: DataUnitId? = null,
 
     /**
      * The description of this information concept.
      * @example "Represents the height above sea level"
      */
-    val description: String?,
+    val description: String? = null,
 
     /**
      * Expression to evaluate in order to auto-compute the SupportedValue associated with this information concept, if applicable. <br />
@@ -46,11 +46,11 @@ data class InformationConcept(
      * The expression may contain other known information concepts, identified by their id. They must be declared in the `dependsOn` field.
      * @example "height + groundAltitude"
      */
-    val expressionOfExpectedValue: String?,
+    val expressionOfExpectedValue: String? = null,
 
     /**
      * A list of information concepts this one depends on for auto-computation, if applicable.
      * @example [["height", "groundAltitude"]]
      */
-    val dependsOn: List<InformationConceptId>?
+    val dependsOn: List<InformationConceptId>? = emptyList()
 )

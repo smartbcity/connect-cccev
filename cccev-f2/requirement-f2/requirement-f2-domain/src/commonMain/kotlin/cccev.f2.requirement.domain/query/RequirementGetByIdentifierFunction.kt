@@ -29,5 +29,5 @@ interface RequirementGetByIdentifierResultDTO {
 
 @Serializable
 data class RequirementGetByIdentifierResultDTOBase(
-    override val item: RequirementDTOBase?
+    override val item: RequirementDTOBase? = null
 ): RequirementGetByIdentifierResultDTO

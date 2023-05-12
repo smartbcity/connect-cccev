@@ -56,5 +56,5 @@ interface CertificationAddedRequirementsEventDTO: CertificationEvent {
 @Serializable
 data class CertificationAddedRequirementsEvent(
     override val id: CertificationId,
-    override val requirementIds: List<RequirementId>
+    override val requirementIds: List<RequirementId> = emptyList()
 ): CertificationAddedRequirementsEventDTO

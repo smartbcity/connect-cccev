@@ -28,7 +28,7 @@ data class RequirementRemoveRequirementsCommand(
      * Ids of the sub-requirements to remove.
      * @example [["8e411870-9a8c-4d7a-91b6-496148c6f5c5", "f31cf8df-44f2-4fef-bc20-09a173032bb2"]]
      */
-    val requirementIds: List<RequirementId>
+    val requirementIds: List<RequirementId> = emptyList()
 ): RequirementCommand
 
 /**
@@ -41,5 +41,5 @@ data class RequirementRemovedRequirementsEvent(
     override val id: RequirementId,
 
     /** @ref [RequirementRemoveRequirementsCommand.requirementIds] */
-    val requirementIds: List<RequirementId>
+    val requirementIds: List<RequirementId> = emptyList()
 ): RequirementEvent

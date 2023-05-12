@@ -30,9 +30,9 @@ sealed interface Requirement {
 @Serializable
 open class Criterion(
     override val description: String? = null,
-    override val identifier: RequirementId?,
-    override val name: String?,
-    override val type: Code?,
+    override val identifier: RequirementId? = null,
+    override val name: String? = null,
+    override val type: Code? = null,
     val bias: Double? = null,
     val weight: Double? = null,
     val weightingConsiderationDescription: String? = null,
@@ -66,10 +66,10 @@ open class Criterion(
 
 @Serializable
 open class InformationRequirement(
-    override val description: String?,
-    override val identifier: RequirementId?,
-    override val name: String?,
-    override val type: Code?,
+    override val description: String? = null,
+    override val identifier: RequirementId? = null,
+    override val name: String? = null,
+    override val type: Code? = null,
     override val hasConcept: List<InformationConcept>? = emptyList(),
     override val hasRequirement: List<Requirement>? = emptyList(),
     override val hasEvidenceTypeList: List<EvidenceTypeListBase>? = emptyList(),
@@ -95,10 +95,10 @@ open class InformationRequirement(
 
 @Serializable
 open class Constraint(
-    override val description: String?,
-    override val identifier: RequirementId?,
-    override val name: String?,
-    override val type: Code?,
+    override val description: String? = null,
+    override val identifier: RequirementId? = null,
+    override val name: String? = null,
+    override val type: Code? = null,
     override val hasConcept: List<InformationConcept>? = emptyList(),
     override val hasRequirement: List<Requirement>? = emptyList(),
     override val hasEvidenceTypeList: List<EvidenceTypeListBase>? = emptyList(),

@@ -38,7 +38,7 @@ interface RequirementAddRequirementsCommandDTO: RequirementCommand {
 @Serializable
 data class RequirementAddRequirementsCommand(
     override val id: RequirementId,
-    override val requirementIds: List<RequirementId>
+    override val requirementIds: List<RequirementId> = emptyList()
 ): RequirementAddRequirementsCommandDTO
 
 @JsExport
@@ -58,5 +58,5 @@ interface RequirementAddedRequirementsEventDTO: RequirementEvent {
 @Serializable
 data class RequirementAddedRequirementsEvent(
     override val id: RequirementId,
-    override val requirementIds: List<RequirementId>
+    override val requirementIds: List<RequirementId> = emptyList()
 ): RequirementAddedRequirementsEventDTO

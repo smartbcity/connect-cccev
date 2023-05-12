@@ -32,5 +32,5 @@ data class EvidenceType(
      * How long (in milliseconds) an evidence of this type is considered as valid after it has been issued, if applicable.
      * @example null
      */
-    val validityPeriodConstraint: Long?,
+    val validityPeriodConstraint: Long? = null,
 )

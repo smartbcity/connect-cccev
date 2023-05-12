@@ -27,13 +27,13 @@ interface RequirementDTO {
 @Serializable
 data class RequirementDTOBase(
     override val id: RequirementId,
-    override val identifier: String?,
+    override val identifier: String? = null,
     override val kind: String,
-    override val description: String?,
-    override val type: String?,
-    override val name: String?,
-    override val hasRequirement: List<RequirementDTOBase>,
-    override val hasQualifiedRelation: Map<String, List<RequirementId>>,
-    override val hasConcept: List<InformationConceptDTOBase>,
-    override val hasEvidenceTypeList: List<EvidenceTypeListDTOBase>
+    override val description: String? = null,
+    override val type: String? = null,
+    override val name: String? = null,
+    override val hasRequirement: List<RequirementDTOBase> = emptyList(),
+    override val hasQualifiedRelation: Map<String, List<RequirementId>> = emptyMap(),
+    override val hasConcept: List<InformationConceptDTOBase> = emptyList(),
+    override val hasEvidenceTypeList: List<EvidenceTypeListDTOBase> = emptyList()
 ): RequirementDTO

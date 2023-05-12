@@ -41,5 +41,5 @@ data class RequirementAddedConceptsEvent(
     override val id: RequirementId,
 
     /** @ref [RequirementAddConceptsCommand.conceptIds] */
-    val conceptIds: List<InformationConceptId>
+    val conceptIds: List<InformationConceptId> = emptyList()
 ): RequirementEvent

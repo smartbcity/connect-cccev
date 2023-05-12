@@ -55,5 +55,5 @@ interface InformationConceptGetResultDTO {
  */
 @Serializable
 data class InformationConceptGetResultDTOBase(
-    override val item: InformationConceptDTOBase?
+    override val item: InformationConceptDTOBase? = null
 ): InformationConceptGetResultDTO

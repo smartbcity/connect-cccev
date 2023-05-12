@@ -55,5 +55,5 @@ interface DataUnitGetResultDTO {
  */
 @Serializable
 data class DataUnitGetResultDTOBase(
-    override val item: DataUnitDTOBase?
+    override val item: DataUnitDTOBase? = null
 ): DataUnitGetResultDTO

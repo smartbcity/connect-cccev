@@ -7,6 +7,7 @@ import cccev.s2.evidence.domain.EvidenceTypeId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Add an evidence to a certification.
@@ -59,12 +60,13 @@ interface CertificationAddEvidenceCommandDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 data class CertificationAddEvidenceCommandDTOBase(
     override val id: CertificationId,
     override val name: String,
-    override val url: String?,
-    override val isConformantTo: List<EvidenceTypeId>,
-    override val supportsConcept: List<InformationConceptId>,
+    override val url: String? = null,
+    override val isConformantTo: List<EvidenceTypeId> = emptyList(),
+    override val supportsConcept: List<InformationConceptId> = emptyList(),
     override val metadata: Map<String, String>?
 ): CertificationAddEvidenceCommandDTO
 

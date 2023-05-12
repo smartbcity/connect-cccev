@@ -12,13 +12,14 @@ import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
 
+@Serializable
 data class CertificationAddEvidenceCommand(
     override val id: CertificationId,
     val name: String,
-    val file: FilePath?,
-    val url: String?,
-    val isConformantTo: List<EvidenceTypeId>,
-    val supportsConcept: List<InformationConceptId>
+    val file: FilePath? = null,
+    val url: String? = null,
+    val isConformantTo: List<EvidenceTypeId> = emptyList(),
+    val supportsConcept: List<InformationConceptId> = emptyList()
 ): CertificationCommand
 
 /**
@@ -71,8 +72,10 @@ data class CertificationAddedEvidenceEvent(
     override val id: CertificationId,
     override val evidenceId: EvidenceId,
     override val name: String,
-    override val file: FilePath?,
-    override val url: String?,
-    override val isConformantTo: List<EvidenceTypeId>,
-    override val supportsConcept: List<InformationConceptId>
+    override val file: FilePath? = null,
+    override val url: String? = null,
+    override val isConformantTo: List<EvidenceTypeId> = emptyList(),
+    override val supportsConcept: List<InformationConceptId> = emptyList(),
 ): CertificationAddedEvidenceEventDTO
+
+

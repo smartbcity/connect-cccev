@@ -67,11 +67,11 @@ interface InformationConceptCreateCommandDTO: InformationConceptInitCommand {
 @Serializable
 data class InformationConceptCreateCommand(
     override val name: String,
-    override val identifier: String?,
-    override val hasUnit: DataUnitId?,
-    override val description: String?,
-    override val expressionOfExpectedValue: String?,
-    override val dependsOn: List<InformationConceptId>?
+    override val identifier: String? = null,
+    override val hasUnit: DataUnitId? = null,
+    override val description: String? = null,
+    override val expressionOfExpectedValue: String? = null,
+    override val dependsOn: List<InformationConceptId>? = emptyList()
 ): InformationConceptCreateCommandDTO
 
 /**
@@ -128,12 +128,12 @@ interface InformationConceptCreatedEventDTO: InformationConceptEvent {
 @Serializable
 data class InformationConceptCreatedEvent(
     override val id: InformationConceptId,
-    override val identifier: String?,
+    override val identifier: String? = null,
     override val name: String,
-    override val hasUnit: DataUnitId?,
-    override val description: String?,
-    override val expressionOfExpectedValue: String?,
-    override val dependsOn: List<InformationConceptId>?,
+    override val hasUnit: DataUnitId? = null,
+    override val description: String? = null,
+    override val expressionOfExpectedValue: String? = null,
+    override val dependsOn: List<InformationConceptId>? = emptyList(),
     override val status: InformationConceptState
 ): InformationConceptCreatedEventDTO {
     override fun s2Id() = id

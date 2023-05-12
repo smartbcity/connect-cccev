@@ -52,10 +52,10 @@ interface EvidenceTypeListCreateCommandDTO: EvidenceTypeListInitCommand {
  */
 @Serializable
 data class EvidenceTypeListCreateCommand(
-    override val identifier: String?,
+    override val identifier: String? = null,
     override val name: String,
     override val description: String,
-    override val specifiesEvidenceType: List<EvidenceTypeId>
+    override val specifiesEvidenceType: List<EvidenceTypeId> = emptyList()
 ): EvidenceTypeListCreateCommandDTO
 
 @JsExport
@@ -100,10 +100,10 @@ interface EvidenceTypeListCreatedEventDTO: EvidenceTypeListEvent {
 @Serializable
 data class EvidenceTypeListCreatedEvent(
     override val id: EvidenceTypeListId,
-    override val identifier: String?,
+    override val identifier: String? = null,
     override val name: String,
     override val description: String,
-    override val specifiesEvidenceType: List<EvidenceTypeId>,
+    override val specifiesEvidenceType: List<EvidenceTypeId> = emptyList(),
     override val status: EvidenceTypeListState
 ): EvidenceTypeListCreatedEventDTO {
     override fun s2Id() = id

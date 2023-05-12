@@ -28,7 +28,7 @@ data class Requirement(
      * A custom identifier for the requirement
      * @example "cloudAlt"
      */
-    val identifier: RequirementIdentifier?,
+    val identifier: RequirementIdentifier? = null,
 
     /**
      * Subtype used for the requirement.
@@ -40,7 +40,7 @@ data class Requirement(
      * Name of the requirement.
      * @example "High clouds altitude"
      */
-    val name: String?,
+    val name: String? = null,
 
     /**
      * Description of the requirement. <br/>
@@ -49,23 +49,23 @@ data class Requirement(
      * The expression may contain known information concepts, identified by their id. They must be declared in the `hasConcept` field.
      * @example "altitudeInMeters >= 6000"
      */
-    val description: String?,
+    val description: String? = null,
 
     /**
      * Arbitrary categorization of the requirement.
      * @example "Activity"
      */
-    val type: String?,
+    val type: String? = null,
 
     /**
      * The reference framework(s) the requirement is derived from
      */
-    val isDerivedFrom: List<FrameworkId>,
+    val isDerivedFrom: List<FrameworkId> = emptyList(),
 
     /**
      * Sub-requirements that must be fulfilled for the requirement to be validated.
      */
-    val hasRequirement: List<Requirement>,
+    val hasRequirement: List<Requirement> = emptyList(),
 
     /**
      * A reference between a sub-Requirement and its parent Requirement.
@@ -76,7 +76,7 @@ data class Requirement(
      * without additional information, the simple relationship as proposed here can be directly used.
      *  @example [["b25975b6-f4ff-4773-b535-9a18192b30de"]]
      */
-    var isRequirementOf: List<RequirementId>?,
+    var isRequirementOf: List<RequirementId>? = emptyList(),
 
     /**
      * Described and/or categorised relation to another Requirement. <br/>
@@ -84,20 +84,20 @@ data class Requirement(
      * A use case would be to specialize an EU requirement in Member States' specific requirements.
      * @example { HAS_NEXT: [["baee57d9-7f0a-4cb0-92e5-402b80c18c74"]] }
      */
-    var hasQualifiedRelation: Map<String, List<RequirementId>>?,
+    var hasQualifiedRelation: Map<String, List<RequirementId>>? = emptyMap(),
 
     /**
      * Concepts used by the requirement
      * @example [["altitudeInMeters"]]
      */
-    val hasConcept: List<InformationConceptId>,
+    val hasConcept: List<InformationConceptId> = emptyList(),
 
     /**
      * Evidences that must be provided for the requirement to be validated. <br/>
      * This list represents an OR-relation, i.e. only one of the specified evidence lists has to be fully provided.
      * @example [["dc006198-067e-4a58-8672-7d5377ae022b"]]
      */
-    val hasEvidenceTypeList: List<EvidenceTypeListId>,
+    val hasEvidenceTypeList: List<EvidenceTypeListId> = emptyList(),
 
     /**
      * The state of the requirement.

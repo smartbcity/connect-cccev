@@ -12,6 +12,7 @@ import cccev.s2.certification.domain.model.CertificationId
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 /**
  * Get evidence type lists
@@ -51,10 +52,11 @@ interface GetEvidenceTypeListsQueryResultDTO {
 /**
  * @d2 inherit
  */
+@Serializable
 class GetEvidenceTypeListsQuery(
     override val id: CertificationId,
     override val requirement: RequirementId,
-    override val concept: InformationConceptId?,
+    override val concept: InformationConceptId? = null,
     override val evidenceType: EvidenceTypeId?
 ): GetEvidenceTypeListsQueryDTO
 

@@ -33,5 +33,5 @@ interface RequirementListChildrenByTypeResultDTO {
 
 @Serializable
 data class RequirementListChildrenByTypeResultDTOBase(
-    override val items: List<RequirementDTOBase>?
+    override val items: List<RequirementDTOBase>? = null
 ): RequirementListChildrenByTypeResultDTO

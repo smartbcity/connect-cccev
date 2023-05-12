@@ -33,7 +33,7 @@ data class DataUnit(
      * The short notation for this data unit, if applicable.
      * @example "m"
      */
-    val notation: String?,
+    val notation: String? = null,
 
     /**
      * The type of data used for this data unit.

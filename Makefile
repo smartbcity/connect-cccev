@@ -47,3 +47,50 @@ package-storybook-build:
 
 package-storybook-push:
 	@docker push ${STORYBOOK_IMG}
+
+## DEV ENVIRONEMENT
+dev: dev-bclan dev-neo4j dev-fs
+
+dev-down: dev-bclan-down dev-neo4j-down dev-fs-down
+
+dev-up: dev-bclan-up dev-neo4j-up dev-fs-up
+
+## DEV bclan
+dev-bclan: dev-bclan-down dev-bclan-up
+
+dev-bclan-up:
+	@docker compose -f docker-compose-bclan.yml up -d
+
+dev-bclan-down:
+	@docker compose -f docker-compose-bclan.yml down -v;
+
+dev-bclan-log:
+	@docker compose -f docker-compose-bclan.yml logs -f
+
+## DEV fs
+dev-fs: dev-fs-down dev-fs-up
+
+dev-fs-up:
+	@docker compose -f docker-compose-fs.yml up -d
+
+dev-fs-down:
+	@docker compose -f docker-compose-fs.yml down -v;
+
+dev-fs-log:
+	@docker compose -f docker-compose-fs.yml logs -f
+
+## DEV neo4j
+dev-neo4j: dev-neo4j-down dev-neo4j-up
+
+dev-neo4j-pull:
+	@docker compose -f docker-compose-neo4j.yml pull
+
+dev-neo4j-up:
+	@docker compose -f docker-compose-neo4j.yml pull
+	@docker compose -f docker-compose-neo4j.yml up -d
+
+dev-neo4j-down:
+	@docker compose -f docker-compose-neo4j.yml down -v;
+
+dev-neo4j-log:
+	@docker compose -f docker-compose-neo4j.yml logs -f

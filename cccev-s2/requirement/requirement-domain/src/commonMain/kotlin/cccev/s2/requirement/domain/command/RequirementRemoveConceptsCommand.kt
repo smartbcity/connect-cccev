@@ -28,7 +28,7 @@ data class RequirementRemoveConceptsCommand(
     /**
      * Ids of the information concepts to remove.
      */
-    val conceptIds: List<InformationConceptId>
+    val conceptIds: List<InformationConceptId> = emptyList()
 ): RequirementCommand
 
 /**
@@ -41,5 +41,5 @@ data class RequirementRemovedConceptsEvent(
     override val id: RequirementId,
 
     /** @ref [RequirementRemoveConceptsCommand.conceptIds] */
-    val conceptIds: List<InformationConceptId>
+    val conceptIds: List<InformationConceptId> = emptyList()
 ): RequirementEvent
