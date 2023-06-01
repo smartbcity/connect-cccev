@@ -43,7 +43,7 @@ docker-cccev-front:
 	@docker push ${FRONT_CCCEV_IMG}
 
 package-storybook-build:
-	@docker build --no-cache=true -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
+	@docker build --build-arg CI_NPM_AUTH_TOKEN=${CI_NPM_AUTH_TOKEN} -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
 
 package-storybook-push:
 	@docker push ${STORYBOOK_IMG}
