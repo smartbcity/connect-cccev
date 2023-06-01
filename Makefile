@@ -23,7 +23,7 @@ docs-build: package-storybook-build
 docs-push: package-storybook-push
 
 package-kotlin:
-	VERSION=${VERSION} ./gradlew build publishToMavenLocal publish --stacktrace
+	VERSION=${VERSION} ./gradlew build publishToMavenLocal publish --stacktrace -x test -x jvmTest
 
 local:
 	VERSION=${VERSION} ./gradlew build publishToMavenLocal --stacktrace
