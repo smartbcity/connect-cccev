@@ -29,7 +29,7 @@ local:
 	VERSION=${VERSION} ./gradlew build publishToMavenLocal --stacktrace
 
 docker-cccev-api-build:
-	VERSION=${VERSION} ./gradlew build ${CCCEV_APP_PACKAGE}:bootBuildImage -x test
+	VERSION=${VERSION} ./gradlew build ${CCCEV_APP_PACKAGE}:bootBuildImage -x test -x jvmTest
 
 docker-cccev-api-push:
 	@docker push ${CCCEV_APP_IMG}
