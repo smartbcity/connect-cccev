@@ -75,7 +75,5 @@ data class CertificationAddedEvidenceEvent(
     override val file: FilePath? = null,
     override val url: String? = null,
     override val isConformantTo: List<EvidenceTypeId> = emptyList(),
-    override val supportsConcept: List<InformationConceptId> = emptyList(),
+    override val supportsConcept: List<InformationConceptId> = emptyList()
 ): CertificationAddedEvidenceEventDTO
-
-
