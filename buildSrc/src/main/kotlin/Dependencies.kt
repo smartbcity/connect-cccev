@@ -17,7 +17,7 @@ object PluginVersions {
 }
 
 object Versions {
-	val fs = Framework.connect
+	val fs = "experimental-1961-SNAPSHOT"//Framework.connect
 	val springBoot = PluginVersions.springBoot
 
 	const val cucumber = FixersVersions.Test.cucumber

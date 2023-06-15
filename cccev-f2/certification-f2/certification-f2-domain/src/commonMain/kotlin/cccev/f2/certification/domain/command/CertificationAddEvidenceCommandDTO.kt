@@ -5,9 +5,9 @@ import cccev.s2.certification.domain.model.CertificationId
 import cccev.s2.concept.domain.InformationConceptId
 import cccev.s2.evidence.domain.EvidenceTypeId
 import f2.dsl.fnc.F2Function
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 import kotlin.js.JsName
-import kotlinx.serialization.Serializable
 
 /**
  * Add an evidence to a certification.
@@ -55,6 +55,11 @@ interface CertificationAddEvidenceCommandDTO {
      * Metadata of the evidence's file.
      */
     val metadata: Map<String, String>?
+
+    /**
+     * If true, vectorize the file and send it to a vector store
+     */
+    val vectorize: Boolean
 }
 
 /**
@@ -67,7 +72,8 @@ data class CertificationAddEvidenceCommandDTOBase(
     override val url: String? = null,
     override val isConformantTo: List<EvidenceTypeId> = emptyList(),
     override val supportsConcept: List<InformationConceptId> = emptyList(),
-    override val metadata: Map<String, String>?
+    override val metadata: Map<String, String>? = emptyMap(),
+    override val vectorize: Boolean = false
 ): CertificationAddEvidenceCommandDTO
 
 @JsExport
