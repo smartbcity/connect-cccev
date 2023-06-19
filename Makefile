@@ -13,7 +13,7 @@ STORYBOOK_NAME	   	 	:= smartbcity/cccev-storybook
 STORYBOOK_IMG	    	:= ${STORYBOOK_NAME}:${VERSION}
 
 libs: package-kotlin
-docker: docker-build docker-push
+docker: docker-build docker-push docker-cccev-front
 docs: docs-build docs-push
 
 docker-build: docker-cccev-api-build
