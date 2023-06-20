@@ -7,4 +7,5 @@ dependencies {
     implementation(project(":api-commons"))
 
     Dependencies.Jvm.fs(::implementation)
+    Dependencies.Mpp.f2CLient(::api)
 }

@@ -1,6 +1,7 @@
 package cccev.config
 
 import city.smartb.fs.s2.file.client.FileClient
+import io.ktor.client.plugins.HttpTimeout
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -12,7 +13,9 @@ class FsConfig {
     lateinit var fsUrl: String
 
     @Bean
-    fun fsClient() = FileClient(
-        url = fsUrl
-    )
+    fun fsClient() = FileClient(fsUrl) {
+        install(HttpTimeout) {
+            requestTimeoutMillis = 60000
+        }
+    }
 }
