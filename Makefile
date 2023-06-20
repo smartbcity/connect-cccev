@@ -39,11 +39,11 @@ push-latest-cccev-api:
 	@docker push ${CCCEV_APP_LATEST}
 
 docker-cccev-front:
-	@docker build -f ${FRONT_CCCEV_DOCKERFILE} -t ${FRONT_CCCEV_IMG} .
+	@docker build --build-arg CI_NPM_AUTH_TOKEN=${CI_NPM_AUTH_TOKEN} --build-arg VERSION=${VERSION} -f ${FRONT_CCCEV_DOCKERFILE} -t ${FRONT_CCCEV_IMG} .
 	@docker push ${FRONT_CCCEV_IMG}
 
 package-storybook-build:
-	@docker build --build-arg CI_NPM_AUTH_TOKEN=${CI_NPM_AUTH_TOKEN} -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
+	@docker build --build-arg CI_NPM_AUTH_TOKEN=${CI_NPM_AUTH_TOKEN} --build-arg VERSION=${VERSION} -f ${STORYBOOK_DOCKERFILE} -t ${STORYBOOK_IMG} .
 
 package-storybook-push:
 	@docker push ${STORYBOOK_IMG}
