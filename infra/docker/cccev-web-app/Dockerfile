@@ -3,7 +3,13 @@ FROM node:12.13.0-alpine as build
 WORKDIR /app
 
 COPY web ./
-COPY .npmrc ./
+
+ARG CI_NPM_AUTH_TOKEN
+RUN echo -e "\
+access=public \n\
+ @smartb:registry=https://gitlab.smartb.city/api/v4/projects/127/packages/npm/ \n\
+//gitlab.smartb.city/api/v4/projects/127/packages/npm/:_authToken=${CI_NPM_AUTH_TOKEN} \n\
+" > .npmrc
 
 RUN yarn install
 ENV PATH /app/node_modules/.bin:$PATH
