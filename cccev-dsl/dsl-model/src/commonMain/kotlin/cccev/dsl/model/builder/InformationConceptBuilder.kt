@@ -8,7 +8,7 @@ import cccev.dsl.model.InformationConceptId
 
 class InformationConceptListBuilder {
 
-    private var informationConcepts = mutableListOf<InformationConcept>()
+    var informationConcepts = mutableListOf<InformationConcept>()
 
     operator fun InformationConcept.unaryPlus() {
         informationConcepts.add(this)
@@ -17,6 +17,11 @@ class InformationConceptListBuilder {
     operator fun InformationConceptBuilder.unaryPlus() {
         informationConcepts.add(this.build())
     }
+
+    operator fun List<InformationConcept>.unaryPlus() {
+        informationConcepts.addAll(this)
+    }
+
     fun build(): List<InformationConcept> = informationConcepts.toList()
 }
 class InformationConceptBuilder {
