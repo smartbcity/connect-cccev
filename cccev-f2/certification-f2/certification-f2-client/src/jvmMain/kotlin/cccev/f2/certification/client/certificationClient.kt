@@ -15,7 +15,6 @@ import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpMethod
 import kotlinx.coroutines.flow.map
 
 actual fun F2Client.certificationClient(): F2SupplierSingle<CertificationClient> = f2SupplierSingle {
