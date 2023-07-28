@@ -59,7 +59,7 @@ interface CertificationAddEvidenceCommandDTO {
     /**
      * If true, vectorize the file and send it to a vector store
      */
-    val vectorize: Boolean
+    val vectorize: Boolean?
 }
 
 /**
@@ -73,7 +73,7 @@ data class CertificationAddEvidenceCommandDTOBase(
     override val isConformantTo: List<EvidenceTypeId> = emptyList(),
     override val supportsConcept: List<InformationConceptId> = emptyList(),
     override val metadata: Map<String, String>? = emptyMap(),
-    override val vectorize: Boolean = false
+    override val vectorize: Boolean? = false
 ): CertificationAddEvidenceCommandDTO
 
 @JsExport
