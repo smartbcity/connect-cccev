@@ -17,7 +17,7 @@ object PluginVersions {
 }
 
 object Versions {
-	val fs = "experimental-1961-SNAPSHOT"//Framework.connect
+	val fs = Framework.connect
 	val springBoot = PluginVersions.springBoot
 
 	const val cucumber = FixersVersions.Test.cucumber
@@ -44,6 +44,7 @@ object Dependencies {
 		fun f2(scope: Scope) = scope.add(
 			"city.smartb.f2:f2-spring-boot-starter-function:${Framework.fixers}"
 		)
+
 		fun f2Http(scope: Scope) = scope.add(
 			"city.smartb.f2:f2-spring-boot-starter-function-http:${Framework.fixers}",
 			"city.smartb.f2:f2-spring-boot-openapi:${Framework.fixers}"
