@@ -21,6 +21,7 @@ object Versions {
 	val springBoot = PluginVersions.springBoot
 
 	const val cucumber = FixersVersions.Test.cucumber
+	const val ktor = FixersVersions.Kotlin.ktor
 	const val awaitility = "4.1.1"
 	const val datafaker = "1.8.1"
 }
@@ -51,7 +52,8 @@ object Dependencies {
 		)
 
 		fun fs(scope: Scope) = scope.add(
-			"city.smartb.fs:file-client:${Versions.fs}"
+			"city.smartb.fs:file-client:${Versions.fs}",
+			"io.ktor:ktor-utils:${Versions.ktor}"
 		)
 
 		fun s2EventSouringBc(scope: Scope) = scope.add(
