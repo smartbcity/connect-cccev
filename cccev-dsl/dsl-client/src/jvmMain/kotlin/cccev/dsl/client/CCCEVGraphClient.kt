@@ -19,6 +19,7 @@ import cccev.f2.evidence.type.domain.query.EvidenceTypeGetByIdentifierQueryDTOBa
 import cccev.f2.evidence.type.domain.query.EvidenceTypeListGetByIdentifierQueryDTOBase
 import cccev.f2.framework.domain.query.FrameworkGetByIdentifierQueryDTOBase
 import cccev.f2.requirement.domain.command.RequirementCreateCommandDTOBase
+import cccev.f2.requirement.domain.model.RequirementDTOBase
 import cccev.f2.requirement.domain.query.RequirementGetByIdentifierQueryDTO
 import cccev.f2.requirement.domain.query.RequirementGetByIdentifierQueryDTOBase
 import cccev.f2.unit.client.DataUnitClient
@@ -69,7 +70,7 @@ class CCCEVGraphClient(
 ) {
 
     @Suppress("ComplexMethod", "LongMethod")
-    suspend fun create(requirements: Flow<Requirement>): Flow<RequirementIdentifier> {
+    suspend fun create(requirements: Flow<Requirement>): Flow<RequirementDTOBase> {
         val visitedRequirementIdentifiers = mutableSetOf<RequirementIdentifier>()
         val createdFrameworks = mutableMapOf<String, FrameworkId>()
         val createdUnits = mutableMapOf<String, DataUnitId>()
@@ -126,13 +127,13 @@ class CCCEVGraphClient(
         createdConcepts: MutableMap<String, InformationConceptId>,
         createdEvidenceTypeLists: MutableMap<String, EvidenceTypeListId>,
         createdRequirements: MutableMap<RequirementIdentifier, RequirementId>
-    ): RequirementIdentifier {
+    ): RequirementDTOBase {
         val identifier = requirement.identifier ?: UUID.randomUUID().toString()
-        val isRequirementExists = RequirementGetByIdentifierQueryDTOBase(
+        val existingRequirement = RequirementGetByIdentifierQueryDTOBase(
             identifier = identifier
-        ).invokeWith(requirementClient.requirementGetByIdentifier()).item != null
-        if(isRequirementExists) {
-            return identifier
+        ).invokeWith(requirementClient.requirementGetByIdentifier()).item
+        if(existingRequirement != null) {
+            return existingRequirement
         }
 
         val requirementId = createRequirement(
@@ -151,7 +152,9 @@ class CCCEVGraphClient(
                 requirementIds = listOf(requirementId)
             ).invokeWith(requirementClient.requirementAddRequirements())
         }
-        return requirementId
+        return RequirementGetByIdentifierQueryDTOBase(
+            identifier = identifier
+        ).invokeWith(requirementClient.requirementGetByIdentifier()).item!!
     }
 
     private suspend fun createRequirement(
