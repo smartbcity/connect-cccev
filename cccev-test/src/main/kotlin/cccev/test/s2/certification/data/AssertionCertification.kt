@@ -8,7 +8,7 @@ import cccev.s2.certification.domain.model.CertificationId
 import cccev.s2.certification.domain.model.CertificationIdentifier
 import cccev.s2.certification.domain.model.EvidenceId
 import cccev.s2.concept.domain.InformationConceptId
-import cccev.s2.evidence.domain.EvidenceTypeId
+import cccev.s2.evidence.type.domain.EvidenceTypeId
 import cccev.s2.requirement.domain.RequirementId
 import city.smartb.fs.s2.file.domain.model.FilePath
 import org.assertj.core.api.Assertions

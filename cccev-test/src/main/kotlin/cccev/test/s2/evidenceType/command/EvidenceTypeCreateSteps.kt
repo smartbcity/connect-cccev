@@ -1,9 +1,9 @@
 package cccev.test.s2.evidenceType.command
 
 import cccev.projection.api.entity.evidencetype.EvidenceTypeRepository
-import cccev.s2.evidence.api.EvidenceTypeAggregateService
-import cccev.s2.evidence.domain.EvidenceTypeState
-import cccev.s2.evidence.domain.command.type.EvidenceTypeCreateCommand
+import cccev.s2.evidence.type.api.EvidenceTypeAggregateService
+import cccev.s2.evidence.type.domain.EvidenceTypeState
+import cccev.s2.evidence.type.domain.command.type.EvidenceTypeCreateCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.evidenceType.data.evidenceType
 import io.cucumber.datatable.DataTable

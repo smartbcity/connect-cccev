@@ -1,7 +1,7 @@
 package cccev.f2.evidence.type.domain.model
 
 import cccev.f2.evidence.type.domain.D2EvidenceTypeF2Page
-import cccev.s2.evidence.domain.EvidenceTypeId
+import cccev.s2.evidence.type.domain.EvidenceTypeId
 import kotlin.js.JsExport
 import kotlin.js.JsName
 import kotlinx.serialization.Serializable

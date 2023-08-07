@@ -6,6 +6,7 @@ import cccev.s2.framework.domain.model.FrameworkDTO
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
+import kotlinx.serialization.Serializable
 
 typealias FrameworkGetFunction = F2Function<FrameworkGetQueryDTOBase, FrameworkGetResultDTOBase>
 
@@ -25,6 +26,7 @@ interface FrameworkGetResultDTO {
     val item: FrameworkDTO?
 }
 
+@Serializable
 data class FrameworkGetResultDTOBase(
     override val item: Framework?
 ): FrameworkGetResultDTO

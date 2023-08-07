@@ -1,8 +1,8 @@
 package cccev.projection.api.entity.evidencetype
 
 import cccev.projection.api.entity.NodeLabel
-import cccev.s2.evidence.domain.EvidenceTypeId
-import cccev.s2.evidence.domain.EvidenceTypeState
+import cccev.s2.evidence.type.domain.EvidenceTypeId
+import cccev.s2.evidence.type.domain.EvidenceTypeState
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
@@ -22,7 +22,7 @@ data class EvidenceTypeEntity(
     var creationDate: Long = 0,
     @LastModifiedDate
     var lastModificationDate: Long = 0,
-    var identifier: String? = null,
+    var identifier: String,
     var name: String,
     var description: String,
     var validityPeriodConstraint: Long? = null

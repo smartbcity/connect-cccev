@@ -3,6 +3,7 @@ package cccev.s2.unit.domain.command
 import cccev.s2.unit.domain.D2DataUnitPage
 import cccev.s2.unit.domain.DataUnitEvent
 import cccev.s2.unit.domain.DataUnitId
+import cccev.s2.unit.domain.DataUnitIdentifier
 import cccev.s2.unit.domain.DataUnitInitCommand
 import cccev.s2.unit.domain.DataUnitState
 import cccev.s2.unit.domain.model.DataUnitType
@@ -23,6 +24,11 @@ interface DataUnitCreateFunction
  */
 @Serializable
 data class DataUnitCreateCommand(
+    /**
+     * The identifier of the data unit.
+     * @example [cccev.s2.unit.domain.model.DataUnit.name]
+     */
+    val identifier: DataUnitIdentifier,
     /**
      * The name of the data unit.
      * @example [cccev.s2.unit.domain.model.DataUnit.name]
@@ -56,9 +62,13 @@ data class DataUnitCreateCommand(
 @JsName("DataUnitCreatedEventDTO")
 interface DataUnitCreatedEventDTO: DataUnitEvent {
     /**
-     * Identifier of the created unit
+     * Id of the created unit
      */
     val id: DataUnitId
+    /**
+     * Identifier of the created unit
+     */
+    val identifier: DataUnitId
 
     /**
      * @ref [DataUnitCreateCommand.name]
@@ -89,6 +99,7 @@ interface DataUnitCreatedEventDTO: DataUnitEvent {
 @Serializable
 data class DataUnitCreatedEvent(
     override val id: DataUnitId,
+    override val identifier: DataUnitIdentifier,
     override val name: String,
     override val description: String,
     override val notation: String? = null,

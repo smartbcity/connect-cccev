@@ -94,6 +94,7 @@ class DataUnitCreateSteps: En, CccevCucumberStepsDefinition() {
     private suspend fun createDataUnit(params: DataUnitCreateParams) = context.unitIds.register(params.identifier) {
         command = DataUnitCreateCommand(
             name = params.name,
+            identifier = params.identifier,
             description = params.description,
             notation = params.notation,
             type = params.type

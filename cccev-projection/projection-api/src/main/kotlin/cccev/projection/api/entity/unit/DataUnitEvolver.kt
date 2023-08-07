@@ -20,6 +20,7 @@ class DataUnitEvolver(
 	private suspend fun created(event: DataUnitCreatedEvent): DataUnitEntity {
 		return DataUnitEntity(
 			id = event.id,
+			identifier = event.identifier,
 			name = event.name,
 			description = event.description,
 			notation = event.notation,

@@ -4,6 +4,7 @@ import cccev.projection.api.entity.framework.FrameworkRepository
 import cccev.s2.framework.api.entity.toFramework
 import cccev.s2.framework.domain.FrameworkFinder
 import cccev.s2.framework.domain.FrameworkId
+import cccev.s2.framework.domain.FrameworkIdentifier
 import cccev.s2.framework.domain.model.Framework
 import f2.spring.exception.NotFoundException
 import kotlinx.coroutines.reactor.awaitSingleOrNull
@@ -15,6 +16,12 @@ class FrameworkFinderService(
 ): FrameworkFinder {
     override suspend fun getOrNull(id: FrameworkId): Framework? {
         return frameworkRepository.findById(id)
+            .awaitSingleOrNull()
+            ?.toFramework()
+    }
+
+    override suspend fun getOrNullByIdentifier(id: FrameworkIdentifier): Framework? {
+        return frameworkRepository.findByIdentifier(id)
             .awaitSingleOrNull()
             ?.toFramework()
     }

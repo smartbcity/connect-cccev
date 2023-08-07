@@ -19,6 +19,7 @@ class DataUnitAggregateService(
             description = command.description,
             type = command.type,
             notation = command.notation,
+            identifier = command.identifier,
             status = DataUnitState.EXISTS
         )
     }

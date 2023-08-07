@@ -18,6 +18,7 @@ import s2.dsl.automate.model.WithS2Id
  * @visual json "06edb0f8-9a87-4aee-b8fa-ad9e811a299a"
  */
 typealias FrameworkId = String
+typealias FrameworkIdentifier = String
 
 val s2Framework = s2Sourcing {
 	name = "FrameworkS2"

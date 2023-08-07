@@ -1,8 +1,8 @@
 package cccev.test
 
 import cccev.s2.concept.domain.InformationConceptId
-import cccev.s2.evidence.domain.EvidenceTypeId
-import cccev.s2.evidence.domain.EvidenceTypeListId
+import cccev.s2.evidence.type.domain.EvidenceTypeId
+import cccev.s2.evidence.type.domain.EvidenceTypeListId
 import cccev.s2.framework.domain.FrameworkId
 import cccev.s2.certification.domain.model.EvidenceId
 import cccev.s2.certification.domain.model.Certification

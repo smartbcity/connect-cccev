@@ -7,6 +7,14 @@ import cccev.f2.evidence.type.domain.EvidenceTypeApi
 import cccev.f2.evidence.type.domain.command.list.EvidenceTypeListCreateFunction
 import cccev.f2.evidence.type.domain.command.list.EvidenceTypeListUpdateFunction
 import cccev.f2.evidence.type.domain.command.type.EvidenceTypeCreateFunction
+import cccev.f2.evidence.type.domain.query.EvidenceTypeGetByIdentifierFunction
+import cccev.f2.evidence.type.domain.query.EvidenceTypeGetFunction
+import cccev.f2.evidence.type.domain.query.EvidenceTypeGetResultDTOBase
+import cccev.f2.evidence.type.domain.query.EvidenceTypeGetByIdentifierResultDTOBase
+import cccev.f2.evidence.type.domain.query.EvidenceTypeListGetByIdentifierFunction
+import cccev.f2.evidence.type.domain.query.EvidenceTypeListGetByIdentifierResultDTOBase
+import cccev.f2.evidence.type.domain.query.EvidenceTypeListGetFunction
+import cccev.f2.evidence.type.domain.query.EvidenceTypeListGetResultDTOBase
 import f2.dsl.fnc.f2Function
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -40,4 +48,29 @@ class EvidenceTypeEndpoint(
         logger.info("evidenceTypeListUpdate: $command")
         evidenceTypeF2AggregateService.updateList(command)
     }
+
+    @Bean
+    override fun evidenceTypeGet(): EvidenceTypeGetFunction = f2Function { command ->
+        logger.info("evidenceTypeGet: $command")
+        evidenceTypeF2FinderService.getOrNull(command.id).let (::EvidenceTypeGetResultDTOBase)
+    }
+
+    @Bean
+    override fun evidenceTypeGetByIdentifier(): EvidenceTypeGetByIdentifierFunction = f2Function { command ->
+        logger.info("evidenceTypeGetByIdentifier: $command")
+        evidenceTypeF2FinderService.getOrNullByIdentifier(command.identifier).let (::EvidenceTypeGetByIdentifierResultDTOBase)
+    }
+
+    @Bean
+    override fun evidenceTypeListGet(): EvidenceTypeListGetFunction = f2Function { command ->
+        logger.info("evidenceTypeListGet: $command")
+        evidenceTypeF2FinderService.getListOrNull(command.id).let (::EvidenceTypeListGetResultDTOBase)
+    }
+
+    @Bean
+    override fun evidenceTypeListGetByIdentifier(): EvidenceTypeListGetByIdentifierFunction = f2Function { command ->
+        logger.info("evidenceTypeListGetByIdentifier: $command")
+        evidenceTypeF2FinderService.getListOrNullByIdentifier(command.identifier).let (::EvidenceTypeListGetByIdentifierResultDTOBase)
+    }
+
 }

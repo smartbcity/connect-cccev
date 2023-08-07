@@ -4,7 +4,7 @@ import cccev.f2.concept.domain.model.InformationConceptDTOBase
 import cccev.f2.evidence.type.domain.model.EvidenceTypeListDTOBase
 import cccev.f2.requirement.domain.model.RequirementDTOBase
 import cccev.s2.concept.domain.InformationConceptId
-import cccev.s2.evidence.domain.EvidenceTypeListId
+import cccev.s2.evidence.type.domain.EvidenceTypeListId
 import cccev.s2.requirement.domain.model.Requirement
 
 suspend fun Requirement.toDTO(

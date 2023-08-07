@@ -3,7 +3,7 @@ package cccev.test.s2.requirement.data
 import cccev.projection.api.entity.requirement.RequirementEntity
 import cccev.projection.api.entity.requirement.RequirementRepository
 import cccev.s2.concept.domain.InformationConceptId
-import cccev.s2.evidence.domain.EvidenceTypeListId
+import cccev.s2.evidence.type.domain.EvidenceTypeListId
 import cccev.s2.framework.domain.FrameworkId
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.RequirementState

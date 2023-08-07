@@ -1,6 +1,6 @@
 package cccev.s2.requirement.domain.command
 
-import cccev.s2.evidence.domain.EvidenceTypeListId
+import cccev.s2.evidence.type.domain.EvidenceTypeListId
 import cccev.s2.requirement.domain.D2RequirementPage
 import cccev.s2.requirement.domain.RequirementCommand
 import cccev.s2.requirement.domain.RequirementEvent

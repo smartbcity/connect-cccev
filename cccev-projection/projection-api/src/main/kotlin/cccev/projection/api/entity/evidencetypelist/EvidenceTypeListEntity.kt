@@ -3,8 +3,8 @@ package cccev.projection.api.entity.evidencetypelist
 import cccev.projection.api.entity.NodeLabel
 import cccev.projection.api.entity.Relation
 import cccev.projection.api.entity.evidencetype.EvidenceTypeEntity
-import cccev.s2.evidence.domain.EvidenceTypeListId
-import cccev.s2.evidence.domain.EvidenceTypeListState
+import cccev.s2.evidence.type.domain.EvidenceTypeListId
+import cccev.s2.evidence.type.domain.EvidenceTypeListState
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import org.springframework.data.annotation.Version

@@ -2,9 +2,9 @@ package cccev.test.s2.evidenceTypeList.data
 
 import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListEntity
 import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListRepository
-import cccev.s2.evidence.domain.EvidenceTypeId
-import cccev.s2.evidence.domain.EvidenceTypeListId
-import cccev.s2.evidence.domain.EvidenceTypeListState
+import cccev.s2.evidence.type.domain.EvidenceTypeId
+import cccev.s2.evidence.type.domain.EvidenceTypeListId
+import cccev.s2.evidence.type.domain.EvidenceTypeListState
 import org.assertj.core.api.Assertions
 import s2.bdd.assertion.AssertionBdd
 import s2.bdd.repository.AssertionCrudEntity

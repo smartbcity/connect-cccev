@@ -4,6 +4,7 @@ import cccev.f2.unit.api.model.toDTO
 import cccev.f2.unit.domain.model.DataUnitDTOBase
 import cccev.s2.unit.api.DataUnitFinderService
 import cccev.s2.unit.domain.DataUnitId
+import cccev.s2.unit.domain.DataUnitIdentifier
 import org.springframework.stereotype.Service
 
 @Service
@@ -12,6 +13,9 @@ class DataUnitF2FinderService(
 ) {
     suspend fun getOrNull(id: DataUnitId): DataUnitDTOBase? {
         return dataUnitFinderService.getOrNull(id)?.toDTO()
+    }
+    suspend fun getOrNullByIdentifier(id: DataUnitIdentifier): DataUnitDTOBase? {
+        return dataUnitFinderService.getOrNullByIdentifier(id)?.toDTO()
     }
 
     suspend fun get(id: DataUnitId): DataUnitDTOBase {

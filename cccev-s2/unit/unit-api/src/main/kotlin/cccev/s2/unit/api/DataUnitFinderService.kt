@@ -4,6 +4,7 @@ import cccev.projection.api.entity.unit.DataUnitRepository
 import cccev.s2.unit.api.entity.toDataUnit
 import cccev.s2.unit.domain.DataUnitFinder
 import cccev.s2.unit.domain.DataUnitId
+import cccev.s2.unit.domain.DataUnitIdentifier
 import cccev.s2.unit.domain.model.DataUnit
 import f2.spring.exception.NotFoundException
 import kotlinx.coroutines.reactor.awaitSingleOrNull
@@ -15,6 +16,11 @@ class DataUnitFinderService(
 ): DataUnitFinder {
     override suspend fun getOrNull(id: DataUnitId): DataUnit? {
         return dataUnitRepository.findById(id)
+            .awaitSingleOrNull()
+            ?.toDataUnit()
+    }
+    override suspend fun getOrNullByIdentifier(id: DataUnitIdentifier): DataUnit? {
+        return dataUnitRepository.findByIdentifier(id)
             .awaitSingleOrNull()
             ?.toDataUnit()
     }

@@ -2,6 +2,7 @@ package cccev.projection.api.entity.unit
 
 import cccev.projection.api.entity.NodeLabel
 import cccev.s2.unit.domain.DataUnitId
+import cccev.s2.unit.domain.DataUnitIdentifier
 import cccev.s2.unit.domain.DataUnitState
 import cccev.s2.unit.domain.model.DataUnitType
 import org.springframework.data.annotation.CreatedDate
@@ -16,6 +17,7 @@ import s2.dsl.automate.model.WithS2State
 data class DataUnitEntity(
     @Id
     val id: DataUnitId,
+    val identifier: DataUnitIdentifier,
     @Version
     var version: Long = 0,
     @CreatedDate

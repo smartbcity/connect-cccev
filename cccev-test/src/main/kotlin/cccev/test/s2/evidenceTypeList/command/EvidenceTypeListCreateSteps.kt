@@ -1,9 +1,9 @@
 package cccev.test.s2.evidenceTypeList.command
 
 import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListRepository
-import cccev.s2.evidence.api.EvidenceTypeAggregateService
-import cccev.s2.evidence.domain.EvidenceTypeListState
-import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreateCommand
+import cccev.s2.evidence.type.api.EvidenceTypeAggregateService
+import cccev.s2.evidence.type.domain.EvidenceTypeListState
+import cccev.s2.evidence.type.domain.command.list.EvidenceTypeListCreateCommand
 import cccev.test.CccevCucumberStepsDefinition
 import cccev.test.s2.evidenceTypeList.data.evidenceTypeList
 import io.cucumber.datatable.DataTable

@@ -1,8 +1,10 @@
 package cccev.f2.evidence.type.domain.command.list
 
 import cccev.f2.evidence.type.domain.D2EvidenceTypeF2Page
-import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreateCommand
-import cccev.s2.evidence.domain.command.list.EvidenceTypeListCreatedEvent
+import cccev.s2.evidence.type.domain.command.list.EvidenceTypeListCreateCommand
+import cccev.s2.evidence.type.domain.command.list.EvidenceTypeListCreateCommandDTO
+import cccev.s2.evidence.type.domain.command.list.EvidenceTypeListCreatedEvent
+import cccev.s2.evidence.type.domain.command.list.EvidenceTypeListCreatedEventDTO
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
 import kotlin.js.JsName
@@ -20,7 +22,7 @@ typealias EvidenceTypeListCreateFunction = F2Function<EvidenceTypeListCreateComm
  */
 @JsExport
 @JsName("EvidenceTypeListCreateCommandDTO")
-interface EvidenceTypeListCreateCommandDTO: cccev.s2.evidence.domain.command.list.EvidenceTypeListCreateCommandDTO
+interface EvidenceTypeListCreateCommandDTO: EvidenceTypeListCreateCommandDTO
 
 /**
  * @d2 event
@@ -28,4 +30,4 @@ interface EvidenceTypeListCreateCommandDTO: cccev.s2.evidence.domain.command.lis
  */
 @JsExport
 @JsName("EvidenceTypeListCreatedEventDTO")
-interface EvidenceTypeListCreatedEventDTO: cccev.s2.evidence.domain.command.list.EvidenceTypeListCreatedEventDTO
+interface EvidenceTypeListCreatedEventDTO: EvidenceTypeListCreatedEventDTO

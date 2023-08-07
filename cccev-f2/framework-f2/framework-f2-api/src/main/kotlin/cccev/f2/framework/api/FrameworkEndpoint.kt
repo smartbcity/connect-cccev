@@ -4,6 +4,8 @@ import cccev.f2.framework.api.service.FrameworkF2AggregateService
 import cccev.f2.framework.api.service.FrameworkF2FinderService
 import cccev.f2.framework.domain.FrameworkApi
 import cccev.f2.framework.domain.command.FrameworkCreateFunction
+import cccev.f2.framework.domain.query.FrameworkGetByIdentifierFunction
+import cccev.f2.framework.domain.query.FrameworkGetByIdentifierResultDTOBase
 import cccev.f2.framework.domain.query.FrameworkGetFunction
 import cccev.f2.framework.domain.query.FrameworkGetResultDTOBase
 import f2.dsl.fnc.f2Function
@@ -25,6 +27,12 @@ class FrameworkEndpoint(
     override fun frameworkGet(): FrameworkGetFunction = f2Function { query ->
         logger.info("frameworkGet: $query")
         frameworkF2FinderService.getOrNull(query.id).let(::FrameworkGetResultDTOBase)
+    }
+
+    @Bean
+    override fun frameworkGetByIdentifier(): FrameworkGetByIdentifierFunction = f2Function { query ->
+        logger.info("frameworkGetByIdentifier: $query")
+        frameworkF2FinderService.getOrNullByIdentifier(query.identifier).let(::FrameworkGetByIdentifierResultDTOBase)
     }
 
     @Bean

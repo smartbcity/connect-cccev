@@ -16,6 +16,7 @@ class DataUnitF2AggregateService(
             name = command.name,
             description = command.description,
             notation = command.notation,
+            identifier = command.identifier,
             type = DataUnitType.valueOf(command.type),
         ).let { dataUnitAggregateService.create(it) }
     }

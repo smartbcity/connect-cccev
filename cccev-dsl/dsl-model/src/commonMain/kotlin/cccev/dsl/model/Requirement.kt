@@ -6,6 +6,14 @@ import cccev.dsl.model.builder.InformationRequirementBuilder
 import kotlinx.serialization.Serializable
 
 /**
+ * The unique identifier of the requirement.
+ * @visual json "TheRequirement"
+ * @title DSL/RequirementId
+ * @d2 model
+ */
+typealias RequirementIdentifier = String
+
+/**
  * The unique id of the requirement.
  * @visual json "082f9b5b-4ffa-4e95-8288-2de2972cade5"
  * @title DSL/RequirementId
@@ -15,7 +23,7 @@ typealias RequirementId = String
 
 sealed interface Requirement {
     val description: String?
-    val identifier: RequirementId?
+    val identifier: RequirementIdentifier?
     val isDerivedFrom: List<ReferenceFramework>?
     val name: String?
     val type: Code?
@@ -30,7 +38,7 @@ sealed interface Requirement {
 @Serializable
 open class Criterion(
     override val description: String? = null,
-    override val identifier: RequirementId? = null,
+    override val identifier: RequirementIdentifier? = null,
     override val name: String? = null,
     override val type: Code? = null,
     val bias: Double? = null,
@@ -67,7 +75,7 @@ open class Criterion(
 @Serializable
 open class InformationRequirement(
     override val description: String? = null,
-    override val identifier: RequirementId? = null,
+    override val identifier: RequirementIdentifier? = null,
     override val name: String? = null,
     override val type: Code? = null,
     override val hasConcept: List<InformationConcept>? = emptyList(),
@@ -96,7 +104,7 @@ open class InformationRequirement(
 @Serializable
 open class Constraint(
     override val description: String? = null,
-    override val identifier: RequirementId? = null,
+    override val identifier: RequirementIdentifier? = null,
     override val name: String? = null,
     override val type: Code? = null,
     override val hasConcept: List<InformationConcept>? = emptyList(),
@@ -129,7 +137,7 @@ open class Constraint(
  */
 open class PartialRequirement(
     override val description: String?,
-    override val identifier: RequirementId?,
+    override val identifier: RequirementIdentifier?,
     override val name: String?,
     override val type: Code?,
     val minRequirementsToMeet: Int,

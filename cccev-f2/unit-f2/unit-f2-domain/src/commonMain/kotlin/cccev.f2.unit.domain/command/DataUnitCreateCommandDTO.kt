@@ -1,6 +1,7 @@
 package cccev.f2.unit.domain.command
 
 import cccev.f2.unit.domain.D2DataUnitF2Page
+import cccev.s2.unit.domain.DataUnitIdentifier
 import cccev.s2.unit.domain.command.DataUnitCreatedEvent
 import f2.dsl.fnc.F2Function
 import kotlin.js.JsExport
@@ -21,6 +22,12 @@ typealias DataUnitCreateFunction = F2Function<DataUnitCreateCommandDTOBase, Data
 @JsExport
 @JsName("DataUnitCreateCommandDTO")
 interface DataUnitCreateCommandDTO {
+    /**
+     * The identifier of the data unit.
+     * @example [cccev.s2.unit.domain.model.DataUnit.identifier)
+     */
+    val identifier: DataUnitIdentifier
+
     /**
      * The name of the data unit.
      * @example [cccev.s2.unit.domain.model.DataUnit.name]
@@ -52,6 +59,7 @@ interface DataUnitCreateCommandDTO {
  */
 @Serializable
 data class DataUnitCreateCommandDTOBase(
+    override val identifier: DataUnitIdentifier,
     override val name: String,
     override val description: String,
     override val notation: String? = null,
