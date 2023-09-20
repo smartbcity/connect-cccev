@@ -54,6 +54,10 @@ include(
 )
 
 include(
+	"cccev-infra:fs",
+)
+
+include(
 	"cccev-projection:projection-api",
 	"cccev-projection:projection-domain"
 )

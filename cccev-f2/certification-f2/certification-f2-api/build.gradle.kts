@@ -11,5 +11,6 @@ dependencies {
     implementation(project(":cccev-f2:evidence-f2:evidence-f2-api"))
     implementation(project(":cccev-s2:certification:certification-api"))
 
-    Dependencies.Jvm.fs(::implementation)
+    implementation(project(":cccev-infra:fs"))
+
 }

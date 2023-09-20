@@ -6,7 +6,7 @@ import city.smartb.gradle.dependencies.add
 
 object Framework {
 	val fixers = FixersPluginVersions.fixers
-	val connect = "experimental-SNAPSHOT"
+	val connect = "next-SNAPSHOT"
 }
 
 object PluginVersions {
@@ -43,7 +43,8 @@ object Dependencies {
 			.also(::junit)
 
 		fun f2(scope: Scope) = scope.add(
-			"city.smartb.f2:f2-spring-boot-starter-function:${Framework.fixers}"
+			"city.smartb.f2:f2-spring-boot-starter-function:${Framework.fixers}",
+			"city.smartb.f2:f2-spring-boot-exception-http:${Framework.fixers}"
 		)
 
 		fun f2Http(scope: Scope) = scope.add(
@@ -51,10 +52,14 @@ object Dependencies {
 			"city.smartb.f2:f2-spring-boot-openapi:${Framework.fixers}"
 		)
 
-		fun fs(scope: Scope) = scope.add(
-			"city.smartb.fs:file-client:${Versions.fs}",
-			"io.ktor:ktor-utils:${Versions.ktor}"
-		)
+		object Fs {
+			fun client(scope: Scope) = scope.add(
+				"city.smartb.fs:file-client:${Versions.fs}",
+				"city.smartb.fs:fs-spring-utils:${Versions.fs}",
+				"io.ktor:ktor-utils:${Versions.ktor}"
+			)
+		}
+
 
 		fun s2EventSouringBc(scope: Scope) = scope.add(
 			"city.smartb.s2:s2-spring-boot-starter-sourcing-ssm:${Framework.fixers}",
@@ -74,6 +79,8 @@ object Dependencies {
 			fun tx(scope: Scope) = FixersDependencies.Jvm.Test.junit(scope).also {
 				scope.add("org.springframework:spring-tx:${FixersVersions.Spring.framework}")
 			}
+			fun autoConfigure(scope: Scope, ksp: Scope)
+					= FixersDependencies.Jvm.Spring.autoConfigure(scope, ksp)
 		}
 
 		object Test {
@@ -89,8 +96,10 @@ object Dependencies {
 			"city.smartb.f2:f2-dsl-function:${Framework.fixers}"
 		)
 
-		fun f2CLient(scope: Scope) = scope.add(
+		fun f2Client(scope: Scope) = scope.add(
 			"city.smartb.f2:f2-client-ktor:${Framework.fixers}",
+			"io.ktor:ktor-client-auth:${Versions.ktor}",
+			"io.ktor:ktor-client-logging:${Versions.ktor}",
 		)
 
 		fun fs(scope: Scope) = scope.add(

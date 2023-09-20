@@ -1,7 +1,5 @@
 package cccev.f2.certification.api.service
 
-import cccev.commons.utils.contentByteArray
-import cccev.commons.utils.toUploadCommand
 import cccev.f2.certification.domain.command.CertificationAddEvidenceCommandDTOBase
 import cccev.s2.certification.api.CertificationAggregateService
 import cccev.s2.certification.domain.command.CertificationAddEvidenceCommand
@@ -21,6 +19,8 @@ import cccev.s2.certification.domain.utils.CertificationFsPath
 import city.smartb.fs.s2.file.client.FileClient
 import city.smartb.fs.s2.file.domain.features.command.FileUploadedEvent
 import city.smartb.fs.s2.file.domain.model.FilePath
+import city.smartb.fs.spring.utils.contentByteArray
+import city.smartb.fs.spring.utils.toUploadCommand
 import org.springframework.http.codec.multipart.FilePart
 import org.springframework.stereotype.Service
 

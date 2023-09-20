@@ -1,16 +1,5 @@
 plugins {
     id("city.smartb.fixers.gradle.kotlin.jvm")
-    kotlin("plugin.spring")
-}
-
-dependencies {
-    implementation(project(":api-commons"))
-    api(project(":cccev-f2:certification-f2:certification-f2-api"))
-    api(project(":cccev-s2:certification:certification-api"))
-
-    Dependencies.Jvm.f2(::api)
-
-    testImplementation(project(":cccev-test"))
 }
 
 subprojects {

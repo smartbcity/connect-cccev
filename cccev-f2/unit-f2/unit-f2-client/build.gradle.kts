@@ -6,5 +6,5 @@ plugins {
 
 dependencies {
 	commonMainApi(project(":cccev-f2:unit-f2:unit-f2-domain"))
-	Dependencies.Mpp.f2CLient(::commonMainApi)
+	Dependencies.Mpp.f2Client(::commonMainApi)
 }

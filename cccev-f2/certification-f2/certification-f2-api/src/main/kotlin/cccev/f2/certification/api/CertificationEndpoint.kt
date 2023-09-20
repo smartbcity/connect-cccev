@@ -1,6 +1,5 @@
 package cccev.f2.certification.api
 
-import cccev.commons.utils.serveFile
 import cccev.f2.certification.api.service.CertificationF2AggregateService
 import cccev.f2.certification.api.service.CertificationF2FinderService
 import cccev.f2.certification.domain.CertificationApi
@@ -17,6 +16,7 @@ import cccev.f2.certification.domain.query.CertificationGetFunction
 import cccev.f2.certification.domain.query.CertificationGetResultDTOBase
 import cccev.s2.certification.domain.command.CertificationAddedEvidenceEvent
 import city.smartb.fs.s2.file.client.FileClient
+import city.smartb.fs.spring.utils.serveFile
 import f2.dsl.fnc.f2Function
 import f2.spring.exception.NotFoundException
 import org.springframework.context.annotation.Bean
@@ -58,8 +58,7 @@ class CertificationEndpoint(
     @PostMapping("/certificationDownloadEvidence")
     suspend fun certificationDownloadEvidence(
         @RequestBody query: CertificationDownloadEvidenceQueryDTOBase,
-        response: ServerHttpResponse
-    ) = response.serveFile(fileClient) {
+    ) = serveFile(fileClient) {
         logger.info("certificationDownloadEvidence: $query")
         val certification = certificationF2FinderService.get(query.id)
         val evidence = certification.evidences.values.flatten().firstOrNull { it.id == query.evidenceId }

@@ -6,6 +6,6 @@ plugins {
 
 dependencies {
 	commonMainApi(project(":cccev-f2:certification-f2:certification-f2-domain"))
-	Dependencies.Mpp.f2CLient(::commonMainApi)
+	Dependencies.Mpp.f2Client(::commonMainApi)
 	Dependencies.Jvm.jackson(::jvmMainApi)
 }

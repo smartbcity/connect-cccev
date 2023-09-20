@@ -5,7 +5,6 @@ plugins {
 
 dependencies {
     implementation(project(":api-commons"))
+    implementation(project(":cccev-infra:fs"))
 
-    Dependencies.Jvm.fs(::implementation)
-    Dependencies.Mpp.f2CLient(::api)
 }

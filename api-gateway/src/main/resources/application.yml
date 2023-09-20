@@ -22,6 +22,11 @@ spring:
 
 fs:
   url: http://localhost:8090
+  auth:
+    url: https://auth.dev.connect.smart-b.io
+    realm: sb-dev
+    clientId: tr-smartb-registry-script-api-key
+    clientSecret: 703ece3d-82bc-4747-8840-96c1c3431079
 
 ssm:
   signer:
