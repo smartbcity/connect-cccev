@@ -103,7 +103,7 @@ object Dependencies {
 		)
 
 		fun fs(scope: Scope) = scope.add(
-			"city.smartb.fs:file-domain:${Versions.fs}"
+			"city.smartb.fs:fs-file-domain:${Versions.fs}"
 		)
 
 		fun s2(scope: Scope) = scope.add(
