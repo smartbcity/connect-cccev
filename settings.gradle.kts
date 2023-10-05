@@ -10,8 +10,8 @@ pluginManagement {
 rootProject.name = "cccev"
 
 include(
-	"cccev-dsl:dsl-model",
-	"cccev-dsl:dsl-client",
+	"cccev-dsl:cccev-dsl-model",
+	"cccev-dsl:cccev-dsl-client",
 )
 include(
 	"api-commons",
@@ -22,35 +22,35 @@ include(
 )
 
 include(
-	"cccev-f2:concept-f2:concept-f2-api",
-	"cccev-f2:concept-f2:concept-f2-client",
-	"cccev-f2:concept-f2:concept-f2-domain",
+	"cccev-f2:concept-f2:cccev-concept-f2-api",
+	"cccev-f2:concept-f2:cccev-concept-f2-client",
+	"cccev-f2:concept-f2:cccev-concept-f2-domain",
 )
 
 include(
-	"cccev-f2:evidence-f2:evidence-f2-api",
-	"cccev-f2:evidence-f2:evidence-f2-domain",
-	"cccev-f2:evidence-type-f2:evidence-type-f2-api",
-	"cccev-f2:evidence-type-f2:evidence-type-f2-client",
-	"cccev-f2:evidence-type-f2:evidence-type-f2-domain",
+	"cccev-f2:evidence-f2:cccev-evidence-f2-api",
+	"cccev-f2:evidence-f2:cccev-evidence-f2-domain",
+	"cccev-f2:evidence-type-f2:cccev-evidence-type-f2-api",
+	"cccev-f2:evidence-type-f2:cccev-evidence-type-f2-client",
+	"cccev-f2:evidence-type-f2:cccev-evidence-type-f2-domain",
 )
 
 include(
-	"cccev-f2:unit-f2:unit-f2-api",
-	"cccev-f2:unit-f2:unit-f2-client",
-	"cccev-f2:unit-f2:unit-f2-domain",
+	"cccev-f2:unit-f2:cccev-unit-f2-api",
+	"cccev-f2:unit-f2:cccev-unit-f2-client",
+	"cccev-f2:unit-f2:cccev-unit-f2-domain",
 )
 
 include(
-	"cccev-f2:certification-f2:certification-f2-api",
-	"cccev-f2:certification-f2:certification-f2-client",
-	"cccev-f2:certification-f2:certification-f2-domain"
+	"cccev-f2:certification-f2:cccev-certification-f2-api",
+	"cccev-f2:certification-f2:cccev-certification-f2-client",
+	"cccev-f2:certification-f2:cccev-certification-f2-domain"
 )
 
 include(
-	"cccev-f2:framework-f2:framework-f2-api",
-	"cccev-f2:framework-f2:framework-f2-client",
-	"cccev-f2:framework-f2:framework-f2-domain"
+	"cccev-f2:framework-f2:cccev-framework-f2-api",
+	"cccev-f2:framework-f2:cccev-framework-f2-client",
+	"cccev-f2:framework-f2:cccev-framework-f2-domain"
 )
 
 include(
@@ -58,31 +58,31 @@ include(
 )
 
 include(
-	"cccev-projection:projection-api",
-	"cccev-projection:projection-domain"
+	"cccev-projection:cccev-projection-api",
+	"cccev-projection:cccev-projection-domain"
 )
 
 include(
-	"cccev-s2:concept:concept-api",
-	"cccev-s2:concept:concept-domain",
-	"cccev-s2:evidence-type:evidence-type-api",
-	"cccev-s2:evidence-type:evidence-type-domain",
-	"cccev-s2:framework:framework-api",
-	"cccev-s2:framework:framework-domain",
-	"cccev-s2:certification:certification-api",
-	"cccev-s2:certification:certification-domain",
-	"cccev-s2:certification:certification-tasks",
-	"cccev-s2:unit:unit-api",
-	"cccev-s2:unit:unit-domain"
+	"cccev-s2:concept:cccev-concept-api",
+	"cccev-s2:concept:cccev-concept-domain",
+	"cccev-s2:evidence-type:cccev-evidence-type-api",
+	"cccev-s2:evidence-type:cccev-evidence-type-domain",
+	"cccev-s2:framework:cccev-framework-api",
+	"cccev-s2:framework:cccev-framework-domain",
+	"cccev-s2:certification:cccev-certification-api",
+	"cccev-s2:certification:cccev-certification-domain",
+	"cccev-s2:certification:cccev-certification-tasks",
+	"cccev-s2:unit:cccev-unit-api",
+	"cccev-s2:unit:cccev-unit-domain"
 )
 
 include(
-	"cccev-f2:requirement-f2:requirement-f2-api",
-	"cccev-f2:requirement-f2:requirement-f2-client",
-	"cccev-f2:requirement-f2:requirement-f2-domain"
+	"cccev-f2:requirement-f2:cccev-requirement-f2-api",
+	"cccev-f2:requirement-f2:cccev-requirement-f2-client",
+	"cccev-f2:requirement-f2:cccev-requirement-f2-domain"
 )
 
 include(
-	"cccev-s2:requirement:requirement-api",
-	"cccev-s2:requirement:requirement-domain",
+	"cccev-s2:requirement:cccev-requirement-api",
+	"cccev-s2:requirement:cccev-requirement-domain",
 )

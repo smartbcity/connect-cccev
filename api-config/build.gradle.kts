@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation(project(":api-commons"))
-    implementation(project(":cccev-infra:fs"))
+    implementation(project(Modules.api.commons))
+    implementation(project(Modules.cccev.infra.fs))
 
 }

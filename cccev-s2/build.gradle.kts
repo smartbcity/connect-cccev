@@ -2,7 +2,7 @@ subprojects {
 	plugins.withType(JavaPlugin::class.java).whenPluginAdded {
 		dependencies {
 			val implementation by configurations
-			implementation(project(":api-commons"))
+			implementation(project(Modules.api.commons))
 			Dependencies.Jvm.f2 { implementation(it) }
 		}
 	}
@@ -10,7 +10,7 @@ subprojects {
 	plugins.withType(org.jetbrains.kotlin.gradle.plugin.KotlinMultiplatformPluginWrapper::class.java).whenPluginAdded {
 		dependencies {
 			val commonMainApi by configurations
-			commonMainApi(project(":cccev-dsl:dsl-model"))
+			commonMainApi(project(Modules.cccev.dsl.model))
 			Dependencies.Mpp.f2 { commonMainApi(it) }
 			Dependencies.Mpp.s2 { commonMainApi(it) }
 		}

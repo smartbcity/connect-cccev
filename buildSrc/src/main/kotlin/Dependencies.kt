@@ -112,3 +112,102 @@ object Dependencies {
 		)
 	}
 }
+
+object Modules {
+	object api {
+		const val commons = ":api-commons"
+		const val config = ":api-config"
+		const val gateway = ":api-gateway"
+	}
+
+	object cccev {
+
+		object dsl {
+			const val client = ":cccev-dsl:cccev-dsl-client"
+			const val model = ":cccev-dsl:cccev-dsl-model"
+		}
+		object f2 {
+			object certification {
+				const val api = ":cccev-f2:certification-f2:cccev-certification-f2-api"
+				const val client = ":cccev-f2:certification-f2:cccev-certification-f2-client"
+				const val domain = ":cccev-f2:certification-f2:cccev-certification-f2-domain"
+			}
+			object concept {
+				const val api = ":cccev-f2:concept-f2:cccev-concept-f2-api"
+				const val client = ":cccev-f2:concept-f2:cccev-concept-f2-client"
+				const val domain = ":cccev-f2:concept-f2:cccev-concept-f2-domain"
+			}
+			object evidence {
+				const val api = ":cccev-f2:evidence-f2:cccev-evidence-f2-api"
+				const val client = ":cccev-f2:evidence-f2:cccev-evidence-f2-client"
+				const val domain = ":cccev-f2:evidence-f2:cccev-evidence-f2-domain"
+			}
+			object evidenceType {
+				const val api = ":cccev-f2:evidence-type-f2:cccev-evidence-type-f2-api"
+				const val client = ":cccev-f2:evidence-type-f2:cccev-evidence-type-f2-client"
+				const val domain = ":cccev-f2:evidence-type-f2:cccev-evidence-type-f2-domain"
+			}
+			object framework {
+				const val api = ":cccev-f2:framework-f2:cccev-framework-f2-api"
+				const val client = ":cccev-f2:framework-f2:cccev-framework-f2-client"
+				const val domain = ":cccev-f2:framework-f2:cccev-framework-f2-domain"
+			}
+			object requirement {
+				const val api = ":cccev-f2:requirement-f2:cccev-requirement-f2-api"
+				const val client = ":cccev-f2:requirement-f2:cccev-requirement-f2-client"
+				const val domain = ":cccev-f2:requirement-f2:cccev-requirement-f2-domain"
+			}
+			object unit {
+				const val api = ":cccev-f2:unit-f2:cccev-unit-f2-api"
+				const val client = ":cccev-f2:unit-f2:cccev-unit-f2-client"
+				const val domain = ":cccev-f2:unit-f2:cccev-unit-f2-domain"
+			}
+		}
+		object infra {
+			const val fs = ":cccev-infra:fs"
+		}
+		object projection {
+			const val api = ":cccev-projection:cccev-projection-api"
+			const val domain = ":cccev-projection:cccev-projection-domain"
+		}
+		object s2 {
+			object certification {
+				const val api = ":cccev-s2:certification:cccev-certification-api"
+				const val domain = ":cccev-s2:certification:cccev-certification-domain"
+				const val task = ":cccev-s2:certification:cccev-certification-task"
+			}
+			object concept {
+				const val api = ":cccev-s2:concept:cccev-concept-api"
+				const val domain = ":cccev-s2:concept:cccev-concept-domain"
+			}
+			object evidence {
+				const val api = ":cccev-s2:evidence:cccev-evidence-api"
+				const val domain = ":cccev-s2:evidence:cccev-evidence-domain"
+			}
+			object evidenceType {
+				const val api = ":cccev-s2:evidence-type:cccev-evidence-type-api"
+				const val domain = ":cccev-s2:evidence-type:cccev-evidence-type-domain"
+			}
+			object framework {
+				const val api = ":cccev-s2:framework:cccev-framework-api"
+				const val domain = ":cccev-s2:framework:cccev-framework-domain"
+			}
+			object requirement {
+				const val api = ":cccev-s2:requirement:cccev-requirement-api"
+				const val domain = ":cccev-s2:requirement:cccev-requirement-domain"
+			}
+			object unit {
+				const val api = ":cccev-s2:unit:cccev-unit-api"
+				const val domain = ":cccev-s2:unit:cccev-unit-domain"
+			}
+		}
+		const val test = ":cccev-test"
+
+		private const val BASE = ":im-commons:im-commons"
+		const val api = "$BASE-api"
+		const val auth = "$BASE-auth"
+		const val domain = "$BASE-domain"
+	}
+
+
+}

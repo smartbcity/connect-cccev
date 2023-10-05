@@ -6,7 +6,7 @@ subprojects {
     plugins.withType(JavaPlugin::class.java).whenPluginAdded {
         dependencies {
             val implementation by configurations
-            implementation(project(":api-commons"))
+            implementation(project(Modules.api.commons))
             Dependencies.Jvm.f2 { implementation(it) }
         }
     }
