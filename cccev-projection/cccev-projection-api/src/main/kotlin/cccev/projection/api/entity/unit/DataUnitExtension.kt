@@ -1,6 +1,5 @@
-package cccev.s2.unit.api.entity
+package cccev.projection.api.entity.unit
 
-import cccev.projection.api.entity.unit.DataUnitEntity
 import cccev.s2.unit.domain.model.DataUnit
 
 fun DataUnitEntity.toDataUnit() = DataUnit(

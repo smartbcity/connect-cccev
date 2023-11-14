@@ -2,7 +2,7 @@ package cccev.s2.requirement.domain.model
 
 import cccev.dsl.model.EvidenceTypeListId
 import cccev.dsl.model.FrameworkId
-import cccev.dsl.model.InformationConceptId
+import cccev.s2.concept.domain.model.InformationConcept
 import cccev.s2.requirement.domain.D2RequirementPage
 import cccev.s2.requirement.domain.RequirementId
 import cccev.s2.requirement.domain.RequirementState
@@ -90,7 +90,7 @@ data class Requirement(
      * Concepts used by the requirement
      * @example [["altitudeInMeters"]]
      */
-    val hasConcept: List<InformationConceptId> = emptyList(),
+    val hasConcept: List<InformationConcept> = emptyList(),
 
     /**
      * Evidences that must be provided for the requirement to be validated. <br/>
