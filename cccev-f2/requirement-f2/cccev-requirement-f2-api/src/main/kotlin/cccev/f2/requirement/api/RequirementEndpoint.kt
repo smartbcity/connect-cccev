@@ -55,6 +55,7 @@ class RequirementEndpoint(
 
     @Bean
     override fun requirementsList(): RequirementListQueryFunction = f2Function { query ->
+        logger.info("requirementsList: $query")
         requirementF2FinderService.list(
             isRequirementOf = query.parentId,
             concept = query.conceptId,

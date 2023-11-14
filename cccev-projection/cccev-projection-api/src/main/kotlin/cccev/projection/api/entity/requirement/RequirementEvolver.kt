@@ -1,6 +1,8 @@
 package cccev.projection.api.entity.requirement
 
+import cccev.commons.utils.toJson
 import cccev.projection.api.entity.Relation
+import cccev.projection.api.entity.concept.InformationConceptEntity
 import cccev.projection.api.entity.concept.InformationConceptRepository
 import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListRepository
 import cccev.projection.api.entity.framework.FrameworkRepository
@@ -44,22 +46,32 @@ class RequirementEvolver(
 				requirementRepository.findAllById(requirementIds).collectList().awaitSingle()
 			}
 
-		val concepts = informationConceptRepository.findAllById(event.hasConcept).collectList().awaitSingle()
+		val conceptIds = event.hasConcept.toSet() + event.enablingConditionDependencies + event.validatingConditionDependencies
+		val concepts = informationConceptRepository.findAllById(conceptIds)
+			.collectList().awaitSingle()
+			.associateBy(InformationConceptEntity::id)
 		val evidenceTypeLists = evidenceTypeListRepository.findAllById(event.hasEvidenceTypeList).collectList().awaitSingle()
 		val frameworks = frameworkRepository.findAllById(event.isDerivedFrom ?: emptyList()).collectList().awaitSingle()
 
 		return RequirementEntity(
-				id = event.id,
-				identifier = event.identifier,
-				kind = event.kind,
-				name = event.name,
-				description = event.description,
-				type = event.type,
-				isDerivedFrom = frameworks,
-				hasQualifiedRelation = hasQualifiedRelation.toMutableMap(),
-				hasConcept = concepts,
-				hasEvidenceTypeList = evidenceTypeLists,
-				status = event.status
+			id = event.id,
+			identifier = event.identifier,
+			status = event.status,
+			kind = event.kind,
+			name = event.name,
+			description = event.description,
+			type = event.type,
+			isDerivedFrom = frameworks,
+			hasQualifiedRelation = hasQualifiedRelation.toMutableMap(),
+			hasConcept = event.hasConcept.mapNotNull { concepts[it] }.toMutableList(),
+			hasEvidenceTypeList = evidenceTypeLists,
+			enablingCondition = event.enablingCondition,
+			enablingConditionDependencies = event.enablingConditionDependencies.mapNotNull { concepts[it] }.toMutableList(),
+			required = event.required,
+			validatingCondition = event.validatingCondition,
+			validatingConditionDependencies = event.validatingConditionDependencies.mapNotNull { concepts[it] }.toMutableList(),
+			order = event.order,
+			properties = event.properties?.toJson()
 		)
 	}
 

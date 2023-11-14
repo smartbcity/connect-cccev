@@ -1,7 +1,9 @@
-package cccev.s2.requirement.api.entity
+package cccev.projection.api.entity.requirement
 
+import cccev.commons.utils.parseJsonTo
 import cccev.projection.api.entity.Relation
-import cccev.projection.api.entity.requirement.RequirementEntity
+import cccev.projection.api.entity.concept.InformationConceptEntity
+import cccev.projection.api.entity.concept.toInformationConcept
 import cccev.s2.requirement.domain.model.Requirement
 
 fun RequirementEntity.toRequirement(): Requirement {
@@ -17,10 +19,17 @@ fun RequirementEntity.toRequirement(): Requirement {
         name = name,
         isDerivedFrom = isDerivedFrom.map { it.id },
         hasRequirement = children.map(RequirementEntity::toRequirement),
-        hasConcept = hasConcept.map { it.id },
+        hasConcept = hasConcept.map(InformationConceptEntity::toInformationConcept),
         hasEvidenceTypeList = hasEvidenceTypeList.map { it.id },
         isRequirementOf = emptyList(),
         hasQualifiedRelation = relatedRequirements.mapValues { (_, requirement) -> requirement.map { it.id } },
-        state = status
+        state = status,
+        enablingCondition = enablingCondition,
+        enablingConditionDependencies = enablingConditionDependencies.map(InformationConceptEntity::toInformationConcept),
+        required = required,
+        validatingCondition = validatingCondition,
+        validatingConditionDependencies = validatingConditionDependencies.map(InformationConceptEntity::toInformationConcept),
+        order = order,
+        properties = properties?.parseJsonTo<Map<String, String>>(),
     )
 }

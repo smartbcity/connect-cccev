@@ -41,6 +41,15 @@ data class RequirementEntity(
     val hasConcept: MutableList<InformationConceptEntity> = mutableListOf(),
     @Relationship(type = Relation.HAS_EVIDENCE_TYPE_LIST)
     val hasEvidenceTypeList: MutableList<EvidenceTypeListEntity> = mutableListOf(),
+    val enablingCondition: String? = null,
+    @Relationship(type = Relation.Requirement.CONDITION_ENABLING)
+    val enablingConditionDependencies: List<InformationConceptEntity> = emptyList(),
+    val required: Boolean = true,
+    val validatingCondition: String? = null,
+    @Relationship(type = Relation.Requirement.CONDITION_VALIDATION)
+    val validatingConditionDependencies: List<InformationConceptEntity> = emptyList(),
+    val order: Int? = null,
+    val properties: String? = null, // json
 ): WithS2Id<RequirementId>, WithS2State<RequirementState> {
     override fun s2Id() = id
     override fun s2State() = status

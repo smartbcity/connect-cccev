@@ -20,4 +20,11 @@ suspend fun Requirement.toDTO(
     hasQualifiedRelation = hasQualifiedRelation.orEmpty(),
     hasConcept = hasConcept.map(InformationConcept::toDTO),
     hasEvidenceTypeList = hasEvidenceTypeList.map { getEvidenceTypeList(it) },
+    enablingCondition = enablingCondition,
+    enablingConditionDependencies = enablingConditionDependencies.map { it.toDTO() },
+    required = required,
+    validatingCondition = validatingCondition,
+    validatingConditionDependencies = validatingConditionDependencies.map { it.toDTO() },
+    order = order,
+    properties = properties,
 )
