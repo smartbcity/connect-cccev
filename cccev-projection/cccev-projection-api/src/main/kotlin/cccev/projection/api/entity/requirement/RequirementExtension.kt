@@ -1,14 +1,13 @@
 package cccev.projection.api.entity.requirement
 
 import cccev.commons.utils.parseJsonTo
-import cccev.projection.api.entity.Relation
 import cccev.projection.api.entity.concept.InformationConceptEntity
 import cccev.projection.api.entity.concept.toInformationConcept
 import cccev.s2.requirement.domain.model.Requirement
 
 fun RequirementEntity.toRequirement(): Requirement {
-    val children = hasQualifiedRelation[Relation.HAS_REQUIREMENT].orEmpty()
-    val relatedRequirements = hasQualifiedRelation.filterKeys { it != Relation.HAS_REQUIREMENT }
+    val children = hasQualifiedRelation[RequirementEntity.HAS_REQUIREMENT].orEmpty()
+    val relatedRequirements = hasQualifiedRelation.filterKeys { it != RequirementEntity.HAS_REQUIREMENT }
 
     return Requirement(
         id = id,

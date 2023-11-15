@@ -1,7 +1,6 @@
 package cccev.projection.api.entity.requirement
 
 import cccev.commons.utils.toJson
-import cccev.projection.api.entity.Relation
 import cccev.projection.api.entity.concept.InformationConceptEntity
 import cccev.projection.api.entity.concept.InformationConceptRepository
 import cccev.projection.api.entity.evidencetypelist.EvidenceTypeListRepository
@@ -41,7 +40,7 @@ class RequirementEvolver(
 
 	private suspend fun create(event: RequirementCreatedEvent): RequirementEntity {
 		val hasQualifiedRelation = event.hasQualifiedRelation
-			.plus(Relation.HAS_REQUIREMENT to event.hasRequirement)
+			.plus(RequirementEntity.HAS_REQUIREMENT to event.hasRequirement)
 			.mapValues { (_, requirementIds) ->
 				requirementRepository.findAllById(requirementIds).collectList().awaitSingle()
 			}
@@ -81,7 +80,7 @@ class RequirementEvolver(
 	)
 
 	private suspend fun RequirementEntity.addRequirements(event: RequirementAddedRequirementsEvent) = apply {
-		val children = hasQualifiedRelation.getOrPut(Relation.HAS_REQUIREMENT, ::mutableListOf)
+		val children = hasQualifiedRelation.getOrPut(RequirementEntity.HAS_REQUIREMENT, ::mutableListOf)
 		val currentChildrenIds = children.map { it.id }.toSet()
 
 		val newRequirements = event.requirementIds.filter { it !in currentChildrenIds }
@@ -91,7 +90,7 @@ class RequirementEvolver(
 	}
 
 	private suspend fun RequirementEntity.removeRequirements(event: RequirementRemovedRequirementsEvent) = apply {
-		hasQualifiedRelation[Relation.HAS_REQUIREMENT]?.let { hasRequirement ->
+		hasQualifiedRelation[RequirementEntity.HAS_REQUIREMENT]?.let { hasRequirement ->
 			hasRequirement.removeIf { it.id in event.requirementIds }
 		}
 	}

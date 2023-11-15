@@ -1,6 +1,5 @@
 package cccev.projection.api.entity.unit
 
-import cccev.projection.api.entity.NodeLabel
 import cccev.s2.unit.domain.DataUnitId
 import cccev.s2.unit.domain.DataUnitIdentifier
 import cccev.s2.unit.domain.DataUnitState
@@ -13,7 +12,7 @@ import org.springframework.data.neo4j.core.schema.Node
 import s2.dsl.automate.model.WithS2Id
 import s2.dsl.automate.model.WithS2State
 
-@Node(NodeLabel.DATA_UNIT)
+@Node(DataUnitEntity.LABEL)
 data class DataUnitEntity(
     @Id
     val id: DataUnitId,
@@ -30,6 +29,10 @@ data class DataUnitEntity(
     val notation: String? = null,
     val type: DataUnitType
 ): WithS2Id<DataUnitId>, WithS2State<DataUnitState> {
+
+    companion object {
+        const val LABEL = "DataUnit"
+    }
 
     override fun s2Id() = id
     override fun s2State() = status
