@@ -25,6 +25,17 @@ class DataUnitEvolver(
 			description = event.description,
 			notation = event.notation,
 			type = event.type,
+			options = event.options?.map { option ->
+				DataUnitOptionEntity(
+					id = option.id,
+					identifier = option.identifier,
+					name = option.name,
+					value = option.value,
+					order = option.order,
+					icon = option.icon,
+					color = option.color,
+				)
+			}?.toMutableList(),
 			status = event.status
 		)
 	}

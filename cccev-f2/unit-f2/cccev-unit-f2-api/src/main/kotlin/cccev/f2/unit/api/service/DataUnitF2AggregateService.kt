@@ -4,8 +4,10 @@ import cccev.f2.unit.domain.command.DataUnitCreateCommandDTOBase
 import cccev.s2.unit.api.DataUnitAggregateService
 import cccev.s2.unit.domain.command.DataUnitCreateCommand
 import cccev.s2.unit.domain.command.DataUnitCreatedEvent
+import cccev.s2.unit.domain.model.DataUnitOption
 import cccev.s2.unit.domain.model.DataUnitType
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class DataUnitF2AggregateService(
@@ -18,6 +20,17 @@ class DataUnitF2AggregateService(
             notation = command.notation,
             identifier = command.identifier,
             type = DataUnitType.valueOf(command.type),
+            options = command.options?.map { option ->
+                DataUnitOption(
+                    id = UUID.randomUUID().toString(),
+                    identifier = option.identifier,
+                    name = option.name,
+                    value = option.value,
+                    order = option.order,
+                    icon = option.icon,
+                    color = option.color,
+                )
+            }
         ).let { dataUnitAggregateService.create(it) }
     }
 }

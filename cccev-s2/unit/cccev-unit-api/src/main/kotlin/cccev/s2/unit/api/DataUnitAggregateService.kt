@@ -5,8 +5,8 @@ import cccev.s2.unit.domain.DataUnitAggregate
 import cccev.s2.unit.domain.DataUnitState
 import cccev.s2.unit.domain.command.DataUnitCreateCommand
 import cccev.s2.unit.domain.command.DataUnitCreatedEvent
-import java.util.UUID
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class DataUnitAggregateService(
@@ -20,6 +20,7 @@ class DataUnitAggregateService(
             type = command.type,
             notation = command.notation,
             identifier = command.identifier,
+            options = command.options,
             status = DataUnitState.EXISTS
         )
     }

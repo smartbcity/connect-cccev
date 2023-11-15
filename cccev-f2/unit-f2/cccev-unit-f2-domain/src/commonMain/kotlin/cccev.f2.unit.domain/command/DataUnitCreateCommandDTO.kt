@@ -1,12 +1,15 @@
 package cccev.f2.unit.domain.command
 
 import cccev.f2.unit.domain.D2DataUnitF2Page
+import cccev.s2.unit.domain.DataUnitId
 import cccev.s2.unit.domain.DataUnitIdentifier
+import cccev.s2.unit.domain.DataUnitOptionIdentifier
 import cccev.s2.unit.domain.command.DataUnitCreatedEvent
+import city.smartb.fs.s2.file.domain.model.FilePath
+import city.smartb.fs.s2.file.domain.model.FilePathDTO
 import f2.dsl.fnc.F2Function
-import kotlin.js.JsExport
-import kotlin.js.JsName
 import kotlinx.serialization.Serializable
+import kotlin.js.JsExport
 
 /**
  * Create a new data unit.
@@ -20,7 +23,6 @@ typealias DataUnitCreateFunction = F2Function<DataUnitCreateCommandDTOBase, Data
  * @parent [DataUnitCreateFunction]
  */
 @JsExport
-@JsName("DataUnitCreateCommandDTO")
 interface DataUnitCreateCommandDTO {
     /**
      * The identifier of the data unit.
@@ -52,6 +54,18 @@ interface DataUnitCreateCommandDTO {
      * @example [cccev.s2.unit.domain.model.DataUnit.type]
      */
     val type: String
+
+    val options: List<DataUnitOptionCreateCommandDTO>?
+}
+
+@JsExport
+interface DataUnitOptionCreateCommandDTO {
+    val identifier: DataUnitOptionIdentifier
+    val name: String
+    val value: String
+    val order: Int
+    val icon: FilePathDTO?
+    val color: String?
 }
 
 /**
@@ -63,13 +77,32 @@ data class DataUnitCreateCommandDTOBase(
     override val name: String,
     override val description: String,
     override val notation: String? = null,
-    override val type: String
+    override val type: String,
+    override val options: List<DataUnitOptionCreateCommandDTOBase>?
 ): DataUnitCreateCommandDTO
+
+@Serializable
+data class DataUnitOptionCreateCommandDTOBase(
+    override val identifier: DataUnitOptionIdentifier,
+    override val name: String,
+    override val value: String,
+    override val order: Int,
+    override val icon: FilePath?,
+    override val color: String?
+): DataUnitOptionCreateCommandDTO
 
 /**
  * @d2 event
  * @parent [DataUnitCreateFunction]
  */
 @JsExport
-@JsName("DataUnitCreatedEventDTO")
-interface DataUnitCreatedEventDTO: cccev.s2.unit.domain.command.DataUnitCreatedEventDTO
+interface DataUnitCreatedEventDTO {
+    val id: DataUnitId
+    val identifier: DataUnitIdentifier
+}
+
+@Serializable
+data class DataUnitCreatedEventDTOBase(
+    override val id: DataUnitId,
+    override val identifier: DataUnitIdentifier
+): DataUnitCreatedEventDTO

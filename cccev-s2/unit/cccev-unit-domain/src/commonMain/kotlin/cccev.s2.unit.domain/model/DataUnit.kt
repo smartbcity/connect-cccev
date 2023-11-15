@@ -13,7 +13,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class DataUnit(
     /**
-     * Unique identifier of this data unit.
+     * Unique id of this data unit.
      */
     val id: DataUnitId,
 
@@ -39,5 +39,11 @@ data class DataUnit(
      * The type of data used for this data unit.
      * @example "NUMBER"
      */
-    val type: DataUnitType
+    val type: DataUnitType,
+
+    /**
+     * Optional list of available options for the DataUnit. If options are specified, they will be considered as the only accepted values.
+     * @example null
+     */
+    val options: List<DataUnitOption>?
 )
