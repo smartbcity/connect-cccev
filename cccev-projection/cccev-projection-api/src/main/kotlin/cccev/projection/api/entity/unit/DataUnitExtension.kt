@@ -5,6 +5,7 @@ import cccev.s2.unit.domain.model.DataUnitOption
 
 fun DataUnitEntity.toDataUnit() = DataUnit(
     id = id,
+    identifier = identifier,
     name = name,
     description = description,
     notation = notation,

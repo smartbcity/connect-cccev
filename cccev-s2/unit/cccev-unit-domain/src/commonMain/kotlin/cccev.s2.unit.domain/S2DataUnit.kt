@@ -2,6 +2,8 @@ package cccev.s2.unit.domain
 
 import cccev.s2.unit.domain.command.DataUnitCreateCommand
 import cccev.s2.unit.domain.command.DataUnitCreatedEvent
+import cccev.s2.unit.domain.command.DataUnitUpdateCommand
+import cccev.s2.unit.domain.command.DataUnitUpdatedEvent
 import s2.dsl.automate.Evt
 import s2.dsl.automate.S2Command
 import s2.dsl.automate.S2InitCommand
@@ -44,6 +46,10 @@ val s2DataUnit = s2Sourcing {
 	name = "DataUnitS2"
 	init<DataUnitCreateCommand, DataUnitCreatedEvent> {
 		to = DataUnitState.EXISTS
+		role = EditorRole
+	}
+	selfTransaction<DataUnitUpdateCommand, DataUnitUpdatedEvent> {
+		states += DataUnitState.EXISTS
 		role = EditorRole
 	}
 }

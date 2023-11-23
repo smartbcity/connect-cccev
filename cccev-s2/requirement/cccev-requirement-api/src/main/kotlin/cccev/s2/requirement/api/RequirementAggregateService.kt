@@ -55,7 +55,19 @@ class RequirementAggregateService(
         RequirementUpdatedEvent(
             id = command.id,
             name = command.name,
-            description = command.description
+            description = command.description,
+            type = command.type,
+            hasConcept = command.hasConcept,
+            hasEvidenceTypeList = command.hasEvidenceTypeList,
+            hasRequirement = command.hasRequirement,
+            hasQualifiedRelation = command.hasQualifiedRelation,
+            enablingCondition = command.enablingCondition,
+            enablingConditionDependencies = command.enablingConditionDependencies,
+            required = command.required,
+            validatingCondition = command.validatingCondition,
+            validatingConditionDependencies = command.validatingConditionDependencies,
+            order = command.order,
+            properties = command.properties
         )
     }
 
